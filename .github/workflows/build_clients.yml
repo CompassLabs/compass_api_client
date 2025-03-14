@@ -1,0 +1,126 @@
+name: Build Clients
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: write # This is required for actions/checkout
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-typescript-client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download OpenAPI file
+        uses: actions/download-artifact@v4
+        with:
+          name: openapi
+
+      - name: Verify OpenAPI file
+        run: cat openapi.json
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+      - name: Install dependencies
+        run: cd libs/python_client && poetry install
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 23.3.0
+      - name: "Setup jq"
+        uses: dcarbone/install-jq-action@v3
+        with:
+          version: 1.7
+          force: false
+
+      ##############################################################################################      - name: Commit clients
+      # PYTHON CLIENT
+      - name: Generate python client
+        run: |
+          cd ./python_client
+          LATEST_VERSION=$(./python_client/scripts/get_latest_version.sh)
+          poetry version patch
+          NEXT_VERSION=$(poetry version --short)
+          docker run \
+            --rm \
+            -v .:/local/ \
+             openapitools/openapi-generator-cli generate \
+            -i /local/openapi.json \
+            -g python \
+            -o /local/out/python \
+            -p projectName=compass.api_client,packageName=compass.api_client,packageVersion=$NEXT_VERSION
+          sudo chown -R $USER out/python/
+          find out/python -type f | xargs -n1 chmod 666
+          rsync -a out/python/* .
+          sudo rm -rf out
+          sed -i 's/name =.*/name = "compass.api_client"\npackages = [ { include = "compass"} ]/' pyproject.toml
+      - name: Build package
+        run: |
+          cd ./python_client
+          git fetch
+          git pull
+          poetry build
+          ls -la dist/
+      - name: Publish to PyPi
+        uses: pypa/gh-action-pypi-publish@release/v
+
+      ##############################################################################################      - name: Commit clients
+      # TS CLIENT
+      - name: Generate API SDK and Zod Types
+        run: |
+          cd ./ts_client
+          node --version
+          npm --version
+          npm install &&
+          npm run generate:typescript_client
+      - name: Format generated code
+        run: |
+          cd ./ts_client
+          npm install
+          npm run format:fix
+      - name: Check for changes in typescript client
+        id: check_changes
+        run: |
+          git fetch origin main
+          if [ -n "$(git diff --name-status origin/main -- ./)" ]; then
+              echo "changes=true" >> $GITHUB_ENV
+          else
+              echo "changes=false" >> $GITHUB_ENV
+          fi
+      - name: Increment package version
+        if: env.changes == 'true'
+        run: |
+          cd ./ts_client
+          current_version=$(jq -r '.version' package.json)
+          IFS='.' read -r -a version_parts <<< "$current_version"
+          major=${version_parts[0]}
+          minor=${version_parts[1]}
+          patch=${version_parts[2]}
+          new_patch=$((patch + 1))
+          new_version="$major.$minor.$new_patch"
+          jq --arg new_version "$new_version" '.version = $new_version' package.json > tmp.$$.json && mv tmp.$$.json package.json
+
+      - name: Publish to npm
+        if: env.changes == 'true'
+        run: |
+          cd ./ts_client
+          npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+          npm run build
+          npm publish --access public
+
+      ##############################################################################################      - name: Commit clients
+      - name: Commit Changes
+        run: |
+          git config --global user.name 'Github Automation'
+          git config --global user.email 'ollivanders@users.noreply.github.com'
+          git add .
+          git status
+          # [git diff-index] is used to only push if there are changes without failing the job
+          git diff-index --cached --quiet HEAD || git commit -am "update: clients"
+          git push
