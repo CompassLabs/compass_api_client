@@ -7,6 +7,8 @@ license = "NoLicense"
 readme = "README.md"
 repository = "https://github.com/CompassLabs/compass_api_client"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Compass API"]
+include = ["compass/api_client/py.typed"]
+packages = [{ include = "compass" }]
 
 [tool.poetry.dependencies]
 python = "^3.8"
