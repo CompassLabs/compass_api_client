@@ -96,15 +96,6 @@ jobs:
           cd ./ts_client
           npm install
           npm run format:fix
-      - name: Check for changes in typescript client
-        id: check_changes
-        run: |
-          git fetch origin main
-          if [ -n "$(git diff --name-status origin/main -- ./)" ]; then
-              echo "changes=true" >> $GITHUB_ENV
-          else
-              echo "changes=false" >> $GITHUB_ENV
-          fi
       - name: Increment package version
         if: env.changes == 'true'
         run: |
