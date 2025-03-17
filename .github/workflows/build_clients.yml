@@ -28,6 +28,11 @@ jobs:
           repo: CompassLabs/dojo_api
           name: openapi-spec
           branch: main
+      - name: Modify OpenAPI description
+        run: |
+          DESCRIPTION=$(cat description.md)
+          jq --arg description "$DESCRIPTION" '.info.description = $description' openapi.json > temp_openapi.json && mv temp_openapi.json openapi.json
+
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
       - name: Install dependencies
@@ -72,8 +77,6 @@ jobs:
       - name: Build package
         run: |
           cd ./python_client
-          git fetch
-          git pull
           poetry build
           ls -la dist/
       - name: Publish to PyPi
