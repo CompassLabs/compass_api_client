@@ -53,11 +53,14 @@ jobs:
       # PYTHON CLIENT
       - name: Generate python client
         run: |
+          # copy openapi json to local dir then clean up later
+          cp ./openapi.json ./python_client/
           cd ./python_client
           LATEST_VERSION=$(curl -L -s "https://pypi.org/pypi/compass.api_client/json" \
               | jq  -r '.releases | keys | .[]' \
               | sort -V \
-              | tail -n1)
+              | tail -n1
+          )
 
           poetry version patch
           NEXT_VERSION=$(poetry version --short)
@@ -74,6 +77,7 @@ jobs:
           rsync -a out/python/* .
           sudo rm -rf out
           sed -i 's/name =.*/name = "compass.api_client"\npackages = [ { include = "compass"} ]/' pyproject.toml
+          rm openapi.json
       - name: Build package
         run: |
           cd ./python_client

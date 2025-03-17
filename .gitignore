@@ -3,6 +3,7 @@ __pycache__/
 
 .env
 poetry.lock
+python_client/poetry.lock
 .vscode/*
 .vscode/
 .python-version
