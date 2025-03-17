@@ -2,7 +2,7 @@ name: Build Clients
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 on:
   workflow_dispatch:
@@ -100,7 +100,6 @@ jobs:
           npm install
           npm run format:fix
       - name: Increment package version
-        if: env.changes == 'true'
         run: |
           cd ./ts_client
           current_version=$(jq -r '.version' package.json)
@@ -113,7 +112,6 @@ jobs:
           jq --arg new_version "$new_version" '.version = $new_version' package.json > tmp.$$.json && mv tmp.$$.json package.json
 
       - name: Publish to npm
-        if: env.changes == 'true'
         run: |
           cd ./ts_client
           npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
@@ -125,7 +123,7 @@ jobs:
         run: |
           git config --global user.name 'Github Automation'
           git config --global user.email 'ollivanders@users.noreply.github.com'
-          git add .
+          git add python_client ts_client openapi.json
           git status
           # [git diff-index] is used to only push if there are changes without failing the job
           git diff-index --cached --quiet HEAD || git commit -am "update: clients"
