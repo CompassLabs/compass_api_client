@@ -27,9 +27,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: openapi
-
       - name: Verify OpenAPI file
-        run: cat openapi.json
+        run: |
+          cat openapi.json
 
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
@@ -126,7 +126,6 @@ jobs:
       ##############################################################################################      - name: Commit clients
       - name: Commit Changes
         run: |
-          # TODO: remove build artifacts
           git config --global user.name 'Github Automation'
           git config --global user.email 'ollivanders@users.noreply.github.com'
           git add .
