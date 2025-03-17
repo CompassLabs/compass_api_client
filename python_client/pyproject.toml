@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "compass.api_client"
-packages = [ { include = "compass"} ]
-version = "1.0.90"
+packages = [{ include = "compass" }]
+version = "1.0.92"
 description = "Compass API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
@@ -73,9 +73,7 @@ disallow_any_generics = true
 #warn_return_any = true
 
 [[tool.mypy.overrides]]
-module = [
-  "compass.api_client.configuration",
-]
+module = ["compass.api_client.configuration"]
 warn_unused_ignores = true
 strict_equality = true
 extra_checks = true
