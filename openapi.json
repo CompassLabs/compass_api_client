@@ -312,7 +312,7 @@
           "Aave V3"
         ],
         "summary": "Gets the change in liquidity index between two blocks, therefore the amount a position will have increased or decreased over the time",
-        "description": "This endpoint retrieves the change in the reserve liquditiy index between\n        two provided blocks. This is then converted to a percentage change.\n        The liquidity index represents the change in debt and interest accrual over each block.\n        Aave does not store individual user balances directly.\n        Instead, it keeps a scaled balance and uses the liquidity index\n        to compute real balances dynamically.\n        If a user was to have deposited tokens at the start block, a positive liquidity\n        index change will represent accured interest and a profit.\n        If tokens were borrowed at the start block, this debt will increase,\n        compound on itself and represent large debt.\n        The reverse in both cases is true if the liquidity index is negative.",
+        "description": "This endpoint retrieves the change in the reserve liquidity index between\n        two provided blocks. This is then converted to a percentage change.\n        The liquidity index represents the change in debt and interest accrual over each block.\n        Aave does not store individual user balances directly.\n        Instead, it keeps a scaled balance and uses the liquidity index\n        to compute real balances dynamically.\n        If a user was to have deposited tokens at the start block, a positive liquidity\n        index change will represent accrued interest and a profit.\n        If tokens were borrowed at the start block, this debt will increase,\n        compound on itself and represent large debt.\n        The reverse in both cases is true if the liquidity index is negative.",
         "operationId": "process_request_v0_aave_liquidity_change_get_post",
         "requestBody": {
           "content": {
@@ -899,7 +899,7 @@
         "tags": [
           "Aerodrome Slipstream"
         ],
-        "summary": "Withdraw a LP position",
+        "summary": "Withdraw an LP position",
         "description": "Withdraw an existing Liquidity Provider (LP) position.\n        This endpoint allows users to remove their tokens from an LP position,\n        effectively closing their participation in the liquidity pool.\n        The withdrawal process involves specifying the LP position to be closed,\n        and the response will confirm the successful removal of liquidity,\n        providing users with details about the withdrawn tokens and any remaining balances.\n        This functionality is essential for users who wish to exit their liquidity provision activities,\n        enabling them to reclaim their assets and potentially reallocate them to other investment opportunities.\n        The endpoint ensures a smooth and secure withdrawal process,\n        facilitating users' strategic management of their decentralized finance (DeFi) portfolios.",
         "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post",
         "requestBody": {
@@ -1356,6 +1356,90 @@
         }
       }
     },
+    "/v0/generic/transfer/native_token": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Transfer the native token (usually ETH) to an address",
+        "description": "Transfer the native token of a chain from your address to another address.",
+        "operationId": "process_request_v0_generic_transfer_native_token_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferEth"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/generic/transfer/erc20": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Transfer some of an ERC20 Token",
+        "description": "Transfer some amount of ERC20 token (fungible token) to another address.",
+        "operationId": "process_request_v0_generic_transfer_erc20_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseTransactionRequest_TransferERC20TokenCallData_"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v0/uniswap/swap/sell_exactly": {
       "post": {
         "tags": [
@@ -1571,7 +1655,7 @@
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Withdraw a LP position",
+        "summary": "Withdraw an LP position",
         "description": "This endpoint allows users to withdraw their Liquidity Provider (LP) positions\n        from the Uniswap platform. By specifying the necessary parameters, users can\n        initiate the withdrawal process to remove their stake from a specific liquidity\n        pool. This operation is crucial for users who wish to reclaim their assets or\n        reallocate their liquidity to different pools or investments. The endpoint requires\n        details such as the token pair, the amount to be withdrawn, and any additional\n        parameters needed for the withdrawal process. Users should ensure they meet any\n        protocol requirements or conditions before initiating a withdrawal to avoid\n        potential issues or penalties.",
         "operationId": "process_request_v0_uniswap_liquidity_provision_withdraw_post",
         "requestBody": {
@@ -1739,7 +1823,7 @@
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterwards.",
+        "summary": "Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterward.",
         "description": "This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens\n        from a Uniswap pool. It also provides the resulting price after the transaction. The calculation takes into\n        account the current pool state and the specified fee tier.",
         "operationId": "process_request_v0_uniswap_quote_buy_exactly_get_post",
         "requestBody": {
@@ -1781,7 +1865,7 @@
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterwards.",
+        "summary": "Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterward.",
         "description": "This endpoint calculates the amount of output tokens you would receive from a Uniswap pool when providing a\n        specified amount of input tokens. It also provides the resulting price after the transaction. The calculation\n        considers the current pool state and the specified fee tier.",
         "operationId": "process_request_v0_uniswap_quote_sell_exactly_get_post",
         "requestBody": {
@@ -1877,9 +1961,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2074,9 +2156,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2122,9 +2202,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made. Defaults to the transaction sender.",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2139,7 +2217,7 @@
           "atoken_balance": {
             "type": "string",
             "title": "Atoken Balance",
-            "description": "The balance of AAVE aTokens (interest-bearing represenations of your deposits)."
+            "description": "The balance of AAVE aTokens (interest-bearing representations of your deposits)."
           },
           "stable_debt": {
             "type": "string",
@@ -2390,9 +2468,7 @@
             ],
             "title": "To",
             "description": "The receiver of the LP tokens from this trade, default to sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "deadline": {
             "anyOf": [
@@ -2508,9 +2584,7 @@
             ],
             "title": "To",
             "description": "The receiver of the LP tokens from this trade, default to sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "deadline": {
             "anyOf": [
@@ -2688,9 +2762,7 @@
             ],
             "title": "To",
             "description": "The receiver of the tokens from this liquidity removal, default to sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "deadline": {
             "anyOf": [
@@ -2790,9 +2862,7 @@
             ],
             "title": "To",
             "description": "The receiver of the tokens from this liquidity removal, default to sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "deadline": {
             "anyOf": [
@@ -2909,7 +2979,8 @@
           "user": {
             "type": "string",
             "title": "User",
-            "description": "The address of the user to check the balance of"
+            "description": "The address of the user to check the balance of",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3176,7 +3247,7 @@
             "title": "Recipient",
             "description": "The address that will receive the LP tokens",
             "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
+              "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
             ]
           }
         },
@@ -3393,9 +3464,7 @@
             ],
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3462,9 +3531,7 @@
             ],
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3538,9 +3605,7 @@
             ],
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3590,9 +3655,7 @@
             "type": "string",
             "title": "Contract Address",
             "description": "Address of the contract",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3657,9 +3720,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AaveBorrowCallData"
@@ -3682,9 +3743,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AaveRepayCallData"
@@ -3707,9 +3766,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AaveSupplyCallData"
@@ -3732,9 +3789,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AaveWithdrawCallData"
@@ -3757,9 +3812,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeLiquidityProvisionCallData"
@@ -3782,9 +3835,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeLiquidityProvisionEthCallData"
@@ -3807,9 +3858,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeRemoveLiquidityCallData"
@@ -3832,9 +3881,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeRemoveLiquidityEthCallData"
@@ -3857,9 +3904,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeSlipstreamBuyExactlyCallData"
@@ -3882,9 +3927,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeSlipstreamIncreaseLiquidityProvisionCallData"
@@ -3907,9 +3950,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeSlipstreamMintLiquidityProvisionCallData"
@@ -3932,9 +3973,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeSlipstreamSellExactlyCallData"
@@ -3957,9 +3996,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeSlipstreamWithdrawLiquidityProvisionCallData"
@@ -3982,9 +4019,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeSwapEthForTokenCallData"
@@ -4007,9 +4042,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeSwapTokenForEthCallData"
@@ -4032,9 +4065,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/AerodromeSwapTokensCallData"
@@ -4057,9 +4088,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/IncreaseErc20AllowanceAnyCallData"
@@ -4082,9 +4111,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/IncreaseErc20AllowanceCallData"
@@ -4098,6 +4125,29 @@
         ],
         "title": "BaseTransactionRequest[IncreaseErc20AllowanceCallData]"
       },
+      "BaseTransactionRequest_TransferERC20TokenCallData_": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "call_data": {
+            "$ref": "#/components/schemas/TransferERC20TokenCallData"
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "sender",
+          "call_data"
+        ],
+        "title": "BaseTransactionRequest[TransferERC20TokenCallData]"
+      },
       "BaseTransactionRequest_UniswapBuyExactlyCallData_": {
         "properties": {
           "chain": {
@@ -4107,9 +4157,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/UniswapBuyExactlyCallData"
@@ -4132,9 +4180,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/UniswapIncreaseLiquidityProvisionCallData"
@@ -4157,9 +4203,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/UniswapMintLiquidityProvisionCallData"
@@ -4182,9 +4226,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/UniswapSellExactlyCallData"
@@ -4207,9 +4249,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/UniswapWithdrawLiquidityProvisionCallData"
@@ -4232,9 +4272,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/UnwrapWethRequestCallData"
@@ -4257,9 +4295,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-            ]
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "call_data": {
             "$ref": "#/components/schemas/WrapEthRequestCallData"
@@ -4290,7 +4326,7 @@
           "AaveV3Oracle",
           "AaveV3ProtocolDataProvider",
           "AerodromeBasicFactory",
-          "AerodomeSlipstreamFactory",
+          "AerodromeSlipstreamFactory",
           "AerodromeBasicRouter",
           "AerodromeSlipstreamRouter",
           "AerodromeBasicPool",
@@ -4764,6 +4800,103 @@
         ],
         "title": "TokenInfo"
       },
+      "TransferERC20TokenCallData": {
+        "properties": {
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount",
+            "description": "Amount of token to transfer",
+            "examples": [
+              1.5
+            ]
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token to transfer.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "to": {
+            "type": "string",
+            "title": "To",
+            "description": "The recipient of the tokens.",
+            "examples": [
+              "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc44"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "amount",
+          "token",
+          "to"
+        ],
+        "title": "TransferERC20TokenCallData"
+      },
+      "TransferEth": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "call_data": {
+            "$ref": "#/components/schemas/TransferEthCallData"
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "sender",
+          "call_data"
+        ],
+        "title": "TransferEth"
+      },
+      "TransferEthCallData": {
+        "properties": {
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount",
+            "description": "Amount of ETH to transfer",
+            "examples": [
+              1.5
+            ]
+          },
+          "to": {
+            "type": "string",
+            "title": "To",
+            "description": "The recipient of the ETH.",
+            "examples": [
+              "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc44"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "amount",
+          "to"
+        ],
+        "title": "TransferEthCallData"
+      },
       "UniswapBuyExactlyCallData": {
         "properties": {
           "token_in": {
@@ -4950,7 +5083,8 @@
           "user": {
             "type": "string",
             "title": "User",
-            "description": "The address of the user to check the balance of"
+            "description": "The address of the user to check the balance of",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -5326,7 +5460,7 @@
             "title": "Recipient",
             "description": "The address that will receive the LP tokens",
             "examples": [
-              "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
+              "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
             ]
           }
         },
@@ -5714,44 +5848,19 @@
         ],
         "title": "WrapEthRequestCallData"
       }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "Your Compass API key. Get your key [here](/auth/get_api_token)."
+      }
     }
   },
-  "tags": [
+  "security": [
     {
-      "name": "Aave V3",
-      "description": "AAVEv3 is the leading lending protocol in DeFi.",
-      "externalDocs": {
-        "description": "AAVEv3 docs",
-        "url": "https://aave.com/docs"
-      }
-    },
-    {
-      "name": "Aerodrome Basic",
-      "description": "Aerodrome is the biggest token exchange on the Base chain. Their basic protocol uses liquidity which is distributed throughout the entire price range, providing less incentive to market makers.",
-      "externalDocs": {
-        "description": "Aerodrome docs",
-        "url": "https://aerodrome.finance/docs"
-      }
-    },
-    {
-      "name": "Aerodrome Slipstream",
-      "description": "Aerodrome is the biggest token exchange on the Base chain. Their slipstream protocol allows liquidity to be provided only between certain ticks, incetivising liquidity provision, but increasing the complexity and care required in trading and providing liquidty to the markets.",
-      "externalDocs": {
-        "description": "Aerodrome docs",
-        "url": "https://aerodrome.finance/docs"
-      }
-    },
-    {
-      "name": "Uniswap V3",
-      "description": "UniswapV3 is the biggest token exchange in DeFi.",
-      "externalDocs": {
-        "description": "UniswapV3 docs",
-        "url": "https://docs.uniswap.org/"
-      }
-    },
-    {
-      "name": "Others",
-      "description": "A collection of generally useful operations."
+      "ApiKeyAuth": []
     }
   ]
 }

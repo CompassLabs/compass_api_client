@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**atoken_balance** | **str** | The balance of AAVE aTokens (interest-bearing representations of your deposits). | 
+**atoken_balance** | **str** | The balance of AAVE aTokens (interest-bearing represenations of your deposits). | 
 **stable_debt** | **str** | The amount of the user&#39;s debt with a fixed interest rate. | 
 **variable_debt** | **str** | The amount of the user&#39;s debt with a variable interest rate. | 
 **principal_stable_debt** | **str** | The amount of the user&#39;s debt that was part of the initial principal of all loans with a stable interest rate. | 

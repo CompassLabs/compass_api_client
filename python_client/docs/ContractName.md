@@ -12,7 +12,7 @@ Select the protocol.  E.g. for increasing ERC-20 allowance.
 
 * `AERODROMEBASICFACTORY` (value: `'AerodromeBasicFactory'`)
 
-* `AerodromeSlipstreamFactory` (value: `'AerodromeSlipstreamFactory'`)
+* `AERODOMESLIPSTREAMFACTORY` (value: `'AerodomeSlipstreamFactory'`)
 
 * `AERODROMEBASICROUTER` (value: `'AerodromeBasicRouter'`)
 
