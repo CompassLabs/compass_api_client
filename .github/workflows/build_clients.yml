@@ -1,7 +1,13 @@
 name: Build Clients
 
 on:
-  workflow_dispatch:
+  # trigger when openapi workflow has run in the dojo_api repo
+  workflow_run:
+    workflows: ["Read dojo_api openapi schema"]
+    repositories: [CompassLabs/dojo_api]
+    branches: [main]
+    types:
+      - completed
 
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -39,7 +45,7 @@ jobs:
           version: 1.7
           force: false
 
-      ##############################################################################################      - name: Commit clients
+      ##############################################################################################
       # PYTHON CLIENT
       - name: Generate python client
         run: |
@@ -69,8 +75,11 @@ jobs:
           ls -la dist/
       - name: Publish to PyPi
         uses: pypa/gh-action-pypi-publish@release/v
+        with:
+          attestations: false
+          packages-dir: python_client/dist
 
-      ##############################################################################################      - name: Commit clients
+      ##############################################################################################
       # TS CLIENT
       - name: Generate API SDK and Zod Types
         run: |
@@ -117,6 +126,7 @@ jobs:
       ##############################################################################################      - name: Commit clients
       - name: Commit Changes
         run: |
+          # TODO: remove build artifacts
           git config --global user.name 'Github Automation'
           git config --global user.email 'ollivanders@users.noreply.github.com'
           git add .
