@@ -1,32 +1,31 @@
 name: Build Clients
 
 on:
-  # trigger when openapi workflow has run in the dojo_api repo
-  workflow_run:
-    workflows: ["Read dojo_api openapi schema"]
-    repositories: [CompassLabs/dojo_api]
-    branches: [main]
-    types:
-      - completed
-
-permissions:
-  id-token: write # This is required for requesting the JWT
-  contents: write # This is required for actions/checkout
+  workflow_dispatch:
+  repository_dispatch:
+    types: [Integration-with-Automation]
+run-name: ${{ github.actor }} triggered build clients 🚀
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  generate-typescript-client:
+  generate-clients:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       - name: Download OpenAPI file
-        uses: actions/download-artifact@v4
+        uses: dawidd6/action-download-artifact@v2
         with:
-          name: openapi
+          github_token: ${{ secrets.PAT_TOKEN }}
+          workflow: read_openapi_schema.yaml
+          repo: CompassLabs/dojo_api
+          name: openapi-spec
+          branch: main
+          # use_unzip: true
+
       - name: Verify OpenAPI file
         run: |
           cat openapi.json
@@ -34,7 +33,9 @@ jobs:
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
       - name: Install dependencies
-        run: cd libs/python_client && poetry install
+        run: |
+          cd ./python_client 
+          poetry install
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -74,7 +75,7 @@ jobs:
           poetry build
           ls -la dist/
       - name: Publish to PyPi
-        uses: pypa/gh-action-pypi-publish@release/v
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           attestations: false
           packages-dir: python_client/dist
