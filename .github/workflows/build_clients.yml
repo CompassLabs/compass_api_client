@@ -24,12 +24,6 @@ jobs:
           repo: CompassLabs/dojo_api
           name: openapi-spec
           branch: main
-          # use_unzip: true
-
-      - name: Verify OpenAPI file
-        run: |
-          cat openapi.json
-
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
       - name: Install dependencies
