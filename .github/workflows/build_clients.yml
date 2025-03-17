@@ -53,9 +53,9 @@ jobs:
       # PYTHON CLIENT
       - name: Generate python client
         run: |
-          # copy openapi json to local dir then clean up later
-          cp ./openapi.json ./python_client/
           cd ./python_client
+          # copy openapi json to local dir then clean up later
+          cp ../openapi.json ./
           LATEST_VERSION=$(curl -L -s "https://pypi.org/pypi/compass.api_client/json" \
               | jq  -r '.releases | keys | .[]' \
               | sort -V \
@@ -124,6 +124,8 @@ jobs:
 
       ##############################################################################################      - name: Commit clients
       - name: Commit Changes
+        # always run, this way versions will always increment even if there is a failure
+        if: always()
         run: |
           git config --global user.name 'Github Automation'
           git config --global user.email 'ollivanders@users.noreply.github.com'
