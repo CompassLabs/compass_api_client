@@ -11,6 +11,8 @@ Method | HTTP request | Description
 [**process_request_v0_generic_balance_get_post**](OthersApi.md#process_request_v0_generic_balance_get_post) | **POST** /v0/generic/balance/get | Get an address balance of a token
 [**process_request_v0_generic_ens_get_post**](OthersApi.md#process_request_v0_generic_ens_get_post) | **POST** /v0/generic/ens/get | Get the wallet address and registrant of an ENS name
 [**process_request_v0_generic_portfolio_get_post**](OthersApi.md#process_request_v0_generic_portfolio_get_post) | **POST** /v0/generic/portfolio/get | Get the portfolio details for a wallet addressincluding balances and values of all tokens.
+[**process_request_v0_generic_transfer_erc20_post**](OthersApi.md#process_request_v0_generic_transfer_erc20_post) | **POST** /v0/generic/transfer/erc20 | Transfer some of an ERC20 Token
+[**process_request_v0_generic_transfer_native_token_post**](OthersApi.md#process_request_v0_generic_transfer_native_token_post) | **POST** /v0/generic/transfer/native_token | Transfer the native token (usually ETH) to an address
 [**process_request_v0_generic_unwrap_weth_post**](OthersApi.md#process_request_v0_generic_unwrap_weth_post) | **POST** /v0/generic/unwrap_weth | Change WETH into raw ETH
 [**process_request_v0_generic_visualize_portfolio_get_post**](OthersApi.md#process_request_v0_generic_visualize_portfolio_get_post) | **POST** /v0/generic/visualize_portfolio/get | Visualize the token portfolio of a wallet address as a pie chart
 [**process_request_v0_generic_wrap_eth_post**](OthersApi.md#process_request_v0_generic_wrap_eth_post) | **POST** /v0/generic/wrap_eth | Change raw ETH into WETH
@@ -25,6 +27,7 @@ Get the list of supported tokens on a chain by the Compass API.
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -39,6 +42,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -70,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -100,6 +113,7 @@ In decentralized finance (DeFi) protocols such as Uniswap or AAVE,
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -114,6 +128,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -145,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -177,6 +201,7 @@ This endpoint allows users to set an allowance for any arbitrary ERC20
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -191,6 +216,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -222,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -252,6 +287,7 @@ This endpoint allows users to modify the token allowance for a specific
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -266,6 +302,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -297,7 +343,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -327,6 +373,7 @@ This endpoint allows users to retrieve the balance of a specified ERC20 token
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -341,6 +388,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -372,7 +429,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -397,6 +454,7 @@ An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can 
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -411,6 +469,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -442,7 +510,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -467,6 +535,7 @@ Fetch the detailed portfolio of a specific wallet address on a given blockchain.
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -481,6 +550,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -512,7 +591,169 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **process_request_v0_generic_transfer_erc20_post**
+> UnsignedTransaction process_request_v0_generic_transfer_erc20_post(base_transaction_request_transfer_erc20_token_call_data)
+
+Transfer some of an ERC20 Token
+
+Transfer some amount of ERC20 token (fungible token) to another address.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.base_transaction_request_transfer_erc20_token_call_data import BaseTransactionRequestTransferERC20TokenCallData
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.OthersApi(api_client)
+    base_transaction_request_transfer_erc20_token_call_data = compass.api_client.BaseTransactionRequestTransferERC20TokenCallData() # BaseTransactionRequestTransferERC20TokenCallData | 
+
+    try:
+        # Transfer some of an ERC20 Token
+        api_response = api_instance.process_request_v0_generic_transfer_erc20_post(base_transaction_request_transfer_erc20_token_call_data)
+        print("The response of OthersApi->process_request_v0_generic_transfer_erc20_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OthersApi->process_request_v0_generic_transfer_erc20_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **base_transaction_request_transfer_erc20_token_call_data** | [**BaseTransactionRequestTransferERC20TokenCallData**](BaseTransactionRequestTransferERC20TokenCallData.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **process_request_v0_generic_transfer_native_token_post**
+> UnsignedTransaction process_request_v0_generic_transfer_native_token_post(transfer_eth)
+
+Transfer the native token (usually ETH) to an address
+
+Transfer the native token of a chain from your address to another address.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.transfer_eth import TransferEth
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.OthersApi(api_client)
+    transfer_eth = compass.api_client.TransferEth() # TransferEth | 
+
+    try:
+        # Transfer the native token (usually ETH) to an address
+        api_response = api_instance.process_request_v0_generic_transfer_native_token_post(transfer_eth)
+        print("The response of OthersApi->process_request_v0_generic_transfer_native_token_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OthersApi->process_request_v0_generic_transfer_native_token_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transfer_eth** | [**TransferEth**](TransferEth.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -537,6 +778,7 @@ Unwrapping ETH transforms the ERC-20 token into the raw form used for paying gas
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -551,6 +793,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -582,7 +834,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -607,6 +859,7 @@ Generate a visual representation of the token portfolio for a wallet address. Th
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -621,6 +874,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -652,7 +915,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -677,6 +940,7 @@ Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed fo
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -691,6 +955,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -722,7 +996,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

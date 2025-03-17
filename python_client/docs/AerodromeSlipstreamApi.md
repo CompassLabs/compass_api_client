@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/increase | Increase an LP position
 [**process_request_v0_aerodrome_slipstream_liquidity_provision_mint_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_mint_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/mint | Open a new LP position
 [**process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/positions/get | Get the number of LP positions for a given sender
-[**process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/withdraw | Withdraw a LP position
+[**process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/withdraw | Withdraw an LP position
 [**process_request_v0_aerodrome_slipstream_pool_price_get_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_pool_price_get_post) | **POST** /v0/aerodrome_slipstream/pool_price/get | Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
 [**process_request_v0_aerodrome_slipstream_swap_buy_exactly_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_swap_buy_exactly_post) | **POST** /v0/aerodrome_slipstream/swap/buy_exactly | Trade the amount of a token it takes to end up with a specified quantity of the other token
 [**process_request_v0_aerodrome_slipstream_swap_sell_exactly_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_swap_sell_exactly_post) | **POST** /v0/aerodrome_slipstream/swap/sell_exactly | Trade a specific amount of a token into another.
@@ -30,6 +30,7 @@ Increase the liquidity of an existing Liquidity Provider (LP) position.
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -44,6 +45,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -75,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -106,6 +117,7 @@ Initiate a new Liquidity Provider (LP) position by minting tokens.
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -120,6 +132,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -151,7 +173,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -181,6 +203,7 @@ Retrieve the total number of Liquidity Provider (LP) positions associated with a
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -195,6 +218,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -226,7 +259,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -245,7 +278,7 @@ No authorization required
 # **process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post**
 > UnsignedTransaction process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post(base_transaction_request_aerodrome_slipstream_withdraw_liquidity_provision_call_data)
 
-Withdraw a LP position
+Withdraw an LP position
 
 Withdraw an existing Liquidity Provider (LP) position.
         This endpoint allows users to remove their tokens from an LP position,
@@ -260,6 +293,7 @@ Withdraw an existing Liquidity Provider (LP) position.
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -274,6 +308,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -282,7 +326,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_slipstream_withdraw_liquidity_provision_call_data = compass.api_client.BaseTransactionRequestAerodromeSlipstreamWithdrawLiquidityProvisionCallData() # BaseTransactionRequestAerodromeSlipstreamWithdrawLiquidityProvisionCallData | 
 
     try:
-        # Withdraw a LP position
+        # Withdraw an LP position
         api_response = api_instance.process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post(base_transaction_request_aerodrome_slipstream_withdraw_liquidity_provision_call_data)
         print("The response of AerodromeSlipstreamApi->process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post:\n")
         pprint(api_response)
@@ -305,7 +349,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -333,6 +377,7 @@ This endpoint retrieves the current price of a pool, indicating how many token0
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -347,6 +392,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -378,7 +433,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -412,6 +467,7 @@ This endpoint facilitates the trading of tokens by allowing users to
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -426,6 +482,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -457,7 +523,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -490,6 +556,7 @@ This endpoint allows users to trade a specific amount of one token
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -504,6 +571,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -535,7 +612,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

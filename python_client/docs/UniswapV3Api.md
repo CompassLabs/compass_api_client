@@ -9,10 +9,10 @@ Method | HTTP request | Description
 [**process_request_v0_uniswap_liquidity_provision_increase_post**](UniswapV3Api.md#process_request_v0_uniswap_liquidity_provision_increase_post) | **POST** /v0/uniswap/liquidity_provision/increase | Increase an LP position
 [**process_request_v0_uniswap_liquidity_provision_mint_post**](UniswapV3Api.md#process_request_v0_uniswap_liquidity_provision_mint_post) | **POST** /v0/uniswap/liquidity_provision/mint | Open a new LP position
 [**process_request_v0_uniswap_liquidity_provision_positions_get_post**](UniswapV3Api.md#process_request_v0_uniswap_liquidity_provision_positions_get_post) | **POST** /v0/uniswap/liquidity_provision/positions/get | Retrieve LP positions for a sender
-[**process_request_v0_uniswap_liquidity_provision_withdraw_post**](UniswapV3Api.md#process_request_v0_uniswap_liquidity_provision_withdraw_post) | **POST** /v0/uniswap/liquidity_provision/withdraw | Withdraw a LP position
+[**process_request_v0_uniswap_liquidity_provision_withdraw_post**](UniswapV3Api.md#process_request_v0_uniswap_liquidity_provision_withdraw_post) | **POST** /v0/uniswap/liquidity_provision/withdraw | Withdraw an LP position
 [**process_request_v0_uniswap_pool_price_get_post**](UniswapV3Api.md#process_request_v0_uniswap_pool_price_get_post) | **POST** /v0/uniswap/pool_price/get | Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
-[**process_request_v0_uniswap_quote_buy_exactly_get_post**](UniswapV3Api.md#process_request_v0_uniswap_quote_buy_exactly_get_post) | **POST** /v0/uniswap/quote/buy_exactly/get | Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterwards.
-[**process_request_v0_uniswap_quote_sell_exactly_get_post**](UniswapV3Api.md#process_request_v0_uniswap_quote_sell_exactly_get_post) | **POST** /v0/uniswap/quote/sell_exactly/get | Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterwards.
+[**process_request_v0_uniswap_quote_buy_exactly_get_post**](UniswapV3Api.md#process_request_v0_uniswap_quote_buy_exactly_get_post) | **POST** /v0/uniswap/quote/buy_exactly/get | Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterward.
+[**process_request_v0_uniswap_quote_sell_exactly_get_post**](UniswapV3Api.md#process_request_v0_uniswap_quote_sell_exactly_get_post) | **POST** /v0/uniswap/quote/sell_exactly/get | Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterward.
 [**process_request_v0_uniswap_swap_buy_exactly_post**](UniswapV3Api.md#process_request_v0_uniswap_swap_buy_exactly_post) | **POST** /v0/uniswap/swap/buy_exactly | Trade the amount of a token it takes to end up with a specified quantity of the other token
 [**process_request_v0_uniswap_swap_sell_exactly_post**](UniswapV3Api.md#process_request_v0_uniswap_swap_sell_exactly_post) | **POST** /v0/uniswap/swap/sell_exactly | Trade a specific amount of a token into another.
 
@@ -30,6 +30,7 @@ This endpoint allows users to calculate the impermanent loss associated with
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -44,6 +45,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -75,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -106,6 +117,7 @@ This endpoint allows users to check whether a specific Liquidity Provider (LP)
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -120,6 +132,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -151,7 +173,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -182,6 +204,7 @@ This endpoint allows users to increase their existing Liquidity Provider (LP)
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -196,6 +219,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -227,7 +260,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -259,6 +292,7 @@ This endpoint allows users to open a new Liquidity Provider (LP) position
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -273,6 +307,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -304,7 +348,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -334,6 +378,7 @@ This endpoint retrieves the number of Liquidity Provider (LP) positions
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -348,6 +393,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -379,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -398,7 +453,7 @@ No authorization required
 # **process_request_v0_uniswap_liquidity_provision_withdraw_post**
 > UnsignedTransaction process_request_v0_uniswap_liquidity_provision_withdraw_post(base_transaction_request_uniswap_withdraw_liquidity_provision_call_data)
 
-Withdraw a LP position
+Withdraw an LP position
 
 This endpoint allows users to withdraw their Liquidity Provider (LP) positions
         from the Uniswap platform. By specifying the necessary parameters, users can
@@ -412,6 +467,7 @@ This endpoint allows users to withdraw their Liquidity Provider (LP) positions
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -426,6 +482,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -434,7 +500,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_uniswap_withdraw_liquidity_provision_call_data = compass.api_client.BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData() # BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData | 
 
     try:
-        # Withdraw a LP position
+        # Withdraw an LP position
         api_response = api_instance.process_request_v0_uniswap_liquidity_provision_withdraw_post(base_transaction_request_uniswap_withdraw_liquidity_provision_call_data)
         print("The response of UniswapV3Api->process_request_v0_uniswap_liquidity_provision_withdraw_post:\n")
         pprint(api_response)
@@ -457,7 +523,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -485,6 +551,7 @@ This endpoint retrieves the current price of a Uniswap pool, expressed as the am
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -499,6 +566,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -530,7 +607,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -549,7 +626,7 @@ No authorization required
 # **process_request_v0_uniswap_quote_buy_exactly_get_post**
 > UniswapBuyQuoteInfo process_request_v0_uniswap_quote_buy_exactly_get_post(uniswap_get_buy_quote)
 
-Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterwards.
+Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterward.
 
 This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens
         from a Uniswap pool. It also provides the resulting price after the transaction. The calculation takes into
@@ -557,6 +634,7 @@ This endpoint calculates the amount of input tokens required to purchase a speci
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -571,6 +649,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -579,7 +667,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     uniswap_get_buy_quote = compass.api_client.UniswapGetBuyQuote() # UniswapGetBuyQuote | 
 
     try:
-        # Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterwards.
+        # Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterward.
         api_response = api_instance.process_request_v0_uniswap_quote_buy_exactly_get_post(uniswap_get_buy_quote)
         print("The response of UniswapV3Api->process_request_v0_uniswap_quote_buy_exactly_get_post:\n")
         pprint(api_response)
@@ -602,7 +690,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -621,7 +709,7 @@ No authorization required
 # **process_request_v0_uniswap_quote_sell_exactly_get_post**
 > UniswapSellQuoteInfo process_request_v0_uniswap_quote_sell_exactly_get_post(uniswap_get_sell_quote)
 
-Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterwards.
+Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterward.
 
 This endpoint calculates the amount of output tokens you would receive from a Uniswap pool when providing a
         specified amount of input tokens. It also provides the resulting price after the transaction. The calculation
@@ -629,6 +717,7 @@ This endpoint calculates the amount of output tokens you would receive from a Un
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -643,6 +732,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -651,7 +750,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     uniswap_get_sell_quote = compass.api_client.UniswapGetSellQuote() # UniswapGetSellQuote | 
 
     try:
-        # Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterwards.
+        # Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterward.
         api_response = api_instance.process_request_v0_uniswap_quote_sell_exactly_get_post(uniswap_get_sell_quote)
         print("The response of UniswapV3Api->process_request_v0_uniswap_quote_sell_exactly_get_post:\n")
         pprint(api_response)
@@ -674,7 +773,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -705,6 +804,7 @@ This endpoint allows users to trade a variable amount of one token
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -719,6 +819,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -750,7 +860,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -781,6 +891,7 @@ This endpoint allows users to trade a specific amount of one token
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -795,6 +906,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -826,7 +947,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

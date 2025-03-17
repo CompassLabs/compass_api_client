@@ -1,6 +1,6 @@
 # Amount5
 
-The amount of ETH to wrap.
+Amount of ETH to transfer
 
 ## Properties
 

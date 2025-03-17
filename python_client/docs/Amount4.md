@@ -1,6 +1,6 @@
 # Amount4
 
-The amount of ETH to unwrap.
+Amount of token to transfer
 
 ## Properties
 

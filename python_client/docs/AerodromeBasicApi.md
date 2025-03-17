@@ -28,6 +28,7 @@ This endpoint allows users to provide liquidity to a specified pool on the
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -42,6 +43,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -73,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -101,6 +112,7 @@ This endpoint allows users to provide liquidity to a specified pool on the
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -115,6 +127,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -146,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -177,6 +199,7 @@ This endpoint allows users to remove liquidity from a pool on the Aerodrome
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -191,6 +214,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -222,7 +255,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -253,6 +286,7 @@ This endpoint allows users to remove liquidity from a specified pool on the
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -267,6 +301,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -298,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -328,6 +372,7 @@ This endpoint allows you to swap a specified amount of ETH for a
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -342,6 +387,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -373,7 +428,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -401,6 +456,7 @@ Swap a specified amount of a token for ETH using the Aerodrome platform.
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -415,6 +471,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -446,7 +512,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -476,6 +542,7 @@ Swap one token for another on Aerodrome.
 
 ### Example
 
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import compass.api_client
@@ -490,6 +557,16 @@ configuration = compass.api_client.Configuration(
     host = "https://api.compasslabs.ai"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with compass.api_client.ApiClient(configuration) as api_client:
@@ -521,7 +598,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
