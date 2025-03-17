@@ -1,5 +1,9 @@
 name: Build Clients
 
+permissions:
+  id-token: write
+  contents: read
+
 on:
   workflow_dispatch:
   repository_dispatch:
@@ -45,7 +49,11 @@ jobs:
       - name: Generate python client
         run: |
           cd ./python_client
-          LATEST_VERSION=$(./python_client/scripts/get_latest_version.sh)
+          LATEST_VERSION=$(curl -L -s "https://pypi.org/pypi/compass.api_client/json" \
+              | jq  -r '.releases | keys | .[]' \
+              | sort -V \
+              | tail -n1)
+
           poetry version patch
           NEXT_VERSION=$(poetry version --short)
           docker run \
