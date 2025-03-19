@@ -33,6 +33,15 @@ jobs:
           DESCRIPTION=$(cat description.md)
           jq --arg description "$DESCRIPTION" '.info.description = $description' openapi.json > temp_openapi.json && mv temp_openapi.json openapi.json
 
+      - name: Check for openapi-spec changes
+        id: check_changes
+        run: |
+          git fetch origin main
+          if [ ! -n "$(git diff --name-status origin/main)" ]; then
+            echo "No changes to openapi-spec, exiting early"
+            exit 0
+          fi
+
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
       - name: Install dependencies
@@ -79,11 +88,13 @@ jobs:
           sed -i 's/name =.*/name = "compass.api_client"\npackages = [ { include = "compass"} ]/' pyproject.toml
           rm openapi.json
       - name: Build package
+        if: env.changes == 'true'
         run: |
           cd ./python_client
           poetry build
           ls -la dist/
       - name: Publish to PyPi
+        if: env.changes == 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           attestations: false
