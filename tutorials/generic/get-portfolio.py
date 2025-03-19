@@ -22,4 +22,4 @@ portfolio = RequestUserAddress.from_dict(payload)
 response = generic_api.process_request_v0_generic_portfolio_get_post_with_http_info(portfolio)
 print(f"Total portfolio value: ${float(response.data.total_value_in_usd):.2f}")
 for token in response.data.token_balances:
-    print(f"{token.amount} {token.token_symbol} = ${float(token.token_value_in_usd):.2f}")
+    print(f"{token.amount} {token.token_symbol.name} = ${float(token.token_value_in_usd):.2f}")

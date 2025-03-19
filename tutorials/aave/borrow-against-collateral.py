@@ -7,6 +7,7 @@ Requirements:
 
 from compass.api_client.api.aave_v3_api import AaveV3Api
 from compass.api_client.models.base_transaction_request_aave_borrow_call_data import BaseTransactionRequestAaveBorrowCallData
+from sign_transaction import sign_transaction
 
 aave_api = AaveV3Api()
 
@@ -30,6 +31,7 @@ borrow_query = BaseTransactionRequestAaveBorrowCallData.from_dict(payload)
 
 try:
     response = aave_api.process_request_v0_aave_borrow_post_with_http_info(borrow_query)
-    print("Transaction hash to sign to execute this transaction:", response.data.data)
+    print("Data of the transaction to sign:", response.data.data)
+    sign_transaction(response.data.data)
 except Exception as e:
-    print("Failed to generate transaction hash:", e)
+    print("Failed to generate transaction data:", e)

@@ -7,6 +7,7 @@ Requirements:
 
 from compass.api_client.api.aave_v3_api import AaveV3Api
 from compass.api_client.models.base_transaction_request_aave_supply_call_data import BaseTransactionRequestAaveSupplyCallData
+from sign_transaction import sign_transaction
 
 aave_api = AaveV3Api()
 
@@ -30,5 +31,6 @@ supply_collateral_query = BaseTransactionRequestAaveSupplyCallData.from_dict(pay
 try:
     response = aave_api.process_request_v0_aave_supply_post_with_http_info(supply_collateral_query)
     print("Transaction hash to sign to execute this transaction:", response.data.data)
+    sign_transaction(response.data.data)
 except Exception as e:
     print("Failed to generate transaction hash:", e)

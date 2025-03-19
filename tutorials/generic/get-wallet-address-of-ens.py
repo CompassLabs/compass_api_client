@@ -21,3 +21,4 @@ ens_details = RequestEnsDetails.from_dict(payload)
 
 response = generic_api.process_request_v0_generic_ens_get_post_with_http_info(ens_details)
 print("Wallet address:", response.data.wallet_address)
+print("Registrant:", response.data.registrant)
