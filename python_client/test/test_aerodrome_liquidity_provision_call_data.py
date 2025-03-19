@@ -43,7 +43,7 @@ class TestAerodromeLiquidityProvisionCallData(unittest.TestCase):
                 amount_a_min = None,
                 amount_b_min = None,
                 to = '',
-                deadline = 56
+                deadline = 0.0
             )
         else:
             return AerodromeLiquidityProvisionCallData(
@@ -54,7 +54,7 @@ class TestAerodromeLiquidityProvisionCallData(unittest.TestCase):
                 amount_b_desired = None,
                 amount_a_min = None,
                 amount_b_min = None,
-                deadline = 56,
+                deadline = 0.0,
         )
         """
 

@@ -38,7 +38,7 @@ class TestBaseTransactionRequestUniswapIncreaseLiquidityProvisionCallData(unitte
                 chain = 'ethereum:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.uniswap_increase_liquidity_provision_call_data.UniswapIncreaseLiquidityProvisionCallData(
-                    token_id = 56, 
+                    token_id = 0.0, 
                     amount0_desired = null, 
                     amount1_desired = null, 
                     amount0_min = null, 
@@ -49,7 +49,7 @@ class TestBaseTransactionRequestUniswapIncreaseLiquidityProvisionCallData(unitte
                 chain = 'ethereum:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.uniswap_increase_liquidity_provision_call_data.UniswapIncreaseLiquidityProvisionCallData(
-                    token_id = 56, 
+                    token_id = 0.0, 
                     amount0_desired = null, 
                     amount1_desired = null, 
                     amount0_min = null, 

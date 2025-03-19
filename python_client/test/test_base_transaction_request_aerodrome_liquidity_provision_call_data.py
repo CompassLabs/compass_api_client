@@ -46,7 +46,7 @@ class TestBaseTransactionRequestAerodromeLiquidityProvisionCallData(unittest.Tes
                     amount_a_min = null, 
                     amount_b_min = null, 
                     to = '', 
-                    deadline = 56, )
+                    deadline = 0.0, )
             )
         else:
             return BaseTransactionRequestAerodromeLiquidityProvisionCallData(
@@ -61,7 +61,7 @@ class TestBaseTransactionRequestAerodromeLiquidityProvisionCallData(unittest.Tes
                     amount_a_min = null, 
                     amount_b_min = null, 
                     to = '', 
-                    deadline = 56, ),
+                    deadline = 0.0, ),
         )
         """
 

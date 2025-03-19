@@ -27,7 +27,7 @@ AMOUNT4_ANY_OF_SCHEMAS = ["float", "str"]
 
 class Amount4(BaseModel):
     """
-    Amount of token to transfer
+    The amount of tokens to increase the allowance by.
     """
 
     # data type: float

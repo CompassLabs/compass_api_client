@@ -75,6 +75,13 @@ class TestOthersApi(unittest.TestCase):
         """
         pass
 
+    def test_process_request_v0_generic_price_usd_get_post(self) -> None:
+        """Test case for process_request_v0_generic_price_usd_get_post
+
+        Get the price of a given token relative to USD
+        """
+        pass
+
     def test_process_request_v0_generic_transfer_erc20_post(self) -> None:
         """Test case for process_request_v0_generic_transfer_erc20_post
 

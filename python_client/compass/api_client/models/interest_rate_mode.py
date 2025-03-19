@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class InterestRateMode(int, Enum):
     """
-    On AAVE there are 2 different interest modes.  A stable(but typically higher rate), or a variable rate.
+    On AAVE there are 2 different interest modes.  A stable (but typically higher rate), or a variable rate.
     """
 
     """

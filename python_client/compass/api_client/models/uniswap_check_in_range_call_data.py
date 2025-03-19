@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from compass.api_client.models.chain import Chain
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +29,7 @@ class UniswapCheckInRangeCallData(BaseModel):
     Endpoint parameters for checking if liquidity position is in active tick range on uniswap v3.
     """ # noqa: E501
     chain: Chain
-    token_id: StrictInt = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
+    token_id: Annotated[int, Field(strict=True, ge=0)] = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
     __properties: ClassVar[List[str]] = ["chain", "token_id"]
 
     model_config = ConfigDict(

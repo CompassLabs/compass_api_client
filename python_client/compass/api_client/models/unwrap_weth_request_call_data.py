@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.amount6 import Amount6
+from compass.api_client.models.amount7 import Amount7
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class UnwrapWethRequestCallData(BaseModel):
     """
     UnwrapWethRequestCallData
     """ # noqa: E501
-    amount: Amount6
+    amount: Amount7
     __properties: ClassVar[List[str]] = ["amount"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class UnwrapWethRequestCallData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "amount": Amount6.from_dict(obj["amount"]) if obj.get("amount") is not None else None
+            "amount": Amount7.from_dict(obj["amount"]) if obj.get("amount") is not None else None
         })
         return _obj
 

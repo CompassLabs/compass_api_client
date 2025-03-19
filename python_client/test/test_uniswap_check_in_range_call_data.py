@@ -36,12 +36,12 @@ class TestUniswapCheckInRangeCallData(unittest.TestCase):
         if include_optional:
             return UniswapCheckInRangeCallData(
                 chain = 'ethereum:mainnet',
-                token_id = 56
+                token_id = 0.0
             )
         else:
             return UniswapCheckInRangeCallData(
                 chain = 'ethereum:mainnet',
-                token_id = 56,
+                token_id = 0.0,
         )
         """
 

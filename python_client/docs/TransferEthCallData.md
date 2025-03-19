@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | [**Amount5**](Amount5.md) |  | 
+**amount** | [**Amount6**](Amount6.md) |  | 
 **to** | **str** | The recipient of the ETH. | 
 
 ## Example

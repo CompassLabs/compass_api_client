@@ -1,6 +1,6 @@
 # InterestRateMode
 
-On AAVE there are 2 different interest modes.  A stable(but typically higher rate), or a variable rate.
+On AAVE there are 2 different interest modes.  A stable (but typically higher rate), or a variable rate.
 
 ## Enum
 

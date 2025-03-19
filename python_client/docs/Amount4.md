@@ -1,6 +1,6 @@
 # Amount4
 
-Amount of token to transfer
+The amount of tokens to increase the allowance by.
 
 ## Properties
 

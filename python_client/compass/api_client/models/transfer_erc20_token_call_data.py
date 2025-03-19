@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.amount4 import Amount4
+from compass.api_client.models.amount5 import Amount5
 from compass.api_client.models.token import Token
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class TransferERC20TokenCallData(BaseModel):
     """
     TransferERC20TokenCallData
     """ # noqa: E501
-    amount: Amount4
+    amount: Amount5
     token: Token = Field(description="The symbol of the token to transfer.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>")
     to: StrictStr = Field(description="The recipient of the tokens.")
     __properties: ClassVar[List[str]] = ["amount", "token", "to"]
@@ -87,7 +87,7 @@ class TransferERC20TokenCallData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "amount": Amount4.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "amount": Amount5.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "token": obj.get("token"),
             "to": obj.get("to")
         })

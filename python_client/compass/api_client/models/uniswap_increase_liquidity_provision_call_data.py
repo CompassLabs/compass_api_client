@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from compass.api_client.models.amount0_desired import Amount0Desired
 from compass.api_client.models.amount0_min import Amount0Min
 from compass.api_client.models.amount1_desired import Amount1Desired
@@ -30,7 +31,7 @@ class UniswapIncreaseLiquidityProvisionCallData(BaseModel):
     """
     UniswapIncreaseLiquidityProvisionCallData
     """ # noqa: E501
-    token_id: StrictInt = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
+    token_id: Annotated[int, Field(strict=True, ge=0)] = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
     amount0_desired: Amount0Desired
     amount1_desired: Amount1Desired
     amount0_min: Amount0Min

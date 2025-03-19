@@ -40,7 +40,7 @@ class TestBaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallDat
                 call_data = compass.api_client.models.aerodrome_slipstream_mint_liquidity_provision_call_data.AerodromeSlipstreamMintLiquidityProvisionCallData(
                     token0 = '1INCH', 
                     token1 = '1INCH', 
-                    tick_spacing = 56, 
+                    tick_spacing = 1.0, 
                     tick_lower = 56, 
                     tick_upper = 56, 
                     amount0_desired = null, 
@@ -56,7 +56,7 @@ class TestBaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallDat
                 call_data = compass.api_client.models.aerodrome_slipstream_mint_liquidity_provision_call_data.AerodromeSlipstreamMintLiquidityProvisionCallData(
                     token0 = '1INCH', 
                     token1 = '1INCH', 
-                    tick_spacing = 56, 
+                    tick_spacing = 1.0, 
                     tick_lower = 56, 
                     tick_upper = 56, 
                     amount0_desired = null, 

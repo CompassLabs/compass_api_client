@@ -38,14 +38,14 @@ class TestAerodromeSlipstreamGetPoolPrice(unittest.TestCase):
                 chain = 'ethereum:mainnet',
                 token_in = '1INCH',
                 token_out = '1INCH',
-                tick_spacing = 56
+                tick_spacing = 1.0
             )
         else:
             return AerodromeSlipstreamGetPoolPrice(
                 chain = 'ethereum:mainnet',
                 token_in = '1INCH',
                 token_out = '1INCH',
-                tick_spacing = 56,
+                tick_spacing = 1.0,
         )
         """
 

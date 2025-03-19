@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.amount5 import Amount5
+from compass.api_client.models.amount6 import Amount6
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class TransferEthCallData(BaseModel):
     """
     TransferEthCallData
     """ # noqa: E501
-    amount: Amount5
+    amount: Amount6
     to: StrictStr = Field(description="The recipient of the ETH.")
     __properties: ClassVar[List[str]] = ["amount", "to"]
 
@@ -85,7 +85,7 @@ class TransferEthCallData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "amount": Amount5.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "amount": Amount6.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "to": obj.get("to")
         })
         return _obj

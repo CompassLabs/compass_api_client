@@ -27,7 +27,7 @@ AMOUNT5_ANY_OF_SCHEMAS = ["float", "str"]
 
 class Amount5(BaseModel):
     """
-    Amount of ETH to transfer
+    Amount of token to transfer
     """
 
     # data type: float

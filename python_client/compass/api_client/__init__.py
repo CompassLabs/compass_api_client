@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.94"
+__version__ = "1.0.95"
 
 # import apis into sdk package
 from compass.api_client.api.aave_v3_api import AaveV3Api
@@ -77,6 +77,7 @@ from compass.api_client.models.amount4 import Amount4
 from compass.api_client.models.amount5 import Amount5
 from compass.api_client.models.amount6 import Amount6
 from compass.api_client.models.amount7 import Amount7
+from compass.api_client.models.amount8 import Amount8
 from compass.api_client.models.amount_a_desired import AmountADesired
 from compass.api_client.models.amount_a_min import AmountAMin
 from compass.api_client.models.amount_a_min1 import AmountAMin1
@@ -131,6 +132,7 @@ from compass.api_client.models.fee_enum import FeeEnum
 from compass.api_client.models.get_erc20_allowance import GetErc20Allowance
 from compass.api_client.models.get_erc20_balance import GetErc20Balance
 from compass.api_client.models.get_supported_tokens import GetSupportedTokens
+from compass.api_client.models.get_token_price import GetTokenPrice
 from compass.api_client.models.http_validation_error import HTTPValidationError
 from compass.api_client.models.image import Image
 from compass.api_client.models.increase_erc20_allowance_any_call_data import IncreaseErc20AllowanceAnyCallData
@@ -139,6 +141,7 @@ from compass.api_client.models.interest_rate_mode import InterestRateMode
 from compass.api_client.models.liquidity import Liquidity
 from compass.api_client.models.percentage_for_withdrawal import PercentageForWithdrawal
 from compass.api_client.models.portfolio import Portfolio
+from compass.api_client.models.price_response import PriceResponse
 from compass.api_client.models.request_ens_details import RequestEnsDetails
 from compass.api_client.models.request_user_address import RequestUserAddress
 from compass.api_client.models.token import Token

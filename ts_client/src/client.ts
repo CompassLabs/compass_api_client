@@ -109,7 +109,7 @@ endpoints' documentation where per chain tokens are presented.`),
         amount: z.union([z.number(), z.string()]).describe('The amount of the asset to borrow'),
         interest_rate_mode: InterestRateMode.describe(`On AAVE there are 2 different interest modes.
 
-A stable(but typically higher rate), or a variable rate.`),
+A stable (but typically higher rate), or a variable rate.`),
         on_behalf_of: z
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
@@ -134,7 +134,7 @@ endpoints' documentation where per chain tokens are presented.`),
         amount: z.union([z.number(), z.string()]).describe('The amount of the asset to repay'),
         interest_rate_mode: InterestRateMode.describe(`On AAVE there are 2 different interest modes.
 
-A stable(but typically higher rate), or a variable rate.`),
+A stable (but typically higher rate), or a variable rate.`),
         on_behalf_of: z
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
@@ -156,7 +156,7 @@ const AaveWithdrawCallData = z
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to supply'),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to withdraw'),
         recipient: z.string().describe('The address of the recipient of the withdrawn funds.'),
     })
     .passthrough();
@@ -572,7 +572,7 @@ endpoints' documentation where per chain tokens are presented.`),
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        tick_spacing: z.number().int().describe('The tick spacing of the pool'),
+        tick_spacing: z.number().int().gte(1).describe('The tick spacing of the pool'),
     })
     .passthrough();
 const AerodromeSlipstreamPoolPrice = z
@@ -608,7 +608,7 @@ endpoints' documentation where per chain tokens are presented.`),
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        tick_spacing: z.number().int().describe('The tick spacing of the pool'),
+        tick_spacing: z.number().int().gte(1).describe('The tick spacing of the pool'),
         amount_in: z
             .union([z.number(), z.string()])
             .describe('The amount of the token to swap from'),
@@ -638,7 +638,7 @@ endpoints' documentation where per chain tokens are presented.`),
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        tick_spacing: z.number().int().describe('The tick spacing of the pool'),
+        tick_spacing: z.number().int().gte(1).describe('The tick spacing of the pool'),
         amount_out: z
             .union([z.number(), z.string()])
             .describe('The amount of the token to swap to'),
@@ -706,7 +706,7 @@ endpoints' documentation where per chain tokens are presented.`),
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        tick_spacing: z.number().int().describe('The tick spacing of the pool'),
+        tick_spacing: z.number().int().gte(1).describe('The tick spacing of the pool'),
         tick_lower: z
             .number()
             .int()
@@ -1027,6 +1027,18 @@ All token balances are per-chain.`),
         call_data: TransferERC20TokenCallData,
     })
     .passthrough();
+const GetTokenPrice = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        token: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+    })
+    .passthrough();
+const PriceResponse = z.object({ token_price_in_usd: z.string() }).passthrough();
 const FeeEnum = z.enum(['0.01', '0.05', '0.3', '1.0']);
 const UniswapSellExactlyCallData = z
     .object({
@@ -1158,10 +1170,14 @@ Uniswap supports 4 different fee levels.`),
         tick_lower: z
             .number()
             .int()
+            .gte(-887272)
+            .lte(887272)
             .describe('The lower tick of the range to mint the position in'),
         tick_upper: z
             .number()
             .int()
+            .gte(-887272)
+            .lte(887272)
             .describe('The upper tick of the range to mint the position in'),
         amount0_desired: z
             .union([z.number(), z.string()])
@@ -1195,6 +1211,7 @@ const UniswapIncreaseLiquidityProvisionCallData = z
         token_id: z
             .number()
             .int()
+            .gte(0)
             .describe('Token ID of the NFT representing the liquidity provisioned position.'),
         amount0_desired: z
             .union([z.number(), z.string()])
@@ -1251,6 +1268,7 @@ All token balances are per-chain.`),
         token_id: z
             .number()
             .int()
+            .gte(0)
             .describe('Token ID of the NFT representing the liquidity provisioned position.'),
     })
     .passthrough();
@@ -1271,6 +1289,7 @@ All token balances are per-chain.`),
         token_id: z
             .number()
             .int()
+            .gte(0)
             .describe('Token ID of the NFT representing the liquidity provisioned position.'),
     })
     .passthrough();
@@ -1491,6 +1510,8 @@ export const schemas = {
     TransferEth,
     TransferERC20TokenCallData,
     BaseTransactionRequest_TransferERC20TokenCallData_,
+    GetTokenPrice,
+    PriceResponse,
     FeeEnum,
     UniswapSellExactlyCallData,
     BaseTransactionRequest_UniswapSellExactlyCallData_,
@@ -2244,6 +2265,27 @@ flexibility.`,
             },
         ],
         response: Portfolio,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/generic/price/usd/get',
+        description: `Retrieves the price of the specified token relative to USD using Chainlink&#x27;s on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: GetTokenPrice,
+            },
+        ],
+        response: z.object({ token_price_in_usd: z.string() }).passthrough(),
         errors: [
             {
                 status: 422,

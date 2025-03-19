@@ -14,10 +14,10 @@
 
 import unittest
 
-from compass.api_client.models.uniswap_impermanent_loss_call_data import UniswapImpermanentLossCallData
+from compass.api_client.models.price_response import PriceResponse
 
-class TestUniswapImpermanentLossCallData(unittest.TestCase):
-    """UniswapImpermanentLossCallData unit test stubs"""
+class TestPriceResponse(unittest.TestCase):
+    """PriceResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,28 +25,26 @@ class TestUniswapImpermanentLossCallData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> UniswapImpermanentLossCallData:
-        """Test UniswapImpermanentLossCallData
+    def make_instance(self, include_optional) -> PriceResponse:
+        """Test PriceResponse
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `UniswapImpermanentLossCallData`
+        # uncomment below to create an instance of `PriceResponse`
         """
-        model = UniswapImpermanentLossCallData()
+        model = PriceResponse()
         if include_optional:
-            return UniswapImpermanentLossCallData(
-                chain = 'ethereum:mainnet',
-                token_id = 0.0
+            return PriceResponse(
+                token_price_in_usd = ''
             )
         else:
-            return UniswapImpermanentLossCallData(
-                chain = 'ethereum:mainnet',
-                token_id = 0.0,
+            return PriceResponse(
+                token_price_in_usd = '',
         )
         """
 
-    def testUniswapImpermanentLossCallData(self):
-        """Test UniswapImpermanentLossCallData"""
+    def testPriceResponse(self):
+        """Test PriceResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -35,7 +35,7 @@ class TestUniswapIncreaseLiquidityProvisionCallData(unittest.TestCase):
         model = UniswapIncreaseLiquidityProvisionCallData()
         if include_optional:
             return UniswapIncreaseLiquidityProvisionCallData(
-                token_id = 56,
+                token_id = 0.0,
                 amount0_desired = None,
                 amount1_desired = None,
                 amount0_min = None,
@@ -43,7 +43,7 @@ class TestUniswapIncreaseLiquidityProvisionCallData(unittest.TestCase):
             )
         else:
             return UniswapIncreaseLiquidityProvisionCallData(
-                token_id = 56,
+                token_id = 0.0,
                 amount0_desired = None,
                 amount1_desired = None,
                 amount0_min = None,

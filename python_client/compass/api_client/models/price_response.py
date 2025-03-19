@@ -17,18 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.amount8 import Amount8
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WrapEthRequestCallData(BaseModel):
+class PriceResponse(BaseModel):
     """
-    WrapEthRequestCallData
+    PriceResponse
     """ # noqa: E501
-    amount: Amount8
-    __properties: ClassVar[List[str]] = ["amount"]
+    token_price_in_usd: StrictStr
+    __properties: ClassVar[List[str]] = ["token_price_in_usd"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +47,7 @@ class WrapEthRequestCallData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WrapEthRequestCallData from a JSON string"""
+        """Create an instance of PriceResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +68,11 @@ class WrapEthRequestCallData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of amount
-        if self.amount:
-            _dict['amount'] = self.amount.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WrapEthRequestCallData from a dict"""
+        """Create an instance of PriceResponse from a dict"""
         if obj is None:
             return None
 
@@ -84,7 +80,7 @@ class WrapEthRequestCallData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "amount": Amount8.from_dict(obj["amount"]) if obj.get("amount") is not None else None
+            "token_price_in_usd": obj.get("token_price_in_usd")
         })
         return _obj
 

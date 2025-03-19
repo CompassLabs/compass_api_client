@@ -1,6 +1,6 @@
 # Amount6
 
-The amount of ETH to unwrap.
+Amount of ETH to transfer
 
 ## Properties
 

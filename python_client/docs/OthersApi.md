@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**process_request_v0_generic_balance_get_post**](OthersApi.md#process_request_v0_generic_balance_get_post) | **POST** /v0/generic/balance/get | Get an address balance of a token
 [**process_request_v0_generic_ens_get_post**](OthersApi.md#process_request_v0_generic_ens_get_post) | **POST** /v0/generic/ens/get | Get the wallet address and registrant of an ENS name
 [**process_request_v0_generic_portfolio_get_post**](OthersApi.md#process_request_v0_generic_portfolio_get_post) | **POST** /v0/generic/portfolio/get | Get the portfolio details for a wallet addressincluding balances and values of all tokens.
+[**process_request_v0_generic_price_usd_get_post**](OthersApi.md#process_request_v0_generic_price_usd_get_post) | **POST** /v0/generic/price/usd/get | Get the price of a given token relative to USD
 [**process_request_v0_generic_transfer_erc20_post**](OthersApi.md#process_request_v0_generic_transfer_erc20_post) | **POST** /v0/generic/transfer/erc20 | Transfer some of an ERC20 Token
 [**process_request_v0_generic_transfer_native_token_post**](OthersApi.md#process_request_v0_generic_transfer_native_token_post) | **POST** /v0/generic/transfer/native_token | Transfer the native token (usually ETH) to an address
 [**process_request_v0_generic_unwrap_weth_post**](OthersApi.md#process_request_v0_generic_unwrap_weth_post) | **POST** /v0/generic/unwrap_weth | Change WETH into raw ETH
@@ -588,6 +589,87 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Portfolio**](Portfolio.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **process_request_v0_generic_price_usd_get_post**
+> PriceResponse process_request_v0_generic_price_usd_get_post(get_token_price)
+
+Get the price of a given token relative to USD
+
+Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.get_token_price import GetTokenPrice
+from compass.api_client.models.price_response import PriceResponse
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.OthersApi(api_client)
+    get_token_price = compass.api_client.GetTokenPrice() # GetTokenPrice | 
+
+    try:
+        # Get the price of a given token relative to USD
+        api_response = api_instance.process_request_v0_generic_price_usd_get_post(get_token_price)
+        print("The response of OthersApi->process_request_v0_generic_price_usd_get_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OthersApi->process_request_v0_generic_price_usd_get_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **get_token_price** | [**GetTokenPrice**](GetTokenPrice.md)|  | 
+
+### Return type
+
+[**PriceResponse**](PriceResponse.md)
 
 ### Authorization
 

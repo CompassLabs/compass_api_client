@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.amount3 import Amount3
+from compass.api_client.models.amount4 import Amount4
 from compass.api_client.models.contract_name import ContractName
 from compass.api_client.models.token import Token
 from typing import Optional, Set
@@ -31,7 +31,7 @@ class IncreaseErc20AllowanceCallData(BaseModel):
     """ # noqa: E501
     token: Token = Field(description="The symbol of the token for which the allowance is increased.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>")
     contract_name: ContractName = Field(description="The name of the contract to increase allowance for.")
-    amount: Amount3
+    amount: Amount4
     __properties: ClassVar[List[str]] = ["token", "contract_name", "amount"]
 
     model_config = ConfigDict(
@@ -90,7 +90,7 @@ class IncreaseErc20AllowanceCallData(BaseModel):
         _obj = cls.model_validate({
             "token": obj.get("token"),
             "contract_name": obj.get("contract_name"),
-            "amount": Amount3.from_dict(obj["amount"]) if obj.get("amount") is not None else None
+            "amount": Amount4.from_dict(obj["amount"]) if obj.get("amount") is not None else None
         })
         return _obj
 

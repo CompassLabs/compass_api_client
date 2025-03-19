@@ -1440,6 +1440,48 @@
         }
       }
     },
+    "/v0/generic/price/usd/get": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Get the price of a given token relative to USD",
+        "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.",
+        "operationId": "process_request_v0_generic_price_usd_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTokenPrice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v0/uniswap/swap/sell_exactly": {
       "post": {
         "tags": [
@@ -1931,7 +1973,8 @@
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -1948,7 +1991,9 @@
             "description": "The interest rate mode to borrow",
             "examples": [
               1
-            ]
+            ],
+            "ge": 1,
+            "le": 2
           },
           "on_behalf_of": {
             "anyOf": [
@@ -2126,7 +2171,8 @@
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -2143,7 +2189,9 @@
             "description": "The interest rate mode to borrow",
             "examples": [
               1
-            ]
+            ],
+            "ge": 1,
+            "le": 2
           },
           "on_behalf_of": {
             "anyOf": [
@@ -2179,7 +2227,8 @@
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -2322,7 +2371,7 @@
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to supply.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
+            "description": "The symbol of the underlying asset to withdraw.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
             "examples": [
               "WETH"
             ]
@@ -2330,14 +2379,15 @@
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
               }
             ],
             "title": "Amount",
-            "description": "The amount of the asset to supply",
+            "description": "The amount of the asset to withdraw",
             "examples": [
               1.5
             ]
@@ -2400,7 +2450,8 @@
           "amount_a_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2415,7 +2466,8 @@
           "amount_b_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2430,7 +2482,8 @@
           "amount_a_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2445,7 +2498,8 @@
           "amount_b_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2473,7 +2527,8 @@
           "deadline": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "integer",
+                "minimum": 0.0
               },
               {
                 "type": "null"
@@ -2516,7 +2571,8 @@
           "amount_token_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2531,7 +2587,8 @@
           "amount_eth_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2546,7 +2603,8 @@
           "amount_token_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2561,7 +2619,8 @@
           "amount_eth_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2589,7 +2648,8 @@
           "deadline": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "integer",
+                "minimum": 0.0
               },
               {
                 "type": "null"
@@ -2709,7 +2769,8 @@
           "liquidity": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -2724,7 +2785,8 @@
           "amount_a_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2739,7 +2801,8 @@
           "amount_b_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2767,7 +2830,8 @@
           "deadline": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "integer",
+                "minimum": 0.0
               },
               {
                 "type": "null"
@@ -2809,7 +2873,8 @@
           "liquidity": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -2824,7 +2889,8 @@
           "amount_token_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2839,7 +2905,8 @@
           "amount_eth_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -2867,7 +2934,8 @@
           "deadline": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "integer",
+                "minimum": 0.0
               },
               {
                 "type": "null"
@@ -2909,6 +2977,7 @@
           },
           "tick_spacing": {
             "type": "integer",
+            "minimum": 1.0,
             "title": "Tick Spacing",
             "description": "The tick spacing of the pool",
             "examples": [
@@ -2933,7 +3002,8 @@
           "amount_out": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -2948,7 +3018,8 @@
           "amount_in_maximum": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3011,6 +3082,7 @@
           },
           "tick_spacing": {
             "type": "integer",
+            "minimum": 1.0,
             "title": "Tick Spacing",
             "description": "The tick spacing of the pool",
             "examples": [
@@ -3052,7 +3124,8 @@
           "amount0_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3067,7 +3140,8 @@
           "amount1_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3082,7 +3156,8 @@
           "amount0_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3097,7 +3172,8 @@
           "amount1_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3138,6 +3214,7 @@
           },
           "tick_spacing": {
             "type": "integer",
+            "minimum": 1.0,
             "title": "Tick Spacing",
             "description": "The tick spacing of the pool",
             "examples": [
@@ -3178,7 +3255,8 @@
           "amount0_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3193,7 +3271,8 @@
           "amount1_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3208,7 +3287,8 @@
           "amount0_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3223,7 +3303,8 @@
           "amount1_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3313,6 +3394,7 @@
           },
           "tick_spacing": {
             "type": "integer",
+            "minimum": 1.0,
             "title": "Tick Spacing",
             "description": "The tick spacing of the pool",
             "examples": [
@@ -3337,7 +3419,8 @@
           "amount_in": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -3352,7 +3435,8 @@
           "amount_out_minimum": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3385,7 +3469,9 @@
           "percentage_for_withdrawal": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "maximum": 100.0,
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -3421,7 +3507,8 @@
           "amount_in": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -3436,7 +3523,8 @@
           "amount_out_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3488,7 +3576,8 @@
           "amount_in": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -3503,7 +3592,8 @@
           "amount_out_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -3562,7 +3652,8 @@
           "amount_in": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -3577,7 +3668,8 @@
           "amount_out_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -4455,6 +4547,26 @@
         ],
         "title": "GetSupportedTokens"
       },
+      "GetTokenPrice": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token for which to get the price<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
+            "examples": [
+              "WETH"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "token"
+        ],
+        "title": "GetTokenPrice"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -4512,7 +4624,8 @@
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -4553,7 +4666,8 @@
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -4581,7 +4695,7 @@
           2
         ],
         "title": "InterestRateMode",
-        "description": "On AAVE there are 2 different interest modes.\n\nA stable(but typically higher rate), or a variable rate."
+        "description": "On AAVE there are 2 different interest modes.\n\nA stable (but typically higher rate), or a variable rate."
       },
       "Portfolio": {
         "properties": {
@@ -4608,6 +4722,19 @@
           "token_balances"
         ],
         "title": "Portfolio"
+      },
+      "PriceResponse": {
+        "properties": {
+          "token_price_in_usd": {
+            "type": "string",
+            "title": "Token Price In Usd"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token_price_in_usd"
+        ],
+        "title": "PriceResponse"
       },
       "RequestEnsDetails": {
         "properties": {
@@ -4923,7 +5050,8 @@
           "amount_out": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -4938,7 +5066,8 @@
           "amount_in_maximum": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -4997,6 +5126,7 @@
           },
           "token_id": {
             "type": "integer",
+            "minimum": 0.0,
             "title": "Token Id",
             "description": "Token ID of the NFT representing the liquidity provisioned position."
           }
@@ -5052,7 +5182,8 @@
           "amount_out": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -5159,7 +5290,8 @@
           "amount_in": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -5189,6 +5321,7 @@
           },
           "token_id": {
             "type": "integer",
+            "minimum": 0.0,
             "title": "Token Id",
             "description": "Token ID of the NFT representing the liquidity provisioned position."
           }
@@ -5258,13 +5391,15 @@
         "properties": {
           "token_id": {
             "type": "integer",
+            "minimum": 0.0,
             "title": "Token Id",
             "description": "Token ID of the NFT representing the liquidity provisioned position."
           },
           "amount0_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5279,7 +5414,8 @@
           "amount1_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5294,7 +5430,8 @@
           "amount0_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5309,7 +5446,8 @@
           "amount1_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5374,6 +5512,8 @@
           },
           "tick_lower": {
             "type": "integer",
+            "maximum": 887272.0,
+            "minimum": -887272.0,
             "title": "Tick Lower",
             "description": "The lower tick of the range to mint the position in",
             "examples": [
@@ -5382,6 +5522,8 @@
           },
           "tick_upper": {
             "type": "integer",
+            "maximum": 887272.0,
+            "minimum": -887272.0,
             "title": "Tick Upper",
             "description": "The upper tick of the range to mint the position in",
             "examples": [
@@ -5391,7 +5533,8 @@
           "amount0_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5406,7 +5549,8 @@
           "amount1_desired": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5421,7 +5565,8 @@
           "amount0_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5436,7 +5581,8 @@
           "amount1_min": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5604,7 +5750,8 @@
           "amount_in": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -5619,7 +5766,8 @@
           "amount_out_minimum": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.0
               },
               {
                 "type": "string"
@@ -5681,7 +5829,9 @@
           "percentage_for_withdrawal": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "maximum": 100.0,
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -5772,7 +5922,8 @@
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -5829,7 +5980,8 @@
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"

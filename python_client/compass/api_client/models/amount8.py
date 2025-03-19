@@ -17,22 +17,21 @@ from inspect import getfullargspec
 import json
 import pprint
 import re  # noqa: F401
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, ValidationError, field_validator
 from typing import Optional, Union
-from typing_extensions import Annotated
 from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal, Self
 from pydantic import Field
 
-AMOUNTTOKENDESIRED_ANY_OF_SCHEMAS = ["float", "str"]
+AMOUNT8_ANY_OF_SCHEMAS = ["float", "str"]
 
-class AmountTokenDesired(BaseModel):
+class Amount8(BaseModel):
     """
-    The amount of token you want to provide
+    The amount of ETH to wrap.
     """
 
     # data type: float
-    anyof_schema_1_validator: Optional[Union[Annotated[float, Field(strict=True, ge=0.0)], Annotated[int, Field(strict=True, ge=0)]]] = None
+    anyof_schema_1_validator: Optional[Union[StrictFloat, StrictInt]] = None
     # data type: str
     anyof_schema_2_validator: Optional[StrictStr] = None
     if TYPE_CHECKING:
@@ -58,7 +57,7 @@ class AmountTokenDesired(BaseModel):
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_anyof(cls, v):
-        instance = AmountTokenDesired.model_construct()
+        instance = Amount8.model_construct()
         error_messages = []
         # validate data type: float
         try:
@@ -74,7 +73,7 @@ class AmountTokenDesired(BaseModel):
             error_messages.append(str(e))
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in AmountTokenDesired with anyOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting the actual_instance in Amount8 with anyOf schemas: float, str. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -108,7 +107,7 @@ class AmountTokenDesired(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into AmountTokenDesired with anyOf schemas: float, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Amount8 with anyOf schemas: float, str. Details: " + ", ".join(error_messages))
         else:
             return instance
 

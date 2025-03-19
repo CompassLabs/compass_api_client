@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from compass.api_client.models.amount_eth_min1 import AmountEthMin1
 from compass.api_client.models.amount_token_min1 import AmountTokenMin1
 from compass.api_client.models.liquidity import Liquidity
@@ -36,7 +37,7 @@ class AerodromeRemoveLiquidityEthCallData(BaseModel):
     amount_token_min: AmountTokenMin1
     amount_eth_min: AmountEthMin1
     to: Optional[StrictStr] = None
-    deadline: Optional[StrictInt]
+    deadline: Optional[Annotated[int, Field(strict=True, ge=0)]]
     __properties: ClassVar[List[str]] = ["token", "stable", "liquidity", "amount_token_min", "amount_eth_min", "to", "deadline"]
 
     model_config = ConfigDict(

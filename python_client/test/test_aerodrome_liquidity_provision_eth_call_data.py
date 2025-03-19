@@ -42,7 +42,7 @@ class TestAerodromeLiquidityProvisionEthCallData(unittest.TestCase):
                 amount_token_min = None,
                 amount_eth_min = None,
                 to = '',
-                deadline = 56
+                deadline = 0.0
             )
         else:
             return AerodromeLiquidityProvisionEthCallData(
@@ -52,7 +52,7 @@ class TestAerodromeLiquidityProvisionEthCallData(unittest.TestCase):
                 amount_eth_desired = None,
                 amount_token_min = None,
                 amount_eth_min = None,
-                deadline = 56,
+                deadline = 0.0,
         )
         """
 

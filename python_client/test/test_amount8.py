@@ -14,10 +14,10 @@
 
 import unittest
 
-from compass.api_client.models.uniswap_impermanent_loss_call_data import UniswapImpermanentLossCallData
+from compass.api_client.models.amount8 import Amount8
 
-class TestUniswapImpermanentLossCallData(unittest.TestCase):
-    """UniswapImpermanentLossCallData unit test stubs"""
+class TestAmount8(unittest.TestCase):
+    """Amount8 unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,28 +25,24 @@ class TestUniswapImpermanentLossCallData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> UniswapImpermanentLossCallData:
-        """Test UniswapImpermanentLossCallData
+    def make_instance(self, include_optional) -> Amount8:
+        """Test Amount8
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `UniswapImpermanentLossCallData`
+        # uncomment below to create an instance of `Amount8`
         """
-        model = UniswapImpermanentLossCallData()
+        model = Amount8()
         if include_optional:
-            return UniswapImpermanentLossCallData(
-                chain = 'ethereum:mainnet',
-                token_id = 0.0
+            return Amount8(
             )
         else:
-            return UniswapImpermanentLossCallData(
-                chain = 'ethereum:mainnet',
-                token_id = 0.0,
+            return Amount8(
         )
         """
 
-    def testUniswapImpermanentLossCallData(self):
-        """Test UniswapImpermanentLossCallData"""
+    def testAmount8(self):
+        """Test Amount8"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

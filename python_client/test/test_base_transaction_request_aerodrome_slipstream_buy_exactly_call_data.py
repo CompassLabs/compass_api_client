@@ -40,7 +40,7 @@ class TestBaseTransactionRequestAerodromeSlipstreamBuyExactlyCallData(unittest.T
                 call_data = compass.api_client.models.aerodrome_slipstream_buy_exactly_call_data.AerodromeSlipstreamBuyExactlyCallData(
                     token_in = '1INCH', 
                     token_out = '1INCH', 
-                    tick_spacing = 56, 
+                    tick_spacing = 1.0, 
                     amount_out = null, 
                     amount_in_maximum = null, )
             )
@@ -51,7 +51,7 @@ class TestBaseTransactionRequestAerodromeSlipstreamBuyExactlyCallData(unittest.T
                 call_data = compass.api_client.models.aerodrome_slipstream_buy_exactly_call_data.AerodromeSlipstreamBuyExactlyCallData(
                     token_in = '1INCH', 
                     token_out = '1INCH', 
-                    tick_spacing = 56, 
+                    tick_spacing = 1.0, 
                     amount_out = null, 
                     amount_in_maximum = null, ),
         )

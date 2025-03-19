@@ -37,7 +37,7 @@ class TestAerodromeSlipstreamSellExactlyCallData(unittest.TestCase):
             return AerodromeSlipstreamSellExactlyCallData(
                 token_in = '1INCH',
                 token_out = '1INCH',
-                tick_spacing = 56,
+                tick_spacing = 1.0,
                 amount_in = None,
                 amount_out_minimum = None
             )
@@ -45,7 +45,7 @@ class TestAerodromeSlipstreamSellExactlyCallData(unittest.TestCase):
             return AerodromeSlipstreamSellExactlyCallData(
                 token_in = '1INCH',
                 token_out = '1INCH',
-                tick_spacing = 56,
+                tick_spacing = 1.0,
                 amount_in = None,
         )
         """

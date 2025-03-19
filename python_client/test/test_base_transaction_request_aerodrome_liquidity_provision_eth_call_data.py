@@ -45,7 +45,7 @@ class TestBaseTransactionRequestAerodromeLiquidityProvisionEthCallData(unittest.
                     amount_token_min = null, 
                     amount_eth_min = null, 
                     to = '', 
-                    deadline = 56, )
+                    deadline = 0.0, )
             )
         else:
             return BaseTransactionRequestAerodromeLiquidityProvisionEthCallData(
@@ -59,7 +59,7 @@ class TestBaseTransactionRequestAerodromeLiquidityProvisionEthCallData(unittest.
                     amount_token_min = null, 
                     amount_eth_min = null, 
                     to = '', 
-                    deadline = 56, ),
+                    deadline = 0.0, ),
         )
         """
 

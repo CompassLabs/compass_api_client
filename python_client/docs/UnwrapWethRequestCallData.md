@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | [**Amount6**](Amount6.md) |  | 
+**amount** | [**Amount7**](Amount7.md) |  | 
 
 ## Example
 

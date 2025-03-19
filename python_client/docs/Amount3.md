@@ -1,6 +1,6 @@
 # Amount3
 
-The amount of tokens to increase the allowance by.
+The amount of the asset to withdraw
 
 ## Properties
 
