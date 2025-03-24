@@ -12,61 +12,20 @@
     }
   ],
   "paths": {
-    "/v0/aave/supply": {
-      "post": {
-        "tags": [
-          "Aave V3"
-        ],
-        "summary": "Supply collateral to earn interest or borrow against",
-        "description": "By supplying assets, users can earn interest on their deposits\n\nThe supplied collateral can be used as a basis for borrowing other assets,\nallowing users to leverage their positions.\nIn combination with a trading protocol, this can create leverage.  \n\nOverall, this endpoint is a critical component for users looking to maximize their asset\nutility within the AAVEv3 ecosystem, providing both earning potential and borrowing\nflexibility.",
-        "operationId": "process_request_v0_aave_supply_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AaveSupplyCallData_"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v0/aave/borrow": {
       "post": {
         "tags": [
+          "Aave V3",
           "Aave V3"
         ],
         "summary": "Borrow against your collateral",
-        "description": "You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.",
-        "operationId": "process_request_v0_aave_borrow_post",
+        "description": "You will pay interest for your borrows. Price changes in the assets may lead to\n    some or all of your collateral being liquidated, if the borrow position becomes unhealthy.",
+        "operationId": "borrow_v0_aave_borrow_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AaveBorrowCallData_"
+                "$ref": "#/components/schemas/AaveBorrowRequest"
               }
             }
           },
@@ -99,16 +58,60 @@
     "/v0/aave/repay": {
       "post": {
         "tags": [
+          "Aave V3",
           "Aave V3"
         ],
         "summary": "Repay some or all tokens you borrowed",
-        "description": "This endpoint allows users to repay a portion or the entirety of their borrowed\ntokens on the Aave platform. By repaying borrowed amounts, users can improve their\nhealth factor, which is a measure of the safety of their loan position. A higher health\nfactor reduces the risk of liquidation, ensuring a more secure borrowing experience.\nThe endpoint requires specifying the chain and the details of the repayment transaction,\nincluding the amount and the asset to be repaid.",
-        "operationId": "process_request_v0_aave_repay_post",
+        "description": "This endpoint allows users to repay a portion or the entirety of their borrowed tokens on\n        the Aave platform. By repaying borrowed amounts, users can improve their health factor,\n        which is a measure of the safety of their loan position. A higher health factor reduces the\n        risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires\n        specifying the chain and the details of the repayment transaction, including the amount and\n        the asset to be repaid.",
+        "operationId": "repay_v0_aave_repay_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AaveRepayCallData_"
+                "$ref": "#/components/schemas/AaveRepayRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/aave/supply": {
+      "post": {
+        "tags": [
+          "Aave V3",
+          "Aave V3"
+        ],
+        "summary": "Supply collateral to earn interest or borrow against",
+        "description": "By supplying assets, users can earn interest on their deposits\n\n        The supplied collateral can be used as a basis for borrowing other assets, allowing users to\n        leverage their positions. In combination with a trading protocol, this can create leverage.  \n\n        Overall, this endpoint is a critical component for users looking to maximize their asset\n        utility within the AAVEv3 ecosystem, providing both earning potential and borrowing\n        flexibility.",
+        "operationId": "supply_v0_aave_supply_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AaveSupplyRequest"
               }
             }
           },
@@ -141,16 +144,17 @@
     "/v0/aave/withdraw": {
       "post": {
         "tags": [
+          "Aave V3",
           "Aave V3"
         ],
         "summary": "Withdraw some or all of your collateral",
-        "description": "This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.",
-        "operationId": "process_request_v0_aave_withdraw_post",
+        "description": "This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can\n        withdraw a portion or all of their collateral, which may increase the risk of liquidation if\n        there are outstanding borrows. The withdrawal process also includes the collection of any\n        interest earned on the collateral. It is important for users to carefully consider their\n        outstanding debts and the potential impact on their liquidation threshold before proceeding\n        with a withdrawal. This endpoint is designed to provide a seamless and efficient way to\n        manage your collateral within the Aave ecosystem.",
+        "operationId": "withdraw_v0_aave_withdraw_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AaveWithdrawCallData_"
+                "$ref": "#/components/schemas/AaveWithdrawRequest"
               }
             }
           },
@@ -183,16 +187,17 @@
     "/v0/aave/asset_price/get": {
       "post": {
         "tags": [
+          "Aave V3",
           "Aave V3"
         ],
         "summary": "Get the price of an asset in USD according to Aave",
-        "description": "This endpoint retrieves the current price of a specified asset in USD as\ndetermined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the\nasset price, ensuring accurate and up-to-date information. The request\nrequires the asset identifier and the blockchain network (chain) on which the\nasset resides. The response provides the asset price in a standardized format,\nconverted from Wei to the base currency decimals defined by Aave.",
-        "operationId": "process_request_v0_aave_asset_price_get_post",
+        "description": "This endpoint retrieves the current price of a specified asset in USD as\n        determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the\n        asset price, ensuring accurate and up-to-date information. The request\n        requires the asset identifier and the blockchain network (chain) on which the\n        asset resides. The response provides the asset price in a standardized format,\n        converted from Wei to the base currency decimals defined by Aave.",
+        "operationId": "get_asset_price_v0_aave_asset_price_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AaveGetAssetPrice"
+                "$ref": "#/components/schemas/AaveGetAssetPriceRequest"
               }
             }
           },
@@ -204,91 +209,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AaveAssetPriceInfo"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/aave/user_position_summary/get": {
-      "post": {
-        "tags": [
-          "Aave V3"
-        ],
-        "summary": "Get a summary of the user's position on AAVE. These values will be sums or averages across all open positions.",
-        "description": "This endpoint retrieves a comprehensive summary of a user's position on the\n        AAVE platform. It provides key financial metrics including the total collateral\n        deposited, total debt accrued, available borrowing capacity, liquidation threshold,\n        maximum loan-to-value ratio, and the health factor of the user's account. These metrics\n        are calculated by aggregating data across all open positions held by the user, offering\n        a holistic view of their financial standing within the AAVE ecosystem.",
-        "operationId": "process_request_v0_aave_user_position_summary_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AaveGetUserPositionSummary"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AaveUserPositionSummaryInfo"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/aave/user_position_per_token/get": {
-      "post": {
-        "tags": [
-          "Aave V3"
-        ],
-        "summary": "Get the user's position for a specific token.",
-        "description": "This endpoint retrieves the user's position for a specific token on the AAVE\n        platform. It provides key financial metrics including the current aToken balance,\n        current stable debt, current variable debt, principal stable debt, principal variable\n        debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and\n        liquidity rate. These metrics are calculated by aggregating data across all open\n        positions held by the user for the specified token, offering a detailed view of their\n        financial standing within the AAVE ecosystem.",
-        "operationId": "process_request_v0_aave_user_position_per_token_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AaveGetUserPositionPerToken"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AaveUserPositionPerTokenInfo"
+                  "$ref": "#/components/schemas/AaveAssetPriceResponse"
                 }
               }
             }
@@ -309,16 +230,17 @@
     "/v0/aave/liquidity/change/get": {
       "post": {
         "tags": [
+          "Aave V3",
           "Aave V3"
         ],
-        "summary": "Gets the change in liquidity index between two blocks, therefore the amount a position will have increased or decreased over the time",
-        "description": "This endpoint retrieves the change in the reserve liquidity index between\n        two provided blocks. This is then converted to a percentage change.\n        The liquidity index represents the change in debt and interest accrual over each block.\n        Aave does not store individual user balances directly.\n        Instead, it keeps a scaled balance and uses the liquidity index\n        to compute real balances dynamically.\n        If a user was to have deposited tokens at the start block, a positive liquidity\n        index change will represent accrued interest and a profit.\n        If tokens were borrowed at the start block, this debt will increase,\n        compound on itself and represent large debt.\n        The reverse in both cases is true if the liquidity index is negative.",
-        "operationId": "process_request_v0_aave_liquidity_change_get_post",
+        "summary": "Gets the change in liquidity index between two blocks, therefore the amount a\n    position will have increased or decreased over the time",
+        "description": "This endpoint retrieves the change in the reserve liquidity index between two provided\n        blocks. This is then converted to a percentage change. The liquidity index represents the\n        change in debt and interest accrual over each block. Aave does not store individual user\n        balances directly. Instead, it keeps a scaled balance and uses the liquidity index to\n        compute real balances dynamically. If a user was to have deposited tokens at the start\n        block, a positive liquidity index change will represent accrued interest and a profit. If\n        tokens were borrowed at the start block, this debt will increase, compound on itself and\n        represent large debt. The reverse in both cases is true if the liquidity index is negative.",
+        "operationId": "get_liquidity_change_v0_aave_liquidity_change_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AaveGetLiquidityChange"
+                "$ref": "#/components/schemas/AaveGetLiquidityChangeRequest"
               }
             }
           },
@@ -330,7 +252,93 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AaveLiquidityChange"
+                  "$ref": "#/components/schemas/AaveLiquidityChangeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/aave/user_position_summary/get": {
+      "post": {
+        "tags": [
+          "Aave V3",
+          "Aave V3"
+        ],
+        "summary": "Get a summary of the user's position on AAVE. These values will be sums or averages\n    across all open positions.",
+        "description": "This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.\n        It provides key financial metrics including the total collateral deposited, total debt\n        accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,\n        and the health factor of the user's account. These metrics are calculated by aggregating\n        data across all open positions held by the user, offering a holistic view of their financial\n        standing within the AAVE ecosystem.",
+        "operationId": "get_user_position_summary_v0_aave_user_position_summary_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AaveGetUserPositionSummaryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AaveUserPositionSummaryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/aave/user_position_per_token/get": {
+      "post": {
+        "tags": [
+          "Aave V3",
+          "Aave V3"
+        ],
+        "summary": "Get the user's position for a specific token.",
+        "description": "This endpoint retrieves the user's position for a specific token on the AAVE\n        platform. It provides key financial metrics including the current aToken balance,\n        current stable debt, current variable debt, principal stable debt, principal variable\n        debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and\n        liquidity rate. These metrics are calculated by aggregating data across all open\n        positions held by the user for the specified token, offering a detailed view of their\n        financial standing within the AAVE ecosystem.",
+        "operationId": "get_user_position_per_token_v0_aave_user_position_per_token_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AaveGetUserPositionPerTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AaveUserPositionPerTokenResponse"
                 }
               }
             }
@@ -1905,7 +1913,7 @@
   },
   "components": {
     "schemas": {
-      "AaveAssetPriceInfo": {
+      "AaveAssetPriceResponse": {
         "properties": {
           "price": {
             "type": "string",
@@ -1917,10 +1925,19 @@
         "required": [
           "price"
         ],
-        "title": "AaveAssetPriceInfo"
+        "title": "AaveAssetPriceResponse"
       },
-      "AaveBorrowCallData": {
+      "AaveBorrowRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "asset": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the underlying asset to borrow.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
@@ -1969,13 +1986,15 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "asset",
           "amount",
           "interest_rate_mode"
         ],
-        "title": "AaveBorrowCallData"
+        "title": "AaveBorrowRequest"
       },
-      "AaveGetAssetPrice": {
+      "AaveGetAssetPriceRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -1993,9 +2012,9 @@
           "chain",
           "asset"
         ],
-        "title": "AaveGetAssetPrice"
+        "title": "AaveGetAssetPriceRequest"
       },
-      "AaveGetLiquidityChange": {
+      "AaveGetLiquidityChangeRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -2037,9 +2056,9 @@
           "start_block",
           "asset"
         ],
-        "title": "AaveGetLiquidityChange"
+        "title": "AaveGetLiquidityChangeRequest"
       },
-      "AaveGetUserPositionPerToken": {
+      "AaveGetUserPositionPerTokenRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -2066,9 +2085,9 @@
           "user",
           "asset"
         ],
-        "title": "AaveGetUserPositionPerToken"
+        "title": "AaveGetUserPositionPerTokenRequest"
       },
-      "AaveGetUserPositionSummary": {
+      "AaveGetUserPositionSummaryRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -2087,9 +2106,9 @@
           "chain",
           "user"
         ],
-        "title": "AaveGetUserPositionSummary"
+        "title": "AaveGetUserPositionSummaryRequest"
       },
-      "AaveLiquidityChange": {
+      "AaveLiquidityChangeResponse": {
         "properties": {
           "liquidity_change": {
             "type": "string",
@@ -2115,10 +2134,19 @@
           "start_time",
           "end_time"
         ],
-        "title": "AaveLiquidityChange"
+        "title": "AaveLiquidityChangeResponse"
       },
-      "AaveRepayCallData": {
+      "AaveRepayRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "asset": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the underlying asset to repay.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
@@ -2167,14 +2195,25 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "asset",
           "amount",
           "interest_rate_mode"
         ],
-        "title": "AaveRepayCallData"
+        "title": "AaveRepayRequest"
       },
-      "AaveSupplyCallData": {
+      "AaveSupplyRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "asset": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
@@ -2214,16 +2253,18 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "asset",
           "amount"
         ],
-        "title": "AaveSupplyCallData"
+        "title": "AaveSupplyRequest"
       },
-      "AaveUserPositionPerTokenInfo": {
+      "AaveUserPositionPerTokenResponse": {
         "properties": {
-          "atoken_balance": {
+          "token_balance": {
             "type": "string",
-            "title": "Atoken Balance",
+            "title": "Token Balance",
             "description": "The balance of AAVE aTokens (interest-bearing representations of your deposits)."
           },
           "stable_debt": {
@@ -2239,17 +2280,17 @@
           "principal_stable_debt": {
             "type": "string",
             "title": "Principal Stable Debt",
-            "description": "The amount of the user's debt that was part of the initial principal of all loans with a stable interest rate."
+            "description": "The amount of the user's debt that was part of the initial principal of all\n        loans with a stable interest rate."
           },
           "principal_variable_debt": {
             "type": "string",
             "title": "Principal Variable Debt",
-            "description": "The amount of the user's debt that was part of the initial principal of all loans with a variable interest rate. This is the value stored by AAVE, which may be slightly inaccurate, but reflects what AAVE believes you initially paid."
+            "description": "The amount of the user's debt that was part of the initial principal of all\n        loans with a variable interest rate. This is the value stored by AAVE, which may be slightly\n        inaccurate, but reflects what AAVE believes you initially paid."
           },
           "stable_borrow_rate": {
             "type": "string",
             "title": "Stable Borrow Rate",
-            "description": "The current average annualised interest rate for all your stable loans in this pool."
+            "description": "The current average annualised interest rate for all your stable loans in\n        this pool."
           },
           "stable_borrow_rate_for_new_loans": {
             "type": "string",
@@ -2259,7 +2300,7 @@
           "variable_borrow_rate": {
             "type": "string",
             "title": "Variable Borrow Rate",
-            "description": "The current annualised interest rate for variable rate loans in this pool. (This applies to both current and new loans.)"
+            "description": "The current annualised interest rate for variable rate loans in this pool.\n        (This applies to both current and new loans.)"
           },
           "liquidity_rate": {
             "type": "string",
@@ -2269,7 +2310,7 @@
         },
         "type": "object",
         "required": [
-          "atoken_balance",
+          "token_balance",
           "stable_debt",
           "variable_debt",
           "principal_stable_debt",
@@ -2279,9 +2320,9 @@
           "variable_borrow_rate",
           "liquidity_rate"
         ],
-        "title": "AaveUserPositionPerTokenInfo"
+        "title": "AaveUserPositionPerTokenResponse"
       },
-      "AaveUserPositionSummaryInfo": {
+      "AaveUserPositionSummaryResponse": {
         "properties": {
           "maximum_loan_to_value_ratio": {
             "type": "string",
@@ -2291,7 +2332,7 @@
           "health_factor": {
             "type": "string",
             "title": "Health Factor",
-            "description": "The health factor of a user. If this is above 1 it is safe; below 1 and the user is in risk of liquidation. This number might be very high (which would mean the user is safe!)"
+            "description": "The health factor of a user. If this is above 1 it is safe; below 1 and the\n        user is in risk of liquidation. This number might be very high (which would mean the user is\n        safe!)"
           },
           "total_collateral": {
             "type": "string",
@@ -2311,7 +2352,7 @@
           "liquidation_threshold": {
             "type": "string",
             "title": "Liquidation Threshold",
-            "description": "The liquidation threshold of a user. A user might exceed this due to changing asset values."
+            "description": "The liquidation threshold of a user. A user might exceed this due to changing\n        asset values."
           }
         },
         "type": "object",
@@ -2323,10 +2364,19 @@
           "available_borrows",
           "liquidation_threshold"
         ],
-        "title": "AaveUserPositionSummaryInfo"
+        "title": "AaveUserPositionSummaryResponse"
       },
-      "AaveWithdrawCallData": {
+      "AaveWithdrawRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "asset": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the underlying asset to withdraw.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
@@ -2361,11 +2411,13 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "asset",
           "amount",
           "recipient"
         ],
-        "title": "AaveWithdrawCallData"
+        "title": "AaveWithdrawRequest"
       },
       "AerodromeLPPositionsInfo": {
         "properties": {
@@ -3760,98 +3812,6 @@
           "token_address"
         ],
         "title": "BalanceInfo"
-      },
-      "BaseTransactionRequest_AaveBorrowCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AaveBorrowCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AaveBorrowCallData]"
-      },
-      "BaseTransactionRequest_AaveRepayCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AaveRepayCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AaveRepayCallData]"
-      },
-      "BaseTransactionRequest_AaveSupplyCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AaveSupplyCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AaveSupplyCallData]"
-      },
-      "BaseTransactionRequest_AaveWithdrawCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AaveWithdrawCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AaveWithdrawCallData]"
       },
       "BaseTransactionRequest_AerodromeLiquidityProvisionCallData_": {
         "properties": {

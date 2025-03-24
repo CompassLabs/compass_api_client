@@ -4,27 +4,199 @@ All URIs are relative to *https://api.compasslabs.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**process_request_v0_aave_asset_price_get_post**](AaveV3Api.md#process_request_v0_aave_asset_price_get_post) | **POST** /v0/aave/asset_price/get | Get the price of an asset in USD according to Aave
-[**process_request_v0_aave_borrow_post**](AaveV3Api.md#process_request_v0_aave_borrow_post) | **POST** /v0/aave/borrow | Borrow against your collateral
-[**process_request_v0_aave_liquidity_change_get_post**](AaveV3Api.md#process_request_v0_aave_liquidity_change_get_post) | **POST** /v0/aave/liquidity/change/get | Gets the change in liquidity index between two blocks, therefore the amount a position will have increased or decreased over the time
-[**process_request_v0_aave_repay_post**](AaveV3Api.md#process_request_v0_aave_repay_post) | **POST** /v0/aave/repay | Repay some or all tokens you borrowed
-[**process_request_v0_aave_supply_post**](AaveV3Api.md#process_request_v0_aave_supply_post) | **POST** /v0/aave/supply | Supply collateral to earn interest or borrow against
-[**process_request_v0_aave_user_position_per_token_get_post**](AaveV3Api.md#process_request_v0_aave_user_position_per_token_get_post) | **POST** /v0/aave/user_position_per_token/get | Get the user&#39;s position for a specific token.
-[**process_request_v0_aave_user_position_summary_get_post**](AaveV3Api.md#process_request_v0_aave_user_position_summary_get_post) | **POST** /v0/aave/user_position_summary/get | Get a summary of the user&#39;s position on AAVE. These values will be sums or averages across all open positions.
-[**process_request_v0_aave_withdraw_post**](AaveV3Api.md#process_request_v0_aave_withdraw_post) | **POST** /v0/aave/withdraw | Withdraw some or all of your collateral
+[**borrow_v0_aave_borrow_post**](AaveV3Api.md#borrow_v0_aave_borrow_post) | **POST** /v0/aave/borrow | Borrow against your collateral
+[**borrow_v0_aave_borrow_post_0**](AaveV3Api.md#borrow_v0_aave_borrow_post_0) | **POST** /v0/aave/borrow | Borrow against your collateral
+[**get_asset_price_v0_aave_asset_price_get_post**](AaveV3Api.md#get_asset_price_v0_aave_asset_price_get_post) | **POST** /v0/aave/asset_price/get | Get the price of an asset in USD according to Aave
+[**get_asset_price_v0_aave_asset_price_get_post_0**](AaveV3Api.md#get_asset_price_v0_aave_asset_price_get_post_0) | **POST** /v0/aave/asset_price/get | Get the price of an asset in USD according to Aave
+[**get_liquidity_change_v0_aave_liquidity_change_get_post**](AaveV3Api.md#get_liquidity_change_v0_aave_liquidity_change_get_post) | **POST** /v0/aave/liquidity/change/get | Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+[**get_liquidity_change_v0_aave_liquidity_change_get_post_0**](AaveV3Api.md#get_liquidity_change_v0_aave_liquidity_change_get_post_0) | **POST** /v0/aave/liquidity/change/get | Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+[**get_user_position_per_token_v0_aave_user_position_per_token_get_post**](AaveV3Api.md#get_user_position_per_token_v0_aave_user_position_per_token_get_post) | **POST** /v0/aave/user_position_per_token/get | Get the user&#39;s position for a specific token.
+[**get_user_position_per_token_v0_aave_user_position_per_token_get_post_0**](AaveV3Api.md#get_user_position_per_token_v0_aave_user_position_per_token_get_post_0) | **POST** /v0/aave/user_position_per_token/get | Get the user&#39;s position for a specific token.
+[**get_user_position_summary_v0_aave_user_position_summary_get_post**](AaveV3Api.md#get_user_position_summary_v0_aave_user_position_summary_get_post) | **POST** /v0/aave/user_position_summary/get | Get a summary of the user&#39;s position on AAVE. These values will be sums or averages     across all open positions.
+[**get_user_position_summary_v0_aave_user_position_summary_get_post_0**](AaveV3Api.md#get_user_position_summary_v0_aave_user_position_summary_get_post_0) | **POST** /v0/aave/user_position_summary/get | Get a summary of the user&#39;s position on AAVE. These values will be sums or averages     across all open positions.
+[**repay_v0_aave_repay_post**](AaveV3Api.md#repay_v0_aave_repay_post) | **POST** /v0/aave/repay | Repay some or all tokens you borrowed
+[**repay_v0_aave_repay_post_0**](AaveV3Api.md#repay_v0_aave_repay_post_0) | **POST** /v0/aave/repay | Repay some or all tokens you borrowed
+[**supply_v0_aave_supply_post**](AaveV3Api.md#supply_v0_aave_supply_post) | **POST** /v0/aave/supply | Supply collateral to earn interest or borrow against
+[**supply_v0_aave_supply_post_0**](AaveV3Api.md#supply_v0_aave_supply_post_0) | **POST** /v0/aave/supply | Supply collateral to earn interest or borrow against
+[**withdraw_v0_aave_withdraw_post**](AaveV3Api.md#withdraw_v0_aave_withdraw_post) | **POST** /v0/aave/withdraw | Withdraw some or all of your collateral
+[**withdraw_v0_aave_withdraw_post_0**](AaveV3Api.md#withdraw_v0_aave_withdraw_post_0) | **POST** /v0/aave/withdraw | Withdraw some or all of your collateral
 
 
-# **process_request_v0_aave_asset_price_get_post**
-> AaveAssetPriceInfo process_request_v0_aave_asset_price_get_post(aave_get_asset_price)
+# **borrow_v0_aave_borrow_post**
+> UnsignedTransaction borrow_v0_aave_borrow_post(aave_borrow_request)
+
+Borrow against your collateral
+
+You will pay interest for your borrows. Price changes in the assets may lead to
+    some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_borrow_request import AaveBorrowRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_borrow_request = compass.api_client.AaveBorrowRequest() # AaveBorrowRequest | 
+
+    try:
+        # Borrow against your collateral
+        api_response = api_instance.borrow_v0_aave_borrow_post(aave_borrow_request)
+        print("The response of AaveV3Api->borrow_v0_aave_borrow_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->borrow_v0_aave_borrow_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_borrow_request** | [**AaveBorrowRequest**](AaveBorrowRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **borrow_v0_aave_borrow_post_0**
+> UnsignedTransaction borrow_v0_aave_borrow_post_0(aave_borrow_request)
+
+Borrow against your collateral
+
+You will pay interest for your borrows. Price changes in the assets may lead to
+    some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_borrow_request import AaveBorrowRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_borrow_request = compass.api_client.AaveBorrowRequest() # AaveBorrowRequest | 
+
+    try:
+        # Borrow against your collateral
+        api_response = api_instance.borrow_v0_aave_borrow_post_0(aave_borrow_request)
+        print("The response of AaveV3Api->borrow_v0_aave_borrow_post_0:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->borrow_v0_aave_borrow_post_0: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_borrow_request** | [**AaveBorrowRequest**](AaveBorrowRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_asset_price_v0_aave_asset_price_get_post**
+> AaveAssetPriceResponse get_asset_price_v0_aave_asset_price_get_post(aave_get_asset_price_request)
 
 Get the price of an asset in USD according to Aave
 
 This endpoint retrieves the current price of a specified asset in USD as
-determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
-asset price, ensuring accurate and up-to-date information. The request
-requires the asset identifier and the blockchain network (chain) on which the
-asset resides. The response provides the asset price in a standardized format,
-converted from Wei to the base currency decimals defined by Aave.
+        determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
+        asset price, ensuring accurate and up-to-date information. The request
+        requires the asset identifier and the blockchain network (chain) on which the
+        asset resides. The response provides the asset price in a standardized format,
+        converted from Wei to the base currency decimals defined by Aave.
 
 ### Example
 
@@ -32,8 +204,8 @@ converted from Wei to the base currency decimals defined by Aave.
 
 ```python
 import compass.api_client
-from compass.api_client.models.aave_asset_price_info import AaveAssetPriceInfo
-from compass.api_client.models.aave_get_asset_price import AaveGetAssetPrice
+from compass.api_client.models.aave_asset_price_response import AaveAssetPriceResponse
+from compass.api_client.models.aave_get_asset_price_request import AaveGetAssetPriceRequest
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
@@ -58,15 +230,15 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.AaveV3Api(api_client)
-    aave_get_asset_price = compass.api_client.AaveGetAssetPrice() # AaveGetAssetPrice | 
+    aave_get_asset_price_request = compass.api_client.AaveGetAssetPriceRequest() # AaveGetAssetPriceRequest | 
 
     try:
         # Get the price of an asset in USD according to Aave
-        api_response = api_instance.process_request_v0_aave_asset_price_get_post(aave_get_asset_price)
-        print("The response of AaveV3Api->process_request_v0_aave_asset_price_get_post:\n")
+        api_response = api_instance.get_asset_price_v0_aave_asset_price_get_post(aave_get_asset_price_request)
+        print("The response of AaveV3Api->get_asset_price_v0_aave_asset_price_get_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AaveV3Api->process_request_v0_aave_asset_price_get_post: %s\n" % e)
+        print("Exception when calling AaveV3Api->get_asset_price_v0_aave_asset_price_get_post: %s\n" % e)
 ```
 
 
@@ -76,11 +248,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aave_get_asset_price** | [**AaveGetAssetPrice**](AaveGetAssetPrice.md)|  | 
+ **aave_get_asset_price_request** | [**AaveGetAssetPriceRequest**](AaveGetAssetPriceRequest.md)|  | 
 
 ### Return type
 
-[**AaveAssetPriceInfo**](AaveAssetPriceInfo.md)
+[**AaveAssetPriceResponse**](AaveAssetPriceResponse.md)
 
 ### Authorization
 
@@ -100,12 +272,17 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **process_request_v0_aave_borrow_post**
-> UnsignedTransaction process_request_v0_aave_borrow_post(base_transaction_request_aave_borrow_call_data)
+# **get_asset_price_v0_aave_asset_price_get_post_0**
+> AaveAssetPriceResponse get_asset_price_v0_aave_asset_price_get_post_0(aave_get_asset_price_request)
 
-Borrow against your collateral
+Get the price of an asset in USD according to Aave
 
-You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+This endpoint retrieves the current price of a specified asset in USD as
+        determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
+        asset price, ensuring accurate and up-to-date information. The request
+        requires the asset identifier and the blockchain network (chain) on which the
+        asset resides. The response provides the asset price in a standardized format,
+        converted from Wei to the base currency decimals defined by Aave.
 
 ### Example
 
@@ -113,8 +290,8 @@ You will pay interest for your borrows. Price changes in the assets may lead to 
 
 ```python
 import compass.api_client
-from compass.api_client.models.base_transaction_request_aave_borrow_call_data import BaseTransactionRequestAaveBorrowCallData
-from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.models.aave_asset_price_response import AaveAssetPriceResponse
+from compass.api_client.models.aave_get_asset_price_request import AaveGetAssetPriceRequest
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
@@ -139,15 +316,15 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.AaveV3Api(api_client)
-    base_transaction_request_aave_borrow_call_data = compass.api_client.BaseTransactionRequestAaveBorrowCallData() # BaseTransactionRequestAaveBorrowCallData | 
+    aave_get_asset_price_request = compass.api_client.AaveGetAssetPriceRequest() # AaveGetAssetPriceRequest | 
 
     try:
-        # Borrow against your collateral
-        api_response = api_instance.process_request_v0_aave_borrow_post(base_transaction_request_aave_borrow_call_data)
-        print("The response of AaveV3Api->process_request_v0_aave_borrow_post:\n")
+        # Get the price of an asset in USD according to Aave
+        api_response = api_instance.get_asset_price_v0_aave_asset_price_get_post_0(aave_get_asset_price_request)
+        print("The response of AaveV3Api->get_asset_price_v0_aave_asset_price_get_post_0:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AaveV3Api->process_request_v0_aave_borrow_post: %s\n" % e)
+        print("Exception when calling AaveV3Api->get_asset_price_v0_aave_asset_price_get_post_0: %s\n" % e)
 ```
 
 
@@ -157,11 +334,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **base_transaction_request_aave_borrow_call_data** | [**BaseTransactionRequestAaveBorrowCallData**](BaseTransactionRequestAaveBorrowCallData.md)|  | 
+ **aave_get_asset_price_request** | [**AaveGetAssetPriceRequest**](AaveGetAssetPriceRequest.md)|  | 
 
 ### Return type
 
-[**UnsignedTransaction**](UnsignedTransaction.md)
+[**AaveAssetPriceResponse**](AaveAssetPriceResponse.md)
 
 ### Authorization
 
@@ -181,22 +358,19 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **process_request_v0_aave_liquidity_change_get_post**
-> AaveLiquidityChange process_request_v0_aave_liquidity_change_get_post(aave_get_liquidity_change)
+# **get_liquidity_change_v0_aave_liquidity_change_get_post**
+> AaveLiquidityChangeResponse get_liquidity_change_v0_aave_liquidity_change_get_post(aave_get_liquidity_change_request)
 
-Gets the change in liquidity index between two blocks, therefore the amount a position will have increased or decreased over the time
+Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
 
-This endpoint retrieves the change in the reserve liquidity index between
-        two provided blocks. This is then converted to a percentage change.
-        The liquidity index represents the change in debt and interest accrual over each block.
-        Aave does not store individual user balances directly.
-        Instead, it keeps a scaled balance and uses the liquidity index
-        to compute real balances dynamically.
-        If a user was to have deposited tokens at the start block, a positive liquidity
-        index change will represent accrued interest and a profit.
-        If tokens were borrowed at the start block, this debt will increase,
-        compound on itself and represent large debt.
-        The reverse in both cases is true if the liquidity index is negative.
+This endpoint retrieves the change in the reserve liquidity index between two provided
+        blocks. This is then converted to a percentage change. The liquidity index represents the
+        change in debt and interest accrual over each block. Aave does not store individual user
+        balances directly. Instead, it keeps a scaled balance and uses the liquidity index to
+        compute real balances dynamically. If a user was to have deposited tokens at the start
+        block, a positive liquidity index change will represent accrued interest and a profit. If
+        tokens were borrowed at the start block, this debt will increase, compound on itself and
+        represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
 ### Example
 
@@ -204,8 +378,8 @@ This endpoint retrieves the change in the reserve liquidity index between
 
 ```python
 import compass.api_client
-from compass.api_client.models.aave_get_liquidity_change import AaveGetLiquidityChange
-from compass.api_client.models.aave_liquidity_change import AaveLiquidityChange
+from compass.api_client.models.aave_get_liquidity_change_request import AaveGetLiquidityChangeRequest
+from compass.api_client.models.aave_liquidity_change_response import AaveLiquidityChangeResponse
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
@@ -230,15 +404,15 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.AaveV3Api(api_client)
-    aave_get_liquidity_change = compass.api_client.AaveGetLiquidityChange() # AaveGetLiquidityChange | 
+    aave_get_liquidity_change_request = compass.api_client.AaveGetLiquidityChangeRequest() # AaveGetLiquidityChangeRequest | 
 
     try:
-        # Gets the change in liquidity index between two blocks, therefore the amount a position will have increased or decreased over the time
-        api_response = api_instance.process_request_v0_aave_liquidity_change_get_post(aave_get_liquidity_change)
-        print("The response of AaveV3Api->process_request_v0_aave_liquidity_change_get_post:\n")
+        # Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+        api_response = api_instance.get_liquidity_change_v0_aave_liquidity_change_get_post(aave_get_liquidity_change_request)
+        print("The response of AaveV3Api->get_liquidity_change_v0_aave_liquidity_change_get_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AaveV3Api->process_request_v0_aave_liquidity_change_get_post: %s\n" % e)
+        print("Exception when calling AaveV3Api->get_liquidity_change_v0_aave_liquidity_change_get_post: %s\n" % e)
 ```
 
 
@@ -248,11 +422,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aave_get_liquidity_change** | [**AaveGetLiquidityChange**](AaveGetLiquidityChange.md)|  | 
+ **aave_get_liquidity_change_request** | [**AaveGetLiquidityChangeRequest**](AaveGetLiquidityChangeRequest.md)|  | 
 
 ### Return type
 
-[**AaveLiquidityChange**](AaveLiquidityChange.md)
+[**AaveLiquidityChangeResponse**](AaveLiquidityChangeResponse.md)
 
 ### Authorization
 
@@ -272,17 +446,19 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **process_request_v0_aave_repay_post**
-> UnsignedTransaction process_request_v0_aave_repay_post(base_transaction_request_aave_repay_call_data)
+# **get_liquidity_change_v0_aave_liquidity_change_get_post_0**
+> AaveLiquidityChangeResponse get_liquidity_change_v0_aave_liquidity_change_get_post_0(aave_get_liquidity_change_request)
 
-Repay some or all tokens you borrowed
+Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
 
-This endpoint allows users to repay a portion or the entirety of their borrowed
-tokens on the Aave platform. By repaying borrowed amounts, users can improve their
-health factor, which is a measure of the safety of their loan position. A higher health
-factor reduces the risk of liquidation, ensuring a more secure borrowing experience.
-The endpoint requires specifying the chain and the details of the repayment transaction,
-including the amount and the asset to be repaid.
+This endpoint retrieves the change in the reserve liquidity index between two provided
+        blocks. This is then converted to a percentage change. The liquidity index represents the
+        change in debt and interest accrual over each block. Aave does not store individual user
+        balances directly. Instead, it keeps a scaled balance and uses the liquidity index to
+        compute real balances dynamically. If a user was to have deposited tokens at the start
+        block, a positive liquidity index change will represent accrued interest and a profit. If
+        tokens were borrowed at the start block, this debt will increase, compound on itself and
+        represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
 ### Example
 
@@ -290,8 +466,8 @@ including the amount and the asset to be repaid.
 
 ```python
 import compass.api_client
-from compass.api_client.models.base_transaction_request_aave_repay_call_data import BaseTransactionRequestAaveRepayCallData
-from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.models.aave_get_liquidity_change_request import AaveGetLiquidityChangeRequest
+from compass.api_client.models.aave_liquidity_change_response import AaveLiquidityChangeResponse
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
@@ -316,15 +492,15 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.AaveV3Api(api_client)
-    base_transaction_request_aave_repay_call_data = compass.api_client.BaseTransactionRequestAaveRepayCallData() # BaseTransactionRequestAaveRepayCallData | 
+    aave_get_liquidity_change_request = compass.api_client.AaveGetLiquidityChangeRequest() # AaveGetLiquidityChangeRequest | 
 
     try:
-        # Repay some or all tokens you borrowed
-        api_response = api_instance.process_request_v0_aave_repay_post(base_transaction_request_aave_repay_call_data)
-        print("The response of AaveV3Api->process_request_v0_aave_repay_post:\n")
+        # Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+        api_response = api_instance.get_liquidity_change_v0_aave_liquidity_change_get_post_0(aave_get_liquidity_change_request)
+        print("The response of AaveV3Api->get_liquidity_change_v0_aave_liquidity_change_get_post_0:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AaveV3Api->process_request_v0_aave_repay_post: %s\n" % e)
+        print("Exception when calling AaveV3Api->get_liquidity_change_v0_aave_liquidity_change_get_post_0: %s\n" % e)
 ```
 
 
@@ -334,11 +510,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **base_transaction_request_aave_repay_call_data** | [**BaseTransactionRequestAaveRepayCallData**](BaseTransactionRequestAaveRepayCallData.md)|  | 
+ **aave_get_liquidity_change_request** | [**AaveGetLiquidityChangeRequest**](AaveGetLiquidityChangeRequest.md)|  | 
 
 ### Return type
 
-[**UnsignedTransaction**](UnsignedTransaction.md)
+[**AaveLiquidityChangeResponse**](AaveLiquidityChangeResponse.md)
 
 ### Authorization
 
@@ -358,97 +534,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **process_request_v0_aave_supply_post**
-> UnsignedTransaction process_request_v0_aave_supply_post(base_transaction_request_aave_supply_call_data)
-
-Supply collateral to earn interest or borrow against
-
-By supplying assets, users can earn interest on their deposits
-
-The supplied collateral can be used as a basis for borrowing other assets,
-allowing users to leverage their positions.
-In combination with a trading protocol, this can create leverage.  
-
-Overall, this endpoint is a critical component for users looking to maximize their asset
-utility within the AAVEv3 ecosystem, providing both earning potential and borrowing
-flexibility.
-
-### Example
-
-* Api Key Authentication (ApiKeyAuth):
-
-```python
-import compass.api_client
-from compass.api_client.models.base_transaction_request_aave_supply_call_data import BaseTransactionRequestAaveSupplyCallData
-from compass.api_client.models.unsigned_transaction import UnsignedTransaction
-from compass.api_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.compasslabs.ai
-# See configuration.py for a list of all supported configuration parameters.
-configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with compass.api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = compass.api_client.AaveV3Api(api_client)
-    base_transaction_request_aave_supply_call_data = compass.api_client.BaseTransactionRequestAaveSupplyCallData() # BaseTransactionRequestAaveSupplyCallData | 
-
-    try:
-        # Supply collateral to earn interest or borrow against
-        api_response = api_instance.process_request_v0_aave_supply_post(base_transaction_request_aave_supply_call_data)
-        print("The response of AaveV3Api->process_request_v0_aave_supply_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AaveV3Api->process_request_v0_aave_supply_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **base_transaction_request_aave_supply_call_data** | [**BaseTransactionRequestAaveSupplyCallData**](BaseTransactionRequestAaveSupplyCallData.md)|  | 
-
-### Return type
-
-[**UnsignedTransaction**](UnsignedTransaction.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **process_request_v0_aave_user_position_per_token_get_post**
-> AaveUserPositionPerTokenInfo process_request_v0_aave_user_position_per_token_get_post(aave_get_user_position_per_token)
+# **get_user_position_per_token_v0_aave_user_position_per_token_get_post**
+> AaveUserPositionPerTokenResponse get_user_position_per_token_v0_aave_user_position_per_token_get_post(aave_get_user_position_per_token_request)
 
 Get the user's position for a specific token.
 
@@ -466,8 +553,8 @@ This endpoint retrieves the user's position for a specific token on the AAVE
 
 ```python
 import compass.api_client
-from compass.api_client.models.aave_get_user_position_per_token import AaveGetUserPositionPerToken
-from compass.api_client.models.aave_user_position_per_token_info import AaveUserPositionPerTokenInfo
+from compass.api_client.models.aave_get_user_position_per_token_request import AaveGetUserPositionPerTokenRequest
+from compass.api_client.models.aave_user_position_per_token_response import AaveUserPositionPerTokenResponse
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
@@ -492,15 +579,15 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.AaveV3Api(api_client)
-    aave_get_user_position_per_token = compass.api_client.AaveGetUserPositionPerToken() # AaveGetUserPositionPerToken | 
+    aave_get_user_position_per_token_request = compass.api_client.AaveGetUserPositionPerTokenRequest() # AaveGetUserPositionPerTokenRequest | 
 
     try:
         # Get the user's position for a specific token.
-        api_response = api_instance.process_request_v0_aave_user_position_per_token_get_post(aave_get_user_position_per_token)
-        print("The response of AaveV3Api->process_request_v0_aave_user_position_per_token_get_post:\n")
+        api_response = api_instance.get_user_position_per_token_v0_aave_user_position_per_token_get_post(aave_get_user_position_per_token_request)
+        print("The response of AaveV3Api->get_user_position_per_token_v0_aave_user_position_per_token_get_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AaveV3Api->process_request_v0_aave_user_position_per_token_get_post: %s\n" % e)
+        print("Exception when calling AaveV3Api->get_user_position_per_token_v0_aave_user_position_per_token_get_post: %s\n" % e)
 ```
 
 
@@ -510,11 +597,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aave_get_user_position_per_token** | [**AaveGetUserPositionPerToken**](AaveGetUserPositionPerToken.md)|  | 
+ **aave_get_user_position_per_token_request** | [**AaveGetUserPositionPerTokenRequest**](AaveGetUserPositionPerTokenRequest.md)|  | 
 
 ### Return type
 
-[**AaveUserPositionPerTokenInfo**](AaveUserPositionPerTokenInfo.md)
+[**AaveUserPositionPerTokenResponse**](AaveUserPositionPerTokenResponse.md)
 
 ### Authorization
 
@@ -534,17 +621,18 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **process_request_v0_aave_user_position_summary_get_post**
-> AaveUserPositionSummaryInfo process_request_v0_aave_user_position_summary_get_post(aave_get_user_position_summary)
+# **get_user_position_per_token_v0_aave_user_position_per_token_get_post_0**
+> AaveUserPositionPerTokenResponse get_user_position_per_token_v0_aave_user_position_per_token_get_post_0(aave_get_user_position_per_token_request)
 
-Get a summary of the user's position on AAVE. These values will be sums or averages across all open positions.
+Get the user's position for a specific token.
 
-This endpoint retrieves a comprehensive summary of a user's position on the
-        AAVE platform. It provides key financial metrics including the total collateral
-        deposited, total debt accrued, available borrowing capacity, liquidation threshold,
-        maximum loan-to-value ratio, and the health factor of the user's account. These metrics
-        are calculated by aggregating data across all open positions held by the user, offering
-        a holistic view of their financial standing within the AAVE ecosystem.
+This endpoint retrieves the user's position for a specific token on the AAVE
+        platform. It provides key financial metrics including the current aToken balance,
+        current stable debt, current variable debt, principal stable debt, principal variable
+        debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and
+        liquidity rate. These metrics are calculated by aggregating data across all open
+        positions held by the user for the specified token, offering a detailed view of their
+        financial standing within the AAVE ecosystem.
 
 ### Example
 
@@ -552,8 +640,8 @@ This endpoint retrieves a comprehensive summary of a user's position on the
 
 ```python
 import compass.api_client
-from compass.api_client.models.aave_get_user_position_summary import AaveGetUserPositionSummary
-from compass.api_client.models.aave_user_position_summary_info import AaveUserPositionSummaryInfo
+from compass.api_client.models.aave_get_user_position_per_token_request import AaveGetUserPositionPerTokenRequest
+from compass.api_client.models.aave_user_position_per_token_response import AaveUserPositionPerTokenResponse
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
@@ -578,15 +666,15 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.AaveV3Api(api_client)
-    aave_get_user_position_summary = compass.api_client.AaveGetUserPositionSummary() # AaveGetUserPositionSummary | 
+    aave_get_user_position_per_token_request = compass.api_client.AaveGetUserPositionPerTokenRequest() # AaveGetUserPositionPerTokenRequest | 
 
     try:
-        # Get a summary of the user's position on AAVE. These values will be sums or averages across all open positions.
-        api_response = api_instance.process_request_v0_aave_user_position_summary_get_post(aave_get_user_position_summary)
-        print("The response of AaveV3Api->process_request_v0_aave_user_position_summary_get_post:\n")
+        # Get the user's position for a specific token.
+        api_response = api_instance.get_user_position_per_token_v0_aave_user_position_per_token_get_post_0(aave_get_user_position_per_token_request)
+        print("The response of AaveV3Api->get_user_position_per_token_v0_aave_user_position_per_token_get_post_0:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AaveV3Api->process_request_v0_aave_user_position_summary_get_post: %s\n" % e)
+        print("Exception when calling AaveV3Api->get_user_position_per_token_v0_aave_user_position_per_token_get_post_0: %s\n" % e)
 ```
 
 
@@ -596,11 +684,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aave_get_user_position_summary** | [**AaveGetUserPositionSummary**](AaveGetUserPositionSummary.md)|  | 
+ **aave_get_user_position_per_token_request** | [**AaveGetUserPositionPerTokenRequest**](AaveGetUserPositionPerTokenRequest.md)|  | 
 
 ### Return type
 
-[**AaveUserPositionSummaryInfo**](AaveUserPositionSummaryInfo.md)
+[**AaveUserPositionPerTokenResponse**](AaveUserPositionPerTokenResponse.md)
 
 ### Authorization
 
@@ -620,12 +708,17 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **process_request_v0_aave_withdraw_post**
-> UnsignedTransaction process_request_v0_aave_withdraw_post(base_transaction_request_aave_withdraw_call_data)
+# **get_user_position_summary_v0_aave_user_position_summary_get_post**
+> AaveUserPositionSummaryResponse get_user_position_summary_v0_aave_user_position_summary_get_post(aave_get_user_position_summary_request)
 
-Withdraw some or all of your collateral
+Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
 
-This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
+This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.
+        It provides key financial metrics including the total collateral deposited, total debt
+        accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,
+        and the health factor of the user's account. These metrics are calculated by aggregating
+        data across all open positions held by the user, offering a holistic view of their financial
+        standing within the AAVE ecosystem.
 
 ### Example
 
@@ -633,7 +726,179 @@ This endpoint facilitates the withdrawal of collateral from the Aave protocol. U
 
 ```python
 import compass.api_client
-from compass.api_client.models.base_transaction_request_aave_withdraw_call_data import BaseTransactionRequestAaveWithdrawCallData
+from compass.api_client.models.aave_get_user_position_summary_request import AaveGetUserPositionSummaryRequest
+from compass.api_client.models.aave_user_position_summary_response import AaveUserPositionSummaryResponse
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_get_user_position_summary_request = compass.api_client.AaveGetUserPositionSummaryRequest() # AaveGetUserPositionSummaryRequest | 
+
+    try:
+        # Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+        api_response = api_instance.get_user_position_summary_v0_aave_user_position_summary_get_post(aave_get_user_position_summary_request)
+        print("The response of AaveV3Api->get_user_position_summary_v0_aave_user_position_summary_get_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->get_user_position_summary_v0_aave_user_position_summary_get_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_get_user_position_summary_request** | [**AaveGetUserPositionSummaryRequest**](AaveGetUserPositionSummaryRequest.md)|  | 
+
+### Return type
+
+[**AaveUserPositionSummaryResponse**](AaveUserPositionSummaryResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_user_position_summary_v0_aave_user_position_summary_get_post_0**
+> AaveUserPositionSummaryResponse get_user_position_summary_v0_aave_user_position_summary_get_post_0(aave_get_user_position_summary_request)
+
+Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+
+This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.
+        It provides key financial metrics including the total collateral deposited, total debt
+        accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,
+        and the health factor of the user's account. These metrics are calculated by aggregating
+        data across all open positions held by the user, offering a holistic view of their financial
+        standing within the AAVE ecosystem.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_get_user_position_summary_request import AaveGetUserPositionSummaryRequest
+from compass.api_client.models.aave_user_position_summary_response import AaveUserPositionSummaryResponse
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_get_user_position_summary_request = compass.api_client.AaveGetUserPositionSummaryRequest() # AaveGetUserPositionSummaryRequest | 
+
+    try:
+        # Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+        api_response = api_instance.get_user_position_summary_v0_aave_user_position_summary_get_post_0(aave_get_user_position_summary_request)
+        print("The response of AaveV3Api->get_user_position_summary_v0_aave_user_position_summary_get_post_0:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->get_user_position_summary_v0_aave_user_position_summary_get_post_0: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_get_user_position_summary_request** | [**AaveGetUserPositionSummaryRequest**](AaveGetUserPositionSummaryRequest.md)|  | 
+
+### Return type
+
+[**AaveUserPositionSummaryResponse**](AaveUserPositionSummaryResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **repay_v0_aave_repay_post**
+> UnsignedTransaction repay_v0_aave_repay_post(aave_repay_request)
+
+Repay some or all tokens you borrowed
+
+This endpoint allows users to repay a portion or the entirety of their borrowed tokens on
+        the Aave platform. By repaying borrowed amounts, users can improve their health factor,
+        which is a measure of the safety of their loan position. A higher health factor reduces the
+        risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires
+        specifying the chain and the details of the repayment transaction, including the amount and
+        the asset to be repaid.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_repay_request import AaveRepayRequest
 from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
@@ -659,15 +924,15 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.AaveV3Api(api_client)
-    base_transaction_request_aave_withdraw_call_data = compass.api_client.BaseTransactionRequestAaveWithdrawCallData() # BaseTransactionRequestAaveWithdrawCallData | 
+    aave_repay_request = compass.api_client.AaveRepayRequest() # AaveRepayRequest | 
 
     try:
-        # Withdraw some or all of your collateral
-        api_response = api_instance.process_request_v0_aave_withdraw_post(base_transaction_request_aave_withdraw_call_data)
-        print("The response of AaveV3Api->process_request_v0_aave_withdraw_post:\n")
+        # Repay some or all tokens you borrowed
+        api_response = api_instance.repay_v0_aave_repay_post(aave_repay_request)
+        print("The response of AaveV3Api->repay_v0_aave_repay_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AaveV3Api->process_request_v0_aave_withdraw_post: %s\n" % e)
+        print("Exception when calling AaveV3Api->repay_v0_aave_repay_post: %s\n" % e)
 ```
 
 
@@ -677,7 +942,443 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **base_transaction_request_aave_withdraw_call_data** | [**BaseTransactionRequestAaveWithdrawCallData**](BaseTransactionRequestAaveWithdrawCallData.md)|  | 
+ **aave_repay_request** | [**AaveRepayRequest**](AaveRepayRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **repay_v0_aave_repay_post_0**
+> UnsignedTransaction repay_v0_aave_repay_post_0(aave_repay_request)
+
+Repay some or all tokens you borrowed
+
+This endpoint allows users to repay a portion or the entirety of their borrowed tokens on
+        the Aave platform. By repaying borrowed amounts, users can improve their health factor,
+        which is a measure of the safety of their loan position. A higher health factor reduces the
+        risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires
+        specifying the chain and the details of the repayment transaction, including the amount and
+        the asset to be repaid.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_repay_request import AaveRepayRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_repay_request = compass.api_client.AaveRepayRequest() # AaveRepayRequest | 
+
+    try:
+        # Repay some or all tokens you borrowed
+        api_response = api_instance.repay_v0_aave_repay_post_0(aave_repay_request)
+        print("The response of AaveV3Api->repay_v0_aave_repay_post_0:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->repay_v0_aave_repay_post_0: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_repay_request** | [**AaveRepayRequest**](AaveRepayRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **supply_v0_aave_supply_post**
+> UnsignedTransaction supply_v0_aave_supply_post(aave_supply_request)
+
+Supply collateral to earn interest or borrow against
+
+By supplying assets, users can earn interest on their deposits
+
+        The supplied collateral can be used as a basis for borrowing other assets, allowing users to
+        leverage their positions. In combination with a trading protocol, this can create leverage.  
+
+        Overall, this endpoint is a critical component for users looking to maximize their asset
+        utility within the AAVEv3 ecosystem, providing both earning potential and borrowing
+        flexibility.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_supply_request import AaveSupplyRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_supply_request = compass.api_client.AaveSupplyRequest() # AaveSupplyRequest | 
+
+    try:
+        # Supply collateral to earn interest or borrow against
+        api_response = api_instance.supply_v0_aave_supply_post(aave_supply_request)
+        print("The response of AaveV3Api->supply_v0_aave_supply_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->supply_v0_aave_supply_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_supply_request** | [**AaveSupplyRequest**](AaveSupplyRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **supply_v0_aave_supply_post_0**
+> UnsignedTransaction supply_v0_aave_supply_post_0(aave_supply_request)
+
+Supply collateral to earn interest or borrow against
+
+By supplying assets, users can earn interest on their deposits
+
+        The supplied collateral can be used as a basis for borrowing other assets, allowing users to
+        leverage their positions. In combination with a trading protocol, this can create leverage.  
+
+        Overall, this endpoint is a critical component for users looking to maximize their asset
+        utility within the AAVEv3 ecosystem, providing both earning potential and borrowing
+        flexibility.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_supply_request import AaveSupplyRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_supply_request = compass.api_client.AaveSupplyRequest() # AaveSupplyRequest | 
+
+    try:
+        # Supply collateral to earn interest or borrow against
+        api_response = api_instance.supply_v0_aave_supply_post_0(aave_supply_request)
+        print("The response of AaveV3Api->supply_v0_aave_supply_post_0:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->supply_v0_aave_supply_post_0: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_supply_request** | [**AaveSupplyRequest**](AaveSupplyRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **withdraw_v0_aave_withdraw_post**
+> UnsignedTransaction withdraw_v0_aave_withdraw_post(aave_withdraw_request)
+
+Withdraw some or all of your collateral
+
+This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can
+        withdraw a portion or all of their collateral, which may increase the risk of liquidation if
+        there are outstanding borrows. The withdrawal process also includes the collection of any
+        interest earned on the collateral. It is important for users to carefully consider their
+        outstanding debts and the potential impact on their liquidation threshold before proceeding
+        with a withdrawal. This endpoint is designed to provide a seamless and efficient way to
+        manage your collateral within the Aave ecosystem.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_withdraw_request import AaveWithdrawRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_withdraw_request = compass.api_client.AaveWithdrawRequest() # AaveWithdrawRequest | 
+
+    try:
+        # Withdraw some or all of your collateral
+        api_response = api_instance.withdraw_v0_aave_withdraw_post(aave_withdraw_request)
+        print("The response of AaveV3Api->withdraw_v0_aave_withdraw_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->withdraw_v0_aave_withdraw_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_withdraw_request** | [**AaveWithdrawRequest**](AaveWithdrawRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **withdraw_v0_aave_withdraw_post_0**
+> UnsignedTransaction withdraw_v0_aave_withdraw_post_0(aave_withdraw_request)
+
+Withdraw some or all of your collateral
+
+This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can
+        withdraw a portion or all of their collateral, which may increase the risk of liquidation if
+        there are outstanding borrows. The withdrawal process also includes the collection of any
+        interest earned on the collateral. It is important for users to carefully consider their
+        outstanding debts and the potential impact on their liquidation threshold before proceeding
+        with a withdrawal. This endpoint is designed to provide a seamless and efficient way to
+        manage your collateral within the Aave ecosystem.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.aave_withdraw_request import AaveWithdrawRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.AaveV3Api(api_client)
+    aave_withdraw_request = compass.api_client.AaveWithdrawRequest() # AaveWithdrawRequest | 
+
+    try:
+        # Withdraw some or all of your collateral
+        api_response = api_instance.withdraw_v0_aave_withdraw_post_0(aave_withdraw_request)
+        print("The response of AaveV3Api->withdraw_v0_aave_withdraw_post_0:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AaveV3Api->withdraw_v0_aave_withdraw_post_0: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aave_withdraw_request** | [**AaveWithdrawRequest**](AaveWithdrawRequest.md)|  | 
 
 ### Return type
 

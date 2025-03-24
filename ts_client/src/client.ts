@@ -1040,8 +1040,42 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const PriceResponse = z.object({ token_price_in_usd: z.string() }).passthrough();
 const FeeEnum = z.enum(['0.01', '0.05', '0.3', '1.0']);
-const UniswapSellExactlyCallData = z
+const UniswapBuyExactlyRequest = z
     .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        sender: z.string().describe('The address of the transaction sender'),
+        token_in: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
+
+Uniswap supports 4 different fee levels.`),
+        amount_out: z
+            .union([z.number(), z.string()])
+            .describe('The amount of the token to swap to'),
+        amount_in_maximum: z
+            .union([z.number(), z.string()])
+            .describe('The maximum amount of the token to swap from'),
+        wrap_eth: z
+            .boolean()
+            .describe('Whether to wrap ETH to WETH, only use when swapping WETH into something')
+            .optional()
+            .default(false),
+    })
+    .passthrough();
+const UniswapSellExactlyRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -1068,94 +1102,36 @@ Uniswap supports 4 different fee levels.`),
             .default(false),
     })
     .passthrough();
-const BaseTransactionRequest_UniswapSellExactlyCallData_ = z
+const UniswapIncreaseLiquidityProvision = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: UniswapSellExactlyCallData,
+        token_id: z
+            .number()
+            .int()
+            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
+        amount0_desired: z
+            .union([z.number(), z.string()])
+            .describe('The desired amount of the first token to deposit'),
+        amount1_desired: z
+            .union([z.number(), z.string()])
+            .describe('The desired amount of the second token to deposit'),
+        amount0_min: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the first token to deposit'),
+        amount1_min: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the second token to deposit'),
     })
     .passthrough();
-const UniswapBuyExactlyCallData = z
-    .object({
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
-
-Uniswap supports 4 different fee levels.`),
-        amount_out: z
-            .union([z.number(), z.string()])
-            .describe('The amount of the token to swap to'),
-        amount_in_maximum: z
-            .union([z.number(), z.string()])
-            .describe('The maximum amount of the token to swap from'),
-        wrap_eth: z
-            .boolean()
-            .describe('Whether to wrap ETH to WETH, only use when swapping WETH into something')
-            .optional()
-            .default(false),
-    })
-    .passthrough();
-const BaseTransactionRequest_UniswapBuyExactlyCallData_ = z
+const UniswapMintLiquidityProvision = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: UniswapBuyExactlyCallData,
-    })
-    .passthrough();
-const UniswapGetLiquidityProvisionPositions = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        user: z.string().describe('The address of the user to check the balance of'),
-    })
-    .passthrough();
-const UniswapPosition = z
-    .object({
-        nonce: z.number().int(),
-        operator: z.string(),
-        token0: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token1: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
-
-Uniswap supports 4 different fee levels.`),
-        tick_lower: z.number().int(),
-        tick_upper: z.number().int(),
-        liquidity: z.number().int(),
-        fee_growth_inside0_last_x128: z.number().int(),
-        fee_growth_inside1_last_x128: z.number().int(),
-        tokens_owed0: z.number().int(),
-        tokens_owed1: z.number().int(),
-        token_id: z.number().int(),
-    })
-    .passthrough();
-const UniswapLPPositionsInfo = z
-    .object({
-        positions: z
-            .record(UniswapPosition)
-            .describe(
-                'Liquidity provision positions belonging to a particular user. The key is a tuple of the token0, token1, fee, tick_lower, and tick_upper of the position.'
-            ),
-    })
-    .passthrough();
-const UniswapMintLiquidityProvisionCallData = z
-    .object({
         token0: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -1197,47 +1173,12 @@ Uniswap supports 4 different fee levels.`),
             .optional(),
     })
     .passthrough();
-const BaseTransactionRequest_UniswapMintLiquidityProvisionCallData_ = z
+const UniswapWithdrawLiquidityProvision = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: UniswapMintLiquidityProvisionCallData,
-    })
-    .passthrough();
-const UniswapIncreaseLiquidityProvisionCallData = z
-    .object({
-        token_id: z
-            .number()
-            .int()
-            .gte(0)
-            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
-        amount0_desired: z
-            .union([z.number(), z.string()])
-            .describe('The desired amount of the first token to deposit'),
-        amount1_desired: z
-            .union([z.number(), z.string()])
-            .describe('The desired amount of the second token to deposit'),
-        amount0_min: z
-            .union([z.number(), z.string()])
-            .describe('The minimum amount of the first token to deposit'),
-        amount1_min: z
-            .union([z.number(), z.string()])
-            .describe('The minimum amount of the second token to deposit'),
-    })
-    .passthrough();
-const BaseTransactionRequest_UniswapIncreaseLiquidityProvisionCallData_ = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data: UniswapIncreaseLiquidityProvisionCallData,
-    })
-    .passthrough();
-const UniswapWithdrawLiquidityProvisionCallData = z
-    .object({
         token_id: z
             .number()
             .int()
@@ -1247,87 +1188,71 @@ const UniswapWithdrawLiquidityProvisionCallData = z
             .describe('How much liquidity to take out in percentage.'),
     })
     .passthrough();
-const BaseTransactionRequest_UniswapWithdrawLiquidityProvisionCallData_ = z
+const UniswapGetBuyQuoteRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data:
-            UniswapWithdrawLiquidityProvisionCallData.describe(`Endpoint parameters for liquidity provision withdrawal on uniswap v3.
+        token_in: Token.describe(`A class representing the token.
 
-This action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27
-First, we call decrease liquidity then collect the tokens owed to the user.`),
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
+
+Uniswap supports 4 different fee levels.`),
+        amount_out: z
+            .union([z.number(), z.string()])
+            .describe('The amount of the token to swap to'),
     })
     .passthrough();
-const UniswapCheckInRangeCallData = z
+const UniswapBuyQuoteInfoResponse = z
+    .object({
+        amount_in: z
+            .string()
+            .describe('The amount of token_in you would need to give to the pool.'),
+        price_after: z
+            .string()
+            .describe(
+                'The price of the pool after this trade would happen. (How much token0 you need to buy 1 token1.)'
+            ),
+    })
+    .passthrough();
+const UniswapGetSellQuoteRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
-        token_id: z
-            .number()
-            .int()
-            .gte(0)
-            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
-    })
-    .passthrough();
-const UniswapCheckInRangeResponse = z
-    .object({
-        in_range: z
-            .boolean()
-            .describe(
-                'Whether the position is in active tick range or not. If not in range, the position is not earning trading fees.'
-            ),
-    })
-    .passthrough();
-const UniswapImpermanentLossCallData = z
-    .object({
-        chain: Chain.describe(`The chain to use.
+        token_in: Token.describe(`A class representing the token.
 
-All token balances are per-chain.`),
-        token_id: z
-            .number()
-            .int()
-            .gte(0)
-            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
+
+Uniswap supports 4 different fee levels.`),
+        amount_in: z
+            .union([z.number(), z.string()])
+            .describe('The amount of the token to swap from'),
     })
     .passthrough();
-const Token0Token1 = z
+const UniswapSellQuoteInfoResponse = z
     .object({
-        token0: z.string().describe('The value in units of token0.'),
-        token1: z.string().describe('The value in units of token1.'),
+        amount_out: z.string().describe('The amount of token_out you would receive from the pool.'),
+        price_after: z
+            .string()
+            .describe(
+                'The price of the pool after this trade would happen. (How much token0 you need to buy 1 token1.)'
+            ),
     })
     .passthrough();
-const UniswapImpermanentLossResponse = z
-    .object({
-        impermanent_loss: z
-            .number()
-            .describe(
-                'The impermanent loss of the position. This is the difference between the value of tokens if you had just held them and the value of the tokens currently in the LP position.'
-            ),
-        total_fees_earned_in_usd: z
-            .number()
-            .describe('The total fees earned in the liquidity position in USD.'),
-        fees_earned: Token0Token1,
-        current_lp: Token0Token1,
-        initial_lp: Token0Token1,
-        initial_value_in_usd: z
-            .number()
-            .describe(
-                'The initial value in USD of the liquidity position calculated using the historical price at the time of supplying.'
-            ),
-        current_value_in_usd: z
-            .number()
-            .describe(
-                'The current value of the liquidity position in USD calculated using the current price.'
-            ),
-        hold_value_in_usd: z
-            .number()
-            .describe('The value of the tokens in USD if you had just held them.'),
-    })
-    .passthrough();
-const UniswapGetPoolPrice = z
+const UniswapGetPoolPriceRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
@@ -1345,7 +1270,7 @@ endpoints' documentation where per chain tokens are presented.`),
 Uniswap supports 4 different fee levels.`),
     })
     .passthrough();
-const UniswapPoolPrice = z
+const UniswapPoolPriceResponse = z
     .object({
         token_in: Token.describe(`A class representing the token.
 
@@ -1368,68 +1293,66 @@ endpoints' documentation where per chain tokens are presented.`),
             ),
     })
     .passthrough();
-const UniswapGetBuyQuote = z
+const UniswapCheckInRangeRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
-        token_in: Token.describe(`A class representing the token.
+        token_id: z
+            .number()
+            .int()
+            .gte(0)
+            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
+    })
+    .passthrough();
+const UniswapCheckInRangeResponse = z
+    .object({
+        in_range: z
+            .boolean()
+            .describe(
+                'Whether the position is in active tick range or not. If not in range, the position is not earning trading fees.'
+            ),
+    })
+    .passthrough();
+const UniswapGetLiquidityProvisionPositionsRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        user: z.string().describe('The address of the user to check the balance of'),
+    })
+    .passthrough();
+const UniswapPosition = z
+    .object({
+        nonce: z.number().int(),
+        operator: z.string(),
+        token0: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
+        token1: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
         fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
 
 Uniswap supports 4 different fee levels.`),
-        amount_out: z
-            .union([z.number(), z.string()])
-            .describe('The amount of the token to swap to'),
+        tick_lower: z.number().int(),
+        tick_upper: z.number().int(),
+        liquidity: z.number().int(),
+        fee_growth_inside0_last_x128: z.number().int(),
+        fee_growth_inside1_last_x128: z.number().int(),
+        tokens_owed0: z.number().int(),
+        tokens_owed1: z.number().int(),
+        token_id: z.number().int(),
     })
     .passthrough();
-const UniswapBuyQuoteInfo = z
+const UniswapLPPositionsInfoResponse = z
     .object({
-        amount_in: z
-            .string()
-            .describe('The amount of token_in you would need to give to the pool.'),
-        price_after: z
-            .string()
-            .describe(
-                'The price of the pool after this trade would happen. (How much token0 you need to buy 1 token1.)'
-            ),
-    })
-    .passthrough();
-const UniswapGetSellQuote = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
-
-Uniswap supports 4 different fee levels.`),
-        amount_in: z
-            .union([z.number(), z.string()])
-            .describe('The amount of the token to swap from'),
-    })
-    .passthrough();
-const UniswapSellQuoteInfo = z
-    .object({
-        amount_out: z.string().describe('The amount of token_out you would receive from the pool.'),
-        price_after: z
-            .string()
-            .describe(
-                'The price of the pool after this trade would happen. (How much token0 you need to buy 1 token1.)'
-            ),
+        positions: z
+            .record(UniswapPosition)
+            .describe(`Liquidity provision positions belonging to a particular user. The key is a
+        tuple of the token0, token1, fee, tick_lower, and tick_upper of the position.`),
     })
     .passthrough();
 
@@ -1513,30 +1436,22 @@ export const schemas = {
     GetTokenPrice,
     PriceResponse,
     FeeEnum,
-    UniswapSellExactlyCallData,
-    BaseTransactionRequest_UniswapSellExactlyCallData_,
-    UniswapBuyExactlyCallData,
-    BaseTransactionRequest_UniswapBuyExactlyCallData_,
-    UniswapGetLiquidityProvisionPositions,
-    UniswapPosition,
-    UniswapLPPositionsInfo,
-    UniswapMintLiquidityProvisionCallData,
-    BaseTransactionRequest_UniswapMintLiquidityProvisionCallData_,
-    UniswapIncreaseLiquidityProvisionCallData,
-    BaseTransactionRequest_UniswapIncreaseLiquidityProvisionCallData_,
-    UniswapWithdrawLiquidityProvisionCallData,
-    BaseTransactionRequest_UniswapWithdrawLiquidityProvisionCallData_,
-    UniswapCheckInRangeCallData,
+    UniswapBuyExactlyRequest,
+    UniswapSellExactlyRequest,
+    UniswapIncreaseLiquidityProvision,
+    UniswapMintLiquidityProvision,
+    UniswapWithdrawLiquidityProvision,
+    UniswapGetBuyQuoteRequest,
+    UniswapBuyQuoteInfoResponse,
+    UniswapGetSellQuoteRequest,
+    UniswapSellQuoteInfoResponse,
+    UniswapGetPoolPriceRequest,
+    UniswapPoolPriceResponse,
+    UniswapCheckInRangeRequest,
     UniswapCheckInRangeResponse,
-    UniswapImpermanentLossCallData,
-    Token0Token1,
-    UniswapImpermanentLossResponse,
-    UniswapGetPoolPrice,
-    UniswapPoolPrice,
-    UniswapGetBuyQuote,
-    UniswapBuyQuoteInfo,
-    UniswapGetSellQuote,
-    UniswapSellQuoteInfo,
+    UniswapGetLiquidityProvisionPositionsRequest,
+    UniswapPosition,
+    UniswapLPPositionsInfoResponse,
 };
 
 const endpoints = makeApi([
@@ -2424,37 +2339,12 @@ flexibility.`,
     },
     {
         method: 'post',
-        path: '/v0/uniswap/liquidity_provision/impermanent_loss/get',
-        description: `This endpoint allows users to calculate the impermanent loss associated with
-        a specific Liquidity Provider (LP) position on the Uniswap platform. By providing
-        the token ID of the LP position and the transaction hash associated with the minting
-        transaction, users can determine the impermanent loss incurred due to changes in the
-        token prices and liquidity pool conditions.`,
-        requestFormat: 'json',
-        parameters: [
-            {
-                name: 'body',
-                type: 'Body',
-                schema: UniswapImpermanentLossCallData,
-            },
-        ],
-        response: UniswapImpermanentLossResponse,
-        errors: [
-            {
-                status: 422,
-                description: `Validation Error`,
-                schema: HTTPValidationError,
-            },
-        ],
-    },
-    {
-        method: 'post',
         path: '/v0/uniswap/liquidity_provision/in_range/get',
-        description: `This endpoint allows users to check whether a specific Liquidity Provider (LP)
-        position is within the active tick range on the Uniswap platform. By providing
-        the token ID associated with the position, users can verify if the position is
-        currently within the tick range where trading occurs. This information is essential
-        for users to monitor the status of their LP positions and ensure that they are
+        description: `this endpoint allows users to check whether a specific liquidity provider (lp)
+        position is within the active tick range on the uniswap platform. by providing
+        the token id associated with the position, users can verify if the position is
+        currently within the tick range where trading occurs. this information is essential
+        for users to monitor the status of their lp positions and ensure that they are
         actively participating in the trading activities within the liquidity pool and
         earning trading fees.`,
         requestFormat: 'json',
@@ -2462,7 +2352,7 @@ flexibility.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapCheckInRangeCallData,
+                schema: UniswapCheckInRangeRequest,
             },
         ],
         response: z
@@ -2485,19 +2375,18 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/uniswap/liquidity_provision/increase',
-        description: `This endpoint allows users to increase their existing Liquidity Provider (LP)
-        positions on the Uniswap platform. By providing the necessary parameters, users
-        can add more liquidity to their current positions, thereby increasing their stake
-        in the liquidity pool. This operation is beneficial for users who wish to enhance
-        their potential earnings from trading fees within the pool. The endpoint requires
-        details such as the token pair, additional amount to be added, and any other
-        parameters necessary for the liquidity increase process.`,
+        description: `This endpoint allows users to increase their existing Liquidity Provider (LP) positions on
+        the Uniswap platform. By providing the necessary parameters, users can add more liquidity to
+        their current positions, thereby increasing their stake in the liquidity pool. This
+        operation is beneficial for users who wish to enhance their potential earnings from trading
+        fees within the pool. The endpoint requires details such as the token pair, additional
+        amount to be added, and any other parameters necessary for the liquidity increase process.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_UniswapIncreaseLiquidityProvisionCallData_,
+                schema: UniswapIncreaseLiquidityProvision,
             },
         ],
         response: UnsignedTransaction,
@@ -2512,20 +2401,18 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/uniswap/liquidity_provision/mint',
-        description: `This endpoint allows users to open a new Liquidity Provider (LP) position
-        on the Uniswap platform. By providing the necessary parameters, users can
-        initiate a minting process to create a new LP token, which represents their
-        stake in a specific liquidity pool. This operation is essential for users
-        looking to participate in liquidity provision, enabling them to earn fees
-        from trades that occur within the pool. The endpoint requires details such
-        as the token pair, amount, and any additional parameters needed for the
-        minting process.`,
+        description: `This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap
+    platform. By providing the necessary parameters, users can initiate a minting process to create
+    a new LP token, which represents their stake in a specific liquidity pool. This operation is
+    essential for users looking to participate in liquidity provision, enabling them to earn fees
+    from trades that occur within the pool. The endpoint requires details such as the token pair,
+    amount, and any additional parameters needed for the minting process.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_UniswapMintLiquidityProvisionCallData_,
+                schema: UniswapMintLiquidityProvision,
             },
         ],
         response: UnsignedTransaction,
@@ -2551,10 +2438,10 @@ flexibility.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapGetLiquidityProvisionPositions,
+                schema: UniswapGetLiquidityProvisionPositionsRequest,
             },
         ],
-        response: UniswapLPPositionsInfo,
+        response: UniswapLPPositionsInfoResponse,
         errors: [
             {
                 status: 422,
@@ -2567,20 +2454,19 @@ flexibility.`,
         method: 'post',
         path: '/v0/uniswap/liquidity_provision/withdraw',
         description: `This endpoint allows users to withdraw their Liquidity Provider (LP) positions
-        from the Uniswap platform. By specifying the necessary parameters, users can
-        initiate the withdrawal process to remove their stake from a specific liquidity
-        pool. This operation is crucial for users who wish to reclaim their assets or
-        reallocate their liquidity to different pools or investments. The endpoint requires
-        details such as the token pair, the amount to be withdrawn, and any additional
-        parameters needed for the withdrawal process. Users should ensure they meet any
-        protocol requirements or conditions before initiating a withdrawal to avoid
-        potential issues or penalties.`,
+    from the Uniswap platform. By specifying the necessary parameters, users can initiate the
+    withdrawal process to remove their stake from a specific liquidity pool. This operation is
+    crucial for users who wish to reclaim their assets or reallocate their liquidity to different
+    pools or investments. The endpoint requires details such as the token pair, the amount to be
+    withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure
+    they meet any protocol requirements or conditions before initiating a withdrawal to avoid
+    potential issues or penalties.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_UniswapWithdrawLiquidityProvisionCallData_,
+                schema: UniswapWithdrawLiquidityProvision,
             },
         ],
         response: UnsignedTransaction,
@@ -2595,19 +2481,17 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/uniswap/pool_price/get',
-        description: `This endpoint retrieves the current price of a Uniswap pool, expressed as the amount of token0
-    you can buy for 1 token1. It provides the instantaneous price, which may change during any trade.
-    For a more realistic idea of the trade ratios, consider using the quote endpoint. The request
-    requires specifying the input and output tokens, as well as the fee tier of the pool.`,
+        description: `This endpoint calculates the price of a token in a Uniswap pool. The price is
+        calculated based on the current pool state and the specified fee tier.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapGetPoolPrice,
+                schema: UniswapGetPoolPriceRequest,
             },
         ],
-        response: UniswapPoolPrice,
+        response: UniswapPoolPriceResponse,
         errors: [
             {
                 status: 422,
@@ -2619,18 +2503,19 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/uniswap/quote/buy_exactly/get',
-        description: `This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens
-        from a Uniswap pool. It also provides the resulting price after the transaction. The calculation takes into
-        account the current pool state and the specified fee tier.`,
+        description: `This endpoint calculates the amount of input tokens required to purchase a specified amount
+        of output tokens from a Uniswap pool. It also provides the resulting price after the
+        transaction. The calculation takes into account the current pool state and the specified fee
+        tier.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapGetBuyQuote,
+                schema: UniswapGetBuyQuoteRequest,
             },
         ],
-        response: UniswapBuyQuoteInfo,
+        response: UniswapBuyQuoteInfoResponse,
         errors: [
             {
                 status: 422,
@@ -2642,18 +2527,18 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/uniswap/quote/sell_exactly/get',
-        description: `This endpoint calculates the amount of output tokens you would receive from a Uniswap pool when providing a
-        specified amount of input tokens. It also provides the resulting price after the transaction. The calculation
-        considers the current pool state and the specified fee tier.`,
+        description: `This endpoint calculates the amount of input tokens required to purchase a specified amount of
+    output tokens from a Uniswap pool. It also provides the resulting price after the transaction.
+    The calculation takes into account the current pool state and the specified fee tier.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapGetSellQuote,
+                schema: UniswapGetSellQuoteRequest,
             },
         ],
-        response: UniswapSellQuoteInfo,
+        response: UniswapSellQuoteInfoResponse,
         errors: [
             {
                 status: 422,
@@ -2677,7 +2562,7 @@ flexibility.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_UniswapBuyExactlyCallData_,
+                schema: UniswapBuyExactlyRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -2704,7 +2589,7 @@ flexibility.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_UniswapSellExactlyCallData_,
+                schema: UniswapSellExactlyRequest,
             },
         ],
         response: UnsignedTransaction,
