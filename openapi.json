@@ -1482,61 +1482,19 @@
         }
       }
     },
-    "/v0/uniswap/swap/sell_exactly": {
-      "post": {
-        "tags": [
-          "Uniswap V3"
-        ],
-        "summary": "Trade a specific amount of a token into another.",
-        "description": "This endpoint allows users to trade a specific amount of one token\n        into another token using the Uniswap protocol. The transaction is\n        executed on the specified blockchain network, and the user must\n        provide the necessary transaction details, including the token to\n        sell, the token to receive, and the amount to sell. If the token\n        being sold is WETH and needs to be wrapped, the appropriate amount\n        will be wrapped automatically.",
-        "operationId": "process_request_v0_uniswap_swap_sell_exactly_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_UniswapSellExactlyCallData_"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v0/uniswap/swap/buy_exactly": {
       "post": {
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Trade the amount of a token it takes to end up with a specified quantity of the other token",
+        "summary": "Buy exact amount",
         "description": "This endpoint allows users to trade a variable amount of one token\n        to receive an exact amount of another token using the Uniswap protocol.\n        The transaction is executed on the specified blockchain network, and\n        the user must provide the necessary transaction details, including the\n        token to buy, the token to pay with, and the exact amount to receive.\n        If the token being paid with is WETH and needs to be wrapped, the\n        appropriate amount will be wrapped automatically.",
-        "operationId": "process_request_v0_uniswap_swap_buy_exactly_post",
+        "operationId": "buy_exactly_v0_uniswap_swap_buy_exactly_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_UniswapBuyExactlyCallData_"
+                "$ref": "#/components/schemas/UniswapBuyExactlyRequest"
               }
             }
           },
@@ -1566,61 +1524,19 @@
         }
       }
     },
-    "/v0/uniswap/liquidity_provision/positions/get": {
+    "/v0/uniswap/swap/sell_exactly": {
       "post": {
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Retrieve LP positions for a sender",
-        "description": "This endpoint retrieves the number of Liquidity Provider (LP) positions\n        associated with a specific sender address on the Uniswap platform.\n        Users can query this endpoint to obtain detailed information about their\n        LP positions, including the total number of positions and relevant metadata.\n        This information is crucial for users to manage and analyze their liquidity\n        provision activities effectively.",
-        "operationId": "process_request_v0_uniswap_liquidity_provision_positions_get_post",
+        "summary": "Sell exact amount",
+        "description": "This endpoint allows users to trade a specific amount of one token\n        into another token using the Uniswap protocol. The transaction is\n        executed on the specified blockchain network, and the user must\n        provide the necessary transaction details, including the token to\n        sell, the token to receive, and the amount to sell. If the token\n        being sold is WETH and needs to be wrapped, the appropriate amount\n        will be wrapped automatically.",
+        "operationId": "sell_exactly_v0_uniswap_swap_sell_exactly_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UniswapGetLiquidityProvisionPositions"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UniswapLPPositionsInfo"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/uniswap/liquidity_provision/mint": {
-      "post": {
-        "tags": [
-          "Uniswap V3"
-        ],
-        "summary": "Open a new LP position",
-        "description": "This endpoint allows users to open a new Liquidity Provider (LP) position\n        on the Uniswap platform. By providing the necessary parameters, users can\n        initiate a minting process to create a new LP token, which represents their\n        stake in a specific liquidity pool. This operation is essential for users\n        looking to participate in liquidity provision, enabling them to earn fees\n        from trades that occur within the pool. The endpoint requires details such\n        as the token pair, amount, and any additional parameters needed for the\n        minting process.",
-        "operationId": "process_request_v0_uniswap_liquidity_provision_mint_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_UniswapMintLiquidityProvisionCallData_"
+                "$ref": "#/components/schemas/UniswapSellExactlyRequest"
               }
             }
           },
@@ -1656,13 +1572,55 @@
           "Uniswap V3"
         ],
         "summary": "Increase an LP position",
-        "description": "This endpoint allows users to increase their existing Liquidity Provider (LP)\n        positions on the Uniswap platform. By providing the necessary parameters, users\n        can add more liquidity to their current positions, thereby increasing their stake\n        in the liquidity pool. This operation is beneficial for users who wish to enhance\n        their potential earnings from trading fees within the pool. The endpoint requires\n        details such as the token pair, additional amount to be added, and any other\n        parameters necessary for the liquidity increase process.",
-        "operationId": "process_request_v0_uniswap_liquidity_provision_increase_post",
+        "description": "This endpoint allows users to increase their existing Liquidity Provider (LP) positions on\n        the Uniswap platform. By providing the necessary parameters, users can add more liquidity to\n        their current positions, thereby increasing their stake in the liquidity pool. This\n        operation is beneficial for users who wish to enhance their potential earnings from trading\n        fees within the pool. The endpoint requires details such as the token pair, additional\n        amount to be added, and any other parameters necessary for the liquidity increase process.",
+        "operationId": "increase_liquidity_v0_uniswap_liquidity_provision_increase_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_UniswapIncreaseLiquidityProvisionCallData_"
+                "$ref": "#/components/schemas/UniswapIncreaseLiquidityProvision"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/uniswap/liquidity_provision/mint": {
+      "post": {
+        "tags": [
+          "Uniswap V3"
+        ],
+        "summary": "Open a new LP position",
+        "description": "This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap\n    platform. By providing the necessary parameters, users can initiate a minting process to create\n    a new LP token, which represents their stake in a specific liquidity pool. This operation is\n    essential for users looking to participate in liquidity provision, enabling them to earn fees\n    from trades that occur within the pool. The endpoint requires details such as the token pair,\n    amount, and any additional parameters needed for the minting process.",
+        "operationId": "mint_v0_uniswap_liquidity_provision_mint_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UniswapMintLiquidityProvision"
               }
             }
           },
@@ -1698,13 +1656,13 @@
           "Uniswap V3"
         ],
         "summary": "Withdraw an LP position",
-        "description": "This endpoint allows users to withdraw their Liquidity Provider (LP) positions\n        from the Uniswap platform. By specifying the necessary parameters, users can\n        initiate the withdrawal process to remove their stake from a specific liquidity\n        pool. This operation is crucial for users who wish to reclaim their assets or\n        reallocate their liquidity to different pools or investments. The endpoint requires\n        details such as the token pair, the amount to be withdrawn, and any additional\n        parameters needed for the withdrawal process. Users should ensure they meet any\n        protocol requirements or conditions before initiating a withdrawal to avoid\n        potential issues or penalties.",
-        "operationId": "process_request_v0_uniswap_liquidity_provision_withdraw_post",
+        "description": "This endpoint allows users to withdraw their Liquidity Provider (LP) positions\n    from the Uniswap platform. By specifying the necessary parameters, users can initiate the\n    withdrawal process to remove their stake from a specific liquidity pool. This operation is\n    crucial for users who wish to reclaim their assets or reallocate their liquidity to different\n    pools or investments. The endpoint requires details such as the token pair, the amount to be\n    withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure\n    they meet any protocol requirements or conditions before initiating a withdrawal to avoid\n    potential issues or penalties.",
+        "operationId": "withdraw_v0_uniswap_liquidity_provision_withdraw_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_UniswapWithdrawLiquidityProvisionCallData_"
+                "$ref": "#/components/schemas/UniswapWithdrawLiquidityProvision"
               }
             }
           },
@@ -1734,19 +1692,145 @@
         }
       }
     },
+    "/v0/uniswap/quote/buy_exactly/get": {
+      "post": {
+        "tags": [
+          "Uniswap V3"
+        ],
+        "summary": "Get quote for buying tokens",
+        "description": "This endpoint calculates the amount of input tokens required to purchase a specified amount\n        of output tokens from a Uniswap pool. It also provides the resulting price after the\n        transaction. The calculation takes into account the current pool state and the specified fee\n        tier.",
+        "operationId": "get_buy_quote_v0_uniswap_quote_buy_exactly_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UniswapGetBuyQuoteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniswapBuyQuoteInfoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/uniswap/quote/sell_exactly/get": {
+      "post": {
+        "tags": [
+          "Uniswap V3"
+        ],
+        "summary": "Get quote for selling tokens",
+        "description": "This endpoint calculates the amount of input tokens required to purchase a specified amount of\n    output tokens from a Uniswap pool. It also provides the resulting price after the transaction.\n    The calculation takes into account the current pool state and the specified fee tier.",
+        "operationId": "get_sell_quote_v0_uniswap_quote_sell_exactly_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UniswapGetSellQuoteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniswapSellQuoteInfoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/uniswap/pool_price/get": {
+      "post": {
+        "tags": [
+          "Uniswap V3"
+        ],
+        "summary": "Get the price of a token in a Uniswap pool",
+        "description": "This endpoint calculates the price of a token in a Uniswap pool. The price is\n        calculated based on the current pool state and the specified fee tier.",
+        "operationId": "get_pool_price_v0_uniswap_pool_price_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UniswapGetPoolPriceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniswapPoolPriceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v0/uniswap/liquidity_provision/in_range/get": {
       "post": {
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Check if a position is in active tick range",
-        "description": "This endpoint allows users to check whether a specific Liquidity Provider (LP)\n        position is within the active tick range on the Uniswap platform. By providing\n        the token ID associated with the position, users can verify if the position is\n        currently within the tick range where trading occurs. This information is essential\n        for users to monitor the status of their LP positions and ensure that they are\n        actively participating in the trading activities within the liquidity pool and\n        earning trading fees.",
-        "operationId": "process_request_v0_uniswap_liquidity_provision_in_range_get_post",
+        "summary": "check if a position is in active tick range",
+        "description": "this endpoint allows users to check whether a specific liquidity provider (lp)\n        position is within the active tick range on the uniswap platform. by providing\n        the token id associated with the position, users can verify if the position is\n        currently within the tick range where trading occurs. this information is essential\n        for users to monitor the status of their lp positions and ensure that they are\n        actively participating in the trading activities within the liquidity pool and\n        earning trading fees.",
+        "operationId": "in_range_v0_uniswap_liquidity_provision_in_range_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UniswapCheckInRangeCallData"
+                "$ref": "#/components/schemas/UniswapCheckInRangeRequest"
               }
             }
           },
@@ -1776,19 +1860,19 @@
         }
       }
     },
-    "/v0/uniswap/liquidity_provision/impermanent_loss/get": {
+    "/v0/uniswap/liquidity_provision/positions/get": {
       "post": {
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Calculate the impermanent loss of a liquidity position on Uniswap.",
-        "description": "This endpoint allows users to calculate the impermanent loss associated with\n        a specific Liquidity Provider (LP) position on the Uniswap platform. By providing\n        the token ID of the LP position and the transaction hash associated with the minting\n        transaction, users can determine the impermanent loss incurred due to changes in the\n        token prices and liquidity pool conditions.",
-        "operationId": "process_request_v0_uniswap_liquidity_provision_impermanent_loss_get_post",
+        "summary": "Retrieve LP positions for a sender",
+        "description": "This endpoint retrieves the number of Liquidity Provider (LP) positions\n        associated with a specific sender address on the Uniswap platform.\n        Users can query this endpoint to obtain detailed information about their\n        LP positions, including the total number of positions and relevant metadata.\n        This information is crucial for users to manage and analyze their liquidity\n        provision activities effectively.",
+        "operationId": "get_positions_v0_uniswap_liquidity_provision_positions_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UniswapImpermanentLossCallData"
+                "$ref": "#/components/schemas/UniswapGetLiquidityProvisionPositionsRequest"
               }
             }
           },
@@ -1800,133 +1884,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UniswapImpermanentLossResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/uniswap/pool_price/get": {
-      "post": {
-        "tags": [
-          "Uniswap V3"
-        ],
-        "summary": "Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.",
-        "description": "This endpoint retrieves the current price of a Uniswap pool, expressed as the amount of token0\n    you can buy for 1 token1. It provides the instantaneous price, which may change during any trade.\n    For a more realistic idea of the trade ratios, consider using the quote endpoint. The request\n    requires specifying the input and output tokens, as well as the fee tier of the pool.",
-        "operationId": "process_request_v0_uniswap_pool_price_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UniswapGetPoolPrice"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UniswapPoolPrice"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/uniswap/quote/buy_exactly/get": {
-      "post": {
-        "tags": [
-          "Uniswap V3"
-        ],
-        "summary": "Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterward.",
-        "description": "This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens\n        from a Uniswap pool. It also provides the resulting price after the transaction. The calculation takes into\n        account the current pool state and the specified fee tier.",
-        "operationId": "process_request_v0_uniswap_quote_buy_exactly_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UniswapGetBuyQuote"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UniswapBuyQuoteInfo"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/uniswap/quote/sell_exactly/get": {
-      "post": {
-        "tags": [
-          "Uniswap V3"
-        ],
-        "summary": "Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterward.",
-        "description": "This endpoint calculates the amount of output tokens you would receive from a Uniswap pool when providing a\n        specified amount of input tokens. It also provides the resulting price after the transaction. The calculation\n        considers the current pool state and the specified fee tier.",
-        "operationId": "process_request_v0_uniswap_quote_sell_exactly_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UniswapGetSellQuote"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UniswapSellQuoteInfo"
+                  "$ref": "#/components/schemas/UniswapLPPositionsInfoResponse"
                 }
               }
             }
@@ -4240,121 +4198,6 @@
         ],
         "title": "BaseTransactionRequest[TransferERC20TokenCallData]"
       },
-      "BaseTransactionRequest_UniswapBuyExactlyCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/UniswapBuyExactlyCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[UniswapBuyExactlyCallData]"
-      },
-      "BaseTransactionRequest_UniswapIncreaseLiquidityProvisionCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/UniswapIncreaseLiquidityProvisionCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[UniswapIncreaseLiquidityProvisionCallData]"
-      },
-      "BaseTransactionRequest_UniswapMintLiquidityProvisionCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/UniswapMintLiquidityProvisionCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[UniswapMintLiquidityProvisionCallData]"
-      },
-      "BaseTransactionRequest_UniswapSellExactlyCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/UniswapSellExactlyCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[UniswapSellExactlyCallData]"
-      },
-      "BaseTransactionRequest_UniswapWithdrawLiquidityProvisionCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/UniswapWithdrawLiquidityProvisionCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[UniswapWithdrawLiquidityProvisionCallData]"
-      },
       "BaseTransactionRequest_UnwrapWethRequestCallData_": {
         "properties": {
           "chain": {
@@ -4829,26 +4672,6 @@
         "title": "Token",
         "description": "A class representing the token.\n\nThis class is used to represent the token in the system. Notice individual\nendpoints' documentation where per chain tokens are presented."
       },
-      "Token0Token1": {
-        "properties": {
-          "token0": {
-            "type": "string",
-            "title": "Token0",
-            "description": "The value in units of token0."
-          },
-          "token1": {
-            "type": "string",
-            "title": "Token1",
-            "description": "The value in units of token1."
-          }
-        },
-        "type": "object",
-        "required": [
-          "token0",
-          "token1"
-        ],
-        "title": "Token0Token1"
-      },
       "TokenBalance": {
         "properties": {
           "amount": {
@@ -5024,8 +4847,17 @@
         ],
         "title": "TransferEthCallData"
       },
-      "UniswapBuyExactlyCallData": {
+      "UniswapBuyExactlyRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
@@ -5091,15 +4923,17 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_in",
           "token_out",
           "fee",
           "amount_out",
           "amount_in_maximum"
         ],
-        "title": "UniswapBuyExactlyCallData"
+        "title": "UniswapBuyExactlyRequest"
       },
-      "UniswapBuyQuoteInfo": {
+      "UniswapBuyQuoteInfoResponse": {
         "properties": {
           "amount_in": {
             "type": "string",
@@ -5117,9 +4951,9 @@
           "amount_in",
           "price_after"
         ],
-        "title": "UniswapBuyQuoteInfo"
+        "title": "UniswapBuyQuoteInfoResponse"
       },
-      "UniswapCheckInRangeCallData": {
+      "UniswapCheckInRangeRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -5136,7 +4970,7 @@
           "chain",
           "token_id"
         ],
-        "title": "UniswapCheckInRangeCallData",
+        "title": "UniswapCheckInRangeRequest",
         "description": "Endpoint parameters for checking if liquidity position is in active tick range on\nuniswap v3."
       },
       "UniswapCheckInRangeResponse": {
@@ -5153,7 +4987,7 @@
         ],
         "title": "UniswapCheckInRangeResponse"
       },
-      "UniswapGetBuyQuote": {
+      "UniswapGetBuyQuoteRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -5204,9 +5038,9 @@
           "fee",
           "amount_out"
         ],
-        "title": "UniswapGetBuyQuote"
+        "title": "UniswapGetBuyQuoteRequest"
       },
-      "UniswapGetLiquidityProvisionPositions": {
+      "UniswapGetLiquidityProvisionPositionsRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -5223,9 +5057,9 @@
           "chain",
           "user"
         ],
-        "title": "UniswapGetLiquidityProvisionPositions"
+        "title": "UniswapGetLiquidityProvisionPositionsRequest"
       },
-      "UniswapGetPoolPrice": {
+      "UniswapGetPoolPriceRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -5259,9 +5093,9 @@
           "token_out",
           "fee"
         ],
-        "title": "UniswapGetPoolPrice"
+        "title": "UniswapGetPoolPriceRequest"
       },
-      "UniswapGetSellQuote": {
+      "UniswapGetSellQuoteRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -5312,94 +5146,28 @@
           "fee",
           "amount_in"
         ],
-        "title": "UniswapGetSellQuote"
+        "title": "UniswapGetSellQuoteRequest"
       },
-      "UniswapImpermanentLossCallData": {
+      "UniswapIncreaseLiquidityProvision": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
           },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_id": {
             "type": "integer",
-            "minimum": 0.0,
-            "title": "Token Id",
-            "description": "Token ID of the NFT representing the liquidity provisioned position."
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "token_id"
-        ],
-        "title": "UniswapImpermanentLossCallData",
-        "description": "Endpoint parameters for checking impermanent loss of a liquidity position on\nuniswap v3."
-      },
-      "UniswapImpermanentLossResponse": {
-        "properties": {
-          "impermanent_loss": {
-            "type": "number",
-            "title": "Impermanent Loss",
-            "description": "The impermanent loss of the position. This is the difference between the value of tokens if you had just held them and the value of the tokens currently in the LP position."
-          },
-          "total_fees_earned_in_usd": {
-            "type": "number",
-            "title": "Total Fees Earned In Usd",
-            "description": "The total fees earned in the liquidity position in USD."
-          },
-          "fees_earned": {
-            "$ref": "#/components/schemas/Token0Token1",
-            "description": "The fees earned in the portions of token0 and token1 separately, in units of token0 and token1."
-          },
-          "current_lp": {
-            "$ref": "#/components/schemas/Token0Token1",
-            "description": "The current amount of token0 and token1 in the liquidity position in the units of token0 and token1."
-          },
-          "initial_lp": {
-            "$ref": "#/components/schemas/Token0Token1",
-            "description": "The initial amount of token0 and token1 supplied to the liquidity position in the units of token0 and token1."
-          },
-          "initial_value_in_usd": {
-            "type": "number",
-            "title": "Initial Value In Usd",
-            "description": "The initial value in USD of the liquidity position calculated using the historical price at the time of supplying."
-          },
-          "current_value_in_usd": {
-            "type": "number",
-            "title": "Current Value In Usd",
-            "description": "The current value of the liquidity position in USD calculated using the current price."
-          },
-          "hold_value_in_usd": {
-            "type": "number",
-            "title": "Hold Value In Usd",
-            "description": "The value of the tokens in USD if you had just held them."
-          }
-        },
-        "type": "object",
-        "required": [
-          "impermanent_loss",
-          "total_fees_earned_in_usd",
-          "fees_earned",
-          "current_lp",
-          "initial_lp",
-          "initial_value_in_usd",
-          "current_value_in_usd",
-          "hold_value_in_usd"
-        ],
-        "title": "UniswapImpermanentLossResponse"
-      },
-      "UniswapIncreaseLiquidityProvisionCallData": {
-        "properties": {
-          "token_id": {
-            "type": "integer",
-            "minimum": 0.0,
             "title": "Token Id",
             "description": "Token ID of the NFT representing the liquidity provisioned position."
           },
           "amount0_desired": {
             "anyOf": [
               {
-                "type": "number",
-                "minimum": 0.0
+                "type": "number"
               },
               {
                 "type": "string"
@@ -5414,8 +5182,7 @@
           "amount1_desired": {
             "anyOf": [
               {
-                "type": "number",
-                "minimum": 0.0
+                "type": "number"
               },
               {
                 "type": "string"
@@ -5430,8 +5197,7 @@
           "amount0_min": {
             "anyOf": [
               {
-                "type": "number",
-                "minimum": 0.0
+                "type": "number"
               },
               {
                 "type": "string"
@@ -5446,8 +5212,7 @@
           "amount1_min": {
             "anyOf": [
               {
-                "type": "number",
-                "minimum": 0.0
+                "type": "number"
               },
               {
                 "type": "string"
@@ -5462,15 +5227,17 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_id",
           "amount0_desired",
           "amount1_desired",
           "amount0_min",
           "amount1_min"
         ],
-        "title": "UniswapIncreaseLiquidityProvisionCallData"
+        "title": "UniswapIncreaseLiquidityProvision"
       },
-      "UniswapLPPositionsInfo": {
+      "UniswapLPPositionsInfoResponse": {
         "properties": {
           "positions": {
             "additionalProperties": {
@@ -5478,17 +5245,26 @@
             },
             "type": "object",
             "title": "Positions",
-            "description": "Liquidity provision positions belonging to a particular user. The key is a tuple of the token0, token1, fee, tick_lower, and tick_upper of the position."
+            "description": "Liquidity provision positions belonging to a particular user. The key is a\n        tuple of the token0, token1, fee, tick_lower, and tick_upper of the position."
           }
         },
         "type": "object",
         "required": [
           "positions"
         ],
-        "title": "UniswapLPPositionsInfo"
+        "title": "UniswapLPPositionsInfoResponse"
       },
-      "UniswapMintLiquidityProvisionCallData": {
+      "UniswapMintLiquidityProvision": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token0": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the first token in the pair<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
@@ -5612,6 +5388,8 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token0",
           "token1",
           "fee",
@@ -5622,9 +5400,9 @@
           "amount0_min",
           "amount1_min"
         ],
-        "title": "UniswapMintLiquidityProvisionCallData"
+        "title": "UniswapMintLiquidityProvision"
       },
-      "UniswapPoolPrice": {
+      "UniswapPoolPriceResponse": {
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
@@ -5652,7 +5430,7 @@
           "price",
           "tick"
         ],
-        "title": "UniswapPoolPrice"
+        "title": "UniswapPoolPriceResponse"
       },
       "UniswapPosition": {
         "properties": {
@@ -5724,8 +5502,17 @@
         ],
         "title": "UniswapPosition"
       },
-      "UniswapSellExactlyCallData": {
+      "UniswapSellExactlyRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
@@ -5792,14 +5579,16 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_in",
           "token_out",
           "fee",
           "amount_in"
         ],
-        "title": "UniswapSellExactlyCallData"
+        "title": "UniswapSellExactlyRequest"
       },
-      "UniswapSellQuoteInfo": {
+      "UniswapSellQuoteInfoResponse": {
         "properties": {
           "amount_out": {
             "type": "string",
@@ -5817,10 +5606,19 @@
           "amount_out",
           "price_after"
         ],
-        "title": "UniswapSellQuoteInfo"
+        "title": "UniswapSellQuoteInfoResponse"
       },
-      "UniswapWithdrawLiquidityProvisionCallData": {
+      "UniswapWithdrawLiquidityProvision": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_id": {
             "type": "integer",
             "title": "Token Id",
@@ -5849,10 +5647,12 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_id",
           "percentage_for_withdrawal"
         ],
-        "title": "UniswapWithdrawLiquidityProvisionCallData",
+        "title": "UniswapWithdrawLiquidityProvision",
         "description": "Endpoint parameters for liquidity provision withdrawal on uniswap v3.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user."
       },
       "UnsignedTransaction": {

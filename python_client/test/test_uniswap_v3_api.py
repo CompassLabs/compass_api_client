@@ -26,80 +26,73 @@ class TestUniswapV3Api(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_process_request_v0_uniswap_liquidity_provision_impermanent_loss_get_post(self) -> None:
-        """Test case for process_request_v0_uniswap_liquidity_provision_impermanent_loss_get_post
+    def test_buy_exactly_v0_uniswap_swap_buy_exactly_post(self) -> None:
+        """Test case for buy_exactly_v0_uniswap_swap_buy_exactly_post
 
-        Calculate the impermanent loss of a liquidity position on Uniswap.
+        Buy exact amount
         """
         pass
 
-    def test_process_request_v0_uniswap_liquidity_provision_in_range_get_post(self) -> None:
-        """Test case for process_request_v0_uniswap_liquidity_provision_in_range_get_post
+    def test_get_buy_quote_v0_uniswap_quote_buy_exactly_get_post(self) -> None:
+        """Test case for get_buy_quote_v0_uniswap_quote_buy_exactly_get_post
 
-        Check if a position is in active tick range
+        Get quote for buying tokens
         """
         pass
 
-    def test_process_request_v0_uniswap_liquidity_provision_increase_post(self) -> None:
-        """Test case for process_request_v0_uniswap_liquidity_provision_increase_post
+    def test_get_pool_price_v0_uniswap_pool_price_get_post(self) -> None:
+        """Test case for get_pool_price_v0_uniswap_pool_price_get_post
 
-        Increase an LP position
+        Get the price of a token in a Uniswap pool
         """
         pass
 
-    def test_process_request_v0_uniswap_liquidity_provision_mint_post(self) -> None:
-        """Test case for process_request_v0_uniswap_liquidity_provision_mint_post
-
-        Open a new LP position
-        """
-        pass
-
-    def test_process_request_v0_uniswap_liquidity_provision_positions_get_post(self) -> None:
-        """Test case for process_request_v0_uniswap_liquidity_provision_positions_get_post
+    def test_get_positions_v0_uniswap_liquidity_provision_positions_get_post(self) -> None:
+        """Test case for get_positions_v0_uniswap_liquidity_provision_positions_get_post
 
         Retrieve LP positions for a sender
         """
         pass
 
-    def test_process_request_v0_uniswap_liquidity_provision_withdraw_post(self) -> None:
-        """Test case for process_request_v0_uniswap_liquidity_provision_withdraw_post
+    def test_get_sell_quote_v0_uniswap_quote_sell_exactly_get_post(self) -> None:
+        """Test case for get_sell_quote_v0_uniswap_quote_sell_exactly_get_post
+
+        Get quote for selling tokens
+        """
+        pass
+
+    def test_in_range_v0_uniswap_liquidity_provision_in_range_get_post(self) -> None:
+        """Test case for in_range_v0_uniswap_liquidity_provision_in_range_get_post
+
+        check if a position is in active tick range
+        """
+        pass
+
+    def test_increase_liquidity_v0_uniswap_liquidity_provision_increase_post(self) -> None:
+        """Test case for increase_liquidity_v0_uniswap_liquidity_provision_increase_post
+
+        Increase an LP position
+        """
+        pass
+
+    def test_mint_v0_uniswap_liquidity_provision_mint_post(self) -> None:
+        """Test case for mint_v0_uniswap_liquidity_provision_mint_post
+
+        Open a new LP position
+        """
+        pass
+
+    def test_sell_exactly_v0_uniswap_swap_sell_exactly_post(self) -> None:
+        """Test case for sell_exactly_v0_uniswap_swap_sell_exactly_post
+
+        Sell exact amount
+        """
+        pass
+
+    def test_withdraw_v0_uniswap_liquidity_provision_withdraw_post(self) -> None:
+        """Test case for withdraw_v0_uniswap_liquidity_provision_withdraw_post
 
         Withdraw an LP position
-        """
-        pass
-
-    def test_process_request_v0_uniswap_pool_price_get_post(self) -> None:
-        """Test case for process_request_v0_uniswap_pool_price_get_post
-
-        Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
-        """
-        pass
-
-    def test_process_request_v0_uniswap_quote_buy_exactly_get_post(self) -> None:
-        """Test case for process_request_v0_uniswap_quote_buy_exactly_get_post
-
-        Get the amount of tokens you would need to provide to the pool in order to purchase a fixed quantity of tokens. Also returns what the price would be afterward.
-        """
-        pass
-
-    def test_process_request_v0_uniswap_quote_sell_exactly_get_post(self) -> None:
-        """Test case for process_request_v0_uniswap_quote_sell_exactly_get_post
-
-        Get the amount of tokens you would get from the pool if you provided a fixed quantity of tokens. Also returns what the price would be afterward.
-        """
-        pass
-
-    def test_process_request_v0_uniswap_swap_buy_exactly_post(self) -> None:
-        """Test case for process_request_v0_uniswap_swap_buy_exactly_post
-
-        Trade the amount of a token it takes to end up with a specified quantity of the other token
-        """
-        pass
-
-    def test_process_request_v0_uniswap_swap_sell_exactly_post(self) -> None:
-        """Test case for process_request_v0_uniswap_swap_sell_exactly_post
-
-        Trade a specific amount of a token into another.
         """
         pass
 

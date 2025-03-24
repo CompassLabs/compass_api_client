@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "compass.api_client"
 packages = [ { include = "compass"} ]
-version = "1.0.96"
+version = "1.0.97"
 description = "Compass API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
