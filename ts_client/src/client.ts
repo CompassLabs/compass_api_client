@@ -48,28 +48,25 @@ const Token = z.enum([
     'EUR',
     'VIRTUAL',
 ]);
-const AaveSupplyCallData = z
-    .object({
-        asset: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to supply'),
-        on_behalf_of: z
-            .union([z.string(), z.null()])
-            .describe(
-                'The address on behalf of whom the supply is made. Defaults to the transaction sender.'
-            )
-            .optional(),
-    })
-    .passthrough();
-const BaseTransactionRequest_AaveSupplyCallData_ = z
+const InterestRateMode = z.union([z.literal(1), z.literal(2)]);
+const AaveBorrowRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AaveSupplyCallData,
+        asset: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to borrow'),
+        interest_rate_mode: InterestRateMode.describe(`On AAVE there are 2 different interest modes.
+
+A stable (but typically higher rate), or a variable rate.`),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe('The address on behalf of whom the supply is made')
+            .optional(),
     })
     .passthrough();
 const UnsignedTransaction = z
@@ -99,34 +96,12 @@ const HTTPValidationError = z
     .object({ detail: z.array(ValidationError) })
     .partial()
     .passthrough();
-const InterestRateMode = z.union([z.literal(1), z.literal(2)]);
-const AaveBorrowCallData = z
-    .object({
-        asset: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to borrow'),
-        interest_rate_mode: InterestRateMode.describe(`On AAVE there are 2 different interest modes.
-
-A stable (but typically higher rate), or a variable rate.`),
-        on_behalf_of: z
-            .union([z.string(), z.null()])
-            .describe('The address on behalf of whom the supply is made')
-            .optional(),
-    })
-    .passthrough();
-const BaseTransactionRequest_AaveBorrowCallData_ = z
+const AaveRepayRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AaveBorrowCallData,
-    })
-    .passthrough();
-const AaveRepayCallData = z
-    .object({
         asset: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -141,17 +116,31 @@ A stable (but typically higher rate), or a variable rate.`),
             .optional(),
     })
     .passthrough();
-const BaseTransactionRequest_AaveRepayCallData_ = z
+const AaveSupplyRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AaveRepayCallData,
+        asset: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to supply'),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe(
+                'The address on behalf of whom the supply is made. Defaults to the transaction sender.'
+            )
+            .optional(),
     })
     .passthrough();
-const AaveWithdrawCallData = z
+const AaveWithdrawRequest = z
     .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -160,16 +149,7 @@ endpoints' documentation where per chain tokens are presented.`),
         recipient: z.string().describe('The address of the recipient of the withdrawn funds.'),
     })
     .passthrough();
-const BaseTransactionRequest_AaveWithdrawCallData_ = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data: AaveWithdrawCallData,
-    })
-    .passthrough();
-const AaveGetAssetPrice = z
+const AaveGetAssetPriceRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
@@ -180,87 +160,10 @@ This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
     })
     .passthrough();
-const AaveAssetPriceInfo = z
+const AaveAssetPriceResponse = z
     .object({ price: z.string().describe('The price of the asset in USD.') })
     .passthrough();
-const AaveGetUserPositionSummary = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        user: z.string().describe('The user to get the position summary of. Values are in USD.'),
-    })
-    .passthrough();
-const AaveUserPositionSummaryInfo = z
-    .object({
-        maximum_loan_to_value_ratio: z.string().describe('The loan to value ratio of a user.'),
-        health_factor: z
-            .string()
-            .describe(
-                'The health factor of a user. If this is above 1 it is safe; below 1 and the user is in risk of liquidation. This number might be very high (which would mean the user is safe!)'
-            ),
-        total_collateral: z.string().describe('The total collateral (in USD) of a user.'),
-        total_debt: z.string().describe('The total debt (in USD) of a user.'),
-        available_borrows: z.string().describe('The available borrows (in USD) of a user.'),
-        liquidation_threshold: z
-            .string()
-            .describe(
-                'The liquidation threshold of a user. A user might exceed this due to changing asset values.'
-            ),
-    })
-    .passthrough();
-const AaveGetUserPositionPerToken = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        user: z.string().describe('The user to fetch the token-specific position of.'),
-        asset: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-    })
-    .passthrough();
-const AaveUserPositionPerTokenInfo = z
-    .object({
-        atoken_balance: z
-            .string()
-            .describe(
-                'The balance of AAVE aTokens (interest-bearing representations of your deposits).'
-            ),
-        stable_debt: z
-            .string()
-            .describe("The amount of the user's debt with a fixed interest rate."),
-        variable_debt: z
-            .string()
-            .describe("The amount of the user's debt with a variable interest rate."),
-        principal_stable_debt: z
-            .string()
-            .describe(
-                "The amount of the user's debt that was part of the initial principal of all loans with a stable interest rate."
-            ),
-        principal_variable_debt: z
-            .string()
-            .describe(
-                "The amount of the user's debt that was part of the initial principal of all loans with a variable interest rate. This is the value stored by AAVE, which may be slightly inaccurate, but reflects what AAVE believes you initially paid."
-            ),
-        stable_borrow_rate: z
-            .string()
-            .describe(
-                'The current average annualised interest rate for all your stable loans in this pool.'
-            ),
-        stable_borrow_rate_for_new_loans: z
-            .string()
-            .describe('The annualised interest rate you would pay on a new stable loan.'),
-        variable_borrow_rate: z
-            .string()
-            .describe(
-                'The current annualised interest rate for variable rate loans in this pool. (This applies to both current and new loans.)'
-            ),
-        liquidity_rate: z.string().describe('The annualised interest rate for deposited supplies.'),
-    })
-    .passthrough();
-const AaveGetLiquidityChange = z
+const AaveGetLiquidityChangeRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
@@ -276,7 +179,7 @@ This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
     })
     .passthrough();
-const AaveLiquidityChange = z
+const AaveLiquidityChangeResponse = z
     .object({
         liquidity_change: z
             .string()
@@ -285,6 +188,79 @@ const AaveLiquidityChange = z
             ),
         start_time: z.string().datetime({ offset: true }).describe('Dateime of starting block'),
         end_time: z.string().datetime({ offset: true }).describe('Dateime of ending block'),
+    })
+    .passthrough();
+const AaveGetUserPositionSummaryRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        user: z.string().describe('The user to get the position summary of. Values are in USD.'),
+    })
+    .passthrough();
+const AaveUserPositionSummaryResponse = z
+    .object({
+        maximum_loan_to_value_ratio: z.string().describe('The loan to value ratio of a user.'),
+        health_factor: z
+            .string()
+            .describe(`The health factor of a user. If this is above 1 it is safe; below 1 and the
+        user is in risk of liquidation. This number might be very high (which would mean the user is
+        safe!)`),
+        total_collateral: z.string().describe('The total collateral (in USD) of a user.'),
+        total_debt: z.string().describe('The total debt (in USD) of a user.'),
+        available_borrows: z.string().describe('The available borrows (in USD) of a user.'),
+        liquidation_threshold: z
+            .string()
+            .describe(`The liquidation threshold of a user. A user might exceed this due to changing
+        asset values.`),
+    })
+    .passthrough();
+const AaveGetUserPositionPerTokenRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        user: z.string().describe('The user to fetch the token-specific position of.'),
+        asset: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+    })
+    .passthrough();
+const AaveUserPositionPerTokenResponse = z
+    .object({
+        token_balance: z
+            .string()
+            .describe(
+                'The balance of AAVE aTokens (interest-bearing representations of your deposits).'
+            ),
+        stable_debt: z
+            .string()
+            .describe("The amount of the user's debt with a fixed interest rate."),
+        variable_debt: z
+            .string()
+            .describe("The amount of the user's debt with a variable interest rate."),
+        principal_stable_debt: z
+            .string()
+            .describe(`The amount of the user's debt that was part of the initial principal of all
+        loans with a stable interest rate.`),
+        principal_variable_debt: z
+            .string()
+            .describe(`The amount of the user's debt that was part of the initial principal of all
+        loans with a variable interest rate. This is the value stored by AAVE, which may be slightly
+        inaccurate, but reflects what AAVE believes you initially paid.`),
+        stable_borrow_rate: z
+            .string()
+            .describe(`The current average annualised interest rate for all your stable loans in
+        this pool.`),
+        stable_borrow_rate_for_new_loans: z
+            .string()
+            .describe('The annualised interest rate you would pay on a new stable loan.'),
+        variable_borrow_rate: z
+            .string()
+            .describe(`The current annualised interest rate for variable rate loans in this pool.
+        (This applies to both current and new loans.)`),
+        liquidity_rate: z.string().describe('The annualised interest rate for deposited supplies.'),
     })
     .passthrough();
 const AerodromeSwapTokensCallData = z
@@ -1359,26 +1335,22 @@ const UniswapLPPositionsInfoResponse = z
 export const schemas = {
     Chain,
     Token,
-    AaveSupplyCallData,
-    BaseTransactionRequest_AaveSupplyCallData_,
+    InterestRateMode,
+    AaveBorrowRequest,
     UnsignedTransaction,
     ValidationError,
     HTTPValidationError,
-    InterestRateMode,
-    AaveBorrowCallData,
-    BaseTransactionRequest_AaveBorrowCallData_,
-    AaveRepayCallData,
-    BaseTransactionRequest_AaveRepayCallData_,
-    AaveWithdrawCallData,
-    BaseTransactionRequest_AaveWithdrawCallData_,
-    AaveGetAssetPrice,
-    AaveAssetPriceInfo,
-    AaveGetUserPositionSummary,
-    AaveUserPositionSummaryInfo,
-    AaveGetUserPositionPerToken,
-    AaveUserPositionPerTokenInfo,
-    AaveGetLiquidityChange,
-    AaveLiquidityChange,
+    AaveRepayRequest,
+    AaveSupplyRequest,
+    AaveWithdrawRequest,
+    AaveGetAssetPriceRequest,
+    AaveAssetPriceResponse,
+    AaveGetLiquidityChangeRequest,
+    AaveLiquidityChangeResponse,
+    AaveGetUserPositionSummaryRequest,
+    AaveUserPositionSummaryResponse,
+    AaveGetUserPositionPerTokenRequest,
+    AaveUserPositionPerTokenResponse,
     AerodromeSwapTokensCallData,
     BaseTransactionRequest_AerodromeSwapTokensCallData_,
     AerodromeSwapEthForTokenCallData,
@@ -1459,17 +1431,17 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aave/asset_price/get',
         description: `This endpoint retrieves the current price of a specified asset in USD as
-determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
-asset price, ensuring accurate and up-to-date information. The request
-requires the asset identifier and the blockchain network (chain) on which the
-asset resides. The response provides the asset price in a standardized format,
-converted from Wei to the base currency decimals defined by Aave.`,
+        determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
+        asset price, ensuring accurate and up-to-date information. The request
+        requires the asset identifier and the blockchain network (chain) on which the
+        asset resides. The response provides the asset price in a standardized format,
+        converted from Wei to the base currency decimals defined by Aave.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveGetAssetPrice,
+                schema: AaveGetAssetPriceRequest,
             },
         ],
         response: z
@@ -1486,13 +1458,14 @@ converted from Wei to the base currency decimals defined by Aave.`,
     {
         method: 'post',
         path: '/v0/aave/borrow',
-        description: `You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.`,
+        description: `You will pay interest for your borrows. Price changes in the assets may lead to
+    some or all of your collateral being liquidated, if the borrow position becomes unhealthy.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AaveBorrowCallData_,
+                schema: AaveBorrowRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1507,26 +1480,23 @@ converted from Wei to the base currency decimals defined by Aave.`,
     {
         method: 'post',
         path: '/v0/aave/liquidity/change/get',
-        description: `This endpoint retrieves the change in the reserve liquidity index between
-        two provided blocks. This is then converted to a percentage change.
-        The liquidity index represents the change in debt and interest accrual over each block.
-        Aave does not store individual user balances directly.
-        Instead, it keeps a scaled balance and uses the liquidity index
-        to compute real balances dynamically.
-        If a user was to have deposited tokens at the start block, a positive liquidity
-        index change will represent accrued interest and a profit.
-        If tokens were borrowed at the start block, this debt will increase,
-        compound on itself and represent large debt.
-        The reverse in both cases is true if the liquidity index is negative.`,
+        description: `This endpoint retrieves the change in the reserve liquidity index between two provided
+        blocks. This is then converted to a percentage change. The liquidity index represents the
+        change in debt and interest accrual over each block. Aave does not store individual user
+        balances directly. Instead, it keeps a scaled balance and uses the liquidity index to
+        compute real balances dynamically. If a user was to have deposited tokens at the start
+        block, a positive liquidity index change will represent accrued interest and a profit. If
+        tokens were borrowed at the start block, this debt will increase, compound on itself and
+        represent large debt. The reverse in both cases is true if the liquidity index is negative.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveGetLiquidityChange,
+                schema: AaveGetLiquidityChangeRequest,
             },
         ],
-        response: AaveLiquidityChange,
+        response: AaveLiquidityChangeResponse,
         errors: [
             {
                 status: 422,
@@ -1538,18 +1508,18 @@ converted from Wei to the base currency decimals defined by Aave.`,
     {
         method: 'post',
         path: '/v0/aave/repay',
-        description: `This endpoint allows users to repay a portion or the entirety of their borrowed
-tokens on the Aave platform. By repaying borrowed amounts, users can improve their
-health factor, which is a measure of the safety of their loan position. A higher health
-factor reduces the risk of liquidation, ensuring a more secure borrowing experience.
-The endpoint requires specifying the chain and the details of the repayment transaction,
-including the amount and the asset to be repaid.`,
+        description: `This endpoint allows users to repay a portion or the entirety of their borrowed tokens on
+        the Aave platform. By repaying borrowed amounts, users can improve their health factor,
+        which is a measure of the safety of their loan position. A higher health factor reduces the
+        risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires
+        specifying the chain and the details of the repayment transaction, including the amount and
+        the asset to be repaid.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AaveRepayCallData_,
+                schema: AaveRepayRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1566,19 +1536,18 @@ including the amount and the asset to be repaid.`,
         path: '/v0/aave/supply',
         description: `By supplying assets, users can earn interest on their deposits
 
-The supplied collateral can be used as a basis for borrowing other assets,
-allowing users to leverage their positions.
-In combination with a trading protocol, this can create leverage.  
+        The supplied collateral can be used as a basis for borrowing other assets, allowing users to
+        leverage their positions. In combination with a trading protocol, this can create leverage.  
 
-Overall, this endpoint is a critical component for users looking to maximize their asset
-utility within the AAVEv3 ecosystem, providing both earning potential and borrowing
-flexibility.`,
+        Overall, this endpoint is a critical component for users looking to maximize their asset
+        utility within the AAVEv3 ecosystem, providing both earning potential and borrowing
+        flexibility.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AaveSupplyCallData_,
+                schema: AaveSupplyRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1605,10 +1574,10 @@ flexibility.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveGetUserPositionPerToken,
+                schema: AaveGetUserPositionPerTokenRequest,
             },
         ],
-        response: AaveUserPositionPerTokenInfo,
+        response: AaveUserPositionPerTokenResponse,
         errors: [
             {
                 status: 422,
@@ -1620,21 +1589,21 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/aave/user_position_summary/get',
-        description: `This endpoint retrieves a comprehensive summary of a user&#x27;s position on the
-        AAVE platform. It provides key financial metrics including the total collateral
-        deposited, total debt accrued, available borrowing capacity, liquidation threshold,
-        maximum loan-to-value ratio, and the health factor of the user&#x27;s account. These metrics
-        are calculated by aggregating data across all open positions held by the user, offering
-        a holistic view of their financial standing within the AAVE ecosystem.`,
+        description: `This endpoint retrieves a comprehensive summary of a user&#x27;s position on the AAVE platform.
+        It provides key financial metrics including the total collateral deposited, total debt
+        accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,
+        and the health factor of the user&#x27;s account. These metrics are calculated by aggregating
+        data across all open positions held by the user, offering a holistic view of their financial
+        standing within the AAVE ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveGetUserPositionSummary,
+                schema: AaveGetUserPositionSummaryRequest,
             },
         ],
-        response: AaveUserPositionSummaryInfo,
+        response: AaveUserPositionSummaryResponse,
         errors: [
             {
                 status: 422,
@@ -1646,13 +1615,19 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/aave/withdraw',
-        description: `This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.`,
+        description: `This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can
+        withdraw a portion or all of their collateral, which may increase the risk of liquidation if
+        there are outstanding borrows. The withdrawal process also includes the collection of any
+        interest earned on the collateral. It is important for users to carefully consider their
+        outstanding debts and the potential impact on their liquidation threshold before proceeding
+        with a withdrawal. This endpoint is designed to provide a seamless and efficient way to
+        manage your collateral within the Aave ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AaveWithdrawCallData_,
+                schema: AaveWithdrawRequest,
             },
         ],
         response: UnsignedTransaction,

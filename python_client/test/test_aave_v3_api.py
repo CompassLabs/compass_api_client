@@ -33,22 +33,8 @@ class TestAaveV3Api(unittest.TestCase):
         """
         pass
 
-    def test_borrow_v0_aave_borrow_post_0(self) -> None:
-        """Test case for borrow_v0_aave_borrow_post_0
-
-        Borrow against your collateral
-        """
-        pass
-
     def test_get_asset_price_v0_aave_asset_price_get_post(self) -> None:
         """Test case for get_asset_price_v0_aave_asset_price_get_post
-
-        Get the price of an asset in USD according to Aave
-        """
-        pass
-
-    def test_get_asset_price_v0_aave_asset_price_get_post_0(self) -> None:
-        """Test case for get_asset_price_v0_aave_asset_price_get_post_0
 
         Get the price of an asset in USD according to Aave
         """
@@ -61,22 +47,8 @@ class TestAaveV3Api(unittest.TestCase):
         """
         pass
 
-    def test_get_liquidity_change_v0_aave_liquidity_change_get_post_0(self) -> None:
-        """Test case for get_liquidity_change_v0_aave_liquidity_change_get_post_0
-
-        Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
-        """
-        pass
-
     def test_get_user_position_per_token_v0_aave_user_position_per_token_get_post(self) -> None:
         """Test case for get_user_position_per_token_v0_aave_user_position_per_token_get_post
-
-        Get the user's position for a specific token.
-        """
-        pass
-
-    def test_get_user_position_per_token_v0_aave_user_position_per_token_get_post_0(self) -> None:
-        """Test case for get_user_position_per_token_v0_aave_user_position_per_token_get_post_0
 
         Get the user's position for a specific token.
         """
@@ -89,22 +61,8 @@ class TestAaveV3Api(unittest.TestCase):
         """
         pass
 
-    def test_get_user_position_summary_v0_aave_user_position_summary_get_post_0(self) -> None:
-        """Test case for get_user_position_summary_v0_aave_user_position_summary_get_post_0
-
-        Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
-        """
-        pass
-
     def test_repay_v0_aave_repay_post(self) -> None:
         """Test case for repay_v0_aave_repay_post
-
-        Repay some or all tokens you borrowed
-        """
-        pass
-
-    def test_repay_v0_aave_repay_post_0(self) -> None:
-        """Test case for repay_v0_aave_repay_post_0
 
         Repay some or all tokens you borrowed
         """
@@ -117,22 +75,8 @@ class TestAaveV3Api(unittest.TestCase):
         """
         pass
 
-    def test_supply_v0_aave_supply_post_0(self) -> None:
-        """Test case for supply_v0_aave_supply_post_0
-
-        Supply collateral to earn interest or borrow against
-        """
-        pass
-
     def test_withdraw_v0_aave_withdraw_post(self) -> None:
         """Test case for withdraw_v0_aave_withdraw_post
-
-        Withdraw some or all of your collateral
-        """
-        pass
-
-    def test_withdraw_v0_aave_withdraw_post_0(self) -> None:
-        """Test case for withdraw_v0_aave_withdraw_post_0
 
         Withdraw some or all of your collateral
         """

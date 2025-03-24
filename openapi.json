@@ -15,7 +15,6 @@
     "/v0/aave/borrow": {
       "post": {
         "tags": [
-          "Aave V3",
           "Aave V3"
         ],
         "summary": "Borrow against your collateral",
@@ -58,7 +57,6 @@
     "/v0/aave/repay": {
       "post": {
         "tags": [
-          "Aave V3",
           "Aave V3"
         ],
         "summary": "Repay some or all tokens you borrowed",
@@ -101,7 +99,6 @@
     "/v0/aave/supply": {
       "post": {
         "tags": [
-          "Aave V3",
           "Aave V3"
         ],
         "summary": "Supply collateral to earn interest or borrow against",
@@ -144,7 +141,6 @@
     "/v0/aave/withdraw": {
       "post": {
         "tags": [
-          "Aave V3",
           "Aave V3"
         ],
         "summary": "Withdraw some or all of your collateral",
@@ -187,7 +183,6 @@
     "/v0/aave/asset_price/get": {
       "post": {
         "tags": [
-          "Aave V3",
           "Aave V3"
         ],
         "summary": "Get the price of an asset in USD according to Aave",
@@ -230,7 +225,6 @@
     "/v0/aave/liquidity/change/get": {
       "post": {
         "tags": [
-          "Aave V3",
           "Aave V3"
         ],
         "summary": "Gets the change in liquidity index between two blocks, therefore the amount a\n    position will have increased or decreased over the time",
@@ -273,7 +267,6 @@
     "/v0/aave/user_position_summary/get": {
       "post": {
         "tags": [
-          "Aave V3",
           "Aave V3"
         ],
         "summary": "Get a summary of the user's position on AAVE. These values will be sums or averages\n    across all open positions.",
@@ -316,7 +309,6 @@
     "/v0/aave/user_position_per_token/get": {
       "post": {
         "tags": [
-          "Aave V3",
           "Aave V3"
         ],
         "summary": "Get the user's position for a specific token.",
