@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "compass.api_client"
 packages = [ { include = "compass"} ]
-version = "1.0.95"
+version = "1.0.96"
 description = "Compass API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
@@ -11,7 +11,7 @@ keywords = ["OpenAPI", "OpenAPI-Generator", "Compass API"]
 include = ["compass.api_client/py.typed"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 
 urllib3 = ">= 2.1.0, < 3.0.0"
 python-dateutil = ">= 2.8.2"
