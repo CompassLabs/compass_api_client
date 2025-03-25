@@ -5368,9 +5368,9 @@
         "title": "UniswapMintLiquidityProvision",
         "example": {
           "amount0_desired": 0.1,
-          "amount0_min": 0.05,
+          "amount0_min": 0,
           "amount1_desired": 0.1,
-          "amount1_min": 0.05,
+          "amount1_min": 0,
           "chain": "arbitrum:mainnet",
           "fee": "0.01",
           "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
@@ -5378,7 +5378,7 @@
           "tick_lower": -1000,
           "tick_upper": 1000,
           "token0": "USDC",
-          "token1": "USDT"
+          "token1": "DAI"
         }
       },
       "UniswapPoolPriceResponse": {
