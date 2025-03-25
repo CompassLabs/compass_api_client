@@ -4216,7 +4216,11 @@
           "ens_name"
         ],
         "title": "GetEnsDetailsRequest",
-        "description": "Request model for getting ENS details."
+        "description": "Request model for getting ENS details.",
+        "example": {
+          "chain": "ethereum:mainnet",
+          "ens_name": "vitalik.eth"
+        }
       },
       "GetErc20AllowanceRequest": {
         "properties": {
@@ -4254,7 +4258,13 @@
           "contract_name"
         ],
         "title": "GetErc20AllowanceRequest",
-        "description": "Request model for getting an ERC20 token allowance."
+        "description": "Request model for getting an ERC20 token allowance.",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "contract_name": "AaveV3Pool",
+          "token": "USDC",
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "GetErc20BalanceRequest": {
         "properties": {
@@ -4284,7 +4294,12 @@
           "token"
         ],
         "title": "GetErc20BalanceRequest",
-        "description": "Request model for getting an ERC20 token balance."
+        "description": "Request model for getting an ERC20 token balance.",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "token": "USDC",
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "HTTPValidationError": {
         "properties": {
@@ -4429,7 +4444,14 @@
           "amount"
         ],
         "title": "IncreaseAllowanceRequest",
-        "description": "Request model for increasing token allowance for a contract."
+        "description": "Request model for increasing token allowance for a contract.",
+        "example": {
+          "amount": 1,
+          "chain": "arbitrum:mainnet",
+          "contract_name": "AaveV3Pool",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC"
+        }
       },
       "InterestRateMode": {
         "type": "integer",
@@ -4485,7 +4507,11 @@
           "chain",
           "user"
         ],
-        "title": "PortfolioRequest"
+        "title": "PortfolioRequest",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "PriceRequest": {
         "properties": {
@@ -4505,7 +4531,11 @@
           "chain",
           "token"
         ],
-        "title": "PriceRequest"
+        "title": "PriceRequest",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "token": "WBTC"
+        }
       },
       "PriceResponse": {
         "properties": {
@@ -4663,7 +4693,10 @@
         "required": [
           "chain"
         ],
-        "title": "TokensRequest"
+        "title": "TokensRequest",
+        "example": {
+          "chain": "arbitrum:mainnet"
+        }
       },
       "TransferERC20Request": {
         "properties": {
@@ -4717,7 +4750,14 @@
           "to"
         ],
         "title": "TransferERC20Request",
-        "description": "Request model for transferring ERC20 tokens."
+        "description": "Request model for transferring ERC20 tokens.",
+        "example": {
+          "amount": 0.1,
+          "chain": "arbitrum:mainnet",
+          "sender": "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E",
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC"
+        }
       },
       "TransferEthRequest": {
         "properties": {
@@ -4763,7 +4803,13 @@
           "to"
         ],
         "title": "TransferEthRequest",
-        "description": "Request model for transferring native ETH."
+        "description": "Request model for transferring native ETH.",
+        "example": {
+          "amount": 0.00048,
+          "chain": "arbitrum:mainnet",
+          "sender": "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E",
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "UniswapBuyExactlyRequest": {
         "properties": {
@@ -5747,7 +5793,12 @@
           "amount"
         ],
         "title": "UnwrapWethRequest",
-        "description": "Request model for unwrapping WETH back to native ETH."
+        "description": "Request model for unwrapping WETH back to native ETH.",
+        "example": {
+          "amount": 0.0000048,
+          "chain": "arbitrum:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "ValidationError": {
         "properties": {
@@ -5801,7 +5852,11 @@
           "chain",
           "user"
         ],
-        "title": "VisualizePortfolioRequest"
+        "title": "VisualizePortfolioRequest",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "WrapEthRequest": {
         "properties": {
@@ -5838,7 +5893,12 @@
           "amount"
         ],
         "title": "WrapEthRequest",
-        "description": "Request model for wrapping ETH into WETH."
+        "description": "Request model for wrapping ETH into WETH.",
+        "example": {
+          "amount": 0.0000048,
+          "chain": "arbitrum:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       }
     },
     "securitySchemes": {
