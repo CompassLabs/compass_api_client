@@ -771,177 +771,7 @@ This action is performed in a multicall on the NonfungiblePosition Manager: http
 First, we call decrease liquidity then collect the tokens owed to the user.`),
     })
     .passthrough();
-const ContractName = z.enum([
-    'AaveV3Pool',
-    'AaveV3Oracle',
-    'AaveV3ProtocolDataProvider',
-    'AerodromeBasicFactory',
-    'AerodromeSlipstreamFactory',
-    'AerodromeBasicRouter',
-    'AerodromeSlipstreamRouter',
-    'AerodromeBasicPool',
-    'AerodromeSlipstreamNonfungiblePositionManager',
-    'UniswapV3Router',
-    'UniswapV3Factory',
-    'UniswapV3NFTPositionManager',
-    'UniswapV3Quoter',
-    'ChainlinkEACAggregatorProxy',
-]);
-const GetErc20Allowance = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        user: z.string().describe('The user to get the ERC20 balance of.'),
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        contract_name: ContractName.describe(`Select the protocol.
-
-E.g. for increasing ERC-20 allowance.`),
-    })
-    .passthrough();
-const AllowanceInfo = z
-    .object({
-        amount: z.string().describe('Amount of tokens allowed to be spent by spender'),
-        decimals: z.number().int().describe('Number of decimals of the token'),
-        token_symbol: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_address: z.string().describe('Address of the token'),
-        contract_address: z.string().describe('Address of the contract'),
-    })
-    .passthrough();
-const IncreaseErc20AllowanceCallData = z
-    .object({
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        contract_name: ContractName.describe(`Select the protocol.
-
-E.g. for increasing ERC-20 allowance.`),
-        amount: z
-            .union([z.number(), z.string()])
-            .describe('The amount of tokens to increase the allowance by.'),
-    })
-    .passthrough();
-const BaseTransactionRequest_IncreaseErc20AllowanceCallData_ = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data: IncreaseErc20AllowanceCallData,
-    })
-    .passthrough();
-const IncreaseErc20AllowanceAnyCallData = z
-    .object({
-        token_name: ContractName.describe(`Select the protocol.
-
-E.g. for increasing ERC-20 allowance.`),
-        token_address: z
-            .string()
-            .describe(
-                "The address of the ERC20 token for which the allowance is increased.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>"
-            ),
-        contract_name: ContractName.describe(`Select the protocol.
-
-E.g. for increasing ERC-20 allowance.`),
-        amount: z
-            .union([z.number(), z.string()])
-            .describe('The amount of tokens to increase the allowance by.'),
-    })
-    .passthrough();
-const BaseTransactionRequest_IncreaseErc20AllowanceAnyCallData_ = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data: IncreaseErc20AllowanceAnyCallData,
-    })
-    .passthrough();
-const GetErc20Balance = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        user: z.string().describe('The user to get the ERC20 balance of.'),
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-    })
-    .passthrough();
-const BalanceInfo = z
-    .object({
-        amount: z.string().describe('Amount of tokens a particular address holds'),
-        decimals: z.number().int().describe('Number of decimals of the token'),
-        token_symbol: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_address: z.string().describe('Address of the token'),
-    })
-    .passthrough();
-const WrapEthRequestCallData = z
-    .object({
-        amount: z.union([z.number(), z.string()]).describe('The amount of ETH to wrap.'),
-    })
-    .passthrough();
-const BaseTransactionRequest_WrapEthRequestCallData_ = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data: WrapEthRequestCallData,
-    })
-    .passthrough();
-const UnwrapWethRequestCallData = z
-    .object({
-        amount: z.union([z.number(), z.string()]).describe('The amount of ETH to unwrap.'),
-    })
-    .passthrough();
-const BaseTransactionRequest_UnwrapWethRequestCallData_ = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data: UnwrapWethRequestCallData,
-    })
-    .passthrough();
-const GetSupportedTokens = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-    })
-    .passthrough();
-const TokenInfo = z
-    .object({
-        tokens: z.array(Token).describe('List of supported tokens for a gived chain'),
-    })
-    .passthrough();
-const RequestEnsDetails = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        ens_name: z.string().describe('The ENS address of the user.'),
-    })
-    .passthrough();
-const EnsNameInfo = z
-    .object({
-        wallet_address: z.string().describe('The wallet address of the user'),
-        registrant: z.string().describe('The registrant of the ENS'),
-    })
-    .passthrough();
-const RequestUserAddress = z
+const PortfolioRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
@@ -968,24 +798,147 @@ const Portfolio = z
         token_balances: z.array(TokenBalance).describe('List of token balances in the portfolio'),
     })
     .passthrough();
-const Image = z.object({ image: z.string().describe('Base64 encoded SVG image') }).passthrough();
-const TransferEthCallData = z
+const PriceRequest = z
     .object({
-        amount: z.union([z.number(), z.string()]).describe('Amount of ETH to transfer'),
-        to: z.string().describe('The recipient of the ETH.'),
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        token: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
     })
     .passthrough();
-const TransferEth = z
+const PriceResponse = z
+    .object({
+        token_price_in_usd: z.string().describe('Price of the token in USD'),
+    })
+    .passthrough();
+const TokensRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+    })
+    .passthrough();
+const TokenInfo = z
+    .object({
+        tokens: z.array(Token).describe('List of supported tokens for a given chain'),
+    })
+    .passthrough();
+const VisualizePortfolioRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        user: z.string().describe('The address of the user.'),
+    })
+    .passthrough();
+const Image = z.object({ image: z.string().describe('Base64 encoded SVG image') }).passthrough();
+const GetErc20BalanceRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        user: z.string().describe('The user to get the ERC20 balance of.'),
+        token: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+    })
+    .passthrough();
+const BalanceInfoResponse = z
+    .object({
+        amount: z.string().describe('Amount of tokens a particular address holds'),
+        decimals: z.number().int().describe('Number of decimals of the token'),
+        token_symbol: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_address: z.string().describe('Address of the token'),
+    })
+    .passthrough();
+const ContractName = z.enum([
+    'AaveV3Pool',
+    'AaveV3Oracle',
+    'AaveV3ProtocolDataProvider',
+    'AerodromeBasicFactory',
+    'AerodromeSlipstreamFactory',
+    'AerodromeBasicRouter',
+    'AerodromeSlipstreamRouter',
+    'AerodromeBasicPool',
+    'AerodromeSlipstreamNonfungiblePositionManager',
+    'UniswapV3Router',
+    'UniswapV3Factory',
+    'UniswapV3NFTPositionManager',
+    'UniswapV3Quoter',
+    'ChainlinkEACAggregatorProxy',
+]);
+const GetErc20AllowanceRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        user: z.string().describe('The user to get the ERC20 allowance of.'),
+        token: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        contract_name: ContractName.describe(`Select the protocol.
+
+E.g. for increasing ERC-20 allowance.`),
+    })
+    .passthrough();
+const AllowanceInfoResponse = z
+    .object({
+        amount: z.string().describe('Amount of tokens allowed to be spent by spender'),
+        decimals: z.number().int().describe('Number of decimals of the token'),
+        token_symbol: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_address: z.string().describe('Address of the token'),
+        contract_address: z.string().describe('Address of the contract'),
+    })
+    .passthrough();
+const GetEnsDetailsRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        ens_name: z.string().describe('The ENS address of the user.'),
+    })
+    .passthrough();
+const EnsNameInfoResponse = z
+    .object({
+        wallet_address: z.string().describe('The wallet address of the user'),
+        registrant: z.string().describe('The registrant of the ENS'),
+    })
+    .passthrough();
+const WrapEthRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: TransferEthCallData,
+        amount: z.union([z.number(), z.string()]).describe('The amount of ETH to wrap.'),
     })
     .passthrough();
-const TransferERC20TokenCallData = z
+const UnwrapWethRequest = z
     .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        sender: z.string().describe('The address of the transaction sender'),
+        amount: z.union([z.number(), z.string()]).describe('The amount of WETH to unwrap.'),
+    })
+    .passthrough();
+const TransferERC20Request = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        sender: z.string().describe('The address of the transaction sender'),
         amount: z.union([z.number(), z.string()]).describe('Amount of token to transfer'),
         token: Token.describe(`A class representing the token.
 
@@ -994,27 +947,55 @@ endpoints' documentation where per chain tokens are presented.`),
         to: z.string().describe('The recipient of the tokens.'),
     })
     .passthrough();
-const BaseTransactionRequest_TransferERC20TokenCallData_ = z
+const TransferEthRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: TransferERC20TokenCallData,
+        amount: z.union([z.number(), z.string()]).describe('Amount of ETH to transfer'),
+        to: z.string().describe('The recipient of the ETH.'),
     })
     .passthrough();
-const GetTokenPrice = z
+const IncreaseAllowanceRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
 All token balances are per-chain.`),
+        sender: z.string().describe('The address of the transaction sender'),
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
+        contract_name: ContractName.describe(`Select the protocol.
+
+E.g. for increasing ERC-20 allowance.`),
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('The amount of tokens to increase the allowance by.'),
     })
     .passthrough();
-const PriceResponse = z.object({ token_price_in_usd: z.string() }).passthrough();
+const IncreaseAllowanceAnyRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        sender: z.string().describe('The address of the transaction sender'),
+        token: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_address: z
+            .string()
+            .describe('The address of the ERC20 token for which the allowance is increased.'),
+        contract_name: ContractName.describe(`Select the protocol.
+
+E.g. for increasing ERC-20 allowance.`),
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('The amount of tokens to increase the allowance by.'),
+    })
+    .passthrough();
 const FeeEnum = z.enum(['0.01', '0.05', '0.3', '1.0']);
 const UniswapBuyExactlyRequest = z
     .object({
@@ -1380,33 +1361,28 @@ export const schemas = {
     BaseTransactionRequest_AerodromeSlipstreamIncreaseLiquidityProvisionCallData_,
     AerodromeSlipstreamWithdrawLiquidityProvisionCallData,
     BaseTransactionRequest_AerodromeSlipstreamWithdrawLiquidityProvisionCallData_,
-    ContractName,
-    GetErc20Allowance,
-    AllowanceInfo,
-    IncreaseErc20AllowanceCallData,
-    BaseTransactionRequest_IncreaseErc20AllowanceCallData_,
-    IncreaseErc20AllowanceAnyCallData,
-    BaseTransactionRequest_IncreaseErc20AllowanceAnyCallData_,
-    GetErc20Balance,
-    BalanceInfo,
-    WrapEthRequestCallData,
-    BaseTransactionRequest_WrapEthRequestCallData_,
-    UnwrapWethRequestCallData,
-    BaseTransactionRequest_UnwrapWethRequestCallData_,
-    GetSupportedTokens,
-    TokenInfo,
-    RequestEnsDetails,
-    EnsNameInfo,
-    RequestUserAddress,
+    PortfolioRequest,
     TokenBalance,
     Portfolio,
-    Image,
-    TransferEthCallData,
-    TransferEth,
-    TransferERC20TokenCallData,
-    BaseTransactionRequest_TransferERC20TokenCallData_,
-    GetTokenPrice,
+    PriceRequest,
     PriceResponse,
+    TokensRequest,
+    TokenInfo,
+    VisualizePortfolioRequest,
+    Image,
+    GetErc20BalanceRequest,
+    BalanceInfoResponse,
+    ContractName,
+    GetErc20AllowanceRequest,
+    AllowanceInfoResponse,
+    GetEnsDetailsRequest,
+    EnsNameInfoResponse,
+    WrapEthRequest,
+    UnwrapWethRequest,
+    TransferERC20Request,
+    TransferEthRequest,
+    IncreaseAllowanceRequest,
+    IncreaseAllowanceAnyRequest,
     FeeEnum,
     UniswapBuyExactlyRequest,
     UniswapSellExactlyRequest,
@@ -2029,10 +2005,10 @@ const endpoints = makeApi([
             {
                 name: 'body',
                 type: 'Body',
-                schema: GetErc20Allowance,
+                schema: GetErc20AllowanceRequest,
             },
         ],
-        response: AllowanceInfo,
+        response: AllowanceInfoResponse,
         errors: [
             {
                 status: 422,
@@ -2045,17 +2021,17 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/generic/allowance/set',
         description: `This endpoint allows users to modify the token allowance for a specific
-        protocol. In decentralized finance (DeFi), setting an allowance is a
-        necessary step to authorize a protocol to spend a specified amount of
-        tokens on behalf of the user. This operation is crucial for ensuring
-        that the protocol can manage the user&#x27;s tokens securely and efficiently,
-        enabling seamless transactions and operations within the DeFi ecosystem.`,
+    protocol. In decentralized finance (DeFi), setting an allowance is a
+    necessary step to authorize a protocol to spend a specified amount of
+    tokens on behalf of the user. This operation is crucial for ensuring
+    that the protocol can manage the user&#x27;s tokens securely and efficiently,
+    enabling seamless transactions and operations within the DeFi ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_IncreaseErc20AllowanceCallData_,
+                schema: IncreaseAllowanceRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -2071,19 +2047,19 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/generic/allowance/set_any',
         description: `This endpoint allows users to set an allowance for any arbitrary ERC20
-        token address. In decentralized finance (DeFi), setting an allowance
-        is a critical operation that permits a protocol to spend a specified
-        amount of tokens on behalf of the user. This functionality is essential
-        for enabling secure and efficient token management, facilitating smooth
-        transactions and operations within the DeFi ecosystem. By using this
-        endpoint, users can specify the token address and the amount they wish
-        to authorize, ensuring precise control over their token allowances.`,
+    token address. In decentralized finance (DeFi), setting an allowance
+    is a critical operation that permits a protocol to spend a specified
+    amount of tokens on behalf of the user. This functionality is essential
+    for enabling secure and efficient token management, facilitating smooth
+    transactions and operations within the DeFi ecosystem. By using this
+    endpoint, users can specify the token address and the amount they wish
+    to authorize, ensuring precise control over their token allowances.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_IncreaseErc20AllowanceAnyCallData_,
+                schema: IncreaseAllowanceAnyRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -2098,21 +2074,16 @@ const endpoints = makeApi([
     {
         method: 'post',
         path: '/v0/generic/balance/get',
-        description: `This endpoint allows users to retrieve the balance of a specified ERC20 token
-        for any given account address on the blockchain. It requires the token symbol
-        and the user&#x27;s account address as input parameters. The response includes the
-        balance amount, the number of decimals the token uses, the token symbol, and
-        the token&#x27;s contract address. This functionality is essential for applications
-        that need to display or manage token balances for users.`,
+        description: `Returns the balance of a specific ERC20 token for a given user address.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: GetErc20Balance,
+                schema: GetErc20BalanceRequest,
             },
         ],
-        response: BalanceInfo,
+        response: BalanceInfoResponse,
         errors: [
             {
                 status: 422,
@@ -2130,10 +2101,10 @@ const endpoints = makeApi([
             {
                 name: 'body',
                 type: 'Body',
-                schema: RequestEnsDetails,
+                schema: GetEnsDetailsRequest,
             },
         ],
-        response: EnsNameInfo,
+        response: EnsNameInfoResponse,
         errors: [
             {
                 status: 422,
@@ -2151,7 +2122,7 @@ const endpoints = makeApi([
             {
                 name: 'body',
                 type: 'Body',
-                schema: RequestUserAddress,
+                schema: PortfolioRequest,
             },
         ],
         response: Portfolio,
@@ -2172,10 +2143,14 @@ const endpoints = makeApi([
             {
                 name: 'body',
                 type: 'Body',
-                schema: GetTokenPrice,
+                schema: PriceRequest,
             },
         ],
-        response: z.object({ token_price_in_usd: z.string() }).passthrough(),
+        response: z
+            .object({
+                token_price_in_usd: z.string().describe('Price of the token in USD'),
+            })
+            .passthrough(),
         errors: [
             {
                 status: 422,
@@ -2193,7 +2168,7 @@ const endpoints = makeApi([
             {
                 name: 'body',
                 type: 'Body',
-                schema: GetSupportedTokens,
+                schema: TokensRequest,
             },
         ],
         response: TokenInfo,
@@ -2208,13 +2183,13 @@ const endpoints = makeApi([
     {
         method: 'post',
         path: '/v0/generic/transfer/erc20',
-        description: `Transfer some amount of ERC20 token (fungible token) to another address.`,
+        description: `Sends ERC20 tokens from the sender&#x27;s address to the specified recipient.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_TransferERC20TokenCallData_,
+                schema: TransferERC20Request,
             },
         ],
         response: UnsignedTransaction,
@@ -2229,13 +2204,13 @@ const endpoints = makeApi([
     {
         method: 'post',
         path: '/v0/generic/transfer/native_token',
-        description: `Transfer the native token of a chain from your address to another address.`,
+        description: `Sends native ETH from the sender&#x27;s address to the specified recipient.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: TransferEth,
+                schema: TransferEthRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -2250,13 +2225,13 @@ const endpoints = makeApi([
     {
         method: 'post',
         path: '/v0/generic/unwrap_weth',
-        description: `Unwrapping ETH transforms the ERC-20 token into the raw form used for paying gas fees and other basic functions.`,
+        description: `Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_UnwrapWethRequestCallData_,
+                schema: UnwrapWethRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -2277,7 +2252,7 @@ const endpoints = makeApi([
             {
                 name: 'body',
                 type: 'Body',
-                schema: RequestUserAddress,
+                schema: VisualizePortfolioRequest,
             },
         ],
         response: z
@@ -2300,7 +2275,7 @@ const endpoints = makeApi([
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_WrapEthRequestCallData_,
+                schema: WrapEthRequest,
             },
         ],
         response: UnsignedTransaction,

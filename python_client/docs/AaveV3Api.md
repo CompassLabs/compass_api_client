@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**borrow_v0_aave_borrow_post**](AaveV3Api.md#borrow_v0_aave_borrow_post) | **POST** /v0/aave/borrow | Borrow/Lend
 [**get_asset_price_v0_aave_asset_price_get_post**](AaveV3Api.md#get_asset_price_v0_aave_asset_price_get_post) | **POST** /v0/aave/asset_price/get | Token prices
-[**get_liquidity_change_v0_aave_liquidity_change_get_post**](AaveV3Api.md#get_liquidity_change_v0_aave_liquidity_change_get_post) | **POST** /v0/aave/liquidity/change/get | Liquididy index
+[**get_liquidity_change_v0_aave_liquidity_change_get_post**](AaveV3Api.md#get_liquidity_change_v0_aave_liquidity_change_get_post) | **POST** /v0/aave/liquidity/change/get | Liquidity index
 [**get_user_position_per_token_v0_aave_user_position_per_token_get_post**](AaveV3Api.md#get_user_position_per_token_v0_aave_user_position_per_token_get_post) | **POST** /v0/aave/user_position_per_token/get | Positions - per token
 [**get_user_position_summary_v0_aave_user_position_summary_get_post**](AaveV3Api.md#get_user_position_summary_v0_aave_user_position_summary_get_post) | **POST** /v0/aave/user_position_summary/get | Positions - total
 [**repay_v0_aave_repay_post**](AaveV3Api.md#repay_v0_aave_repay_post) | **POST** /v0/aave/repay | Repay loans
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 # **get_liquidity_change_v0_aave_liquidity_change_get_post**
 > AaveLiquidityChangeResponse get_liquidity_change_v0_aave_liquidity_change_get_post(aave_get_liquidity_change_request)
 
-Liquididy index
+Liquidity index
 
 This endpoint retrieves the change in the reserve liquidity index between two provided
         blocks. This is then converted to a percentage change. The liquidity index represents the
@@ -231,7 +231,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_get_liquidity_change_request = compass.api_client.AaveGetLiquidityChangeRequest() # AaveGetLiquidityChangeRequest | 
 
     try:
-        # Liquididy index
+        # Liquidity index
         api_response = api_instance.get_liquidity_change_v0_aave_liquidity_change_get_post(aave_get_liquidity_change_request)
         print("The response of AaveV3Api->get_liquidity_change_v0_aave_liquidity_change_get_post:\n")
         pprint(api_response)

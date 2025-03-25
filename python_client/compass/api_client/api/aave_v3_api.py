@@ -619,7 +619,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AaveLiquidityChangeResponse:
-        """Liquididy index
+        """Liquidity index
 
         This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
@@ -687,7 +687,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AaveLiquidityChangeResponse]:
-        """Liquididy index
+        """Liquidity index
 
         This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
@@ -755,7 +755,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Liquididy index
+        """Liquidity index
 
         This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
 

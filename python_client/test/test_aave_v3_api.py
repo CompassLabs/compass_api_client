@@ -43,7 +43,7 @@ class TestAaveV3Api(unittest.TestCase):
     def test_get_liquidity_change_v0_aave_liquidity_change_get_post(self) -> None:
         """Test case for get_liquidity_change_v0_aave_liquidity_change_get_post
 
-        Liquididy index
+        Liquidity index
         """
         pass
 

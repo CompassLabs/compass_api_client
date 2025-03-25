@@ -221,7 +221,7 @@
         "tags": [
           "Aave V3"
         ],
-        "summary": "Liquididy index",
+        "summary": "Liquidity index",
         "description": "This endpoint retrieves the change in the reserve liquidity index between two provided\n        blocks. This is then converted to a percentage change. The liquidity index represents the\n        change in debt and interest accrual over each block. Aave does not store individual user\n        balances directly. Instead, it keeps a scaled balance and uses the liquidity index to\n        compute real balances dynamically. If a user was to have deposited tokens at the start\n        block, a positive liquidity index change will represent accrued interest and a profit. If\n        tokens were borrowed at the start block, this debt will increase, compound on itself and\n        represent large debt. The reverse in both cases is true if the liquidity index is negative.",
         "operationId": "get_liquidity_change_v0_aave_liquidity_change_get_post",
         "requestBody": {
