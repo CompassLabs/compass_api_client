@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post) | **POST** /v0/aerodrome_basic/liquidity_provision/add_liquidity_eth | Provide liquidity to a pool on Aerodrome using WETH and another token
-[**process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post) | **POST** /v0/aerodrome_basic/liquidity_provision/add_liquidity | Provide liquidity to a pool on Aerodrome
-[**process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post) | **POST** /v0/aerodrome_basic/liquidity_provision/remove_liquidity_eth | Remove liquidity from a pool on Aerodrome using WETH and another token
-[**process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post) | **POST** /v0/aerodrome_basic/liquidity_provision/remove_liquidity | Remove liquidity from a pool on Aerodrome
-[**process_request_v0_aerodrome_basic_swap_eth_for_token_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_swap_eth_for_token_post) | **POST** /v0/aerodrome_basic/swap/eth_for_token | Swap ETH for some of a token on Aerodrome
-[**process_request_v0_aerodrome_basic_swap_token_for_eth_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_swap_token_for_eth_post) | **POST** /v0/aerodrome_basic/swap/token_for_eth | Swap a token for ETH on Aerodrome
-[**process_request_v0_aerodrome_basic_swap_tokens_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_swap_tokens_post) | **POST** /v0/aerodrome_basic/swap/tokens | Swap one token for another token on Aerodrome
+[**process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post) | **POST** /v0/aerodrome_basic/liquidity_provision/add_liquidity_eth | Provide liquidity using WETH
+[**process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post) | **POST** /v0/aerodrome_basic/liquidity_provision/add_liquidity | Provide liquidity
+[**process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post) | **POST** /v0/aerodrome_basic/liquidity_provision/remove_liquidity_eth | Remove liquidity using WETH
+[**process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post) | **POST** /v0/aerodrome_basic/liquidity_provision/remove_liquidity | Remove liquidity
+[**process_request_v0_aerodrome_basic_swap_eth_for_token_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_swap_eth_for_token_post) | **POST** /v0/aerodrome_basic/swap/eth_for_token | Swap from ETH
+[**process_request_v0_aerodrome_basic_swap_token_for_eth_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_swap_token_for_eth_post) | **POST** /v0/aerodrome_basic/swap/token_for_eth | Swap to ETH
+[**process_request_v0_aerodrome_basic_swap_tokens_post**](AerodromeBasicApi.md#process_request_v0_aerodrome_basic_swap_tokens_post) | **POST** /v0/aerodrome_basic/swap/tokens | Swap
 
 
 # **process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post**
 > UnsignedTransaction process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post(base_transaction_request_aerodrome_liquidity_provision_eth_call_data)
 
-Provide liquidity to a pool on Aerodrome using WETH and another token
+Provide liquidity using WETH
 
 This endpoint allows users to provide liquidity to a specified pool on the
         Aerodrome platform using Wrapped Ether (WETH) and another token. Users must
@@ -61,7 +61,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_liquidity_provision_eth_call_data = compass.api_client.BaseTransactionRequestAerodromeLiquidityProvisionEthCallData() # BaseTransactionRequestAerodromeLiquidityProvisionEthCallData | 
 
     try:
-        # Provide liquidity to a pool on Aerodrome using WETH and another token
+        # Provide liquidity using WETH
         api_response = api_instance.process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post(base_transaction_request_aerodrome_liquidity_provision_eth_call_data)
         print("The response of AerodromeBasicApi->process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post:\n")
         pprint(api_response)
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post**
 > UnsignedTransaction process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post(base_transaction_request_aerodrome_liquidity_provision_call_data)
 
-Provide liquidity to a pool on Aerodrome
+Provide liquidity
 
 This endpoint allows users to provide liquidity to a specified pool on the
         Aerodrome platform. Users must specify the tokens, desired amounts, minimum
@@ -145,7 +145,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_liquidity_provision_call_data = compass.api_client.BaseTransactionRequestAerodromeLiquidityProvisionCallData() # BaseTransactionRequestAerodromeLiquidityProvisionCallData | 
 
     try:
-        # Provide liquidity to a pool on Aerodrome
+        # Provide liquidity
         api_response = api_instance.process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post(base_transaction_request_aerodrome_liquidity_provision_call_data)
         print("The response of AerodromeBasicApi->process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post:\n")
         pprint(api_response)
@@ -187,7 +187,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post**
 > UnsignedTransaction process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post(base_transaction_request_aerodrome_remove_liquidity_eth_call_data)
 
-Remove liquidity from a pool on Aerodrome using WETH and another token
+Remove liquidity using WETH
 
 This endpoint allows users to remove liquidity from a pool on the Aerodrome
         platform using WETH and another token. Users must specify the token pair, the
@@ -232,7 +232,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_remove_liquidity_eth_call_data = compass.api_client.BaseTransactionRequestAerodromeRemoveLiquidityEthCallData() # BaseTransactionRequestAerodromeRemoveLiquidityEthCallData | 
 
     try:
-        # Remove liquidity from a pool on Aerodrome using WETH and another token
+        # Remove liquidity using WETH
         api_response = api_instance.process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post(base_transaction_request_aerodrome_remove_liquidity_eth_call_data)
         print("The response of AerodromeBasicApi->process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post:\n")
         pprint(api_response)
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post**
 > UnsignedTransaction process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post(base_transaction_request_aerodrome_remove_liquidity_call_data)
 
-Remove liquidity from a pool on Aerodrome
+Remove liquidity
 
 This endpoint allows users to remove liquidity from a specified pool on the
         Aerodrome platform. Users must specify the token pair, the amount of liquidity
@@ -319,7 +319,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_remove_liquidity_call_data = compass.api_client.BaseTransactionRequestAerodromeRemoveLiquidityCallData() # BaseTransactionRequestAerodromeRemoveLiquidityCallData | 
 
     try:
-        # Remove liquidity from a pool on Aerodrome
+        # Remove liquidity
         api_response = api_instance.process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post(base_transaction_request_aerodrome_remove_liquidity_call_data)
         print("The response of AerodromeBasicApi->process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post:\n")
         pprint(api_response)
@@ -361,7 +361,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_basic_swap_eth_for_token_post**
 > UnsignedTransaction process_request_v0_aerodrome_basic_swap_eth_for_token_post(base_transaction_request_aerodrome_swap_eth_for_token_call_data)
 
-Swap ETH for some of a token on Aerodrome
+Swap from ETH
 
 This endpoint allows you to swap a specified amount of ETH for a
         desired token on the Aerodrome platform. To protect against
@@ -405,7 +405,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_swap_eth_for_token_call_data = compass.api_client.BaseTransactionRequestAerodromeSwapEthForTokenCallData() # BaseTransactionRequestAerodromeSwapEthForTokenCallData | 
 
     try:
-        # Swap ETH for some of a token on Aerodrome
+        # Swap from ETH
         api_response = api_instance.process_request_v0_aerodrome_basic_swap_eth_for_token_post(base_transaction_request_aerodrome_swap_eth_for_token_call_data)
         print("The response of AerodromeBasicApi->process_request_v0_aerodrome_basic_swap_eth_for_token_post:\n")
         pprint(api_response)
@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_basic_swap_token_for_eth_post**
 > UnsignedTransaction process_request_v0_aerodrome_basic_swap_token_for_eth_post(base_transaction_request_aerodrome_swap_token_for_eth_call_data)
 
-Swap a token for ETH on Aerodrome
+Swap to ETH
 
 Swap a specified amount of a token for ETH using the Aerodrome platform.
         To protect against unfavorable exchange rates, you must specify the minimum
@@ -489,7 +489,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_swap_token_for_eth_call_data = compass.api_client.BaseTransactionRequestAerodromeSwapTokenForEthCallData() # BaseTransactionRequestAerodromeSwapTokenForEthCallData | 
 
     try:
-        # Swap a token for ETH on Aerodrome
+        # Swap to ETH
         api_response = api_instance.process_request_v0_aerodrome_basic_swap_token_for_eth_post(base_transaction_request_aerodrome_swap_token_for_eth_call_data)
         print("The response of AerodromeBasicApi->process_request_v0_aerodrome_basic_swap_token_for_eth_post:\n")
         pprint(api_response)
@@ -531,7 +531,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_basic_swap_tokens_post**
 > UnsignedTransaction process_request_v0_aerodrome_basic_swap_tokens_post(base_transaction_request_aerodrome_swap_tokens_call_data)
 
-Swap one token for another token on Aerodrome
+Swap
 
 Swap one token for another on Aerodrome.
         Ensure you specify the minimum amount you expect to receive to
@@ -575,7 +575,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_swap_tokens_call_data = compass.api_client.BaseTransactionRequestAerodromeSwapTokensCallData() # BaseTransactionRequestAerodromeSwapTokensCallData | 
 
     try:
-        # Swap one token for another token on Aerodrome
+        # Swap
         api_response = api_instance.process_request_v0_aerodrome_basic_swap_tokens_post(base_transaction_request_aerodrome_swap_tokens_call_data)
         print("The response of AerodromeBasicApi->process_request_v0_aerodrome_basic_swap_tokens_post:\n")
         pprint(api_response)

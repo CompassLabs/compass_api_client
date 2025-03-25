@@ -4,25 +4,25 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_allowance_v0_generic_allowance_get_post**](OthersApi.md#get_allowance_v0_generic_allowance_get_post) | **POST** /v0/generic/allowance/get | Show the allowance of a user on a protocol
-[**get_balance_v0_generic_balance_get_post**](OthersApi.md#get_balance_v0_generic_balance_get_post) | **POST** /v0/generic/balance/get | Get an ERC20 token&#39;s balance for a user
-[**get_ens_details_v0_generic_ens_get_post**](OthersApi.md#get_ens_details_v0_generic_ens_get_post) | **POST** /v0/generic/ens/get | Get the wallet address and registrant of an ENS name
-[**get_portfolio_v0_generic_portfolio_get_post**](OthersApi.md#get_portfolio_v0_generic_portfolio_get_post) | **POST** /v0/generic/portfolio/get | Get the portfolio details for a wallet address
-[**get_price_v0_generic_price_usd_get_post**](OthersApi.md#get_price_v0_generic_price_usd_get_post) | **POST** /v0/generic/price/usd/get | Get the price of a given token relative to USD
-[**get_tokens_v0_generic_supported_tokens_get_post**](OthersApi.md#get_tokens_v0_generic_supported_tokens_get_post) | **POST** /v0/generic/supported_tokens/get | Get supported tokens
-[**set_allowance_v0_generic_allowance_set_post**](OthersApi.md#set_allowance_v0_generic_allowance_set_post) | **POST** /v0/generic/allowance/set | Change the allowance of a user on a protocol
-[**set_any_allowance_v0_generic_allowance_set_any_post**](OthersApi.md#set_any_allowance_v0_generic_allowance_set_any_post) | **POST** /v0/generic/allowance/set_any | Sets allowance for any arbitrary ERC20 token address
-[**transfer_erc20_v0_generic_transfer_erc20_post**](OthersApi.md#transfer_erc20_v0_generic_transfer_erc20_post) | **POST** /v0/generic/transfer/erc20 | Transfer ERC20 tokens to another address
-[**transfer_native_token_v0_generic_transfer_native_token_post**](OthersApi.md#transfer_native_token_v0_generic_transfer_native_token_post) | **POST** /v0/generic/transfer/native_token | Transfer native ETH to another address
-[**unwrap_weth_v0_generic_unwrap_weth_post**](OthersApi.md#unwrap_weth_v0_generic_unwrap_weth_post) | **POST** /v0/generic/unwrap_weth | Change WETH back into raw ETH
-[**visualize_portfolio_v0_generic_visualize_portfolio_get_post**](OthersApi.md#visualize_portfolio_v0_generic_visualize_portfolio_get_post) | **POST** /v0/generic/visualize_portfolio/get | Visualize the token portfolio of a wallet address as a pie chart
-[**wrap_eth_v0_generic_wrap_eth_post**](OthersApi.md#wrap_eth_v0_generic_wrap_eth_post) | **POST** /v0/generic/wrap_eth | Change raw ETH into WETH
+[**get_allowance_v0_generic_allowance_get_post**](OthersApi.md#get_allowance_v0_generic_allowance_get_post) | **POST** /v0/generic/allowance/get | Get allowance - Protocol
+[**get_balance_v0_generic_balance_get_post**](OthersApi.md#get_balance_v0_generic_balance_get_post) | **POST** /v0/generic/balance/get | User token balance
+[**get_ens_details_v0_generic_ens_get_post**](OthersApi.md#get_ens_details_v0_generic_ens_get_post) | **POST** /v0/generic/ens/get | Resolve ENS
+[**get_portfolio_v0_generic_portfolio_get_post**](OthersApi.md#get_portfolio_v0_generic_portfolio_get_post) | **POST** /v0/generic/portfolio/get | List user portfolio
+[**get_price_v0_generic_price_usd_get_post**](OthersApi.md#get_price_v0_generic_price_usd_get_post) | **POST** /v0/generic/price/usd/get | Token price
+[**get_tokens_v0_generic_supported_tokens_get_post**](OthersApi.md#get_tokens_v0_generic_supported_tokens_get_post) | **POST** /v0/generic/supported_tokens/get | List supported tokens
+[**set_allowance_v0_generic_allowance_set_post**](OthersApi.md#set_allowance_v0_generic_allowance_set_post) | **POST** /v0/generic/allowance/set | Set Allowance - Protocol
+[**set_any_allowance_v0_generic_allowance_set_any_post**](OthersApi.md#set_any_allowance_v0_generic_allowance_set_any_post) | **POST** /v0/generic/allowance/set_any | Set Allowance - Token
+[**transfer_erc20_v0_generic_transfer_erc20_post**](OthersApi.md#transfer_erc20_v0_generic_transfer_erc20_post) | **POST** /v0/generic/transfer/erc20 | Transfer Token
+[**transfer_native_token_v0_generic_transfer_native_token_post**](OthersApi.md#transfer_native_token_v0_generic_transfer_native_token_post) | **POST** /v0/generic/transfer/native_token | Transfer ETH
+[**unwrap_weth_v0_generic_unwrap_weth_post**](OthersApi.md#unwrap_weth_v0_generic_unwrap_weth_post) | **POST** /v0/generic/unwrap_weth | Unwrap WETH
+[**visualize_portfolio_v0_generic_visualize_portfolio_get_post**](OthersApi.md#visualize_portfolio_v0_generic_visualize_portfolio_get_post) | **POST** /v0/generic/visualize_portfolio/get | Visualize user portfolio
+[**wrap_eth_v0_generic_wrap_eth_post**](OthersApi.md#wrap_eth_v0_generic_wrap_eth_post) | **POST** /v0/generic/wrap_eth | Wrap ETH
 
 
 # **get_allowance_v0_generic_allowance_get_post**
 > AllowanceInfoResponse get_allowance_v0_generic_allowance_get_post(get_erc20_allowance_request)
 
-Show the allowance of a user on a protocol
+Get allowance - Protocol
 
 In decentralized finance (DeFi) protocols such as Uniswap or AAVE,
         users must set a token allowance to authorize the protocol to spend
@@ -66,7 +66,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     get_erc20_allowance_request = compass.api_client.GetErc20AllowanceRequest() # GetErc20AllowanceRequest | 
 
     try:
-        # Show the allowance of a user on a protocol
+        # Get allowance - Protocol
         api_response = api_instance.get_allowance_v0_generic_allowance_get_post(get_erc20_allowance_request)
         print("The response of OthersApi->get_allowance_v0_generic_allowance_get_post:\n")
         pprint(api_response)
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 # **get_balance_v0_generic_balance_get_post**
 > BalanceInfoResponse get_balance_v0_generic_balance_get_post(get_erc20_balance_request)
 
-Get an ERC20 token's balance for a user
+User token balance
 
 Returns the balance of a specific ERC20 token for a given user address.
 
@@ -147,7 +147,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     get_erc20_balance_request = compass.api_client.GetErc20BalanceRequest() # GetErc20BalanceRequest | 
 
     try:
-        # Get an ERC20 token's balance for a user
+        # User token balance
         api_response = api_instance.get_balance_v0_generic_balance_get_post(get_erc20_balance_request)
         print("The response of OthersApi->get_balance_v0_generic_balance_get_post:\n")
         pprint(api_response)
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 # **get_ens_details_v0_generic_ens_get_post**
 > EnsNameInfoResponse get_ens_details_v0_generic_ens_get_post(get_ens_details_request)
 
-Get the wallet address and registrant of an ENS name
+Resolve ENS
 
 An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
@@ -228,7 +228,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     get_ens_details_request = compass.api_client.GetEnsDetailsRequest() # GetEnsDetailsRequest | 
 
     try:
-        # Get the wallet address and registrant of an ENS name
+        # Resolve ENS
         api_response = api_instance.get_ens_details_v0_generic_ens_get_post(get_ens_details_request)
         print("The response of OthersApi->get_ens_details_v0_generic_ens_get_post:\n")
         pprint(api_response)
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 # **get_portfolio_v0_generic_portfolio_get_post**
 > Portfolio get_portfolio_v0_generic_portfolio_get_post(portfolio_request)
 
-Get the portfolio details for a wallet address
+List user portfolio
 
 Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
@@ -309,7 +309,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     portfolio_request = compass.api_client.PortfolioRequest() # PortfolioRequest | 
 
     try:
-        # Get the portfolio details for a wallet address
+        # List user portfolio
         api_response = api_instance.get_portfolio_v0_generic_portfolio_get_post(portfolio_request)
         print("The response of OthersApi->get_portfolio_v0_generic_portfolio_get_post:\n")
         pprint(api_response)
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 # **get_price_v0_generic_price_usd_get_post**
 > PriceResponse get_price_v0_generic_price_usd_get_post(price_request)
 
-Get the price of a given token relative to USD
+Token price
 
 Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
@@ -390,7 +390,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     price_request = compass.api_client.PriceRequest() # PriceRequest | 
 
     try:
-        # Get the price of a given token relative to USD
+        # Token price
         api_response = api_instance.get_price_v0_generic_price_usd_get_post(price_request)
         print("The response of OthersApi->get_price_v0_generic_price_usd_get_post:\n")
         pprint(api_response)
@@ -432,7 +432,7 @@ Name | Type | Description  | Notes
 # **get_tokens_v0_generic_supported_tokens_get_post**
 > TokenInfo get_tokens_v0_generic_supported_tokens_get_post(tokens_request)
 
-Get supported tokens
+List supported tokens
 
 Get the list of supported tokens on a chain by the Compass API.
 
@@ -471,7 +471,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     tokens_request = compass.api_client.TokensRequest() # TokensRequest | 
 
     try:
-        # Get supported tokens
+        # List supported tokens
         api_response = api_instance.get_tokens_v0_generic_supported_tokens_get_post(tokens_request)
         print("The response of OthersApi->get_tokens_v0_generic_supported_tokens_get_post:\n")
         pprint(api_response)
@@ -513,7 +513,7 @@ Name | Type | Description  | Notes
 # **set_allowance_v0_generic_allowance_set_post**
 > UnsignedTransaction set_allowance_v0_generic_allowance_set_post(increase_allowance_request)
 
-Change the allowance of a user on a protocol
+Set Allowance - Protocol
 
 This endpoint allows users to modify the token allowance for a specific
     protocol. In decentralized finance (DeFi), setting an allowance is a
@@ -557,7 +557,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     increase_allowance_request = compass.api_client.IncreaseAllowanceRequest() # IncreaseAllowanceRequest | 
 
     try:
-        # Change the allowance of a user on a protocol
+        # Set Allowance - Protocol
         api_response = api_instance.set_allowance_v0_generic_allowance_set_post(increase_allowance_request)
         print("The response of OthersApi->set_allowance_v0_generic_allowance_set_post:\n")
         pprint(api_response)
@@ -599,7 +599,7 @@ Name | Type | Description  | Notes
 # **set_any_allowance_v0_generic_allowance_set_any_post**
 > UnsignedTransaction set_any_allowance_v0_generic_allowance_set_any_post(increase_allowance_any_request)
 
-Sets allowance for any arbitrary ERC20 token address
+Set Allowance - Token
 
 This endpoint allows users to set an allowance for any arbitrary ERC20
     token address. In decentralized finance (DeFi), setting an allowance
@@ -645,7 +645,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     increase_allowance_any_request = compass.api_client.IncreaseAllowanceAnyRequest() # IncreaseAllowanceAnyRequest | 
 
     try:
-        # Sets allowance for any arbitrary ERC20 token address
+        # Set Allowance - Token
         api_response = api_instance.set_any_allowance_v0_generic_allowance_set_any_post(increase_allowance_any_request)
         print("The response of OthersApi->set_any_allowance_v0_generic_allowance_set_any_post:\n")
         pprint(api_response)
@@ -687,7 +687,7 @@ Name | Type | Description  | Notes
 # **transfer_erc20_v0_generic_transfer_erc20_post**
 > UnsignedTransaction transfer_erc20_v0_generic_transfer_erc20_post(transfer_erc20_request)
 
-Transfer ERC20 tokens to another address
+Transfer Token
 
 Sends ERC20 tokens from the sender's address to the specified recipient.
 
@@ -726,7 +726,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     transfer_erc20_request = compass.api_client.TransferERC20Request() # TransferERC20Request | 
 
     try:
-        # Transfer ERC20 tokens to another address
+        # Transfer Token
         api_response = api_instance.transfer_erc20_v0_generic_transfer_erc20_post(transfer_erc20_request)
         print("The response of OthersApi->transfer_erc20_v0_generic_transfer_erc20_post:\n")
         pprint(api_response)
@@ -768,7 +768,7 @@ Name | Type | Description  | Notes
 # **transfer_native_token_v0_generic_transfer_native_token_post**
 > UnsignedTransaction transfer_native_token_v0_generic_transfer_native_token_post(transfer_eth_request)
 
-Transfer native ETH to another address
+Transfer ETH
 
 Sends native ETH from the sender's address to the specified recipient.
 
@@ -807,7 +807,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     transfer_eth_request = compass.api_client.TransferEthRequest() # TransferEthRequest | 
 
     try:
-        # Transfer native ETH to another address
+        # Transfer ETH
         api_response = api_instance.transfer_native_token_v0_generic_transfer_native_token_post(transfer_eth_request)
         print("The response of OthersApi->transfer_native_token_v0_generic_transfer_native_token_post:\n")
         pprint(api_response)
@@ -849,7 +849,7 @@ Name | Type | Description  | Notes
 # **unwrap_weth_v0_generic_unwrap_weth_post**
 > UnsignedTransaction unwrap_weth_v0_generic_unwrap_weth_post(unwrap_weth_request)
 
-Change WETH back into raw ETH
+Unwrap WETH
 
 Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
 
@@ -888,7 +888,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     unwrap_weth_request = compass.api_client.UnwrapWethRequest() # UnwrapWethRequest | 
 
     try:
-        # Change WETH back into raw ETH
+        # Unwrap WETH
         api_response = api_instance.unwrap_weth_v0_generic_unwrap_weth_post(unwrap_weth_request)
         print("The response of OthersApi->unwrap_weth_v0_generic_unwrap_weth_post:\n")
         pprint(api_response)
@@ -930,7 +930,7 @@ Name | Type | Description  | Notes
 # **visualize_portfolio_v0_generic_visualize_portfolio_get_post**
 > Image visualize_portfolio_v0_generic_visualize_portfolio_get_post(visualize_portfolio_request)
 
-Visualize the token portfolio of a wallet address as a pie chart
+Visualize user portfolio
 
 Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
@@ -969,7 +969,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     visualize_portfolio_request = compass.api_client.VisualizePortfolioRequest() # VisualizePortfolioRequest | 
 
     try:
-        # Visualize the token portfolio of a wallet address as a pie chart
+        # Visualize user portfolio
         api_response = api_instance.visualize_portfolio_v0_generic_visualize_portfolio_get_post(visualize_portfolio_request)
         print("The response of OthersApi->visualize_portfolio_v0_generic_visualize_portfolio_get_post:\n")
         pprint(api_response)
@@ -1011,7 +1011,7 @@ Name | Type | Description  | Notes
 # **wrap_eth_v0_generic_wrap_eth_post**
 > UnsignedTransaction wrap_eth_v0_generic_wrap_eth_post(wrap_eth_request)
 
-Change raw ETH into WETH
+Wrap ETH
 
 Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
 
@@ -1050,7 +1050,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     wrap_eth_request = compass.api_client.WrapEthRequest() # WrapEthRequest | 
 
     try:
-        # Change raw ETH into WETH
+        # Wrap ETH
         api_response = api_instance.wrap_eth_v0_generic_wrap_eth_post(wrap_eth_request)
         print("The response of OthersApi->wrap_eth_v0_generic_wrap_eth_post:\n")
         pprint(api_response)

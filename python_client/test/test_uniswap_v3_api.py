@@ -36,35 +36,35 @@ class TestUniswapV3Api(unittest.TestCase):
     def test_get_buy_quote_v0_uniswap_quote_buy_exactly_get_post(self) -> None:
         """Test case for get_buy_quote_v0_uniswap_quote_buy_exactly_get_post
 
-        Get quote for buying tokens
+        Get quote - to specified amount
         """
         pass
 
     def test_get_pool_price_v0_uniswap_pool_price_get_post(self) -> None:
         """Test case for get_pool_price_v0_uniswap_pool_price_get_post
 
-        Get the price of a token in a Uniswap pool
+        Pool price
         """
         pass
 
     def test_get_positions_v0_uniswap_liquidity_provision_positions_get_post(self) -> None:
         """Test case for get_positions_v0_uniswap_liquidity_provision_positions_get_post
 
-        Retrieve LP positions for a sender
+        List LP
         """
         pass
 
     def test_get_sell_quote_v0_uniswap_quote_sell_exactly_get_post(self) -> None:
         """Test case for get_sell_quote_v0_uniswap_quote_sell_exactly_get_post
 
-        Get quote for selling tokens
+        Get quote - from specified amount
         """
         pass
 
     def test_in_range_v0_uniswap_liquidity_provision_in_range_get_post(self) -> None:
         """Test case for in_range_v0_uniswap_liquidity_provision_in_range_get_post
 
-        check if a position is in active tick range
+        Check if LP is active.
         """
         pass
 

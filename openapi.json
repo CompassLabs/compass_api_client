@@ -347,7 +347,7 @@
         "tags": [
           "Aerodrome Basic"
         ],
-        "summary": "Swap one token for another token on Aerodrome",
+        "summary": "Swap",
         "description": "Swap one token for another on Aerodrome.\n        Ensure you specify the minimum amount you expect to receive to\n        avoid trading at an unfavorable exchange rate. This endpoint\n        facilitates the exchange of tokens by interacting with the\n        Aerodrome smart contract, ensuring that the transaction is\n        executed only if the specified minimum output is met.",
         "operationId": "process_request_v0_aerodrome_basic_swap_tokens_post",
         "requestBody": {
@@ -389,7 +389,7 @@
         "tags": [
           "Aerodrome Basic"
         ],
-        "summary": "Swap ETH for some of a token on Aerodrome",
+        "summary": "Swap from ETH",
         "description": "This endpoint allows you to swap a specified amount of ETH for a\n        desired token on the Aerodrome platform. To protect against\n        unfavorable exchange rates, you must specify the minimum amount\n        of the token you wish to receive. The transaction will only be\n        executed if this minimum amount is met, ensuring you do not\n        accidentally trade at a disadvantageous rate.",
         "operationId": "process_request_v0_aerodrome_basic_swap_eth_for_token_post",
         "requestBody": {
@@ -431,7 +431,7 @@
         "tags": [
           "Aerodrome Basic"
         ],
-        "summary": "Swap a token for ETH on Aerodrome",
+        "summary": "Swap to ETH",
         "description": "Swap a specified amount of a token for ETH using the Aerodrome platform.\n        To protect against unfavorable exchange rates, you must specify the minimum\n        amount of ETH you wish to receive. The transaction will only be executed if\n        this minimum amount is met, ensuring you do not trade at a disadvantageous rate.",
         "operationId": "process_request_v0_aerodrome_basic_swap_token_for_eth_post",
         "requestBody": {
@@ -473,7 +473,7 @@
         "tags": [
           "Aerodrome Basic"
         ],
-        "summary": "Provide liquidity to a pool on Aerodrome",
+        "summary": "Provide liquidity",
         "description": "This endpoint allows users to provide liquidity to a specified pool on the\n        Aerodrome platform. Users must specify the tokens, desired amounts, minimum\n        amounts, and a deadline for the transaction. The operation will ensure the\n        pool exists and will use the sender's address if no recipient is specified.",
         "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post",
         "requestBody": {
@@ -515,7 +515,7 @@
         "tags": [
           "Aerodrome Basic"
         ],
-        "summary": "Provide liquidity to a pool on Aerodrome using WETH and another token",
+        "summary": "Provide liquidity using WETH",
         "description": "This endpoint allows users to provide liquidity to a specified pool on the\n        Aerodrome platform using Wrapped Ether (WETH) and another token. Users must\n        specify the token pair, desired amounts, minimum amounts, and a deadline for\n        the transaction. The operation will ensure the pool exists and will use the\n        sender's address if no recipient is specified. The transaction will be executed\n        through the Aerodrome Basic Router contract, and the specified amount of WETH\n        will be sent along with the transaction.",
         "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post",
         "requestBody": {
@@ -557,7 +557,7 @@
         "tags": [
           "Aerodrome Basic"
         ],
-        "summary": "Remove liquidity from a pool on Aerodrome",
+        "summary": "Remove liquidity",
         "description": "This endpoint allows users to remove liquidity from a specified pool on the\n        Aerodrome platform. Users must specify the token pair, the amount of liquidity\n        to remove, minimum amounts for each token, and a deadline for the transaction.\n        The operation will ensure the pool exists and will use the sender's address if\n        no recipient is specified. The transaction will be executed through the\n        Aerodrome Basic Router contract, and the specified amount of liquidity will be\n        withdrawn from the pool.",
         "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post",
         "requestBody": {
@@ -599,7 +599,7 @@
         "tags": [
           "Aerodrome Basic"
         ],
-        "summary": "Remove liquidity from a pool on Aerodrome using WETH and another token",
+        "summary": "Remove liquidity using WETH",
         "description": "This endpoint allows users to remove liquidity from a pool on the Aerodrome\n        platform using WETH and another token. Users must specify the token pair, the\n        amount of liquidity to remove, minimum amounts for each token, and a deadline\n        for the transaction. The operation will ensure the pool exists and will use\n        the sender's address if no recipient is specified. The transaction will be\n        executed through the Aerodrome Basic Router contract, and the specified amount\n        of liquidity will be withdrawn from the pool.",
         "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post",
         "requestBody": {
@@ -641,7 +641,7 @@
         "tags": [
           "Aerodrome Slipstream"
         ],
-        "summary": "Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.",
+        "summary": "Pool price",
         "description": "This endpoint retrieves the current price of a pool, indicating how many token0\n        you can purchase for 1 token1. Note that this is an instantaneous price and may\n        change during any trade. For a more accurate representation of the trade ratios\n        between the two assets, consider using the quote endpoint.",
         "operationId": "process_request_v0_aerodrome_slipstream_pool_price_get_post",
         "requestBody": {
@@ -683,7 +683,7 @@
         "tags": [
           "Aerodrome Slipstream"
         ],
-        "summary": "Trade a specific amount of a token into another.",
+        "summary": "Swap - from specified amount",
         "description": "This endpoint allows users to trade a specific amount of one token\n        into another token using the Aerodrome Slipstream protocol. The\n        transaction is executed by specifying the exact amount of the input\n        token to be sold, and the system calculates the amount of the output\n        token that will be received. The operation ensures that the trade is\n        conducted within the constraints of the current market conditions,\n        taking into account the liquidity and price impact. This endpoint is\n        suitable for users who want to sell a precise quantity of a token\n        and are willing to accept the resulting amount of the other token.",
         "operationId": "process_request_v0_aerodrome_slipstream_swap_sell_exactly_post",
         "requestBody": {
@@ -725,7 +725,7 @@
         "tags": [
           "Aerodrome Slipstream"
         ],
-        "summary": "Trade the amount of a token it takes to end up with a specified quantity of the other token",
+        "summary": "Swap - into specified amount",
         "description": "This endpoint facilitates the trading of tokens by allowing users to\n        specify the exact amount of the output token they wish to receive.\n        Utilizing the Aerodrome Slipstream protocol, the system calculates\n        the necessary amount of the input token required to achieve the\n        desired output. This operation is particularly useful for users who\n        have a specific target amount of the output token in mind and are\n        willing to provide the corresponding input token amount. The\n        transaction is executed with consideration of current market\n        conditions, including liquidity and price impact, ensuring that the\n        trade is completed efficiently and effectively.",
         "operationId": "process_request_v0_aerodrome_slipstream_swap_buy_exactly_post",
         "requestBody": {
@@ -767,7 +767,7 @@
         "tags": [
           "Aerodrome Slipstream"
         ],
-        "summary": "Get the number of LP positions for a given sender",
+        "summary": "List LP positions",
         "description": "Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.\n        This endpoint allows users to query and obtain detailed information about their LP positions,\n        including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,\n        provides a structured representation of the LP positions data, ensuring clarity and ease of use.\n        This functionality is essential for users managing their liquidity provision activities,\n        enabling them to make informed decisions based on their current positions.",
         "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post",
         "requestBody": {
@@ -935,7 +935,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Get the portfolio details for a wallet address",
+        "summary": "List user portfolio",
         "description": "Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.",
         "operationId": "get_portfolio_v0_generic_portfolio_get_post",
         "requestBody": {
@@ -972,12 +972,54 @@
         }
       }
     },
+    "/v0/generic/visualize_portfolio/get": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Visualize user portfolio",
+        "description": "Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.",
+        "operationId": "visualize_portfolio_v0_generic_visualize_portfolio_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VisualizePortfolioRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Image"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v0/generic/price/usd/get": {
       "post": {
         "tags": [
           "Others"
         ],
-        "summary": "Get the price of a given token relative to USD",
+        "summary": "Token price",
         "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.",
         "operationId": "get_price_v0_generic_price_usd_get_post",
         "requestBody": {
@@ -1019,7 +1061,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Get supported tokens",
+        "summary": "List supported tokens",
         "description": "Get the list of supported tokens on a chain by the Compass API.",
         "operationId": "get_tokens_v0_generic_supported_tokens_get_post",
         "requestBody": {
@@ -1056,54 +1098,12 @@
         }
       }
     },
-    "/v0/generic/visualize_portfolio/get": {
-      "post": {
-        "tags": [
-          "Others"
-        ],
-        "summary": "Visualize the token portfolio of a wallet address as a pie chart",
-        "description": "Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.",
-        "operationId": "visualize_portfolio_v0_generic_visualize_portfolio_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VisualizePortfolioRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Image"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v0/generic/balance/get": {
       "post": {
         "tags": [
           "Others"
         ],
-        "summary": "Get an ERC20 token's balance for a user",
+        "summary": "User token balance",
         "description": "Returns the balance of a specific ERC20 token for a given user address.",
         "operationId": "get_balance_v0_generic_balance_get_post",
         "requestBody": {
@@ -1145,7 +1145,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Show the allowance of a user on a protocol",
+        "summary": "Get allowance - Protocol",
         "description": "In decentralized finance (DeFi) protocols such as Uniswap or AAVE,\n        users must set a token allowance to authorize the protocol to spend\n        a specified amount of their tokens on their behalf. This is a crucial\n        step before engaging in any transactions or operations within these\n        protocols, ensuring that the protocol has the necessary permissions\n        to manage the user's tokens securely and efficiently.",
         "operationId": "get_allowance_v0_generic_allowance_get_post",
         "requestBody": {
@@ -1187,7 +1187,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Get the wallet address and registrant of an ENS name",
+        "summary": "Resolve ENS",
         "description": "An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.",
         "operationId": "get_ens_details_v0_generic_ens_get_post",
         "requestBody": {
@@ -1229,7 +1229,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Change raw ETH into WETH",
+        "summary": "Wrap ETH",
         "description": "Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.",
         "operationId": "wrap_eth_v0_generic_wrap_eth_post",
         "requestBody": {
@@ -1271,7 +1271,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Change WETH back into raw ETH",
+        "summary": "Unwrap WETH",
         "description": "Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.",
         "operationId": "unwrap_weth_v0_generic_unwrap_weth_post",
         "requestBody": {
@@ -1313,7 +1313,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Transfer ERC20 tokens to another address",
+        "summary": "Transfer Token",
         "description": "Sends ERC20 tokens from the sender's address to the specified recipient.",
         "operationId": "transfer_erc20_v0_generic_transfer_erc20_post",
         "requestBody": {
@@ -1355,7 +1355,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Transfer native ETH to another address",
+        "summary": "Transfer ETH",
         "description": "Sends native ETH from the sender's address to the specified recipient.",
         "operationId": "transfer_native_token_v0_generic_transfer_native_token_post",
         "requestBody": {
@@ -1397,7 +1397,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Change the allowance of a user on a protocol",
+        "summary": "Set Allowance - Protocol",
         "description": "This endpoint allows users to modify the token allowance for a specific\n    protocol. In decentralized finance (DeFi), setting an allowance is a\n    necessary step to authorize a protocol to spend a specified amount of\n    tokens on behalf of the user. This operation is crucial for ensuring\n    that the protocol can manage the user's tokens securely and efficiently,\n    enabling seamless transactions and operations within the DeFi ecosystem.",
         "operationId": "set_allowance_v0_generic_allowance_set_post",
         "requestBody": {
@@ -1439,7 +1439,7 @@
         "tags": [
           "Others"
         ],
-        "summary": "Sets allowance for any arbitrary ERC20 token address",
+        "summary": "Set Allowance - Token",
         "description": "This endpoint allows users to set an allowance for any arbitrary ERC20\n    token address. In decentralized finance (DeFi), setting an allowance\n    is a critical operation that permits a protocol to spend a specified\n    amount of tokens on behalf of the user. This functionality is essential\n    for enabling secure and efficient token management, facilitating smooth\n    transactions and operations within the DeFi ecosystem. By using this\n    endpoint, users can specify the token address and the amount they wish\n    to authorize, ensuring precise control over their token allowances.",
         "operationId": "set_any_allowance_v0_generic_allowance_set_any_post",
         "requestBody": {
@@ -1691,7 +1691,7 @@
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Get quote for buying tokens",
+        "summary": "Get quote - to specified amount",
         "description": "This endpoint calculates the amount of input tokens required to purchase a specified amount\n        of output tokens from a Uniswap pool. It also provides the resulting price after the\n        transaction. The calculation takes into account the current pool state and the specified fee\n        tier.",
         "operationId": "get_buy_quote_v0_uniswap_quote_buy_exactly_get_post",
         "requestBody": {
@@ -1733,7 +1733,7 @@
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Get quote for selling tokens",
+        "summary": "Get quote - from specified amount",
         "description": "This endpoint calculates the amount of input tokens required to purchase a specified amount of\n    output tokens from a Uniswap pool. It also provides the resulting price after the transaction.\n    The calculation takes into account the current pool state and the specified fee tier.",
         "operationId": "get_sell_quote_v0_uniswap_quote_sell_exactly_get_post",
         "requestBody": {
@@ -1775,7 +1775,7 @@
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Get the price of a token in a Uniswap pool",
+        "summary": "Pool price",
         "description": "This endpoint calculates the price of a token in a Uniswap pool. The price is\n        calculated based on the current pool state and the specified fee tier.",
         "operationId": "get_pool_price_v0_uniswap_pool_price_get_post",
         "requestBody": {
@@ -1817,7 +1817,7 @@
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "check if a position is in active tick range",
+        "summary": "Check if LP is active.",
         "description": "this endpoint allows users to check whether a specific liquidity provider (lp)\n        position is within the active tick range on the uniswap platform. by providing\n        the token id associated with the position, users can verify if the position is\n        currently within the tick range where trading occurs. this information is essential\n        for users to monitor the status of their lp positions and ensure that they are\n        actively participating in the trading activities within the liquidity pool and\n        earning trading fees.",
         "operationId": "in_range_v0_uniswap_liquidity_provision_in_range_get_post",
         "requestBody": {
@@ -1859,7 +1859,7 @@
         "tags": [
           "Uniswap V3"
         ],
-        "summary": "Retrieve LP positions for a sender",
+        "summary": "List LP",
         "description": "This endpoint retrieves the number of Liquidity Provider (LP) positions\n        associated with a specific sender address on the Uniswap platform.\n        Users can query this endpoint to obtain detailed information about their\n        LP positions, including the total number of positions and relevant metadata.\n        This information is crucial for users to manage and analyze their liquidity\n        provision activities effectively.",
         "operationId": "get_positions_v0_uniswap_liquidity_provision_positions_get_post",
         "requestBody": {

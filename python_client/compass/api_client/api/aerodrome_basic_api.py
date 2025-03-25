@@ -60,7 +60,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Provide liquidity to a pool on Aerodrome using WETH and another token
+        """Provide liquidity using WETH
 
         This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform using Wrapped Ether (WETH) and another token. Users must         specify the token pair, desired amounts, minimum amounts, and a deadline for         the transaction. The operation will ensure the pool exists and will use the         sender's address if no recipient is specified. The transaction will be executed         through the Aerodrome Basic Router contract, and the specified amount of WETH         will be sent along with the transaction.
 
@@ -128,7 +128,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Provide liquidity to a pool on Aerodrome using WETH and another token
+        """Provide liquidity using WETH
 
         This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform using Wrapped Ether (WETH) and another token. Users must         specify the token pair, desired amounts, minimum amounts, and a deadline for         the transaction. The operation will ensure the pool exists and will use the         sender's address if no recipient is specified. The transaction will be executed         through the Aerodrome Basic Router contract, and the specified amount of WETH         will be sent along with the transaction.
 
@@ -196,7 +196,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Provide liquidity to a pool on Aerodrome using WETH and another token
+        """Provide liquidity using WETH
 
         This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform using Wrapped Ether (WETH) and another token. Users must         specify the token pair, desired amounts, minimum amounts, and a deadline for         the transaction. The operation will ensure the pool exists and will use the         sender's address if no recipient is specified. The transaction will be executed         through the Aerodrome Basic Router contract, and the specified amount of WETH         will be sent along with the transaction.
 
@@ -337,7 +337,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Provide liquidity to a pool on Aerodrome
+        """Provide liquidity
 
         This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform. Users must specify the tokens, desired amounts, minimum         amounts, and a deadline for the transaction. The operation will ensure the         pool exists and will use the sender's address if no recipient is specified.
 
@@ -405,7 +405,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Provide liquidity to a pool on Aerodrome
+        """Provide liquidity
 
         This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform. Users must specify the tokens, desired amounts, minimum         amounts, and a deadline for the transaction. The operation will ensure the         pool exists and will use the sender's address if no recipient is specified.
 
@@ -473,7 +473,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Provide liquidity to a pool on Aerodrome
+        """Provide liquidity
 
         This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform. Users must specify the tokens, desired amounts, minimum         amounts, and a deadline for the transaction. The operation will ensure the         pool exists and will use the sender's address if no recipient is specified.
 
@@ -614,7 +614,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Remove liquidity from a pool on Aerodrome using WETH and another token
+        """Remove liquidity using WETH
 
         This endpoint allows users to remove liquidity from a pool on the Aerodrome         platform using WETH and another token. Users must specify the token pair, the         amount of liquidity to remove, minimum amounts for each token, and a deadline         for the transaction. The operation will ensure the pool exists and will use         the sender's address if no recipient is specified. The transaction will be         executed through the Aerodrome Basic Router contract, and the specified amount         of liquidity will be withdrawn from the pool.
 
@@ -682,7 +682,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Remove liquidity from a pool on Aerodrome using WETH and another token
+        """Remove liquidity using WETH
 
         This endpoint allows users to remove liquidity from a pool on the Aerodrome         platform using WETH and another token. Users must specify the token pair, the         amount of liquidity to remove, minimum amounts for each token, and a deadline         for the transaction. The operation will ensure the pool exists and will use         the sender's address if no recipient is specified. The transaction will be         executed through the Aerodrome Basic Router contract, and the specified amount         of liquidity will be withdrawn from the pool.
 
@@ -750,7 +750,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Remove liquidity from a pool on Aerodrome using WETH and another token
+        """Remove liquidity using WETH
 
         This endpoint allows users to remove liquidity from a pool on the Aerodrome         platform using WETH and another token. Users must specify the token pair, the         amount of liquidity to remove, minimum amounts for each token, and a deadline         for the transaction. The operation will ensure the pool exists and will use         the sender's address if no recipient is specified. The transaction will be         executed through the Aerodrome Basic Router contract, and the specified amount         of liquidity will be withdrawn from the pool.
 
@@ -891,7 +891,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Remove liquidity from a pool on Aerodrome
+        """Remove liquidity
 
         This endpoint allows users to remove liquidity from a specified pool on the         Aerodrome platform. Users must specify the token pair, the amount of liquidity         to remove, minimum amounts for each token, and a deadline for the transaction.         The operation will ensure the pool exists and will use the sender's address if         no recipient is specified. The transaction will be executed through the         Aerodrome Basic Router contract, and the specified amount of liquidity will be         withdrawn from the pool.
 
@@ -959,7 +959,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Remove liquidity from a pool on Aerodrome
+        """Remove liquidity
 
         This endpoint allows users to remove liquidity from a specified pool on the         Aerodrome platform. Users must specify the token pair, the amount of liquidity         to remove, minimum amounts for each token, and a deadline for the transaction.         The operation will ensure the pool exists and will use the sender's address if         no recipient is specified. The transaction will be executed through the         Aerodrome Basic Router contract, and the specified amount of liquidity will be         withdrawn from the pool.
 
@@ -1027,7 +1027,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Remove liquidity from a pool on Aerodrome
+        """Remove liquidity
 
         This endpoint allows users to remove liquidity from a specified pool on the         Aerodrome platform. Users must specify the token pair, the amount of liquidity         to remove, minimum amounts for each token, and a deadline for the transaction.         The operation will ensure the pool exists and will use the sender's address if         no recipient is specified. The transaction will be executed through the         Aerodrome Basic Router contract, and the specified amount of liquidity will be         withdrawn from the pool.
 
@@ -1168,7 +1168,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Swap ETH for some of a token on Aerodrome
+        """Swap from ETH
 
         This endpoint allows you to swap a specified amount of ETH for a         desired token on the Aerodrome platform. To protect against         unfavorable exchange rates, you must specify the minimum amount         of the token you wish to receive. The transaction will only be         executed if this minimum amount is met, ensuring you do not         accidentally trade at a disadvantageous rate.
 
@@ -1236,7 +1236,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Swap ETH for some of a token on Aerodrome
+        """Swap from ETH
 
         This endpoint allows you to swap a specified amount of ETH for a         desired token on the Aerodrome platform. To protect against         unfavorable exchange rates, you must specify the minimum amount         of the token you wish to receive. The transaction will only be         executed if this minimum amount is met, ensuring you do not         accidentally trade at a disadvantageous rate.
 
@@ -1304,7 +1304,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Swap ETH for some of a token on Aerodrome
+        """Swap from ETH
 
         This endpoint allows you to swap a specified amount of ETH for a         desired token on the Aerodrome platform. To protect against         unfavorable exchange rates, you must specify the minimum amount         of the token you wish to receive. The transaction will only be         executed if this minimum amount is met, ensuring you do not         accidentally trade at a disadvantageous rate.
 
@@ -1445,7 +1445,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Swap a token for ETH on Aerodrome
+        """Swap to ETH
 
         Swap a specified amount of a token for ETH using the Aerodrome platform.         To protect against unfavorable exchange rates, you must specify the minimum         amount of ETH you wish to receive. The transaction will only be executed if         this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
 
@@ -1513,7 +1513,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Swap a token for ETH on Aerodrome
+        """Swap to ETH
 
         Swap a specified amount of a token for ETH using the Aerodrome platform.         To protect against unfavorable exchange rates, you must specify the minimum         amount of ETH you wish to receive. The transaction will only be executed if         this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
 
@@ -1581,7 +1581,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Swap a token for ETH on Aerodrome
+        """Swap to ETH
 
         Swap a specified amount of a token for ETH using the Aerodrome platform.         To protect against unfavorable exchange rates, you must specify the minimum         amount of ETH you wish to receive. The transaction will only be executed if         this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
 
@@ -1722,7 +1722,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Swap one token for another token on Aerodrome
+        """Swap
 
         Swap one token for another on Aerodrome.         Ensure you specify the minimum amount you expect to receive to         avoid trading at an unfavorable exchange rate. This endpoint         facilitates the exchange of tokens by interacting with the         Aerodrome smart contract, ensuring that the transaction is         executed only if the specified minimum output is met.
 
@@ -1790,7 +1790,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Swap one token for another token on Aerodrome
+        """Swap
 
         Swap one token for another on Aerodrome.         Ensure you specify the minimum amount you expect to receive to         avoid trading at an unfavorable exchange rate. This endpoint         facilitates the exchange of tokens by interacting with the         Aerodrome smart contract, ensuring that the transaction is         executed only if the specified minimum output is met.
 
@@ -1858,7 +1858,7 @@ class AerodromeBasicApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Swap one token for another token on Aerodrome
+        """Swap
 
         Swap one token for another on Aerodrome.         Ensure you specify the minimum amount you expect to receive to         avoid trading at an unfavorable exchange rate. This endpoint         facilitates the exchange of tokens by interacting with the         Aerodrome smart contract, ensuring that the transaction is         executed only if the specified minimum output is met.
 

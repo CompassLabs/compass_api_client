@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**buy_exactly_v0_uniswap_swap_buy_exactly_post**](UniswapV3Api.md#buy_exactly_v0_uniswap_swap_buy_exactly_post) | **POST** /v0/uniswap/swap/buy_exactly | Buy exact amount
-[**get_buy_quote_v0_uniswap_quote_buy_exactly_get_post**](UniswapV3Api.md#get_buy_quote_v0_uniswap_quote_buy_exactly_get_post) | **POST** /v0/uniswap/quote/buy_exactly/get | Get quote for buying tokens
-[**get_pool_price_v0_uniswap_pool_price_get_post**](UniswapV3Api.md#get_pool_price_v0_uniswap_pool_price_get_post) | **POST** /v0/uniswap/pool_price/get | Get the price of a token in a Uniswap pool
-[**get_positions_v0_uniswap_liquidity_provision_positions_get_post**](UniswapV3Api.md#get_positions_v0_uniswap_liquidity_provision_positions_get_post) | **POST** /v0/uniswap/liquidity_provision/positions/get | Retrieve LP positions for a sender
-[**get_sell_quote_v0_uniswap_quote_sell_exactly_get_post**](UniswapV3Api.md#get_sell_quote_v0_uniswap_quote_sell_exactly_get_post) | **POST** /v0/uniswap/quote/sell_exactly/get | Get quote for selling tokens
-[**in_range_v0_uniswap_liquidity_provision_in_range_get_post**](UniswapV3Api.md#in_range_v0_uniswap_liquidity_provision_in_range_get_post) | **POST** /v0/uniswap/liquidity_provision/in_range/get | check if a position is in active tick range
+[**get_buy_quote_v0_uniswap_quote_buy_exactly_get_post**](UniswapV3Api.md#get_buy_quote_v0_uniswap_quote_buy_exactly_get_post) | **POST** /v0/uniswap/quote/buy_exactly/get | Get quote - to specified amount
+[**get_pool_price_v0_uniswap_pool_price_get_post**](UniswapV3Api.md#get_pool_price_v0_uniswap_pool_price_get_post) | **POST** /v0/uniswap/pool_price/get | Pool price
+[**get_positions_v0_uniswap_liquidity_provision_positions_get_post**](UniswapV3Api.md#get_positions_v0_uniswap_liquidity_provision_positions_get_post) | **POST** /v0/uniswap/liquidity_provision/positions/get | List LP
+[**get_sell_quote_v0_uniswap_quote_sell_exactly_get_post**](UniswapV3Api.md#get_sell_quote_v0_uniswap_quote_sell_exactly_get_post) | **POST** /v0/uniswap/quote/sell_exactly/get | Get quote - from specified amount
+[**in_range_v0_uniswap_liquidity_provision_in_range_get_post**](UniswapV3Api.md#in_range_v0_uniswap_liquidity_provision_in_range_get_post) | **POST** /v0/uniswap/liquidity_provision/in_range/get | Check if LP is active.
 [**increase_liquidity_v0_uniswap_liquidity_provision_increase_post**](UniswapV3Api.md#increase_liquidity_v0_uniswap_liquidity_provision_increase_post) | **POST** /v0/uniswap/liquidity_provision/increase | Increase an LP position
 [**mint_v0_uniswap_liquidity_provision_mint_post**](UniswapV3Api.md#mint_v0_uniswap_liquidity_provision_mint_post) | **POST** /v0/uniswap/liquidity_provision/mint | Open a new LP position
 [**sell_exactly_v0_uniswap_swap_sell_exactly_post**](UniswapV3Api.md#sell_exactly_v0_uniswap_swap_sell_exactly_post) | **POST** /v0/uniswap/swap/sell_exactly | Sell exact amount
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 # **get_buy_quote_v0_uniswap_quote_buy_exactly_get_post**
 > UniswapBuyQuoteInfoResponse get_buy_quote_v0_uniswap_quote_buy_exactly_get_post(uniswap_get_buy_quote_request)
 
-Get quote for buying tokens
+Get quote - to specified amount
 
 This endpoint calculates the amount of input tokens required to purchase a specified amount
         of output tokens from a Uniswap pool. It also provides the resulting price after the
@@ -148,7 +148,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     uniswap_get_buy_quote_request = compass.api_client.UniswapGetBuyQuoteRequest() # UniswapGetBuyQuoteRequest | 
 
     try:
-        # Get quote for buying tokens
+        # Get quote - to specified amount
         api_response = api_instance.get_buy_quote_v0_uniswap_quote_buy_exactly_get_post(uniswap_get_buy_quote_request)
         print("The response of UniswapV3Api->get_buy_quote_v0_uniswap_quote_buy_exactly_get_post:\n")
         pprint(api_response)
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 # **get_pool_price_v0_uniswap_pool_price_get_post**
 > UniswapPoolPriceResponse get_pool_price_v0_uniswap_pool_price_get_post(uniswap_get_pool_price_request)
 
-Get the price of a token in a Uniswap pool
+Pool price
 
 This endpoint calculates the price of a token in a Uniswap pool. The price is
         calculated based on the current pool state and the specified fee tier.
@@ -230,7 +230,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     uniswap_get_pool_price_request = compass.api_client.UniswapGetPoolPriceRequest() # UniswapGetPoolPriceRequest | 
 
     try:
-        # Get the price of a token in a Uniswap pool
+        # Pool price
         api_response = api_instance.get_pool_price_v0_uniswap_pool_price_get_post(uniswap_get_pool_price_request)
         print("The response of UniswapV3Api->get_pool_price_v0_uniswap_pool_price_get_post:\n")
         pprint(api_response)
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 # **get_positions_v0_uniswap_liquidity_provision_positions_get_post**
 > UniswapLPPositionsInfoResponse get_positions_v0_uniswap_liquidity_provision_positions_get_post(uniswap_get_liquidity_provision_positions_request)
 
-Retrieve LP positions for a sender
+List LP
 
 This endpoint retrieves the number of Liquidity Provider (LP) positions
         associated with a specific sender address on the Uniswap platform.
@@ -316,7 +316,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     uniswap_get_liquidity_provision_positions_request = compass.api_client.UniswapGetLiquidityProvisionPositionsRequest() # UniswapGetLiquidityProvisionPositionsRequest | 
 
     try:
-        # Retrieve LP positions for a sender
+        # List LP
         api_response = api_instance.get_positions_v0_uniswap_liquidity_provision_positions_get_post(uniswap_get_liquidity_provision_positions_request)
         print("The response of UniswapV3Api->get_positions_v0_uniswap_liquidity_provision_positions_get_post:\n")
         pprint(api_response)
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 # **get_sell_quote_v0_uniswap_quote_sell_exactly_get_post**
 > UniswapSellQuoteInfoResponse get_sell_quote_v0_uniswap_quote_sell_exactly_get_post(uniswap_get_sell_quote_request)
 
-Get quote for selling tokens
+Get quote - from specified amount
 
 This endpoint calculates the amount of input tokens required to purchase a specified amount of
     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.
@@ -399,7 +399,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     uniswap_get_sell_quote_request = compass.api_client.UniswapGetSellQuoteRequest() # UniswapGetSellQuoteRequest | 
 
     try:
-        # Get quote for selling tokens
+        # Get quote - from specified amount
         api_response = api_instance.get_sell_quote_v0_uniswap_quote_sell_exactly_get_post(uniswap_get_sell_quote_request)
         print("The response of UniswapV3Api->get_sell_quote_v0_uniswap_quote_sell_exactly_get_post:\n")
         pprint(api_response)
@@ -441,7 +441,7 @@ Name | Type | Description  | Notes
 # **in_range_v0_uniswap_liquidity_provision_in_range_get_post**
 > UniswapCheckInRangeResponse in_range_v0_uniswap_liquidity_provision_in_range_get_post(uniswap_check_in_range_request)
 
-check if a position is in active tick range
+Check if LP is active.
 
 this endpoint allows users to check whether a specific liquidity provider (lp)
         position is within the active tick range on the uniswap platform. by providing
@@ -486,7 +486,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     uniswap_check_in_range_request = compass.api_client.UniswapCheckInRangeRequest() # UniswapCheckInRangeRequest | 
 
     try:
-        # check if a position is in active tick range
+        # Check if LP is active.
         api_response = api_instance.in_range_v0_uniswap_liquidity_provision_in_range_get_post(uniswap_check_in_range_request)
         print("The response of UniswapV3Api->in_range_v0_uniswap_liquidity_provision_in_range_get_post:\n")
         pprint(api_response)

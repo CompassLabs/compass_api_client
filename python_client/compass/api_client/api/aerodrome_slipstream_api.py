@@ -616,7 +616,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AerodromeLPPositionsInfo:
-        """Get the number of LP positions for a given sender
+        """List LP positions
 
         Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.         This endpoint allows users to query and obtain detailed information about their LP positions,         including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,         provides a structured representation of the LP positions data, ensuring clarity and ease of use.         This functionality is essential for users managing their liquidity provision activities,         enabling them to make informed decisions based on their current positions.
 
@@ -684,7 +684,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AerodromeLPPositionsInfo]:
-        """Get the number of LP positions for a given sender
+        """List LP positions
 
         Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.         This endpoint allows users to query and obtain detailed information about their LP positions,         including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,         provides a structured representation of the LP positions data, ensuring clarity and ease of use.         This functionality is essential for users managing their liquidity provision activities,         enabling them to make informed decisions based on their current positions.
 
@@ -752,7 +752,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the number of LP positions for a given sender
+        """List LP positions
 
         Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.         This endpoint allows users to query and obtain detailed information about their LP positions,         including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,         provides a structured representation of the LP positions data, ensuring clarity and ease of use.         This functionality is essential for users managing their liquidity provision activities,         enabling them to make informed decisions based on their current positions.
 
@@ -1170,7 +1170,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AerodromeSlipstreamPoolPrice:
-        """Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
+        """Pool price
 
         This endpoint retrieves the current price of a pool, indicating how many token0         you can purchase for 1 token1. Note that this is an instantaneous price and may         change during any trade. For a more accurate representation of the trade ratios         between the two assets, consider using the quote endpoint.
 
@@ -1238,7 +1238,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AerodromeSlipstreamPoolPrice]:
-        """Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
+        """Pool price
 
         This endpoint retrieves the current price of a pool, indicating how many token0         you can purchase for 1 token1. Note that this is an instantaneous price and may         change during any trade. For a more accurate representation of the trade ratios         between the two assets, consider using the quote endpoint.
 
@@ -1306,7 +1306,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
+        """Pool price
 
         This endpoint retrieves the current price of a pool, indicating how many token0         you can purchase for 1 token1. Note that this is an instantaneous price and may         change during any trade. For a more accurate representation of the trade ratios         between the two assets, consider using the quote endpoint.
 
@@ -1447,7 +1447,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Trade the amount of a token it takes to end up with a specified quantity of the other token
+        """Swap - into specified amount
 
         This endpoint facilitates the trading of tokens by allowing users to         specify the exact amount of the output token they wish to receive.         Utilizing the Aerodrome Slipstream protocol, the system calculates         the necessary amount of the input token required to achieve the         desired output. This operation is particularly useful for users who         have a specific target amount of the output token in mind and are         willing to provide the corresponding input token amount. The         transaction is executed with consideration of current market         conditions, including liquidity and price impact, ensuring that the         trade is completed efficiently and effectively.
 
@@ -1515,7 +1515,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Trade the amount of a token it takes to end up with a specified quantity of the other token
+        """Swap - into specified amount
 
         This endpoint facilitates the trading of tokens by allowing users to         specify the exact amount of the output token they wish to receive.         Utilizing the Aerodrome Slipstream protocol, the system calculates         the necessary amount of the input token required to achieve the         desired output. This operation is particularly useful for users who         have a specific target amount of the output token in mind and are         willing to provide the corresponding input token amount. The         transaction is executed with consideration of current market         conditions, including liquidity and price impact, ensuring that the         trade is completed efficiently and effectively.
 
@@ -1583,7 +1583,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Trade the amount of a token it takes to end up with a specified quantity of the other token
+        """Swap - into specified amount
 
         This endpoint facilitates the trading of tokens by allowing users to         specify the exact amount of the output token they wish to receive.         Utilizing the Aerodrome Slipstream protocol, the system calculates         the necessary amount of the input token required to achieve the         desired output. This operation is particularly useful for users who         have a specific target amount of the output token in mind and are         willing to provide the corresponding input token amount. The         transaction is executed with consideration of current market         conditions, including liquidity and price impact, ensuring that the         trade is completed efficiently and effectively.
 
@@ -1724,7 +1724,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Trade a specific amount of a token into another.
+        """Swap - from specified amount
 
         This endpoint allows users to trade a specific amount of one token         into another token using the Aerodrome Slipstream protocol. The         transaction is executed by specifying the exact amount of the input         token to be sold, and the system calculates the amount of the output         token that will be received. The operation ensures that the trade is         conducted within the constraints of the current market conditions,         taking into account the liquidity and price impact. This endpoint is         suitable for users who want to sell a precise quantity of a token         and are willing to accept the resulting amount of the other token.
 
@@ -1792,7 +1792,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Trade a specific amount of a token into another.
+        """Swap - from specified amount
 
         This endpoint allows users to trade a specific amount of one token         into another token using the Aerodrome Slipstream protocol. The         transaction is executed by specifying the exact amount of the input         token to be sold, and the system calculates the amount of the output         token that will be received. The operation ensures that the trade is         conducted within the constraints of the current market conditions,         taking into account the liquidity and price impact. This endpoint is         suitable for users who want to sell a precise quantity of a token         and are willing to accept the resulting amount of the other token.
 
@@ -1860,7 +1860,7 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Trade a specific amount of a token into another.
+        """Swap - from specified amount
 
         This endpoint allows users to trade a specific amount of one token         into another token using the Aerodrome Slipstream protocol. The         transaction is executed by specifying the exact amount of the input         token to be sold, and the system calculates the amount of the output         token that will be received. The operation ensures that the trade is         conducted within the constraints of the current market conditions,         taking into account the liquidity and price impact. This endpoint is         suitable for users who want to sell a precise quantity of a token         and are willing to accept the resulting amount of the other token.
 

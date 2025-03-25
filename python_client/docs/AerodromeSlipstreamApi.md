@@ -6,11 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/increase | Increase an LP position
 [**process_request_v0_aerodrome_slipstream_liquidity_provision_mint_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_mint_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/mint | Open a new LP position
-[**process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/positions/get | Get the number of LP positions for a given sender
+[**process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/positions/get | List LP positions
 [**process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post) | **POST** /v0/aerodrome_slipstream/liquidity_provision/withdraw | Withdraw an LP position
-[**process_request_v0_aerodrome_slipstream_pool_price_get_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_pool_price_get_post) | **POST** /v0/aerodrome_slipstream/pool_price/get | Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
-[**process_request_v0_aerodrome_slipstream_swap_buy_exactly_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_swap_buy_exactly_post) | **POST** /v0/aerodrome_slipstream/swap/buy_exactly | Trade the amount of a token it takes to end up with a specified quantity of the other token
-[**process_request_v0_aerodrome_slipstream_swap_sell_exactly_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_swap_sell_exactly_post) | **POST** /v0/aerodrome_slipstream/swap/sell_exactly | Trade a specific amount of a token into another.
+[**process_request_v0_aerodrome_slipstream_pool_price_get_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_pool_price_get_post) | **POST** /v0/aerodrome_slipstream/pool_price/get | Pool price
+[**process_request_v0_aerodrome_slipstream_swap_buy_exactly_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_swap_buy_exactly_post) | **POST** /v0/aerodrome_slipstream/swap/buy_exactly | Swap - into specified amount
+[**process_request_v0_aerodrome_slipstream_swap_sell_exactly_post**](AerodromeSlipstreamApi.md#process_request_v0_aerodrome_slipstream_swap_sell_exactly_post) | **POST** /v0/aerodrome_slipstream/swap/sell_exactly | Swap - from specified amount
 
 
 # **process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post**
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post**
 > AerodromeLPPositionsInfo process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post(aerodrome_slipstream_get_liquidity_provision_positions)
 
-Get the number of LP positions for a given sender
+List LP positions
 
 Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.
         This endpoint allows users to query and obtain detailed information about their LP positions,
@@ -236,7 +236,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aerodrome_slipstream_get_liquidity_provision_positions = compass.api_client.AerodromeSlipstreamGetLiquidityProvisionPositions() # AerodromeSlipstreamGetLiquidityProvisionPositions | 
 
     try:
-        # Get the number of LP positions for a given sender
+        # List LP positions
         api_response = api_instance.process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post(aerodrome_slipstream_get_liquidity_provision_positions)
         print("The response of AerodromeSlipstreamApi->process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post:\n")
         pprint(api_response)
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_slipstream_pool_price_get_post**
 > AerodromeSlipstreamPoolPrice process_request_v0_aerodrome_slipstream_pool_price_get_post(aerodrome_slipstream_get_pool_price)
 
-Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
+Pool price
 
 This endpoint retrieves the current price of a pool, indicating how many token0
         you can purchase for 1 token1. Note that this is an instantaneous price and may
@@ -410,7 +410,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aerodrome_slipstream_get_pool_price = compass.api_client.AerodromeSlipstreamGetPoolPrice() # AerodromeSlipstreamGetPoolPrice | 
 
     try:
-        # Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
+        # Pool price
         api_response = api_instance.process_request_v0_aerodrome_slipstream_pool_price_get_post(aerodrome_slipstream_get_pool_price)
         print("The response of AerodromeSlipstreamApi->process_request_v0_aerodrome_slipstream_pool_price_get_post:\n")
         pprint(api_response)
@@ -452,7 +452,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_slipstream_swap_buy_exactly_post**
 > UnsignedTransaction process_request_v0_aerodrome_slipstream_swap_buy_exactly_post(base_transaction_request_aerodrome_slipstream_buy_exactly_call_data)
 
-Trade the amount of a token it takes to end up with a specified quantity of the other token
+Swap - into specified amount
 
 This endpoint facilitates the trading of tokens by allowing users to
         specify the exact amount of the output token they wish to receive.
@@ -500,7 +500,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_slipstream_buy_exactly_call_data = compass.api_client.BaseTransactionRequestAerodromeSlipstreamBuyExactlyCallData() # BaseTransactionRequestAerodromeSlipstreamBuyExactlyCallData | 
 
     try:
-        # Trade the amount of a token it takes to end up with a specified quantity of the other token
+        # Swap - into specified amount
         api_response = api_instance.process_request_v0_aerodrome_slipstream_swap_buy_exactly_post(base_transaction_request_aerodrome_slipstream_buy_exactly_call_data)
         print("The response of AerodromeSlipstreamApi->process_request_v0_aerodrome_slipstream_swap_buy_exactly_post:\n")
         pprint(api_response)
@@ -542,7 +542,7 @@ Name | Type | Description  | Notes
 # **process_request_v0_aerodrome_slipstream_swap_sell_exactly_post**
 > UnsignedTransaction process_request_v0_aerodrome_slipstream_swap_sell_exactly_post(base_transaction_request_aerodrome_slipstream_sell_exactly_call_data)
 
-Trade a specific amount of a token into another.
+Swap - from specified amount
 
 This endpoint allows users to trade a specific amount of one token
         into another token using the Aerodrome Slipstream protocol. The
@@ -589,7 +589,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     base_transaction_request_aerodrome_slipstream_sell_exactly_call_data = compass.api_client.BaseTransactionRequestAerodromeSlipstreamSellExactlyCallData() # BaseTransactionRequestAerodromeSlipstreamSellExactlyCallData | 
 
     try:
-        # Trade a specific amount of a token into another.
+        # Swap - from specified amount
         api_response = api_instance.process_request_v0_aerodrome_slipstream_swap_sell_exactly_post(base_transaction_request_aerodrome_slipstream_sell_exactly_call_data)
         print("The response of AerodromeSlipstreamApi->process_request_v0_aerodrome_slipstream_swap_sell_exactly_post:\n")
         pprint(api_response)

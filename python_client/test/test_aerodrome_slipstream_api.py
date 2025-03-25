@@ -43,7 +43,7 @@ class TestAerodromeSlipstreamApi(unittest.TestCase):
     def test_process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post(self) -> None:
         """Test case for process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post
 
-        Get the number of LP positions for a given sender
+        List LP positions
         """
         pass
 
@@ -57,21 +57,21 @@ class TestAerodromeSlipstreamApi(unittest.TestCase):
     def test_process_request_v0_aerodrome_slipstream_pool_price_get_post(self) -> None:
         """Test case for process_request_v0_aerodrome_slipstream_pool_price_get_post
 
-        Get the current price of a pool (how many token0 you can buy for 1 token1). This is only the instantaneous price; during any trade the price will change. Use the quote endpoint to get a more realistic idea of the ratios of the two assets you could trade.
+        Pool price
         """
         pass
 
     def test_process_request_v0_aerodrome_slipstream_swap_buy_exactly_post(self) -> None:
         """Test case for process_request_v0_aerodrome_slipstream_swap_buy_exactly_post
 
-        Trade the amount of a token it takes to end up with a specified quantity of the other token
+        Swap - into specified amount
         """
         pass
 
     def test_process_request_v0_aerodrome_slipstream_swap_sell_exactly_post(self) -> None:
         """Test case for process_request_v0_aerodrome_slipstream_swap_sell_exactly_post
 
-        Trade a specific amount of a token into another.
+        Swap - from specified amount
         """
         pass
 

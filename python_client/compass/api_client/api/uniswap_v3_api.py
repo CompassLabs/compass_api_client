@@ -345,7 +345,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UniswapBuyQuoteInfoResponse:
-        """Get quote for buying tokens
+        """Get quote - to specified amount
 
         This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
 
@@ -413,7 +413,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UniswapBuyQuoteInfoResponse]:
-        """Get quote for buying tokens
+        """Get quote - to specified amount
 
         This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
 
@@ -481,7 +481,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get quote for buying tokens
+        """Get quote - to specified amount
 
         This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
 
@@ -622,7 +622,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UniswapPoolPriceResponse:
-        """Get the price of a token in a Uniswap pool
+        """Pool price
 
         This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
 
@@ -690,7 +690,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UniswapPoolPriceResponse]:
-        """Get the price of a token in a Uniswap pool
+        """Pool price
 
         This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
 
@@ -758,7 +758,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the price of a token in a Uniswap pool
+        """Pool price
 
         This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
 
@@ -899,7 +899,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UniswapLPPositionsInfoResponse:
-        """Retrieve LP positions for a sender
+        """List LP
 
         This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
 
@@ -967,7 +967,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UniswapLPPositionsInfoResponse]:
-        """Retrieve LP positions for a sender
+        """List LP
 
         This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
 
@@ -1035,7 +1035,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Retrieve LP positions for a sender
+        """List LP
 
         This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
 
@@ -1176,7 +1176,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UniswapSellQuoteInfoResponse:
-        """Get quote for selling tokens
+        """Get quote - from specified amount
 
         This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
 
@@ -1244,7 +1244,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UniswapSellQuoteInfoResponse]:
-        """Get quote for selling tokens
+        """Get quote - from specified amount
 
         This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
 
@@ -1312,7 +1312,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get quote for selling tokens
+        """Get quote - from specified amount
 
         This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
 
@@ -1453,7 +1453,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UniswapCheckInRangeResponse:
-        """check if a position is in active tick range
+        """Check if LP is active.
 
         this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
 
@@ -1521,7 +1521,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UniswapCheckInRangeResponse]:
-        """check if a position is in active tick range
+        """Check if LP is active.
 
         this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
 
@@ -1589,7 +1589,7 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """check if a position is in active tick range
+        """Check if LP is active.
 
         this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
 

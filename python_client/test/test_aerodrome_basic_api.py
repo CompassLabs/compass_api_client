@@ -29,49 +29,49 @@ class TestAerodromeBasicApi(unittest.TestCase):
     def test_process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post(self) -> None:
         """Test case for process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post
 
-        Provide liquidity to a pool on Aerodrome using WETH and another token
+        Provide liquidity using WETH
         """
         pass
 
     def test_process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post(self) -> None:
         """Test case for process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post
 
-        Provide liquidity to a pool on Aerodrome
+        Provide liquidity
         """
         pass
 
     def test_process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post(self) -> None:
         """Test case for process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post
 
-        Remove liquidity from a pool on Aerodrome using WETH and another token
+        Remove liquidity using WETH
         """
         pass
 
     def test_process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post(self) -> None:
         """Test case for process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post
 
-        Remove liquidity from a pool on Aerodrome
+        Remove liquidity
         """
         pass
 
     def test_process_request_v0_aerodrome_basic_swap_eth_for_token_post(self) -> None:
         """Test case for process_request_v0_aerodrome_basic_swap_eth_for_token_post
 
-        Swap ETH for some of a token on Aerodrome
+        Swap from ETH
         """
         pass
 
     def test_process_request_v0_aerodrome_basic_swap_token_for_eth_post(self) -> None:
         """Test case for process_request_v0_aerodrome_basic_swap_token_for_eth_post
 
-        Swap a token for ETH on Aerodrome
+        Swap to ETH
         """
         pass
 
     def test_process_request_v0_aerodrome_basic_swap_tokens_post(self) -> None:
         """Test case for process_request_v0_aerodrome_basic_swap_tokens_post
 
-        Swap one token for another token on Aerodrome
+        Swap
         """
         pass
 

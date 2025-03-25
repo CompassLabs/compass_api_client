@@ -73,7 +73,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AllowanceInfoResponse:
-        """Show the allowance of a user on a protocol
+        """Get allowance - Protocol
 
         In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
 
@@ -141,7 +141,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AllowanceInfoResponse]:
-        """Show the allowance of a user on a protocol
+        """Get allowance - Protocol
 
         In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
 
@@ -209,7 +209,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Show the allowance of a user on a protocol
+        """Get allowance - Protocol
 
         In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
 
@@ -350,7 +350,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> BalanceInfoResponse:
-        """Get an ERC20 token's balance for a user
+        """User token balance
 
         Returns the balance of a specific ERC20 token for a given user address.
 
@@ -418,7 +418,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[BalanceInfoResponse]:
-        """Get an ERC20 token's balance for a user
+        """User token balance
 
         Returns the balance of a specific ERC20 token for a given user address.
 
@@ -486,7 +486,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get an ERC20 token's balance for a user
+        """User token balance
 
         Returns the balance of a specific ERC20 token for a given user address.
 
@@ -627,7 +627,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> EnsNameInfoResponse:
-        """Get the wallet address and registrant of an ENS name
+        """Resolve ENS
 
         An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
@@ -695,7 +695,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[EnsNameInfoResponse]:
-        """Get the wallet address and registrant of an ENS name
+        """Resolve ENS
 
         An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
@@ -763,7 +763,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the wallet address and registrant of an ENS name
+        """Resolve ENS
 
         An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
@@ -904,7 +904,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Portfolio:
-        """Get the portfolio details for a wallet address
+        """List user portfolio
 
         Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
@@ -972,7 +972,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Portfolio]:
-        """Get the portfolio details for a wallet address
+        """List user portfolio
 
         Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
@@ -1040,7 +1040,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the portfolio details for a wallet address
+        """List user portfolio
 
         Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
@@ -1181,7 +1181,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PriceResponse:
-        """Get the price of a given token relative to USD
+        """Token price
 
         Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
@@ -1249,7 +1249,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PriceResponse]:
-        """Get the price of a given token relative to USD
+        """Token price
 
         Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
@@ -1317,7 +1317,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the price of a given token relative to USD
+        """Token price
 
         Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
@@ -1458,7 +1458,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> TokenInfo:
-        """Get supported tokens
+        """List supported tokens
 
         Get the list of supported tokens on a chain by the Compass API.
 
@@ -1526,7 +1526,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[TokenInfo]:
-        """Get supported tokens
+        """List supported tokens
 
         Get the list of supported tokens on a chain by the Compass API.
 
@@ -1594,7 +1594,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get supported tokens
+        """List supported tokens
 
         Get the list of supported tokens on a chain by the Compass API.
 
@@ -1735,7 +1735,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Change the allowance of a user on a protocol
+        """Set Allowance - Protocol
 
         This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
 
@@ -1803,7 +1803,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Change the allowance of a user on a protocol
+        """Set Allowance - Protocol
 
         This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
 
@@ -1871,7 +1871,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Change the allowance of a user on a protocol
+        """Set Allowance - Protocol
 
         This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
 
@@ -2012,7 +2012,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Sets allowance for any arbitrary ERC20 token address
+        """Set Allowance - Token
 
         This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
 
@@ -2080,7 +2080,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Sets allowance for any arbitrary ERC20 token address
+        """Set Allowance - Token
 
         This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
 
@@ -2148,7 +2148,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Sets allowance for any arbitrary ERC20 token address
+        """Set Allowance - Token
 
         This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
 
@@ -2289,7 +2289,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Transfer ERC20 tokens to another address
+        """Transfer Token
 
         Sends ERC20 tokens from the sender's address to the specified recipient.
 
@@ -2357,7 +2357,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Transfer ERC20 tokens to another address
+        """Transfer Token
 
         Sends ERC20 tokens from the sender's address to the specified recipient.
 
@@ -2425,7 +2425,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Transfer ERC20 tokens to another address
+        """Transfer Token
 
         Sends ERC20 tokens from the sender's address to the specified recipient.
 
@@ -2566,7 +2566,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Transfer native ETH to another address
+        """Transfer ETH
 
         Sends native ETH from the sender's address to the specified recipient.
 
@@ -2634,7 +2634,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Transfer native ETH to another address
+        """Transfer ETH
 
         Sends native ETH from the sender's address to the specified recipient.
 
@@ -2702,7 +2702,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Transfer native ETH to another address
+        """Transfer ETH
 
         Sends native ETH from the sender's address to the specified recipient.
 
@@ -2843,7 +2843,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Change WETH back into raw ETH
+        """Unwrap WETH
 
         Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
 
@@ -2911,7 +2911,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Change WETH back into raw ETH
+        """Unwrap WETH
 
         Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
 
@@ -2979,7 +2979,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Change WETH back into raw ETH
+        """Unwrap WETH
 
         Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
 
@@ -3120,7 +3120,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Image:
-        """Visualize the token portfolio of a wallet address as a pie chart
+        """Visualize user portfolio
 
         Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
@@ -3188,7 +3188,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Image]:
-        """Visualize the token portfolio of a wallet address as a pie chart
+        """Visualize user portfolio
 
         Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
@@ -3256,7 +3256,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Visualize the token portfolio of a wallet address as a pie chart
+        """Visualize user portfolio
 
         Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
@@ -3397,7 +3397,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Change raw ETH into WETH
+        """Wrap ETH
 
         Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
 
@@ -3465,7 +3465,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Change raw ETH into WETH
+        """Wrap ETH
 
         Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
 
@@ -3533,7 +3533,7 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Change raw ETH into WETH
+        """Wrap ETH
 
         Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
 
