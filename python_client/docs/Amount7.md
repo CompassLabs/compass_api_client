@@ -1,6 +1,6 @@
 # Amount7
 
-The amount of ETH to unwrap.
+The amount of WETH to unwrap.
 
 ## Properties
 

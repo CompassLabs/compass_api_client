@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tokens** | [**List[Token]**](Token.md) | List of supported tokens for a gived chain | 
+**tokens** | [**List[Token]**](Token.md) | List of supported tokens for a given chain | 
 
 ## Example
 

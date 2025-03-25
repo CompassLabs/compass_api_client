@@ -19,15 +19,21 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from compass.api_client.models.chain import Chain
+from compass.api_client.models.contract_name import ContractName
+from compass.api_client.models.token import Token
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PriceResponse(BaseModel):
+class GetErc20AllowanceRequest(BaseModel):
     """
-    PriceResponse
+    Request model for getting an ERC20 token allowance.
     """ # noqa: E501
-    token_price_in_usd: StrictStr = Field(description="Price of the token in USD")
-    __properties: ClassVar[List[str]] = ["token_price_in_usd"]
+    chain: Chain
+    user: StrictStr = Field(description="The user to get the ERC20 allowance of.")
+    token: Token = Field(description="The symbol of the token for which the allowance is checked.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>")
+    contract_name: ContractName = Field(description="The name of the contract to check allowance for.")
+    __properties: ClassVar[List[str]] = ["chain", "user", "token", "contract_name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +53,7 @@ class PriceResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PriceResponse from a JSON string"""
+        """Create an instance of GetErc20AllowanceRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,7 +78,7 @@ class PriceResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PriceResponse from a dict"""
+        """Create an instance of GetErc20AllowanceRequest from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +86,10 @@ class PriceResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "token_price_in_usd": obj.get("token_price_in_usd")
+            "chain": obj.get("chain"),
+            "user": obj.get("user"),
+            "token": obj.get("token"),
+            "contract_name": obj.get("contract_name")
         })
         return _obj
 

@@ -27,7 +27,7 @@ class TokenInfo(BaseModel):
     """
     TokenInfo
     """ # noqa: E501
-    tokens: List[Token] = Field(description="List of supported tokens for a gived chain")
+    tokens: List[Token] = Field(description="List of supported tokens for a given chain")
     __properties: ClassVar[List[str]] = ["tokens"]
 
     model_config = ConfigDict(

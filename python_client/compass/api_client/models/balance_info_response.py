@@ -17,17 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
+from compass.api_client.models.token import Token
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PriceResponse(BaseModel):
+class BalanceInfoResponse(BaseModel):
     """
-    PriceResponse
+    Response model for token balance information.
     """ # noqa: E501
-    token_price_in_usd: StrictStr = Field(description="Price of the token in USD")
-    __properties: ClassVar[List[str]] = ["token_price_in_usd"]
+    amount: StrictStr = Field(description="Amount of tokens a particular address holds")
+    decimals: StrictInt = Field(description="Number of decimals of the token")
+    token_symbol: Token = Field(description="Symbol of the token<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>")
+    token_address: StrictStr = Field(description="Address of the token")
+    __properties: ClassVar[List[str]] = ["amount", "decimals", "token_symbol", "token_address"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +51,7 @@ class PriceResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PriceResponse from a JSON string"""
+        """Create an instance of BalanceInfoResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,7 +76,7 @@ class PriceResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PriceResponse from a dict"""
+        """Create an instance of BalanceInfoResponse from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +84,10 @@ class PriceResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "token_price_in_usd": obj.get("token_price_in_usd")
+            "amount": obj.get("amount"),
+            "decimals": obj.get("decimals"),
+            "token_symbol": obj.get("token_symbol"),
+            "token_address": obj.get("token_address")
         })
         return _obj
 

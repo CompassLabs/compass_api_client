@@ -27,7 +27,7 @@ AMOUNT7_ANY_OF_SCHEMAS = ["float", "str"]
 
 class Amount7(BaseModel):
     """
-    The amount of ETH to unwrap.
+    The amount of WETH to unwrap.
     """
 
     # data type: float

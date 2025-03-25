@@ -48,8 +48,7 @@ const Token = z.enum([
     'EUR',
     'VIRTUAL',
 ]);
-const InterestRateMode = z.union([z.literal(1), z.literal(2)]);
-const AaveBorrowRequest = z
+const AaveSupplyRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
 
@@ -59,13 +58,12 @@ All token balances are per-chain.`),
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to borrow'),
-        interest_rate_mode: InterestRateMode.describe(`On AAVE there are 2 different interest modes.
-
-A stable (but typically higher rate), or a variable rate.`),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to supply'),
         on_behalf_of: z
             .union([z.string(), z.null()])
-            .describe('The address on behalf of whom the supply is made')
+            .describe(
+                'The address on behalf of whom the supply is made. Defaults to the transaction sender.'
+            )
             .optional(),
     })
     .passthrough();
@@ -96,6 +94,27 @@ const HTTPValidationError = z
     .object({ detail: z.array(ValidationError) })
     .partial()
     .passthrough();
+const InterestRateMode = z.union([z.literal(1), z.literal(2)]);
+const AaveBorrowRequest = z
+    .object({
+        chain: Chain.describe(`The chain to use.
+
+All token balances are per-chain.`),
+        sender: z.string().describe('The address of the transaction sender'),
+        asset: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to borrow'),
+        interest_rate_mode: InterestRateMode.describe(`On AAVE there are 2 different interest modes.
+
+A stable (but typically higher rate), or a variable rate.`),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe('The address on behalf of whom the supply is made')
+            .optional(),
+    })
+    .passthrough();
 const AaveRepayRequest = z
     .object({
         chain: Chain.describe(`The chain to use.
@@ -113,25 +132,6 @@ A stable (but typically higher rate), or a variable rate.`),
         on_behalf_of: z
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
-            .optional(),
-    })
-    .passthrough();
-const AaveSupplyRequest = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-        sender: z.string().describe('The address of the transaction sender'),
-        asset: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to supply'),
-        on_behalf_of: z
-            .union([z.string(), z.null()])
-            .describe(
-                'The address on behalf of whom the supply is made. Defaults to the transaction sender.'
-            )
             .optional(),
     })
     .passthrough();
@@ -1335,13 +1335,13 @@ const UniswapLPPositionsInfoResponse = z
 export const schemas = {
     Chain,
     Token,
-    InterestRateMode,
-    AaveBorrowRequest,
+    AaveSupplyRequest,
     UnsignedTransaction,
     ValidationError,
     HTTPValidationError,
+    InterestRateMode,
+    AaveBorrowRequest,
     AaveRepayRequest,
-    AaveSupplyRequest,
     AaveWithdrawRequest,
     AaveGetAssetPriceRequest,
     AaveAssetPriceResponse,

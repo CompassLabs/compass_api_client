@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token_price_in_usd** | **str** |  | 
+**token_price_in_usd** | **str** | Price of the token in USD | 
 
 ## Example
 

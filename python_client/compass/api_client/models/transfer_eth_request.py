@@ -19,15 +19,20 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from compass.api_client.models.amount6 import Amount6
+from compass.api_client.models.chain import Chain
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PriceResponse(BaseModel):
+class TransferEthRequest(BaseModel):
     """
-    PriceResponse
+    Request model for transferring native ETH.
     """ # noqa: E501
-    token_price_in_usd: StrictStr = Field(description="Price of the token in USD")
-    __properties: ClassVar[List[str]] = ["token_price_in_usd"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    amount: Amount6
+    to: StrictStr = Field(description="The recipient of the ETH.")
+    __properties: ClassVar[List[str]] = ["chain", "sender", "amount", "to"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +52,7 @@ class PriceResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PriceResponse from a JSON string"""
+        """Create an instance of TransferEthRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -68,11 +73,14 @@ class PriceResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of amount
+        if self.amount:
+            _dict['amount'] = self.amount.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PriceResponse from a dict"""
+        """Create an instance of TransferEthRequest from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +88,10 @@ class PriceResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "token_price_in_usd": obj.get("token_price_in_usd")
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender"),
+            "amount": Amount6.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "to": obj.get("to")
         })
         return _obj
 

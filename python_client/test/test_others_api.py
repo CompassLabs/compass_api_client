@@ -26,92 +26,92 @@ class TestOthersApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_get_tokens_v0_generic_supported_tokens_get_post(self) -> None:
-        """Test case for get_tokens_v0_generic_supported_tokens_get_post
-
-        Get supported token
-        """
-        pass
-
-    def test_process_request_v0_generic_allowance_get_post(self) -> None:
-        """Test case for process_request_v0_generic_allowance_get_post
+    def test_get_allowance_v0_generic_allowance_get_post(self) -> None:
+        """Test case for get_allowance_v0_generic_allowance_get_post
 
         Show the allowance of a user on a protocol
         """
         pass
 
-    def test_process_request_v0_generic_allowance_set_any_post(self) -> None:
-        """Test case for process_request_v0_generic_allowance_set_any_post
+    def test_get_balance_v0_generic_balance_get_post(self) -> None:
+        """Test case for get_balance_v0_generic_balance_get_post
 
-        Sets allowance for any arbitrary ERC20 token address.
+        Get an ERC20 token's balance for a user
         """
         pass
 
-    def test_process_request_v0_generic_allowance_set_post(self) -> None:
-        """Test case for process_request_v0_generic_allowance_set_post
-
-        Change the allowance of a user on a protocol
-        """
-        pass
-
-    def test_process_request_v0_generic_balance_get_post(self) -> None:
-        """Test case for process_request_v0_generic_balance_get_post
-
-        Get an address balance of a token
-        """
-        pass
-
-    def test_process_request_v0_generic_ens_get_post(self) -> None:
-        """Test case for process_request_v0_generic_ens_get_post
+    def test_get_ens_details_v0_generic_ens_get_post(self) -> None:
+        """Test case for get_ens_details_v0_generic_ens_get_post
 
         Get the wallet address and registrant of an ENS name
         """
         pass
 
-    def test_process_request_v0_generic_portfolio_get_post(self) -> None:
-        """Test case for process_request_v0_generic_portfolio_get_post
+    def test_get_portfolio_v0_generic_portfolio_get_post(self) -> None:
+        """Test case for get_portfolio_v0_generic_portfolio_get_post
 
-        Get the portfolio details for a wallet addressincluding balances and values of all tokens.
+        Get the portfolio details for a wallet address
         """
         pass
 
-    def test_process_request_v0_generic_price_usd_get_post(self) -> None:
-        """Test case for process_request_v0_generic_price_usd_get_post
+    def test_get_price_v0_generic_price_usd_get_post(self) -> None:
+        """Test case for get_price_v0_generic_price_usd_get_post
 
         Get the price of a given token relative to USD
         """
         pass
 
-    def test_process_request_v0_generic_transfer_erc20_post(self) -> None:
-        """Test case for process_request_v0_generic_transfer_erc20_post
+    def test_get_tokens_v0_generic_supported_tokens_get_post(self) -> None:
+        """Test case for get_tokens_v0_generic_supported_tokens_get_post
 
-        Transfer some of an ERC20 Token
+        Get supported tokens
         """
         pass
 
-    def test_process_request_v0_generic_transfer_native_token_post(self) -> None:
-        """Test case for process_request_v0_generic_transfer_native_token_post
+    def test_set_allowance_v0_generic_allowance_set_post(self) -> None:
+        """Test case for set_allowance_v0_generic_allowance_set_post
 
-        Transfer the native token (usually ETH) to an address
+        Change the allowance of a user on a protocol
         """
         pass
 
-    def test_process_request_v0_generic_unwrap_weth_post(self) -> None:
-        """Test case for process_request_v0_generic_unwrap_weth_post
+    def test_set_any_allowance_v0_generic_allowance_set_any_post(self) -> None:
+        """Test case for set_any_allowance_v0_generic_allowance_set_any_post
 
-        Change WETH into raw ETH
+        Sets allowance for any arbitrary ERC20 token address
         """
         pass
 
-    def test_process_request_v0_generic_visualize_portfolio_get_post(self) -> None:
-        """Test case for process_request_v0_generic_visualize_portfolio_get_post
+    def test_transfer_erc20_v0_generic_transfer_erc20_post(self) -> None:
+        """Test case for transfer_erc20_v0_generic_transfer_erc20_post
+
+        Transfer ERC20 tokens to another address
+        """
+        pass
+
+    def test_transfer_native_token_v0_generic_transfer_native_token_post(self) -> None:
+        """Test case for transfer_native_token_v0_generic_transfer_native_token_post
+
+        Transfer native ETH to another address
+        """
+        pass
+
+    def test_unwrap_weth_v0_generic_unwrap_weth_post(self) -> None:
+        """Test case for unwrap_weth_v0_generic_unwrap_weth_post
+
+        Change WETH back into raw ETH
+        """
+        pass
+
+    def test_visualize_portfolio_v0_generic_visualize_portfolio_get_post(self) -> None:
+        """Test case for visualize_portfolio_v0_generic_visualize_portfolio_get_post
 
         Visualize the token portfolio of a wallet address as a pie chart
         """
         pass
 
-    def test_process_request_v0_generic_wrap_eth_post(self) -> None:
-        """Test case for process_request_v0_generic_wrap_eth_post
+    def test_wrap_eth_v0_generic_wrap_eth_post(self) -> None:
+        """Test case for wrap_eth_v0_generic_wrap_eth_post
 
         Change raw ETH into WETH
         """

@@ -16,26 +16,27 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from compass.api_client.models.allowance_info import AllowanceInfo
-from compass.api_client.models.balance_info import BalanceInfo
-from compass.api_client.models.base_transaction_request_increase_erc20_allowance_any_call_data import BaseTransactionRequestIncreaseErc20AllowanceAnyCallData
-from compass.api_client.models.base_transaction_request_increase_erc20_allowance_call_data import BaseTransactionRequestIncreaseErc20AllowanceCallData
-from compass.api_client.models.base_transaction_request_transfer_erc20_token_call_data import BaseTransactionRequestTransferERC20TokenCallData
-from compass.api_client.models.base_transaction_request_unwrap_weth_request_call_data import BaseTransactionRequestUnwrapWethRequestCallData
-from compass.api_client.models.base_transaction_request_wrap_eth_request_call_data import BaseTransactionRequestWrapEthRequestCallData
-from compass.api_client.models.ens_name_info import EnsNameInfo
-from compass.api_client.models.get_erc20_allowance import GetErc20Allowance
-from compass.api_client.models.get_erc20_balance import GetErc20Balance
-from compass.api_client.models.get_supported_tokens import GetSupportedTokens
-from compass.api_client.models.get_token_price import GetTokenPrice
+from compass.api_client.models.allowance_info_response import AllowanceInfoResponse
+from compass.api_client.models.balance_info_response import BalanceInfoResponse
+from compass.api_client.models.ens_name_info_response import EnsNameInfoResponse
+from compass.api_client.models.get_ens_details_request import GetEnsDetailsRequest
+from compass.api_client.models.get_erc20_allowance_request import GetErc20AllowanceRequest
+from compass.api_client.models.get_erc20_balance_request import GetErc20BalanceRequest
 from compass.api_client.models.image import Image
+from compass.api_client.models.increase_allowance_any_request import IncreaseAllowanceAnyRequest
+from compass.api_client.models.increase_allowance_request import IncreaseAllowanceRequest
 from compass.api_client.models.portfolio import Portfolio
+from compass.api_client.models.portfolio_request import PortfolioRequest
+from compass.api_client.models.price_request import PriceRequest
 from compass.api_client.models.price_response import PriceResponse
-from compass.api_client.models.request_ens_details import RequestEnsDetails
-from compass.api_client.models.request_user_address import RequestUserAddress
 from compass.api_client.models.token_info import TokenInfo
-from compass.api_client.models.transfer_eth import TransferEth
+from compass.api_client.models.tokens_request import TokensRequest
+from compass.api_client.models.transfer_erc20_request import TransferERC20Request
+from compass.api_client.models.transfer_eth_request import TransferEthRequest
 from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.models.unwrap_weth_request import UnwrapWethRequest
+from compass.api_client.models.visualize_portfolio_request import VisualizePortfolioRequest
+from compass.api_client.models.wrap_eth_request import WrapEthRequest
 
 from compass.api_client.api_client import ApiClient, RequestSerialized
 from compass.api_client.api_response import ApiResponse
@@ -56,9 +57,9 @@ class OthersApi:
 
 
     @validate_call
-    def get_tokens_v0_generic_supported_tokens_get_post(
+    def get_allowance_v0_generic_allowance_get_post(
         self,
-        get_supported_tokens: GetSupportedTokens,
+        get_erc20_allowance_request: GetErc20AllowanceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -71,13 +72,13 @@ class OthersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TokenInfo:
-        """Get supported token
+    ) -> AllowanceInfoResponse:
+        """Show the allowance of a user on a protocol
 
-        Get the list of supported tokens on a chain by the Compass API.
+        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
 
-        :param get_supported_tokens: (required)
-        :type get_supported_tokens: GetSupportedTokens
+        :param get_erc20_allowance_request: (required)
+        :type get_erc20_allowance_request: GetErc20AllowanceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -100,8 +101,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_tokens_v0_generic_supported_tokens_get_post_serialize(
-            get_supported_tokens=get_supported_tokens,
+        _param = self._get_allowance_v0_generic_allowance_get_post_serialize(
+            get_erc20_allowance_request=get_erc20_allowance_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -109,7 +110,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TokenInfo",
+            '200': "AllowanceInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -124,9 +125,9 @@ class OthersApi:
 
 
     @validate_call
-    def get_tokens_v0_generic_supported_tokens_get_post_with_http_info(
+    def get_allowance_v0_generic_allowance_get_post_with_http_info(
         self,
-        get_supported_tokens: GetSupportedTokens,
+        get_erc20_allowance_request: GetErc20AllowanceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -139,13 +140,13 @@ class OthersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TokenInfo]:
-        """Get supported token
+    ) -> ApiResponse[AllowanceInfoResponse]:
+        """Show the allowance of a user on a protocol
 
-        Get the list of supported tokens on a chain by the Compass API.
+        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
 
-        :param get_supported_tokens: (required)
-        :type get_supported_tokens: GetSupportedTokens
+        :param get_erc20_allowance_request: (required)
+        :type get_erc20_allowance_request: GetErc20AllowanceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -168,8 +169,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_tokens_v0_generic_supported_tokens_get_post_serialize(
-            get_supported_tokens=get_supported_tokens,
+        _param = self._get_allowance_v0_generic_allowance_get_post_serialize(
+            get_erc20_allowance_request=get_erc20_allowance_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -177,7 +178,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TokenInfo",
+            '200': "AllowanceInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -192,9 +193,9 @@ class OthersApi:
 
 
     @validate_call
-    def get_tokens_v0_generic_supported_tokens_get_post_without_preload_content(
+    def get_allowance_v0_generic_allowance_get_post_without_preload_content(
         self,
-        get_supported_tokens: GetSupportedTokens,
+        get_erc20_allowance_request: GetErc20AllowanceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -208,12 +209,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get supported token
+        """Show the allowance of a user on a protocol
 
-        Get the list of supported tokens on a chain by the Compass API.
+        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
 
-        :param get_supported_tokens: (required)
-        :type get_supported_tokens: GetSupportedTokens
+        :param get_erc20_allowance_request: (required)
+        :type get_erc20_allowance_request: GetErc20AllowanceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -236,8 +237,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_tokens_v0_generic_supported_tokens_get_post_serialize(
-            get_supported_tokens=get_supported_tokens,
+        _param = self._get_allowance_v0_generic_allowance_get_post_serialize(
+            get_erc20_allowance_request=get_erc20_allowance_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -245,7 +246,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TokenInfo",
+            '200': "AllowanceInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -255,9 +256,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _get_tokens_v0_generic_supported_tokens_get_post_serialize(
+    def _get_allowance_v0_generic_allowance_get_post_serialize(
         self,
-        get_supported_tokens,
+        get_erc20_allowance_request,
         _request_auth,
         _content_type,
         _headers,
@@ -283,285 +284,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if get_supported_tokens is not None:
-            _body_params = get_supported_tokens
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/generic/supported_tokens/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def process_request_v0_generic_allowance_get_post(
-        self,
-        get_erc20_allowance: GetErc20Allowance,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AllowanceInfo:
-        """Show the allowance of a user on a protocol
-
-        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
-
-        :param get_erc20_allowance: (required)
-        :type get_erc20_allowance: GetErc20Allowance
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_allowance_get_post_serialize(
-            get_erc20_allowance=get_erc20_allowance,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AllowanceInfo",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def process_request_v0_generic_allowance_get_post_with_http_info(
-        self,
-        get_erc20_allowance: GetErc20Allowance,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AllowanceInfo]:
-        """Show the allowance of a user on a protocol
-
-        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
-
-        :param get_erc20_allowance: (required)
-        :type get_erc20_allowance: GetErc20Allowance
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_allowance_get_post_serialize(
-            get_erc20_allowance=get_erc20_allowance,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AllowanceInfo",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def process_request_v0_generic_allowance_get_post_without_preload_content(
-        self,
-        get_erc20_allowance: GetErc20Allowance,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Show the allowance of a user on a protocol
-
-        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
-
-        :param get_erc20_allowance: (required)
-        :type get_erc20_allowance: GetErc20Allowance
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_allowance_get_post_serialize(
-            get_erc20_allowance=get_erc20_allowance,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AllowanceInfo",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _process_request_v0_generic_allowance_get_post_serialize(
-        self,
-        get_erc20_allowance,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if get_erc20_allowance is not None:
-            _body_params = get_erc20_allowance
+        if get_erc20_allowance_request is not None:
+            _body_params = get_erc20_allowance_request
 
 
         # set the HTTP header `Accept`
@@ -610,9 +334,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_allowance_set_any_post(
+    def get_balance_v0_generic_balance_get_post(
         self,
-        base_transaction_request_increase_erc20_allowance_any_call_data: BaseTransactionRequestIncreaseErc20AllowanceAnyCallData,
+        get_erc20_balance_request: GetErc20BalanceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -625,13 +349,13 @@ class OthersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UnsignedTransaction:
-        """Sets allowance for any arbitrary ERC20 token address.
+    ) -> BalanceInfoResponse:
+        """Get an ERC20 token's balance for a user
 
-        This endpoint allows users to set an allowance for any arbitrary ERC20         token address. In decentralized finance (DeFi), setting an allowance         is a critical operation that permits a protocol to spend a specified         amount of tokens on behalf of the user. This functionality is essential         for enabling secure and efficient token management, facilitating smooth         transactions and operations within the DeFi ecosystem. By using this         endpoint, users can specify the token address and the amount they wish         to authorize, ensuring precise control over their token allowances.
+        Returns the balance of a specific ERC20 token for a given user address.
 
-        :param base_transaction_request_increase_erc20_allowance_any_call_data: (required)
-        :type base_transaction_request_increase_erc20_allowance_any_call_data: BaseTransactionRequestIncreaseErc20AllowanceAnyCallData
+        :param get_erc20_balance_request: (required)
+        :type get_erc20_balance_request: GetErc20BalanceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -654,8 +378,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_allowance_set_any_post_serialize(
-            base_transaction_request_increase_erc20_allowance_any_call_data=base_transaction_request_increase_erc20_allowance_any_call_data,
+        _param = self._get_balance_v0_generic_balance_get_post_serialize(
+            get_erc20_balance_request=get_erc20_balance_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -663,7 +387,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "BalanceInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -678,9 +402,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_allowance_set_any_post_with_http_info(
+    def get_balance_v0_generic_balance_get_post_with_http_info(
         self,
-        base_transaction_request_increase_erc20_allowance_any_call_data: BaseTransactionRequestIncreaseErc20AllowanceAnyCallData,
+        get_erc20_balance_request: GetErc20BalanceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -693,13 +417,13 @@ class OthersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UnsignedTransaction]:
-        """Sets allowance for any arbitrary ERC20 token address.
+    ) -> ApiResponse[BalanceInfoResponse]:
+        """Get an ERC20 token's balance for a user
 
-        This endpoint allows users to set an allowance for any arbitrary ERC20         token address. In decentralized finance (DeFi), setting an allowance         is a critical operation that permits a protocol to spend a specified         amount of tokens on behalf of the user. This functionality is essential         for enabling secure and efficient token management, facilitating smooth         transactions and operations within the DeFi ecosystem. By using this         endpoint, users can specify the token address and the amount they wish         to authorize, ensuring precise control over their token allowances.
+        Returns the balance of a specific ERC20 token for a given user address.
 
-        :param base_transaction_request_increase_erc20_allowance_any_call_data: (required)
-        :type base_transaction_request_increase_erc20_allowance_any_call_data: BaseTransactionRequestIncreaseErc20AllowanceAnyCallData
+        :param get_erc20_balance_request: (required)
+        :type get_erc20_balance_request: GetErc20BalanceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -722,8 +446,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_allowance_set_any_post_serialize(
-            base_transaction_request_increase_erc20_allowance_any_call_data=base_transaction_request_increase_erc20_allowance_any_call_data,
+        _param = self._get_balance_v0_generic_balance_get_post_serialize(
+            get_erc20_balance_request=get_erc20_balance_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -731,7 +455,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "BalanceInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -746,9 +470,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_allowance_set_any_post_without_preload_content(
+    def get_balance_v0_generic_balance_get_post_without_preload_content(
         self,
-        base_transaction_request_increase_erc20_allowance_any_call_data: BaseTransactionRequestIncreaseErc20AllowanceAnyCallData,
+        get_erc20_balance_request: GetErc20BalanceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -762,12 +486,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Sets allowance for any arbitrary ERC20 token address.
+        """Get an ERC20 token's balance for a user
 
-        This endpoint allows users to set an allowance for any arbitrary ERC20         token address. In decentralized finance (DeFi), setting an allowance         is a critical operation that permits a protocol to spend a specified         amount of tokens on behalf of the user. This functionality is essential         for enabling secure and efficient token management, facilitating smooth         transactions and operations within the DeFi ecosystem. By using this         endpoint, users can specify the token address and the amount they wish         to authorize, ensuring precise control over their token allowances.
+        Returns the balance of a specific ERC20 token for a given user address.
 
-        :param base_transaction_request_increase_erc20_allowance_any_call_data: (required)
-        :type base_transaction_request_increase_erc20_allowance_any_call_data: BaseTransactionRequestIncreaseErc20AllowanceAnyCallData
+        :param get_erc20_balance_request: (required)
+        :type get_erc20_balance_request: GetErc20BalanceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -790,8 +514,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_allowance_set_any_post_serialize(
-            base_transaction_request_increase_erc20_allowance_any_call_data=base_transaction_request_increase_erc20_allowance_any_call_data,
+        _param = self._get_balance_v0_generic_balance_get_post_serialize(
+            get_erc20_balance_request=get_erc20_balance_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -799,7 +523,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "BalanceInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -809,9 +533,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_allowance_set_any_post_serialize(
+    def _get_balance_v0_generic_balance_get_post_serialize(
         self,
-        base_transaction_request_increase_erc20_allowance_any_call_data,
+        get_erc20_balance_request,
         _request_auth,
         _content_type,
         _headers,
@@ -837,562 +561,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if base_transaction_request_increase_erc20_allowance_any_call_data is not None:
-            _body_params = base_transaction_request_increase_erc20_allowance_any_call_data
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/generic/allowance/set_any',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def process_request_v0_generic_allowance_set_post(
-        self,
-        base_transaction_request_increase_erc20_allowance_call_data: BaseTransactionRequestIncreaseErc20AllowanceCallData,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UnsignedTransaction:
-        """Change the allowance of a user on a protocol
-
-        This endpoint allows users to modify the token allowance for a specific         protocol. In decentralized finance (DeFi), setting an allowance is a         necessary step to authorize a protocol to spend a specified amount of         tokens on behalf of the user. This operation is crucial for ensuring         that the protocol can manage the user's tokens securely and efficiently,         enabling seamless transactions and operations within the DeFi ecosystem.
-
-        :param base_transaction_request_increase_erc20_allowance_call_data: (required)
-        :type base_transaction_request_increase_erc20_allowance_call_data: BaseTransactionRequestIncreaseErc20AllowanceCallData
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_allowance_set_post_serialize(
-            base_transaction_request_increase_erc20_allowance_call_data=base_transaction_request_increase_erc20_allowance_call_data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def process_request_v0_generic_allowance_set_post_with_http_info(
-        self,
-        base_transaction_request_increase_erc20_allowance_call_data: BaseTransactionRequestIncreaseErc20AllowanceCallData,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UnsignedTransaction]:
-        """Change the allowance of a user on a protocol
-
-        This endpoint allows users to modify the token allowance for a specific         protocol. In decentralized finance (DeFi), setting an allowance is a         necessary step to authorize a protocol to spend a specified amount of         tokens on behalf of the user. This operation is crucial for ensuring         that the protocol can manage the user's tokens securely and efficiently,         enabling seamless transactions and operations within the DeFi ecosystem.
-
-        :param base_transaction_request_increase_erc20_allowance_call_data: (required)
-        :type base_transaction_request_increase_erc20_allowance_call_data: BaseTransactionRequestIncreaseErc20AllowanceCallData
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_allowance_set_post_serialize(
-            base_transaction_request_increase_erc20_allowance_call_data=base_transaction_request_increase_erc20_allowance_call_data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def process_request_v0_generic_allowance_set_post_without_preload_content(
-        self,
-        base_transaction_request_increase_erc20_allowance_call_data: BaseTransactionRequestIncreaseErc20AllowanceCallData,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Change the allowance of a user on a protocol
-
-        This endpoint allows users to modify the token allowance for a specific         protocol. In decentralized finance (DeFi), setting an allowance is a         necessary step to authorize a protocol to spend a specified amount of         tokens on behalf of the user. This operation is crucial for ensuring         that the protocol can manage the user's tokens securely and efficiently,         enabling seamless transactions and operations within the DeFi ecosystem.
-
-        :param base_transaction_request_increase_erc20_allowance_call_data: (required)
-        :type base_transaction_request_increase_erc20_allowance_call_data: BaseTransactionRequestIncreaseErc20AllowanceCallData
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_allowance_set_post_serialize(
-            base_transaction_request_increase_erc20_allowance_call_data=base_transaction_request_increase_erc20_allowance_call_data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _process_request_v0_generic_allowance_set_post_serialize(
-        self,
-        base_transaction_request_increase_erc20_allowance_call_data,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if base_transaction_request_increase_erc20_allowance_call_data is not None:
-            _body_params = base_transaction_request_increase_erc20_allowance_call_data
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/generic/allowance/set',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def process_request_v0_generic_balance_get_post(
-        self,
-        get_erc20_balance: GetErc20Balance,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> BalanceInfo:
-        """Get an address balance of a token
-
-        This endpoint allows users to retrieve the balance of a specified ERC20 token         for any given account address on the blockchain. It requires the token symbol         and the user's account address as input parameters. The response includes the         balance amount, the number of decimals the token uses, the token symbol, and         the token's contract address. This functionality is essential for applications         that need to display or manage token balances for users.
-
-        :param get_erc20_balance: (required)
-        :type get_erc20_balance: GetErc20Balance
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_balance_get_post_serialize(
-            get_erc20_balance=get_erc20_balance,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BalanceInfo",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def process_request_v0_generic_balance_get_post_with_http_info(
-        self,
-        get_erc20_balance: GetErc20Balance,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[BalanceInfo]:
-        """Get an address balance of a token
-
-        This endpoint allows users to retrieve the balance of a specified ERC20 token         for any given account address on the blockchain. It requires the token symbol         and the user's account address as input parameters. The response includes the         balance amount, the number of decimals the token uses, the token symbol, and         the token's contract address. This functionality is essential for applications         that need to display or manage token balances for users.
-
-        :param get_erc20_balance: (required)
-        :type get_erc20_balance: GetErc20Balance
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_balance_get_post_serialize(
-            get_erc20_balance=get_erc20_balance,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BalanceInfo",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def process_request_v0_generic_balance_get_post_without_preload_content(
-        self,
-        get_erc20_balance: GetErc20Balance,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get an address balance of a token
-
-        This endpoint allows users to retrieve the balance of a specified ERC20 token         for any given account address on the blockchain. It requires the token symbol         and the user's account address as input parameters. The response includes the         balance amount, the number of decimals the token uses, the token symbol, and         the token's contract address. This functionality is essential for applications         that need to display or manage token balances for users.
-
-        :param get_erc20_balance: (required)
-        :type get_erc20_balance: GetErc20Balance
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._process_request_v0_generic_balance_get_post_serialize(
-            get_erc20_balance=get_erc20_balance,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BalanceInfo",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _process_request_v0_generic_balance_get_post_serialize(
-        self,
-        get_erc20_balance,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if get_erc20_balance is not None:
-            _body_params = get_erc20_balance
+        if get_erc20_balance_request is not None:
+            _body_params = get_erc20_balance_request
 
 
         # set the HTTP header `Accept`
@@ -1441,9 +611,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_ens_get_post(
+    def get_ens_details_v0_generic_ens_get_post(
         self,
-        request_ens_details: RequestEnsDetails,
+        get_ens_details_request: GetEnsDetailsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1456,13 +626,13 @@ class OthersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> EnsNameInfo:
+    ) -> EnsNameInfoResponse:
         """Get the wallet address and registrant of an ENS name
 
         An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
-        :param request_ens_details: (required)
-        :type request_ens_details: RequestEnsDetails
+        :param get_ens_details_request: (required)
+        :type get_ens_details_request: GetEnsDetailsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1485,8 +655,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_ens_get_post_serialize(
-            request_ens_details=request_ens_details,
+        _param = self._get_ens_details_v0_generic_ens_get_post_serialize(
+            get_ens_details_request=get_ens_details_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1494,7 +664,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "EnsNameInfo",
+            '200': "EnsNameInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1509,9 +679,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_ens_get_post_with_http_info(
+    def get_ens_details_v0_generic_ens_get_post_with_http_info(
         self,
-        request_ens_details: RequestEnsDetails,
+        get_ens_details_request: GetEnsDetailsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1524,13 +694,13 @@ class OthersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[EnsNameInfo]:
+    ) -> ApiResponse[EnsNameInfoResponse]:
         """Get the wallet address and registrant of an ENS name
 
         An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
-        :param request_ens_details: (required)
-        :type request_ens_details: RequestEnsDetails
+        :param get_ens_details_request: (required)
+        :type get_ens_details_request: GetEnsDetailsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1553,8 +723,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_ens_get_post_serialize(
-            request_ens_details=request_ens_details,
+        _param = self._get_ens_details_v0_generic_ens_get_post_serialize(
+            get_ens_details_request=get_ens_details_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1562,7 +732,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "EnsNameInfo",
+            '200': "EnsNameInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1577,9 +747,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_ens_get_post_without_preload_content(
+    def get_ens_details_v0_generic_ens_get_post_without_preload_content(
         self,
-        request_ens_details: RequestEnsDetails,
+        get_ens_details_request: GetEnsDetailsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1597,8 +767,8 @@ class OthersApi:
 
         An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
-        :param request_ens_details: (required)
-        :type request_ens_details: RequestEnsDetails
+        :param get_ens_details_request: (required)
+        :type get_ens_details_request: GetEnsDetailsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1621,8 +791,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_ens_get_post_serialize(
-            request_ens_details=request_ens_details,
+        _param = self._get_ens_details_v0_generic_ens_get_post_serialize(
+            get_ens_details_request=get_ens_details_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1630,7 +800,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "EnsNameInfo",
+            '200': "EnsNameInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1640,9 +810,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_ens_get_post_serialize(
+    def _get_ens_details_v0_generic_ens_get_post_serialize(
         self,
-        request_ens_details,
+        get_ens_details_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1668,8 +838,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if request_ens_details is not None:
-            _body_params = request_ens_details
+        if get_ens_details_request is not None:
+            _body_params = get_ens_details_request
 
 
         # set the HTTP header `Accept`
@@ -1718,9 +888,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_portfolio_get_post(
+    def get_portfolio_v0_generic_portfolio_get_post(
         self,
-        request_user_address: RequestUserAddress,
+        portfolio_request: PortfolioRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1734,12 +904,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Portfolio:
-        """Get the portfolio details for a wallet addressincluding balances and values of all tokens.
+        """Get the portfolio details for a wallet address
 
         Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
-        :param request_user_address: (required)
-        :type request_user_address: RequestUserAddress
+        :param portfolio_request: (required)
+        :type portfolio_request: PortfolioRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1762,8 +932,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_portfolio_get_post_serialize(
-            request_user_address=request_user_address,
+        _param = self._get_portfolio_v0_generic_portfolio_get_post_serialize(
+            portfolio_request=portfolio_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1786,9 +956,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_portfolio_get_post_with_http_info(
+    def get_portfolio_v0_generic_portfolio_get_post_with_http_info(
         self,
-        request_user_address: RequestUserAddress,
+        portfolio_request: PortfolioRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1802,12 +972,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Portfolio]:
-        """Get the portfolio details for a wallet addressincluding balances and values of all tokens.
+        """Get the portfolio details for a wallet address
 
         Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
-        :param request_user_address: (required)
-        :type request_user_address: RequestUserAddress
+        :param portfolio_request: (required)
+        :type portfolio_request: PortfolioRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1830,8 +1000,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_portfolio_get_post_serialize(
-            request_user_address=request_user_address,
+        _param = self._get_portfolio_v0_generic_portfolio_get_post_serialize(
+            portfolio_request=portfolio_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1854,9 +1024,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_portfolio_get_post_without_preload_content(
+    def get_portfolio_v0_generic_portfolio_get_post_without_preload_content(
         self,
-        request_user_address: RequestUserAddress,
+        portfolio_request: PortfolioRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1870,12 +1040,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the portfolio details for a wallet addressincluding balances and values of all tokens.
+        """Get the portfolio details for a wallet address
 
         Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
-        :param request_user_address: (required)
-        :type request_user_address: RequestUserAddress
+        :param portfolio_request: (required)
+        :type portfolio_request: PortfolioRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1898,8 +1068,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_portfolio_get_post_serialize(
-            request_user_address=request_user_address,
+        _param = self._get_portfolio_v0_generic_portfolio_get_post_serialize(
+            portfolio_request=portfolio_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1917,9 +1087,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_portfolio_get_post_serialize(
+    def _get_portfolio_v0_generic_portfolio_get_post_serialize(
         self,
-        request_user_address,
+        portfolio_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1945,8 +1115,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if request_user_address is not None:
-            _body_params = request_user_address
+        if portfolio_request is not None:
+            _body_params = portfolio_request
 
 
         # set the HTTP header `Accept`
@@ -1995,9 +1165,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_price_usd_get_post(
+    def get_price_v0_generic_price_usd_get_post(
         self,
-        get_token_price: GetTokenPrice,
+        price_request: PriceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2015,8 +1185,8 @@ class OthersApi:
 
         Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
-        :param get_token_price: (required)
-        :type get_token_price: GetTokenPrice
+        :param price_request: (required)
+        :type price_request: PriceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2039,8 +1209,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_price_usd_get_post_serialize(
-            get_token_price=get_token_price,
+        _param = self._get_price_v0_generic_price_usd_get_post_serialize(
+            price_request=price_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2063,9 +1233,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_price_usd_get_post_with_http_info(
+    def get_price_v0_generic_price_usd_get_post_with_http_info(
         self,
-        get_token_price: GetTokenPrice,
+        price_request: PriceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2083,8 +1253,8 @@ class OthersApi:
 
         Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
-        :param get_token_price: (required)
-        :type get_token_price: GetTokenPrice
+        :param price_request: (required)
+        :type price_request: PriceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2107,8 +1277,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_price_usd_get_post_serialize(
-            get_token_price=get_token_price,
+        _param = self._get_price_v0_generic_price_usd_get_post_serialize(
+            price_request=price_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2131,9 +1301,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_price_usd_get_post_without_preload_content(
+    def get_price_v0_generic_price_usd_get_post_without_preload_content(
         self,
-        get_token_price: GetTokenPrice,
+        price_request: PriceRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2151,8 +1321,8 @@ class OthersApi:
 
         Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
-        :param get_token_price: (required)
-        :type get_token_price: GetTokenPrice
+        :param price_request: (required)
+        :type price_request: PriceRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2175,8 +1345,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_price_usd_get_post_serialize(
-            get_token_price=get_token_price,
+        _param = self._get_price_v0_generic_price_usd_get_post_serialize(
+            price_request=price_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2194,9 +1364,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_price_usd_get_post_serialize(
+    def _get_price_v0_generic_price_usd_get_post_serialize(
         self,
-        get_token_price,
+        price_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2222,8 +1392,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if get_token_price is not None:
-            _body_params = get_token_price
+        if price_request is not None:
+            _body_params = price_request
 
 
         # set the HTTP header `Accept`
@@ -2272,9 +1442,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_transfer_erc20_post(
+    def get_tokens_v0_generic_supported_tokens_get_post(
         self,
-        base_transaction_request_transfer_erc20_token_call_data: BaseTransactionRequestTransferERC20TokenCallData,
+        tokens_request: TokensRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2287,13 +1457,13 @@ class OthersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UnsignedTransaction:
-        """Transfer some of an ERC20 Token
+    ) -> TokenInfo:
+        """Get supported tokens
 
-        Transfer some amount of ERC20 token (fungible token) to another address.
+        Get the list of supported tokens on a chain by the Compass API.
 
-        :param base_transaction_request_transfer_erc20_token_call_data: (required)
-        :type base_transaction_request_transfer_erc20_token_call_data: BaseTransactionRequestTransferERC20TokenCallData
+        :param tokens_request: (required)
+        :type tokens_request: TokensRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2316,8 +1486,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_transfer_erc20_post_serialize(
-            base_transaction_request_transfer_erc20_token_call_data=base_transaction_request_transfer_erc20_token_call_data,
+        _param = self._get_tokens_v0_generic_supported_tokens_get_post_serialize(
+            tokens_request=tokens_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2325,7 +1495,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "TokenInfo",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -2340,9 +1510,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_transfer_erc20_post_with_http_info(
+    def get_tokens_v0_generic_supported_tokens_get_post_with_http_info(
         self,
-        base_transaction_request_transfer_erc20_token_call_data: BaseTransactionRequestTransferERC20TokenCallData,
+        tokens_request: TokensRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2355,13 +1525,13 @@ class OthersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UnsignedTransaction]:
-        """Transfer some of an ERC20 Token
+    ) -> ApiResponse[TokenInfo]:
+        """Get supported tokens
 
-        Transfer some amount of ERC20 token (fungible token) to another address.
+        Get the list of supported tokens on a chain by the Compass API.
 
-        :param base_transaction_request_transfer_erc20_token_call_data: (required)
-        :type base_transaction_request_transfer_erc20_token_call_data: BaseTransactionRequestTransferERC20TokenCallData
+        :param tokens_request: (required)
+        :type tokens_request: TokensRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2384,8 +1554,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_transfer_erc20_post_serialize(
-            base_transaction_request_transfer_erc20_token_call_data=base_transaction_request_transfer_erc20_token_call_data,
+        _param = self._get_tokens_v0_generic_supported_tokens_get_post_serialize(
+            tokens_request=tokens_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2393,7 +1563,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "TokenInfo",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -2408,9 +1578,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_transfer_erc20_post_without_preload_content(
+    def get_tokens_v0_generic_supported_tokens_get_post_without_preload_content(
         self,
-        base_transaction_request_transfer_erc20_token_call_data: BaseTransactionRequestTransferERC20TokenCallData,
+        tokens_request: TokensRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2424,12 +1594,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Transfer some of an ERC20 Token
+        """Get supported tokens
 
-        Transfer some amount of ERC20 token (fungible token) to another address.
+        Get the list of supported tokens on a chain by the Compass API.
 
-        :param base_transaction_request_transfer_erc20_token_call_data: (required)
-        :type base_transaction_request_transfer_erc20_token_call_data: BaseTransactionRequestTransferERC20TokenCallData
+        :param tokens_request: (required)
+        :type tokens_request: TokensRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2452,8 +1622,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_transfer_erc20_post_serialize(
-            base_transaction_request_transfer_erc20_token_call_data=base_transaction_request_transfer_erc20_token_call_data,
+        _param = self._get_tokens_v0_generic_supported_tokens_get_post_serialize(
+            tokens_request=tokens_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2461,7 +1631,7 @@ class OthersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "TokenInfo",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -2471,9 +1641,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_transfer_erc20_post_serialize(
+    def _get_tokens_v0_generic_supported_tokens_get_post_serialize(
         self,
-        base_transaction_request_transfer_erc20_token_call_data,
+        tokens_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2499,8 +1669,839 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if base_transaction_request_transfer_erc20_token_call_data is not None:
-            _body_params = base_transaction_request_transfer_erc20_token_call_data
+        if tokens_request is not None:
+            _body_params = tokens_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/generic/supported_tokens/get',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def set_allowance_v0_generic_allowance_set_post(
+        self,
+        increase_allowance_request: IncreaseAllowanceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UnsignedTransaction:
+        """Change the allowance of a user on a protocol
+
+        This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
+
+        :param increase_allowance_request: (required)
+        :type increase_allowance_request: IncreaseAllowanceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._set_allowance_v0_generic_allowance_set_post_serialize(
+            increase_allowance_request=increase_allowance_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def set_allowance_v0_generic_allowance_set_post_with_http_info(
+        self,
+        increase_allowance_request: IncreaseAllowanceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UnsignedTransaction]:
+        """Change the allowance of a user on a protocol
+
+        This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
+
+        :param increase_allowance_request: (required)
+        :type increase_allowance_request: IncreaseAllowanceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._set_allowance_v0_generic_allowance_set_post_serialize(
+            increase_allowance_request=increase_allowance_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def set_allowance_v0_generic_allowance_set_post_without_preload_content(
+        self,
+        increase_allowance_request: IncreaseAllowanceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Change the allowance of a user on a protocol
+
+        This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
+
+        :param increase_allowance_request: (required)
+        :type increase_allowance_request: IncreaseAllowanceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._set_allowance_v0_generic_allowance_set_post_serialize(
+            increase_allowance_request=increase_allowance_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _set_allowance_v0_generic_allowance_set_post_serialize(
+        self,
+        increase_allowance_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if increase_allowance_request is not None:
+            _body_params = increase_allowance_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/generic/allowance/set',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def set_any_allowance_v0_generic_allowance_set_any_post(
+        self,
+        increase_allowance_any_request: IncreaseAllowanceAnyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UnsignedTransaction:
+        """Sets allowance for any arbitrary ERC20 token address
+
+        This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
+
+        :param increase_allowance_any_request: (required)
+        :type increase_allowance_any_request: IncreaseAllowanceAnyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._set_any_allowance_v0_generic_allowance_set_any_post_serialize(
+            increase_allowance_any_request=increase_allowance_any_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def set_any_allowance_v0_generic_allowance_set_any_post_with_http_info(
+        self,
+        increase_allowance_any_request: IncreaseAllowanceAnyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UnsignedTransaction]:
+        """Sets allowance for any arbitrary ERC20 token address
+
+        This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
+
+        :param increase_allowance_any_request: (required)
+        :type increase_allowance_any_request: IncreaseAllowanceAnyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._set_any_allowance_v0_generic_allowance_set_any_post_serialize(
+            increase_allowance_any_request=increase_allowance_any_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def set_any_allowance_v0_generic_allowance_set_any_post_without_preload_content(
+        self,
+        increase_allowance_any_request: IncreaseAllowanceAnyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Sets allowance for any arbitrary ERC20 token address
+
+        This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
+
+        :param increase_allowance_any_request: (required)
+        :type increase_allowance_any_request: IncreaseAllowanceAnyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._set_any_allowance_v0_generic_allowance_set_any_post_serialize(
+            increase_allowance_any_request=increase_allowance_any_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _set_any_allowance_v0_generic_allowance_set_any_post_serialize(
+        self,
+        increase_allowance_any_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if increase_allowance_any_request is not None:
+            _body_params = increase_allowance_any_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/generic/allowance/set_any',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def transfer_erc20_v0_generic_transfer_erc20_post(
+        self,
+        transfer_erc20_request: TransferERC20Request,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UnsignedTransaction:
+        """Transfer ERC20 tokens to another address
+
+        Sends ERC20 tokens from the sender's address to the specified recipient.
+
+        :param transfer_erc20_request: (required)
+        :type transfer_erc20_request: TransferERC20Request
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._transfer_erc20_v0_generic_transfer_erc20_post_serialize(
+            transfer_erc20_request=transfer_erc20_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def transfer_erc20_v0_generic_transfer_erc20_post_with_http_info(
+        self,
+        transfer_erc20_request: TransferERC20Request,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UnsignedTransaction]:
+        """Transfer ERC20 tokens to another address
+
+        Sends ERC20 tokens from the sender's address to the specified recipient.
+
+        :param transfer_erc20_request: (required)
+        :type transfer_erc20_request: TransferERC20Request
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._transfer_erc20_v0_generic_transfer_erc20_post_serialize(
+            transfer_erc20_request=transfer_erc20_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def transfer_erc20_v0_generic_transfer_erc20_post_without_preload_content(
+        self,
+        transfer_erc20_request: TransferERC20Request,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Transfer ERC20 tokens to another address
+
+        Sends ERC20 tokens from the sender's address to the specified recipient.
+
+        :param transfer_erc20_request: (required)
+        :type transfer_erc20_request: TransferERC20Request
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._transfer_erc20_v0_generic_transfer_erc20_post_serialize(
+            transfer_erc20_request=transfer_erc20_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _transfer_erc20_v0_generic_transfer_erc20_post_serialize(
+        self,
+        transfer_erc20_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if transfer_erc20_request is not None:
+            _body_params = transfer_erc20_request
 
 
         # set the HTTP header `Accept`
@@ -2549,9 +2550,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_transfer_native_token_post(
+    def transfer_native_token_v0_generic_transfer_native_token_post(
         self,
-        transfer_eth: TransferEth,
+        transfer_eth_request: TransferEthRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2565,12 +2566,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Transfer the native token (usually ETH) to an address
+        """Transfer native ETH to another address
 
-        Transfer the native token of a chain from your address to another address.
+        Sends native ETH from the sender's address to the specified recipient.
 
-        :param transfer_eth: (required)
-        :type transfer_eth: TransferEth
+        :param transfer_eth_request: (required)
+        :type transfer_eth_request: TransferEthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2593,8 +2594,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_transfer_native_token_post_serialize(
-            transfer_eth=transfer_eth,
+        _param = self._transfer_native_token_v0_generic_transfer_native_token_post_serialize(
+            transfer_eth_request=transfer_eth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2617,9 +2618,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_transfer_native_token_post_with_http_info(
+    def transfer_native_token_v0_generic_transfer_native_token_post_with_http_info(
         self,
-        transfer_eth: TransferEth,
+        transfer_eth_request: TransferEthRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2633,12 +2634,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Transfer the native token (usually ETH) to an address
+        """Transfer native ETH to another address
 
-        Transfer the native token of a chain from your address to another address.
+        Sends native ETH from the sender's address to the specified recipient.
 
-        :param transfer_eth: (required)
-        :type transfer_eth: TransferEth
+        :param transfer_eth_request: (required)
+        :type transfer_eth_request: TransferEthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2661,8 +2662,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_transfer_native_token_post_serialize(
-            transfer_eth=transfer_eth,
+        _param = self._transfer_native_token_v0_generic_transfer_native_token_post_serialize(
+            transfer_eth_request=transfer_eth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2685,9 +2686,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_transfer_native_token_post_without_preload_content(
+    def transfer_native_token_v0_generic_transfer_native_token_post_without_preload_content(
         self,
-        transfer_eth: TransferEth,
+        transfer_eth_request: TransferEthRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2701,12 +2702,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Transfer the native token (usually ETH) to an address
+        """Transfer native ETH to another address
 
-        Transfer the native token of a chain from your address to another address.
+        Sends native ETH from the sender's address to the specified recipient.
 
-        :param transfer_eth: (required)
-        :type transfer_eth: TransferEth
+        :param transfer_eth_request: (required)
+        :type transfer_eth_request: TransferEthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2729,8 +2730,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_transfer_native_token_post_serialize(
-            transfer_eth=transfer_eth,
+        _param = self._transfer_native_token_v0_generic_transfer_native_token_post_serialize(
+            transfer_eth_request=transfer_eth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2748,9 +2749,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_transfer_native_token_post_serialize(
+    def _transfer_native_token_v0_generic_transfer_native_token_post_serialize(
         self,
-        transfer_eth,
+        transfer_eth_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2776,8 +2777,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if transfer_eth is not None:
-            _body_params = transfer_eth
+        if transfer_eth_request is not None:
+            _body_params = transfer_eth_request
 
 
         # set the HTTP header `Accept`
@@ -2826,9 +2827,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_unwrap_weth_post(
+    def unwrap_weth_v0_generic_unwrap_weth_post(
         self,
-        base_transaction_request_unwrap_weth_request_call_data: BaseTransactionRequestUnwrapWethRequestCallData,
+        unwrap_weth_request: UnwrapWethRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2842,12 +2843,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Change WETH into raw ETH
+        """Change WETH back into raw ETH
 
-        Unwrapping ETH transforms the ERC-20 token into the raw form used for paying gas fees and other basic functions.
+        Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
 
-        :param base_transaction_request_unwrap_weth_request_call_data: (required)
-        :type base_transaction_request_unwrap_weth_request_call_data: BaseTransactionRequestUnwrapWethRequestCallData
+        :param unwrap_weth_request: (required)
+        :type unwrap_weth_request: UnwrapWethRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2870,8 +2871,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_unwrap_weth_post_serialize(
-            base_transaction_request_unwrap_weth_request_call_data=base_transaction_request_unwrap_weth_request_call_data,
+        _param = self._unwrap_weth_v0_generic_unwrap_weth_post_serialize(
+            unwrap_weth_request=unwrap_weth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2894,9 +2895,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_unwrap_weth_post_with_http_info(
+    def unwrap_weth_v0_generic_unwrap_weth_post_with_http_info(
         self,
-        base_transaction_request_unwrap_weth_request_call_data: BaseTransactionRequestUnwrapWethRequestCallData,
+        unwrap_weth_request: UnwrapWethRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2910,12 +2911,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Change WETH into raw ETH
+        """Change WETH back into raw ETH
 
-        Unwrapping ETH transforms the ERC-20 token into the raw form used for paying gas fees and other basic functions.
+        Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
 
-        :param base_transaction_request_unwrap_weth_request_call_data: (required)
-        :type base_transaction_request_unwrap_weth_request_call_data: BaseTransactionRequestUnwrapWethRequestCallData
+        :param unwrap_weth_request: (required)
+        :type unwrap_weth_request: UnwrapWethRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2938,8 +2939,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_unwrap_weth_post_serialize(
-            base_transaction_request_unwrap_weth_request_call_data=base_transaction_request_unwrap_weth_request_call_data,
+        _param = self._unwrap_weth_v0_generic_unwrap_weth_post_serialize(
+            unwrap_weth_request=unwrap_weth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2962,9 +2963,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_unwrap_weth_post_without_preload_content(
+    def unwrap_weth_v0_generic_unwrap_weth_post_without_preload_content(
         self,
-        base_transaction_request_unwrap_weth_request_call_data: BaseTransactionRequestUnwrapWethRequestCallData,
+        unwrap_weth_request: UnwrapWethRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2978,12 +2979,12 @@ class OthersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Change WETH into raw ETH
+        """Change WETH back into raw ETH
 
-        Unwrapping ETH transforms the ERC-20 token into the raw form used for paying gas fees and other basic functions.
+        Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
 
-        :param base_transaction_request_unwrap_weth_request_call_data: (required)
-        :type base_transaction_request_unwrap_weth_request_call_data: BaseTransactionRequestUnwrapWethRequestCallData
+        :param unwrap_weth_request: (required)
+        :type unwrap_weth_request: UnwrapWethRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3006,8 +3007,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_unwrap_weth_post_serialize(
-            base_transaction_request_unwrap_weth_request_call_data=base_transaction_request_unwrap_weth_request_call_data,
+        _param = self._unwrap_weth_v0_generic_unwrap_weth_post_serialize(
+            unwrap_weth_request=unwrap_weth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3025,9 +3026,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_unwrap_weth_post_serialize(
+    def _unwrap_weth_v0_generic_unwrap_weth_post_serialize(
         self,
-        base_transaction_request_unwrap_weth_request_call_data,
+        unwrap_weth_request,
         _request_auth,
         _content_type,
         _headers,
@@ -3053,8 +3054,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if base_transaction_request_unwrap_weth_request_call_data is not None:
-            _body_params = base_transaction_request_unwrap_weth_request_call_data
+        if unwrap_weth_request is not None:
+            _body_params = unwrap_weth_request
 
 
         # set the HTTP header `Accept`
@@ -3103,9 +3104,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_visualize_portfolio_get_post(
+    def visualize_portfolio_v0_generic_visualize_portfolio_get_post(
         self,
-        request_user_address: RequestUserAddress,
+        visualize_portfolio_request: VisualizePortfolioRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3123,8 +3124,8 @@ class OthersApi:
 
         Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
-        :param request_user_address: (required)
-        :type request_user_address: RequestUserAddress
+        :param visualize_portfolio_request: (required)
+        :type visualize_portfolio_request: VisualizePortfolioRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3147,8 +3148,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_visualize_portfolio_get_post_serialize(
-            request_user_address=request_user_address,
+        _param = self._visualize_portfolio_v0_generic_visualize_portfolio_get_post_serialize(
+            visualize_portfolio_request=visualize_portfolio_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3171,9 +3172,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_visualize_portfolio_get_post_with_http_info(
+    def visualize_portfolio_v0_generic_visualize_portfolio_get_post_with_http_info(
         self,
-        request_user_address: RequestUserAddress,
+        visualize_portfolio_request: VisualizePortfolioRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3191,8 +3192,8 @@ class OthersApi:
 
         Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
-        :param request_user_address: (required)
-        :type request_user_address: RequestUserAddress
+        :param visualize_portfolio_request: (required)
+        :type visualize_portfolio_request: VisualizePortfolioRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3215,8 +3216,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_visualize_portfolio_get_post_serialize(
-            request_user_address=request_user_address,
+        _param = self._visualize_portfolio_v0_generic_visualize_portfolio_get_post_serialize(
+            visualize_portfolio_request=visualize_portfolio_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3239,9 +3240,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_visualize_portfolio_get_post_without_preload_content(
+    def visualize_portfolio_v0_generic_visualize_portfolio_get_post_without_preload_content(
         self,
-        request_user_address: RequestUserAddress,
+        visualize_portfolio_request: VisualizePortfolioRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3259,8 +3260,8 @@ class OthersApi:
 
         Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
-        :param request_user_address: (required)
-        :type request_user_address: RequestUserAddress
+        :param visualize_portfolio_request: (required)
+        :type visualize_portfolio_request: VisualizePortfolioRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3283,8 +3284,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_visualize_portfolio_get_post_serialize(
-            request_user_address=request_user_address,
+        _param = self._visualize_portfolio_v0_generic_visualize_portfolio_get_post_serialize(
+            visualize_portfolio_request=visualize_portfolio_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3302,9 +3303,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_visualize_portfolio_get_post_serialize(
+    def _visualize_portfolio_v0_generic_visualize_portfolio_get_post_serialize(
         self,
-        request_user_address,
+        visualize_portfolio_request,
         _request_auth,
         _content_type,
         _headers,
@@ -3330,8 +3331,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if request_user_address is not None:
-            _body_params = request_user_address
+        if visualize_portfolio_request is not None:
+            _body_params = visualize_portfolio_request
 
 
         # set the HTTP header `Accept`
@@ -3380,9 +3381,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_wrap_eth_post(
+    def wrap_eth_v0_generic_wrap_eth_post(
         self,
-        base_transaction_request_wrap_eth_request_call_data: BaseTransactionRequestWrapEthRequestCallData,
+        wrap_eth_request: WrapEthRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3400,8 +3401,8 @@ class OthersApi:
 
         Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
 
-        :param base_transaction_request_wrap_eth_request_call_data: (required)
-        :type base_transaction_request_wrap_eth_request_call_data: BaseTransactionRequestWrapEthRequestCallData
+        :param wrap_eth_request: (required)
+        :type wrap_eth_request: WrapEthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3424,8 +3425,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_wrap_eth_post_serialize(
-            base_transaction_request_wrap_eth_request_call_data=base_transaction_request_wrap_eth_request_call_data,
+        _param = self._wrap_eth_v0_generic_wrap_eth_post_serialize(
+            wrap_eth_request=wrap_eth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3448,9 +3449,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_wrap_eth_post_with_http_info(
+    def wrap_eth_v0_generic_wrap_eth_post_with_http_info(
         self,
-        base_transaction_request_wrap_eth_request_call_data: BaseTransactionRequestWrapEthRequestCallData,
+        wrap_eth_request: WrapEthRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3468,8 +3469,8 @@ class OthersApi:
 
         Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
 
-        :param base_transaction_request_wrap_eth_request_call_data: (required)
-        :type base_transaction_request_wrap_eth_request_call_data: BaseTransactionRequestWrapEthRequestCallData
+        :param wrap_eth_request: (required)
+        :type wrap_eth_request: WrapEthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3492,8 +3493,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_wrap_eth_post_serialize(
-            base_transaction_request_wrap_eth_request_call_data=base_transaction_request_wrap_eth_request_call_data,
+        _param = self._wrap_eth_v0_generic_wrap_eth_post_serialize(
+            wrap_eth_request=wrap_eth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3516,9 +3517,9 @@ class OthersApi:
 
 
     @validate_call
-    def process_request_v0_generic_wrap_eth_post_without_preload_content(
+    def wrap_eth_v0_generic_wrap_eth_post_without_preload_content(
         self,
-        base_transaction_request_wrap_eth_request_call_data: BaseTransactionRequestWrapEthRequestCallData,
+        wrap_eth_request: WrapEthRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3536,8 +3537,8 @@ class OthersApi:
 
         Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
 
-        :param base_transaction_request_wrap_eth_request_call_data: (required)
-        :type base_transaction_request_wrap_eth_request_call_data: BaseTransactionRequestWrapEthRequestCallData
+        :param wrap_eth_request: (required)
+        :type wrap_eth_request: WrapEthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3560,8 +3561,8 @@ class OthersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._process_request_v0_generic_wrap_eth_post_serialize(
-            base_transaction_request_wrap_eth_request_call_data=base_transaction_request_wrap_eth_request_call_data,
+        _param = self._wrap_eth_v0_generic_wrap_eth_post_serialize(
+            wrap_eth_request=wrap_eth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3579,9 +3580,9 @@ class OthersApi:
         return response_data.response
 
 
-    def _process_request_v0_generic_wrap_eth_post_serialize(
+    def _wrap_eth_v0_generic_wrap_eth_post_serialize(
         self,
-        base_transaction_request_wrap_eth_request_call_data,
+        wrap_eth_request,
         _request_auth,
         _content_type,
         _headers,
@@ -3607,8 +3608,8 @@ class OthersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if base_transaction_request_wrap_eth_request_call_data is not None:
-            _body_params = base_transaction_request_wrap_eth_request_call_data
+        if wrap_eth_request is not None:
+            _body_params = wrap_eth_request
 
 
         # set the HTTP header `Accept`

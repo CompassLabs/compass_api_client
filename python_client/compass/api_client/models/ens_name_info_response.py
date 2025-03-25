@@ -22,12 +22,13 @@ from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PriceResponse(BaseModel):
+class EnsNameInfoResponse(BaseModel):
     """
-    PriceResponse
+    Response model for ENS name details.
     """ # noqa: E501
-    token_price_in_usd: StrictStr = Field(description="Price of the token in USD")
-    __properties: ClassVar[List[str]] = ["token_price_in_usd"]
+    wallet_address: StrictStr = Field(description="The wallet address of the user")
+    registrant: StrictStr = Field(description="The registrant of the ENS")
+    __properties: ClassVar[List[str]] = ["wallet_address", "registrant"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +48,7 @@ class PriceResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PriceResponse from a JSON string"""
+        """Create an instance of EnsNameInfoResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,7 +73,7 @@ class PriceResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PriceResponse from a dict"""
+        """Create an instance of EnsNameInfoResponse from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +81,8 @@ class PriceResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "token_price_in_usd": obj.get("token_price_in_usd")
+            "wallet_address": obj.get("wallet_address"),
+            "registrant": obj.get("registrant")
         })
         return _obj
 

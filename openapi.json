@@ -930,19 +930,19 @@
         }
       }
     },
-    "/v0/generic/allowance/get": {
+    "/v0/generic/portfolio/get": {
       "post": {
         "tags": [
           "Others"
         ],
-        "summary": "Show the allowance of a user on a protocol",
-        "description": "In decentralized finance (DeFi) protocols such as Uniswap or AAVE,\n        users must set a token allowance to authorize the protocol to spend\n        a specified amount of their tokens on their behalf. This is a crucial\n        step before engaging in any transactions or operations within these\n        protocols, ensuring that the protocol has the necessary permissions\n        to manage the user's tokens securely and efficiently.",
-        "operationId": "process_request_v0_generic_allowance_get_post",
+        "summary": "Get the portfolio details for a wallet address",
+        "description": "Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.",
+        "operationId": "get_portfolio_v0_generic_portfolio_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetErc20Allowance"
+                "$ref": "#/components/schemas/PortfolioRequest"
               }
             }
           },
@@ -954,7 +954,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AllowanceInfo"
+                  "$ref": "#/components/schemas/Portfolio"
                 }
               }
             }
@@ -972,19 +972,19 @@
         }
       }
     },
-    "/v0/generic/allowance/set": {
+    "/v0/generic/price/usd/get": {
       "post": {
         "tags": [
           "Others"
         ],
-        "summary": "Change the allowance of a user on a protocol",
-        "description": "This endpoint allows users to modify the token allowance for a specific\n        protocol. In decentralized finance (DeFi), setting an allowance is a\n        necessary step to authorize a protocol to spend a specified amount of\n        tokens on behalf of the user. This operation is crucial for ensuring\n        that the protocol can manage the user's tokens securely and efficiently,\n        enabling seamless transactions and operations within the DeFi ecosystem.",
-        "operationId": "process_request_v0_generic_allowance_set_post",
+        "summary": "Get the price of a given token relative to USD",
+        "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.",
+        "operationId": "get_price_v0_generic_price_usd_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_IncreaseErc20AllowanceCallData_"
+                "$ref": "#/components/schemas/PriceRequest"
               }
             }
           },
@@ -996,7 +996,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
+                  "$ref": "#/components/schemas/PriceResponse"
                 }
               }
             }
@@ -1014,19 +1014,19 @@
         }
       }
     },
-    "/v0/generic/allowance/set_any": {
+    "/v0/generic/supported_tokens/get": {
       "post": {
         "tags": [
           "Others"
         ],
-        "summary": "Sets allowance for any arbitrary ERC20 token address.",
-        "description": "This endpoint allows users to set an allowance for any arbitrary ERC20\n        token address. In decentralized finance (DeFi), setting an allowance\n        is a critical operation that permits a protocol to spend a specified\n        amount of tokens on behalf of the user. This functionality is essential\n        for enabling secure and efficient token management, facilitating smooth\n        transactions and operations within the DeFi ecosystem. By using this\n        endpoint, users can specify the token address and the amount they wish\n        to authorize, ensuring precise control over their token allowances.",
-        "operationId": "process_request_v0_generic_allowance_set_any_post",
+        "summary": "Get supported tokens",
+        "description": "Get the list of supported tokens on a chain by the Compass API.",
+        "operationId": "get_tokens_v0_generic_supported_tokens_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_IncreaseErc20AllowanceAnyCallData_"
+                "$ref": "#/components/schemas/TokensRequest"
               }
             }
           },
@@ -1038,7 +1038,49 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
+                  "$ref": "#/components/schemas/TokenInfo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/generic/visualize_portfolio/get": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Visualize the token portfolio of a wallet address as a pie chart",
+        "description": "Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.",
+        "operationId": "visualize_portfolio_v0_generic_visualize_portfolio_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VisualizePortfolioRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Image"
                 }
               }
             }
@@ -1061,14 +1103,14 @@
         "tags": [
           "Others"
         ],
-        "summary": "Get an address balance of a token",
-        "description": "This endpoint allows users to retrieve the balance of a specified ERC20 token\n        for any given account address on the blockchain. It requires the token symbol\n        and the user's account address as input parameters. The response includes the\n        balance amount, the number of decimals the token uses, the token symbol, and\n        the token's contract address. This functionality is essential for applications\n        that need to display or manage token balances for users.",
-        "operationId": "process_request_v0_generic_balance_get_post",
+        "summary": "Get an ERC20 token's balance for a user",
+        "description": "Returns the balance of a specific ERC20 token for a given user address.",
+        "operationId": "get_balance_v0_generic_balance_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetErc20Balance"
+                "$ref": "#/components/schemas/GetErc20BalanceRequest"
               }
             }
           },
@@ -1080,7 +1122,91 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BalanceInfo"
+                  "$ref": "#/components/schemas/BalanceInfoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/generic/allowance/get": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Show the allowance of a user on a protocol",
+        "description": "In decentralized finance (DeFi) protocols such as Uniswap or AAVE,\n        users must set a token allowance to authorize the protocol to spend\n        a specified amount of their tokens on their behalf. This is a crucial\n        step before engaging in any transactions or operations within these\n        protocols, ensuring that the protocol has the necessary permissions\n        to manage the user's tokens securely and efficiently.",
+        "operationId": "get_allowance_v0_generic_allowance_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetErc20AllowanceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllowanceInfoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/generic/ens/get": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Get the wallet address and registrant of an ENS name",
+        "description": "An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.",
+        "operationId": "get_ens_details_v0_generic_ens_get_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetEnsDetailsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnsNameInfoResponse"
                 }
               }
             }
@@ -1105,12 +1231,12 @@
         ],
         "summary": "Change raw ETH into WETH",
         "description": "Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.",
-        "operationId": "process_request_v0_generic_wrap_eth_post",
+        "operationId": "wrap_eth_v0_generic_wrap_eth_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_WrapEthRequestCallData_"
+                "$ref": "#/components/schemas/WrapEthRequest"
               }
             }
           },
@@ -1145,224 +1271,14 @@
         "tags": [
           "Others"
         ],
-        "summary": "Change WETH into raw ETH",
-        "description": "Unwrapping ETH transforms the ERC-20 token into the raw form used for paying gas fees and other basic functions.",
-        "operationId": "process_request_v0_generic_unwrap_weth_post",
+        "summary": "Change WETH back into raw ETH",
+        "description": "Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.",
+        "operationId": "unwrap_weth_v0_generic_unwrap_weth_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_UnwrapWethRequestCallData_"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/generic/supported_tokens/get": {
-      "post": {
-        "tags": [
-          "Others"
-        ],
-        "summary": "Get supported token",
-        "description": "Get the list of supported tokens on a chain by the Compass API.",
-        "operationId": "get_tokens_v0_generic_supported_tokens_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetSupportedTokens"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenInfo"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/generic/ens/get": {
-      "post": {
-        "tags": [
-          "Others"
-        ],
-        "summary": "Get the wallet address and registrant of an ENS name",
-        "description": "An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.",
-        "operationId": "process_request_v0_generic_ens_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestEnsDetails"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnsNameInfo"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/generic/portfolio/get": {
-      "post": {
-        "tags": [
-          "Others"
-        ],
-        "summary": "Get the portfolio details for a wallet addressincluding balances and values of all tokens.",
-        "description": "Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.",
-        "operationId": "process_request_v0_generic_portfolio_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestUserAddress"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Portfolio"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/generic/visualize_portfolio/get": {
-      "post": {
-        "tags": [
-          "Others"
-        ],
-        "summary": "Visualize the token portfolio of a wallet address as a pie chart",
-        "description": "Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.",
-        "operationId": "process_request_v0_generic_visualize_portfolio_get_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestUserAddress"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Image"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/generic/transfer/native_token": {
-      "post": {
-        "tags": [
-          "Others"
-        ],
-        "summary": "Transfer the native token (usually ETH) to an address",
-        "description": "Transfer the native token of a chain from your address to another address.",
-        "operationId": "process_request_v0_generic_transfer_native_token_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransferEth"
+                "$ref": "#/components/schemas/UnwrapWethRequest"
               }
             }
           },
@@ -1397,14 +1313,14 @@
         "tags": [
           "Others"
         ],
-        "summary": "Transfer some of an ERC20 Token",
-        "description": "Transfer some amount of ERC20 token (fungible token) to another address.",
-        "operationId": "process_request_v0_generic_transfer_erc20_post",
+        "summary": "Transfer ERC20 tokens to another address",
+        "description": "Sends ERC20 tokens from the sender's address to the specified recipient.",
+        "operationId": "transfer_erc20_v0_generic_transfer_erc20_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_TransferERC20TokenCallData_"
+                "$ref": "#/components/schemas/TransferERC20Request"
               }
             }
           },
@@ -1434,19 +1350,19 @@
         }
       }
     },
-    "/v0/generic/price/usd/get": {
+    "/v0/generic/transfer/native_token": {
       "post": {
         "tags": [
           "Others"
         ],
-        "summary": "Get the price of a given token relative to USD",
-        "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.",
-        "operationId": "process_request_v0_generic_price_usd_get_post",
+        "summary": "Transfer native ETH to another address",
+        "description": "Sends native ETH from the sender's address to the specified recipient.",
+        "operationId": "transfer_native_token_v0_generic_transfer_native_token_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetTokenPrice"
+                "$ref": "#/components/schemas/TransferEthRequest"
               }
             }
           },
@@ -1458,7 +1374,91 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PriceResponse"
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/generic/allowance/set": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Change the allowance of a user on a protocol",
+        "description": "This endpoint allows users to modify the token allowance for a specific\n    protocol. In decentralized finance (DeFi), setting an allowance is a\n    necessary step to authorize a protocol to spend a specified amount of\n    tokens on behalf of the user. This operation is crucial for ensuring\n    that the protocol can manage the user's tokens securely and efficiently,\n    enabling seamless transactions and operations within the DeFi ecosystem.",
+        "operationId": "set_allowance_v0_generic_allowance_set_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncreaseAllowanceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/generic/allowance/set_any": {
+      "post": {
+        "tags": [
+          "Others"
+        ],
+        "summary": "Sets allowance for any arbitrary ERC20 token address",
+        "description": "This endpoint allows users to set an allowance for any arbitrary ERC20\n    token address. In decentralized finance (DeFi), setting an allowance\n    is a critical operation that permits a protocol to spend a specified\n    amount of tokens on behalf of the user. This functionality is essential\n    for enabling secure and efficient token management, facilitating smooth\n    transactions and operations within the DeFi ecosystem. By using this\n    endpoint, users can specify the token address and the amount they wish\n    to authorize, ensuring precise control over their token allowances.",
+        "operationId": "set_any_allowance_v0_generic_allowance_set_any_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncreaseAllowanceAnyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
                 }
               }
             }
@@ -3706,7 +3706,7 @@
         ],
         "title": "AerodromeSwapTokensCallData"
       },
-      "AllowanceInfo": {
+      "AllowanceInfoResponse": {
         "properties": {
           "amount": {
             "type": "string",
@@ -3743,7 +3743,9 @@
             "type": "string",
             "title": "Contract Address",
             "description": "Address of the contract",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "examples": [
+              "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            ]
           }
         },
         "type": "object",
@@ -3754,9 +3756,10 @@
           "token_address",
           "contract_address"
         ],
-        "title": "AllowanceInfo"
+        "title": "AllowanceInfoResponse",
+        "description": "Response model for token allowance information."
       },
-      "BalanceInfo": {
+      "BalanceInfoResponse": {
         "properties": {
           "amount": {
             "type": "string",
@@ -3797,7 +3800,8 @@
           "token_symbol",
           "token_address"
         ],
-        "title": "BalanceInfo"
+        "title": "BalanceInfoResponse",
+        "description": "Response model for token balance information."
       },
       "BaseTransactionRequest_AerodromeLiquidityProvisionCallData_": {
         "properties": {
@@ -4075,121 +4079,6 @@
         ],
         "title": "BaseTransactionRequest[AerodromeSwapTokensCallData]"
       },
-      "BaseTransactionRequest_IncreaseErc20AllowanceAnyCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/IncreaseErc20AllowanceAnyCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[IncreaseErc20AllowanceAnyCallData]"
-      },
-      "BaseTransactionRequest_IncreaseErc20AllowanceCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/IncreaseErc20AllowanceCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[IncreaseErc20AllowanceCallData]"
-      },
-      "BaseTransactionRequest_TransferERC20TokenCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/TransferERC20TokenCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[TransferERC20TokenCallData]"
-      },
-      "BaseTransactionRequest_UnwrapWethRequestCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/UnwrapWethRequestCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[UnwrapWethRequestCallData]"
-      },
-      "BaseTransactionRequest_WrapEthRequestCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/WrapEthRequestCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[WrapEthRequestCallData]"
-      },
       "Chain": {
         "type": "string",
         "enum": [
@@ -4221,7 +4110,7 @@
         "title": "ContractName",
         "description": "Select the protocol.\n\nE.g. for increasing ERC-20 allowance."
       },
-      "EnsNameInfo": {
+      "EnsNameInfoResponse": {
         "properties": {
           "wallet_address": {
             "type": "string",
@@ -4245,7 +4134,8 @@
           "wallet_address",
           "registrant"
         ],
-        "title": "EnsNameInfo"
+        "title": "EnsNameInfoResponse",
+        "description": "Response model for ENS name details."
       },
       "FeeEnum": {
         "type": "string",
@@ -4258,7 +4148,29 @@
         "title": "FeeEnum",
         "description": "The transaction fee of a Uniswap pool in bips.\n\nUniswap supports 4 different fee levels."
       },
-      "GetErc20Allowance": {
+      "GetEnsDetailsRequest": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "ens_name": {
+            "type": "string",
+            "title": "Ens Name",
+            "description": "The ENS address of the user.",
+            "examples": [
+              "vitalik.eth"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "ens_name"
+        ],
+        "title": "GetEnsDetailsRequest",
+        "description": "Request model for getting ENS details."
+      },
+      "GetErc20AllowanceRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -4266,7 +4178,7 @@
           "user": {
             "type": "string",
             "title": "User",
-            "description": "The user to get the ERC20 balance of.",
+            "description": "The user to get the ERC20 allowance of.",
             "examples": [
               "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
             ]
@@ -4293,9 +4205,10 @@
           "token",
           "contract_name"
         ],
-        "title": "GetErc20Allowance"
+        "title": "GetErc20AllowanceRequest",
+        "description": "Request model for getting an ERC20 token allowance."
       },
-      "GetErc20Balance": {
+      "GetErc20BalanceRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -4310,7 +4223,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which the allowance is checked.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
+            "description": "The symbol of the token for which the balance is checked.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
             "examples": [
               "WETH"
             ]
@@ -4322,39 +4235,8 @@
           "user",
           "token"
         ],
-        "title": "GetErc20Balance"
-      },
-      "GetSupportedTokens": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain"
-        ],
-        "title": "GetSupportedTokens"
-      },
-      "GetTokenPrice": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "token": {
-            "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which to get the price<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
-            "examples": [
-              "WETH"
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "token"
-        ],
-        "title": "GetTokenPrice"
+        "title": "GetErc20BalanceRequest",
+        "description": "Request model for getting an ERC20 token balance."
       },
       "HTTPValidationError": {
         "properties": {
@@ -4386,21 +4268,30 @@
         ],
         "title": "Image"
       },
-      "IncreaseErc20AllowanceAnyCallData": {
+      "IncreaseAllowanceAnyRequest": {
         "properties": {
-          "token_name": {
-            "$ref": "#/components/schemas/ContractName",
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
             "description": "The name of the token for which the allowance is increased.",
             "examples": [
-              "AerodromeBasicPool"
+              "Custom Token"
             ]
           },
           "token_address": {
             "type": "string",
             "title": "Token Address",
-            "description": "The address of the ERC20 token for which the allowance is increased.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
+            "description": "The address of the ERC20 token for which the allowance is increased.",
             "examples": [
-              "WETH"
+              "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
             ]
           },
           "contract_name": {
@@ -4429,15 +4320,27 @@
         },
         "type": "object",
         "required": [
-          "token_name",
+          "chain",
+          "sender",
+          "token",
           "token_address",
           "contract_name",
           "amount"
         ],
-        "title": "IncreaseErc20AllowanceAnyCallData"
+        "title": "IncreaseAllowanceAnyRequest",
+        "description": "Request model for increasing allowance for any arbitrary ERC20 token address."
       },
-      "IncreaseErc20AllowanceCallData": {
+      "IncreaseAllowanceRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token for which the allowance is increased.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
@@ -4471,11 +4374,14 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token",
           "contract_name",
           "amount"
         ],
-        "title": "IncreaseErc20AllowanceCallData"
+        "title": "IncreaseAllowanceRequest",
+        "description": "Request model for increasing token allowance for a contract."
       },
       "InterestRateMode": {
         "type": "integer",
@@ -4512,41 +4418,7 @@
         ],
         "title": "Portfolio"
       },
-      "PriceResponse": {
-        "properties": {
-          "token_price_in_usd": {
-            "type": "string",
-            "title": "Token Price In Usd"
-          }
-        },
-        "type": "object",
-        "required": [
-          "token_price_in_usd"
-        ],
-        "title": "PriceResponse"
-      },
-      "RequestEnsDetails": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "ens_name": {
-            "type": "string",
-            "title": "Ens Name",
-            "description": "The ENS address of the user.",
-            "examples": [
-              "vitalik.eth"
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "ens_name"
-        ],
-        "title": "RequestEnsDetails"
-      },
-      "RequestUserAddress": {
+      "PortfolioRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -4565,7 +4437,44 @@
           "chain",
           "user"
         ],
-        "title": "RequestUserAddress"
+        "title": "PortfolioRequest"
+      },
+      "PriceRequest": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token for which to get the price<br> Note the supported tokens per chain:<br>**ethereum:mainnet**: ['1INCH', 'AAVE', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'ENS', 'ETHx', 'FRAX', 'FXS', 'GHO', 'KNC', 'LDO', 'LINK', 'LUSD', 'MKR', 'osETH', 'PYUSD', 'rETH', 'RPL', 'rsETH', 'sDAI', 'SNX', 'STG', 'sUSDe', 'tBTC', 'UNI', 'USDC', 'USDe', 'USDS', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**arbitrum:mainnet**: ['AAVE', 'ARB', 'DAI', 'EURS', 'FRAX', 'GHO', 'LINK', 'LUSD', 'MAI', 'rETH', 'USDC', 'USDCe', 'USDT', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>**base:mainnet**: ['1INCH', 'AERO', 'ARB', 'BAL', 'cbBTC', 'cbETH', 'CRV', 'crvUSD', 'DAI', 'EUR', 'LUSD', 'MKR', 'osETH', 'rETH', 'SNX', 'STG', 'tBTC', 'USDC', 'UNI', 'USDT', 'VIRTUAL', 'WBTC', 'weETH', 'WETH', 'wstETH']<br>",
+            "examples": [
+              "WETH"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "token"
+        ],
+        "title": "PriceRequest"
+      },
+      "PriceResponse": {
+        "properties": {
+          "token_price_in_usd": {
+            "type": "string",
+            "title": "Token Price In Usd",
+            "description": "Price of the token in USD",
+            "examples": [
+              2000.0
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "token_price_in_usd"
+        ],
+        "title": "PriceResponse"
       },
       "Token": {
         "type": "string",
@@ -4687,7 +4596,7 @@
             },
             "type": "array",
             "title": "Tokens",
-            "description": "List of supported tokens for a gived chain"
+            "description": "List of supported tokens for a given chain"
           }
         },
         "type": "object",
@@ -4696,12 +4605,34 @@
         ],
         "title": "TokenInfo"
       },
-      "TransferERC20TokenCallData": {
+      "TokensRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain"
+        ],
+        "title": "TokensRequest"
+      },
+      "TransferERC20Request": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -4731,13 +4662,16 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "amount",
           "token",
           "to"
         ],
-        "title": "TransferERC20TokenCallData"
+        "title": "TransferERC20Request",
+        "description": "Request model for transferring ERC20 tokens."
       },
-      "TransferEth": {
+      "TransferEthRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -4748,24 +4682,11 @@
             "description": "The address of the transaction sender",
             "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
-          "call_data": {
-            "$ref": "#/components/schemas/TransferEthCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "TransferEth"
-      },
-      "TransferEthCallData": {
-        "properties": {
           "amount": {
             "anyOf": [
               {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0.0
               },
               {
                 "type": "string"
@@ -4788,10 +4709,13 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "amount",
           "to"
         ],
-        "title": "TransferEthCallData"
+        "title": "TransferEthRequest",
+        "description": "Request model for transferring native ETH."
       },
       "UniswapBuyExactlyRequest": {
         "properties": {
@@ -5663,8 +5587,17 @@
         ],
         "title": "UnsignedTransaction"
       },
-      "UnwrapWethRequestCallData": {
+      "UnwrapWethRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "amount": {
             "anyOf": [
               {
@@ -5676,7 +5609,7 @@
               }
             ],
             "title": "Amount",
-            "description": "The amount of ETH to unwrap.",
+            "description": "The amount of WETH to unwrap.",
             "examples": [
               1.5
             ]
@@ -5684,9 +5617,12 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "amount"
         ],
-        "title": "UnwrapWethRequestCallData"
+        "title": "UnwrapWethRequest",
+        "description": "Request model for unwrapping WETH back to native ETH."
       },
       "ValidationError": {
         "properties": {
@@ -5721,8 +5657,38 @@
         ],
         "title": "ValidationError"
       },
-      "WrapEthRequestCallData": {
+      "VisualizePortfolioRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "user": {
+            "type": "string",
+            "title": "User",
+            "description": "The address of the user.",
+            "examples": [
+              "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "user"
+        ],
+        "title": "VisualizePortfolioRequest"
+      },
+      "WrapEthRequest": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "amount": {
             "anyOf": [
               {
@@ -5742,9 +5708,12 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "amount"
         ],
-        "title": "WrapEthRequestCallData"
+        "title": "WrapEthRequest",
+        "description": "Request model for wrapping ETH into WETH."
       }
     },
     "securitySchemes": {
