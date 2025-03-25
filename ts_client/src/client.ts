@@ -50,9 +50,7 @@ const Token = z.enum([
 ]);
 const AaveSupplyRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
@@ -97,9 +95,7 @@ const HTTPValidationError = z
 const InterestRateMode = z.union([z.literal(1), z.literal(2)]);
 const AaveBorrowRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
@@ -117,9 +113,7 @@ A stable (but typically higher rate), or a variable rate.`),
     .passthrough();
 const AaveRepayRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
@@ -137,9 +131,7 @@ A stable (but typically higher rate), or a variable rate.`),
     .passthrough();
 const AaveWithdrawRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
@@ -151,9 +143,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const AaveGetAssetPriceRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         asset: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -165,9 +155,7 @@ const AaveAssetPriceResponse = z
     .passthrough();
 const AaveGetLiquidityChangeRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         start_block: z.number().int().describe('The starting block.'),
         end_block: z
             .union([z.number(), z.null()])
@@ -192,9 +180,7 @@ const AaveLiquidityChangeResponse = z
     .passthrough();
 const AaveGetUserPositionSummaryRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         user: z.string().describe('The user to get the position summary of. Values are in USD.'),
     })
     .passthrough();
@@ -217,9 +203,7 @@ const AaveUserPositionSummaryResponse = z
     .passthrough();
 const AaveGetUserPositionPerTokenRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         user: z.string().describe('The user to fetch the token-specific position of.'),
         asset: Token.describe(`A class representing the token.
 
@@ -294,9 +278,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeSwapTokensCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeSwapTokensCallData,
     })
@@ -328,9 +310,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeSwapEthForTokenCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeSwapEthForTokenCallData,
     })
@@ -362,9 +342,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeSwapTokenForEthCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeSwapTokenForEthCallData,
     })
@@ -407,9 +385,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeLiquidityProvisionCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeLiquidityProvisionCallData,
     })
@@ -448,9 +424,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeLiquidityProvisionEthCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeLiquidityProvisionEthCallData,
     })
@@ -490,9 +464,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeRemoveLiquidityCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeRemoveLiquidityCallData,
     })
@@ -528,18 +500,14 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeRemoveLiquidityEthCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeRemoveLiquidityEthCallData,
     })
     .passthrough();
 const AerodromeSlipstreamGetPoolPrice = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -597,9 +565,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeSlipstreamSellExactlyCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeSlipstreamSellExactlyCallData,
     })
@@ -625,18 +591,14 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeSlipstreamBuyExactlyCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeSlipstreamBuyExactlyCallData,
     })
     .passthrough();
 const AerodromeSlipstreamGetLiquidityProvisionPositions = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         user: z.string().describe('The address of the user to check the balance of'),
     })
     .passthrough();
@@ -711,9 +673,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const BaseTransactionRequest_AerodromeSlipstreamMintLiquidityProvisionCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeSlipstreamMintLiquidityProvisionCallData,
     })
@@ -740,9 +700,7 @@ const AerodromeSlipstreamIncreaseLiquidityProvisionCallData = z
     .passthrough();
 const BaseTransactionRequest_AerodromeSlipstreamIncreaseLiquidityProvisionCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data: AerodromeSlipstreamIncreaseLiquidityProvisionCallData,
     })
@@ -760,9 +718,7 @@ const AerodromeSlipstreamWithdrawLiquidityProvisionCallData = z
     .passthrough();
 const BaseTransactionRequest_AerodromeSlipstreamWithdrawLiquidityProvisionCallData_ = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         call_data:
             AerodromeSlipstreamWithdrawLiquidityProvisionCallData.describe(`Endpoint parameters for liquidity provision withdrawal on aerodrome slipstream.
@@ -773,9 +729,7 @@ First, we call decrease liquidity then collect the tokens owed to the user.`),
     .passthrough();
 const PortfolioRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         user: z.string().describe('The address of the user.'),
     })
     .passthrough();
@@ -800,9 +754,7 @@ const Portfolio = z
     .passthrough();
 const PriceRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -814,13 +766,7 @@ const PriceResponse = z
         token_price_in_usd: z.string().describe('Price of the token in USD'),
     })
     .passthrough();
-const TokensRequest = z
-    .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
-    })
-    .passthrough();
+const TokensRequest = z.object({ chain: Chain.describe('The chain to use.') }).passthrough();
 const TokenInfo = z
     .object({
         tokens: z.array(Token).describe('List of supported tokens for a given chain'),
@@ -828,18 +774,14 @@ const TokenInfo = z
     .passthrough();
 const VisualizePortfolioRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         user: z.string().describe('The address of the user.'),
     })
     .passthrough();
 const Image = z.object({ image: z.string().describe('Base64 encoded SVG image') }).passthrough();
 const GetErc20BalanceRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         user: z.string().describe('The user to get the ERC20 balance of.'),
         token: Token.describe(`A class representing the token.
 
@@ -876,9 +818,7 @@ const ContractName = z.enum([
 ]);
 const GetErc20AllowanceRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         user: z.string().describe('The user to get the ERC20 allowance of.'),
         token: Token.describe(`A class representing the token.
 
@@ -903,9 +843,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const GetEnsDetailsRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         ens_name: z.string().describe('The ENS address of the user.'),
     })
     .passthrough();
@@ -917,27 +855,21 @@ const EnsNameInfoResponse = z
     .passthrough();
 const WrapEthRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         amount: z.union([z.number(), z.string()]).describe('The amount of ETH to wrap.'),
     })
     .passthrough();
 const UnwrapWethRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         amount: z.union([z.number(), z.string()]).describe('The amount of WETH to unwrap.'),
     })
     .passthrough();
 const TransferERC20Request = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         amount: z.union([z.number(), z.string()]).describe('Amount of token to transfer'),
         token: Token.describe(`A class representing the token.
@@ -949,9 +881,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const TransferEthRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         amount: z.union([z.number(), z.string()]).describe('Amount of ETH to transfer'),
         to: z.string().describe('The recipient of the ETH.'),
@@ -959,9 +889,7 @@ All token balances are per-chain.`),
     .passthrough();
 const IncreaseAllowanceRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         token: Token.describe(`A class representing the token.
 
@@ -977,9 +905,7 @@ E.g. for increasing ERC-20 allowance.`),
     .passthrough();
 const IncreaseAllowanceAnyRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         token: Token.describe(`A class representing the token.
 
@@ -999,9 +925,7 @@ E.g. for increasing ERC-20 allowance.`),
 const FeeEnum = z.enum(['0.01', '0.05', '0.3', '1.0']);
 const UniswapBuyExactlyRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
@@ -1029,9 +953,7 @@ Uniswap supports 4 different fee levels.`),
     .passthrough();
 const UniswapSellExactlyRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
@@ -1061,9 +983,7 @@ Uniswap supports 4 different fee levels.`),
     .passthrough();
 const UniswapIncreaseLiquidityProvision = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         token_id: z
             .number()
@@ -1085,9 +1005,7 @@ All token balances are per-chain.`),
     .passthrough();
 const UniswapMintLiquidityProvision = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         token0: Token.describe(`A class representing the token.
 
@@ -1132,9 +1050,7 @@ Uniswap supports 4 different fee levels.`),
     .passthrough();
 const UniswapWithdrawLiquidityProvision = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
         token_id: z
             .number()
@@ -1147,9 +1063,7 @@ All token balances are per-chain.`),
     .passthrough();
 const UniswapGetBuyQuoteRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -1180,9 +1094,7 @@ const UniswapBuyQuoteInfoResponse = z
     .passthrough();
 const UniswapGetSellQuoteRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -1211,9 +1123,7 @@ const UniswapSellQuoteInfoResponse = z
     .passthrough();
 const UniswapGetPoolPriceRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -1252,9 +1162,7 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const UniswapCheckInRangeRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         token_id: z
             .number()
             .int()
@@ -1273,9 +1181,7 @@ const UniswapCheckInRangeResponse = z
     .passthrough();
 const UniswapGetLiquidityProvisionPositionsRequest = z
     .object({
-        chain: Chain.describe(`The chain to use.
-
-All token balances are per-chain.`),
+        chain: Chain.describe('The chain to use.'),
         user: z.string().describe('The address of the user to check the balance of'),
     })
     .passthrough();
