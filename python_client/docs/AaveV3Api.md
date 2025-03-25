@@ -1,23 +1,23 @@
 # compass.api_client.AaveV3Api
 
-All URIs are relative to *https://api.compasslabs.ai*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**borrow_v0_aave_borrow_post**](AaveV3Api.md#borrow_v0_aave_borrow_post) | **POST** /v0/aave/borrow | Borrow against your collateral
-[**get_asset_price_v0_aave_asset_price_get_post**](AaveV3Api.md#get_asset_price_v0_aave_asset_price_get_post) | **POST** /v0/aave/asset_price/get | Get the price of an asset in USD according to Aave
-[**get_liquidity_change_v0_aave_liquidity_change_get_post**](AaveV3Api.md#get_liquidity_change_v0_aave_liquidity_change_get_post) | **POST** /v0/aave/liquidity/change/get | Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
-[**get_user_position_per_token_v0_aave_user_position_per_token_get_post**](AaveV3Api.md#get_user_position_per_token_v0_aave_user_position_per_token_get_post) | **POST** /v0/aave/user_position_per_token/get | Get the user&#39;s position for a specific token.
-[**get_user_position_summary_v0_aave_user_position_summary_get_post**](AaveV3Api.md#get_user_position_summary_v0_aave_user_position_summary_get_post) | **POST** /v0/aave/user_position_summary/get | Get a summary of the user&#39;s position on AAVE. These values will be sums or averages     across all open positions.
-[**repay_v0_aave_repay_post**](AaveV3Api.md#repay_v0_aave_repay_post) | **POST** /v0/aave/repay | Repay some or all tokens you borrowed
-[**supply_v0_aave_supply_post**](AaveV3Api.md#supply_v0_aave_supply_post) | **POST** /v0/aave/supply | Supply collateral to earn interest or borrow against
-[**withdraw_v0_aave_withdraw_post**](AaveV3Api.md#withdraw_v0_aave_withdraw_post) | **POST** /v0/aave/withdraw | Withdraw some or all of your collateral
+[**borrow_v0_aave_borrow_post**](AaveV3Api.md#borrow_v0_aave_borrow_post) | **POST** /v0/aave/borrow | Borrow/Lend
+[**get_asset_price_v0_aave_asset_price_get_post**](AaveV3Api.md#get_asset_price_v0_aave_asset_price_get_post) | **POST** /v0/aave/asset_price/get | Token prices
+[**get_liquidity_change_v0_aave_liquidity_change_get_post**](AaveV3Api.md#get_liquidity_change_v0_aave_liquidity_change_get_post) | **POST** /v0/aave/liquidity/change/get | Liquididy index
+[**get_user_position_per_token_v0_aave_user_position_per_token_get_post**](AaveV3Api.md#get_user_position_per_token_v0_aave_user_position_per_token_get_post) | **POST** /v0/aave/user_position_per_token/get | Positions - per token
+[**get_user_position_summary_v0_aave_user_position_summary_get_post**](AaveV3Api.md#get_user_position_summary_v0_aave_user_position_summary_get_post) | **POST** /v0/aave/user_position_summary/get | Positions - total
+[**repay_v0_aave_repay_post**](AaveV3Api.md#repay_v0_aave_repay_post) | **POST** /v0/aave/repay | Repay loans
+[**supply_v0_aave_supply_post**](AaveV3Api.md#supply_v0_aave_supply_post) | **POST** /v0/aave/supply | Supply/Stake
+[**withdraw_v0_aave_withdraw_post**](AaveV3Api.md#withdraw_v0_aave_withdraw_post) | **POST** /v0/aave/withdraw | Unstake
 
 
 # **borrow_v0_aave_borrow_post**
 > UnsignedTransaction borrow_v0_aave_borrow_post(aave_borrow_request)
 
-Borrow against your collateral
+Borrow/Lend
 
 You will pay interest for your borrows. Price changes in the assets may lead to
     some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
@@ -33,10 +33,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.compasslabs.ai
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -57,7 +57,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_borrow_request = compass.api_client.AaveBorrowRequest() # AaveBorrowRequest | 
 
     try:
-        # Borrow against your collateral
+        # Borrow/Lend
         api_response = api_instance.borrow_v0_aave_borrow_post(aave_borrow_request)
         print("The response of AaveV3Api->borrow_v0_aave_borrow_post:\n")
         pprint(api_response)
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 # **get_asset_price_v0_aave_asset_price_get_post**
 > AaveAssetPriceResponse get_asset_price_v0_aave_asset_price_get_post(aave_get_asset_price_request)
 
-Get the price of an asset in USD according to Aave
+Token prices
 
 This endpoint retrieves the current price of a specified asset in USD as
         determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
@@ -119,10 +119,10 @@ from compass.api_client.models.aave_get_asset_price_request import AaveGetAssetP
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.compasslabs.ai
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -143,7 +143,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_get_asset_price_request = compass.api_client.AaveGetAssetPriceRequest() # AaveGetAssetPriceRequest | 
 
     try:
-        # Get the price of an asset in USD according to Aave
+        # Token prices
         api_response = api_instance.get_asset_price_v0_aave_asset_price_get_post(aave_get_asset_price_request)
         print("The response of AaveV3Api->get_asset_price_v0_aave_asset_price_get_post:\n")
         pprint(api_response)
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 # **get_liquidity_change_v0_aave_liquidity_change_get_post**
 > AaveLiquidityChangeResponse get_liquidity_change_v0_aave_liquidity_change_get_post(aave_get_liquidity_change_request)
 
-Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+Liquididy index
 
 This endpoint retrieves the change in the reserve liquidity index between two provided
         blocks. This is then converted to a percentage change. The liquidity index represents the
@@ -207,10 +207,10 @@ from compass.api_client.models.aave_liquidity_change_response import AaveLiquidi
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.compasslabs.ai
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -231,7 +231,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_get_liquidity_change_request = compass.api_client.AaveGetLiquidityChangeRequest() # AaveGetLiquidityChangeRequest | 
 
     try:
-        # Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+        # Liquididy index
         api_response = api_instance.get_liquidity_change_v0_aave_liquidity_change_get_post(aave_get_liquidity_change_request)
         print("The response of AaveV3Api->get_liquidity_change_v0_aave_liquidity_change_get_post:\n")
         pprint(api_response)
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 # **get_user_position_per_token_v0_aave_user_position_per_token_get_post**
 > AaveUserPositionPerTokenResponse get_user_position_per_token_v0_aave_user_position_per_token_get_post(aave_get_user_position_per_token_request)
 
-Get the user's position for a specific token.
+Positions - per token
 
 This endpoint retrieves the user's position for a specific token on the AAVE
         platform. It provides key financial metrics including the current aToken balance,
@@ -294,10 +294,10 @@ from compass.api_client.models.aave_user_position_per_token_response import Aave
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.compasslabs.ai
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -318,7 +318,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_get_user_position_per_token_request = compass.api_client.AaveGetUserPositionPerTokenRequest() # AaveGetUserPositionPerTokenRequest | 
 
     try:
-        # Get the user's position for a specific token.
+        # Positions - per token
         api_response = api_instance.get_user_position_per_token_v0_aave_user_position_per_token_get_post(aave_get_user_position_per_token_request)
         print("The response of AaveV3Api->get_user_position_per_token_v0_aave_user_position_per_token_get_post:\n")
         pprint(api_response)
@@ -360,7 +360,7 @@ Name | Type | Description  | Notes
 # **get_user_position_summary_v0_aave_user_position_summary_get_post**
 > AaveUserPositionSummaryResponse get_user_position_summary_v0_aave_user_position_summary_get_post(aave_get_user_position_summary_request)
 
-Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+Positions - total
 
 This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.
         It provides key financial metrics including the total collateral deposited, total debt
@@ -380,10 +380,10 @@ from compass.api_client.models.aave_user_position_summary_response import AaveUs
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.compasslabs.ai
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -404,7 +404,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_get_user_position_summary_request = compass.api_client.AaveGetUserPositionSummaryRequest() # AaveGetUserPositionSummaryRequest | 
 
     try:
-        # Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+        # Positions - total
         api_response = api_instance.get_user_position_summary_v0_aave_user_position_summary_get_post(aave_get_user_position_summary_request)
         print("The response of AaveV3Api->get_user_position_summary_v0_aave_user_position_summary_get_post:\n")
         pprint(api_response)
@@ -446,7 +446,7 @@ Name | Type | Description  | Notes
 # **repay_v0_aave_repay_post**
 > UnsignedTransaction repay_v0_aave_repay_post(aave_repay_request)
 
-Repay some or all tokens you borrowed
+Repay loans
 
 This endpoint allows users to repay a portion or the entirety of their borrowed tokens on
         the Aave platform. By repaying borrowed amounts, users can improve their health factor,
@@ -466,10 +466,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.compasslabs.ai
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -490,7 +490,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_repay_request = compass.api_client.AaveRepayRequest() # AaveRepayRequest | 
 
     try:
-        # Repay some or all tokens you borrowed
+        # Repay loans
         api_response = api_instance.repay_v0_aave_repay_post(aave_repay_request)
         print("The response of AaveV3Api->repay_v0_aave_repay_post:\n")
         pprint(api_response)
@@ -532,7 +532,7 @@ Name | Type | Description  | Notes
 # **supply_v0_aave_supply_post**
 > UnsignedTransaction supply_v0_aave_supply_post(aave_supply_request)
 
-Supply collateral to earn interest or borrow against
+Supply/Stake
 
 By supplying assets, users can earn interest on their deposits
 
@@ -554,10 +554,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.compasslabs.ai
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -578,7 +578,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_supply_request = compass.api_client.AaveSupplyRequest() # AaveSupplyRequest | 
 
     try:
-        # Supply collateral to earn interest or borrow against
+        # Supply/Stake
         api_response = api_instance.supply_v0_aave_supply_post(aave_supply_request)
         print("The response of AaveV3Api->supply_v0_aave_supply_post:\n")
         pprint(api_response)
@@ -620,7 +620,7 @@ Name | Type | Description  | Notes
 # **withdraw_v0_aave_withdraw_post**
 > UnsignedTransaction withdraw_v0_aave_withdraw_post(aave_withdraw_request)
 
-Withdraw some or all of your collateral
+Unstake
 
 This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can
         withdraw a portion or all of their collateral, which may increase the risk of liquidation if
@@ -641,10 +641,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.compasslabs.ai
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -665,7 +665,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_withdraw_request = compass.api_client.AaveWithdrawRequest() # AaveWithdrawRequest | 
 
     try:
-        # Withdraw some or all of your collateral
+        # Unstake
         api_response = api_instance.withdraw_v0_aave_withdraw_post(aave_withdraw_request)
         print("The response of AaveV3Api->withdraw_v0_aave_withdraw_post:\n")
         pprint(api_response)

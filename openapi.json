@@ -5,19 +5,55 @@
     "description": "#### Welcome to the DeFi API from [Compass Labs](https://www.compasslabs.ai)!\n\nOur API allows you to interact and transact in DeFi with ease.\n\nWe help you construct your transactions via a **simple REST API**.  \nYou maintain custody at all times and **sign** all transactions **yourself**.",
     "version": "0.0.1"
   },
-  "servers": [
-    {
-      "url": "https://api.compasslabs.ai",
-      "description": "Production server"
-    }
-  ],
   "paths": {
+    "/v0/aave/supply": {
+      "post": {
+        "tags": [
+          "Aave V3"
+        ],
+        "summary": "Supply/Stake",
+        "description": "By supplying assets, users can earn interest on their deposits\n\n        The supplied collateral can be used as a basis for borrowing other assets, allowing users to\n        leverage their positions. In combination with a trading protocol, this can create leverage.  \n\n        Overall, this endpoint is a critical component for users looking to maximize their asset\n        utility within the AAVEv3 ecosystem, providing both earning potential and borrowing\n        flexibility.",
+        "operationId": "supply_v0_aave_supply_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AaveSupplyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v0/aave/borrow": {
       "post": {
         "tags": [
           "Aave V3"
         ],
-        "summary": "Borrow against your collateral",
+        "summary": "Borrow/Lend",
         "description": "You will pay interest for your borrows. Price changes in the assets may lead to\n    some or all of your collateral being liquidated, if the borrow position becomes unhealthy.",
         "operationId": "borrow_v0_aave_borrow_post",
         "requestBody": {
@@ -59,7 +95,7 @@
         "tags": [
           "Aave V3"
         ],
-        "summary": "Repay some or all tokens you borrowed",
+        "summary": "Repay loans",
         "description": "This endpoint allows users to repay a portion or the entirety of their borrowed tokens on\n        the Aave platform. By repaying borrowed amounts, users can improve their health factor,\n        which is a measure of the safety of their loan position. A higher health factor reduces the\n        risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires\n        specifying the chain and the details of the repayment transaction, including the amount and\n        the asset to be repaid.",
         "operationId": "repay_v0_aave_repay_post",
         "requestBody": {
@@ -96,54 +132,12 @@
         }
       }
     },
-    "/v0/aave/supply": {
-      "post": {
-        "tags": [
-          "Aave V3"
-        ],
-        "summary": "Supply collateral to earn interest or borrow against",
-        "description": "By supplying assets, users can earn interest on their deposits\n\n        The supplied collateral can be used as a basis for borrowing other assets, allowing users to\n        leverage their positions. In combination with a trading protocol, this can create leverage.  \n\n        Overall, this endpoint is a critical component for users looking to maximize their asset\n        utility within the AAVEv3 ecosystem, providing both earning potential and borrowing\n        flexibility.",
-        "operationId": "supply_v0_aave_supply_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AaveSupplyRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v0/aave/withdraw": {
       "post": {
         "tags": [
           "Aave V3"
         ],
-        "summary": "Withdraw some or all of your collateral",
+        "summary": "Unstake",
         "description": "This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can\n        withdraw a portion or all of their collateral, which may increase the risk of liquidation if\n        there are outstanding borrows. The withdrawal process also includes the collection of any\n        interest earned on the collateral. It is important for users to carefully consider their\n        outstanding debts and the potential impact on their liquidation threshold before proceeding\n        with a withdrawal. This endpoint is designed to provide a seamless and efficient way to\n        manage your collateral within the Aave ecosystem.",
         "operationId": "withdraw_v0_aave_withdraw_post",
         "requestBody": {
@@ -185,7 +179,7 @@
         "tags": [
           "Aave V3"
         ],
-        "summary": "Get the price of an asset in USD according to Aave",
+        "summary": "Token prices",
         "description": "This endpoint retrieves the current price of a specified asset in USD as\n        determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the\n        asset price, ensuring accurate and up-to-date information. The request\n        requires the asset identifier and the blockchain network (chain) on which the\n        asset resides. The response provides the asset price in a standardized format,\n        converted from Wei to the base currency decimals defined by Aave.",
         "operationId": "get_asset_price_v0_aave_asset_price_get_post",
         "requestBody": {
@@ -227,7 +221,7 @@
         "tags": [
           "Aave V3"
         ],
-        "summary": "Gets the change in liquidity index between two blocks, therefore the amount a\n    position will have increased or decreased over the time",
+        "summary": "Liquididy index",
         "description": "This endpoint retrieves the change in the reserve liquidity index between two provided\n        blocks. This is then converted to a percentage change. The liquidity index represents the\n        change in debt and interest accrual over each block. Aave does not store individual user\n        balances directly. Instead, it keeps a scaled balance and uses the liquidity index to\n        compute real balances dynamically. If a user was to have deposited tokens at the start\n        block, a positive liquidity index change will represent accrued interest and a profit. If\n        tokens were borrowed at the start block, this debt will increase, compound on itself and\n        represent large debt. The reverse in both cases is true if the liquidity index is negative.",
         "operationId": "get_liquidity_change_v0_aave_liquidity_change_get_post",
         "requestBody": {
@@ -269,7 +263,7 @@
         "tags": [
           "Aave V3"
         ],
-        "summary": "Get a summary of the user's position on AAVE. These values will be sums or averages\n    across all open positions.",
+        "summary": "Positions - total",
         "description": "This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.\n        It provides key financial metrics including the total collateral deposited, total debt\n        accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,\n        and the health factor of the user's account. These metrics are calculated by aggregating\n        data across all open positions held by the user, offering a holistic view of their financial\n        standing within the AAVE ecosystem.",
         "operationId": "get_user_position_summary_v0_aave_user_position_summary_get_post",
         "requestBody": {
@@ -311,7 +305,7 @@
         "tags": [
           "Aave V3"
         ],
-        "summary": "Get the user's position for a specific token.",
+        "summary": "Positions - per token",
         "description": "This endpoint retrieves the user's position for a specific token on the AAVE\n        platform. It provides key financial metrics including the current aToken balance,\n        current stable debt, current variable debt, principal stable debt, principal variable\n        debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and\n        liquidity rate. These metrics are calculated by aggregating data across all open\n        positions held by the user for the specified token, offering a detailed view of their\n        financial standing within the AAVE ecosystem.",
         "operationId": "get_user_position_per_token_v0_aave_user_position_per_token_get_post",
         "requestBody": {

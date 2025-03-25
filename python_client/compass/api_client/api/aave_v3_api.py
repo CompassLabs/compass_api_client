@@ -65,7 +65,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Borrow against your collateral
+        """Borrow/Lend
 
         You will pay interest for your borrows. Price changes in the assets may lead to     some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
@@ -133,7 +133,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Borrow against your collateral
+        """Borrow/Lend
 
         You will pay interest for your borrows. Price changes in the assets may lead to     some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
@@ -201,7 +201,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Borrow against your collateral
+        """Borrow/Lend
 
         You will pay interest for your borrows. Price changes in the assets may lead to     some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
@@ -342,7 +342,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AaveAssetPriceResponse:
-        """Get the price of an asset in USD according to Aave
+        """Token prices
 
         This endpoint retrieves the current price of a specified asset in USD as         determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the         asset price, ensuring accurate and up-to-date information. The request         requires the asset identifier and the blockchain network (chain) on which the         asset resides. The response provides the asset price in a standardized format,         converted from Wei to the base currency decimals defined by Aave.
 
@@ -410,7 +410,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AaveAssetPriceResponse]:
-        """Get the price of an asset in USD according to Aave
+        """Token prices
 
         This endpoint retrieves the current price of a specified asset in USD as         determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the         asset price, ensuring accurate and up-to-date information. The request         requires the asset identifier and the blockchain network (chain) on which the         asset resides. The response provides the asset price in a standardized format,         converted from Wei to the base currency decimals defined by Aave.
 
@@ -478,7 +478,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the price of an asset in USD according to Aave
+        """Token prices
 
         This endpoint retrieves the current price of a specified asset in USD as         determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the         asset price, ensuring accurate and up-to-date information. The request         requires the asset identifier and the blockchain network (chain) on which the         asset resides. The response provides the asset price in a standardized format,         converted from Wei to the base currency decimals defined by Aave.
 
@@ -619,7 +619,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AaveLiquidityChangeResponse:
-        """Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+        """Liquididy index
 
         This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
@@ -687,7 +687,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AaveLiquidityChangeResponse]:
-        """Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+        """Liquididy index
 
         This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
@@ -755,7 +755,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+        """Liquididy index
 
         This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
@@ -896,7 +896,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AaveUserPositionPerTokenResponse:
-        """Get the user's position for a specific token.
+        """Positions - per token
 
         This endpoint retrieves the user's position for a specific token on the AAVE         platform. It provides key financial metrics including the current aToken balance,         current stable debt, current variable debt, principal stable debt, principal variable         debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and         liquidity rate. These metrics are calculated by aggregating data across all open         positions held by the user for the specified token, offering a detailed view of their         financial standing within the AAVE ecosystem.
 
@@ -964,7 +964,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AaveUserPositionPerTokenResponse]:
-        """Get the user's position for a specific token.
+        """Positions - per token
 
         This endpoint retrieves the user's position for a specific token on the AAVE         platform. It provides key financial metrics including the current aToken balance,         current stable debt, current variable debt, principal stable debt, principal variable         debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and         liquidity rate. These metrics are calculated by aggregating data across all open         positions held by the user for the specified token, offering a detailed view of their         financial standing within the AAVE ecosystem.
 
@@ -1032,7 +1032,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the user's position for a specific token.
+        """Positions - per token
 
         This endpoint retrieves the user's position for a specific token on the AAVE         platform. It provides key financial metrics including the current aToken balance,         current stable debt, current variable debt, principal stable debt, principal variable         debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and         liquidity rate. These metrics are calculated by aggregating data across all open         positions held by the user for the specified token, offering a detailed view of their         financial standing within the AAVE ecosystem.
 
@@ -1173,7 +1173,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AaveUserPositionSummaryResponse:
-        """Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+        """Positions - total
 
         This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.         It provides key financial metrics including the total collateral deposited, total debt         accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,         and the health factor of the user's account. These metrics are calculated by aggregating         data across all open positions held by the user, offering a holistic view of their financial         standing within the AAVE ecosystem.
 
@@ -1241,7 +1241,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AaveUserPositionSummaryResponse]:
-        """Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+        """Positions - total
 
         This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.         It provides key financial metrics including the total collateral deposited, total debt         accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,         and the health factor of the user's account. These metrics are calculated by aggregating         data across all open positions held by the user, offering a holistic view of their financial         standing within the AAVE ecosystem.
 
@@ -1309,7 +1309,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+        """Positions - total
 
         This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.         It provides key financial metrics including the total collateral deposited, total debt         accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,         and the health factor of the user's account. These metrics are calculated by aggregating         data across all open positions held by the user, offering a holistic view of their financial         standing within the AAVE ecosystem.
 
@@ -1450,7 +1450,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Repay some or all tokens you borrowed
+        """Repay loans
 
         This endpoint allows users to repay a portion or the entirety of their borrowed tokens on         the Aave platform. By repaying borrowed amounts, users can improve their health factor,         which is a measure of the safety of their loan position. A higher health factor reduces the         risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires         specifying the chain and the details of the repayment transaction, including the amount and         the asset to be repaid.
 
@@ -1518,7 +1518,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Repay some or all tokens you borrowed
+        """Repay loans
 
         This endpoint allows users to repay a portion or the entirety of their borrowed tokens on         the Aave platform. By repaying borrowed amounts, users can improve their health factor,         which is a measure of the safety of their loan position. A higher health factor reduces the         risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires         specifying the chain and the details of the repayment transaction, including the amount and         the asset to be repaid.
 
@@ -1586,7 +1586,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Repay some or all tokens you borrowed
+        """Repay loans
 
         This endpoint allows users to repay a portion or the entirety of their borrowed tokens on         the Aave platform. By repaying borrowed amounts, users can improve their health factor,         which is a measure of the safety of their loan position. A higher health factor reduces the         risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires         specifying the chain and the details of the repayment transaction, including the amount and         the asset to be repaid.
 
@@ -1727,7 +1727,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Supply collateral to earn interest or borrow against
+        """Supply/Stake
 
         By supplying assets, users can earn interest on their deposits          The supplied collateral can be used as a basis for borrowing other assets, allowing users to         leverage their positions. In combination with a trading protocol, this can create leverage.            Overall, this endpoint is a critical component for users looking to maximize their asset         utility within the AAVEv3 ecosystem, providing both earning potential and borrowing         flexibility.
 
@@ -1795,7 +1795,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Supply collateral to earn interest or borrow against
+        """Supply/Stake
 
         By supplying assets, users can earn interest on their deposits          The supplied collateral can be used as a basis for borrowing other assets, allowing users to         leverage their positions. In combination with a trading protocol, this can create leverage.            Overall, this endpoint is a critical component for users looking to maximize their asset         utility within the AAVEv3 ecosystem, providing both earning potential and borrowing         flexibility.
 
@@ -1863,7 +1863,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Supply collateral to earn interest or borrow against
+        """Supply/Stake
 
         By supplying assets, users can earn interest on their deposits          The supplied collateral can be used as a basis for borrowing other assets, allowing users to         leverage their positions. In combination with a trading protocol, this can create leverage.            Overall, this endpoint is a critical component for users looking to maximize their asset         utility within the AAVEv3 ecosystem, providing both earning potential and borrowing         flexibility.
 
@@ -2004,7 +2004,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Withdraw some or all of your collateral
+        """Unstake
 
         This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can         withdraw a portion or all of their collateral, which may increase the risk of liquidation if         there are outstanding borrows. The withdrawal process also includes the collection of any         interest earned on the collateral. It is important for users to carefully consider their         outstanding debts and the potential impact on their liquidation threshold before proceeding         with a withdrawal. This endpoint is designed to provide a seamless and efficient way to         manage your collateral within the Aave ecosystem.
 
@@ -2072,7 +2072,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Withdraw some or all of your collateral
+        """Unstake
 
         This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can         withdraw a portion or all of their collateral, which may increase the risk of liquidation if         there are outstanding borrows. The withdrawal process also includes the collection of any         interest earned on the collateral. It is important for users to carefully consider their         outstanding debts and the potential impact on their liquidation threshold before proceeding         with a withdrawal. This endpoint is designed to provide a seamless and efficient way to         manage your collateral within the Aave ecosystem.
 
@@ -2140,7 +2140,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Withdraw some or all of your collateral
+        """Unstake
 
         This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can         withdraw a portion or all of their collateral, which may increase the risk of liquidation if         there are outstanding borrows. The withdrawal process also includes the collection of any         interest earned on the collateral. It is important for users to carefully consider their         outstanding debts and the potential impact on their liquidation threshold before proceeding         with a withdrawal. This endpoint is designed to provide a seamless and efficient way to         manage your collateral within the Aave ecosystem.
 

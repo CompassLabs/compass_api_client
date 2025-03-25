@@ -29,56 +29,56 @@ class TestAaveV3Api(unittest.TestCase):
     def test_borrow_v0_aave_borrow_post(self) -> None:
         """Test case for borrow_v0_aave_borrow_post
 
-        Borrow against your collateral
+        Borrow/Lend
         """
         pass
 
     def test_get_asset_price_v0_aave_asset_price_get_post(self) -> None:
         """Test case for get_asset_price_v0_aave_asset_price_get_post
 
-        Get the price of an asset in USD according to Aave
+        Token prices
         """
         pass
 
     def test_get_liquidity_change_v0_aave_liquidity_change_get_post(self) -> None:
         """Test case for get_liquidity_change_v0_aave_liquidity_change_get_post
 
-        Gets the change in liquidity index between two blocks, therefore the amount a     position will have increased or decreased over the time
+        Liquididy index
         """
         pass
 
     def test_get_user_position_per_token_v0_aave_user_position_per_token_get_post(self) -> None:
         """Test case for get_user_position_per_token_v0_aave_user_position_per_token_get_post
 
-        Get the user's position for a specific token.
+        Positions - per token
         """
         pass
 
     def test_get_user_position_summary_v0_aave_user_position_summary_get_post(self) -> None:
         """Test case for get_user_position_summary_v0_aave_user_position_summary_get_post
 
-        Get a summary of the user's position on AAVE. These values will be sums or averages     across all open positions.
+        Positions - total
         """
         pass
 
     def test_repay_v0_aave_repay_post(self) -> None:
         """Test case for repay_v0_aave_repay_post
 
-        Repay some or all tokens you borrowed
+        Repay loans
         """
         pass
 
     def test_supply_v0_aave_supply_post(self) -> None:
         """Test case for supply_v0_aave_supply_post
 
-        Supply collateral to earn interest or borrow against
+        Supply/Stake
         """
         pass
 
     def test_withdraw_v0_aave_withdraw_post(self) -> None:
         """Test case for withdraw_v0_aave_withdraw_post
 
-        Withdraw some or all of your collateral
+        Unstake
         """
         pass
 
