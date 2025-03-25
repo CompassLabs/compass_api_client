@@ -1,6 +1,6 @@
 # Chain
 
-The chain to use.  All token balances are per-chain.
+The chain to use.
 
 ## Enum
 

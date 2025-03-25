@@ -1978,7 +1978,15 @@
           "amount",
           "interest_rate_mode"
         ],
-        "title": "AaveBorrowRequest"
+        "title": "AaveBorrowRequest",
+        "example": {
+          "amount": 1,
+          "asset": "USDT",
+          "chain": "arbitrum:mainnet",
+          "interest_rate_mode": 2,
+          "on_behalf_of": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "AaveGetAssetPriceRequest": {
         "properties": {
@@ -1998,7 +2006,11 @@
           "chain",
           "asset"
         ],
-        "title": "AaveGetAssetPriceRequest"
+        "title": "AaveGetAssetPriceRequest",
+        "example": {
+          "asset": "USDC",
+          "chain": "arbitrum:mainnet"
+        }
       },
       "AaveGetLiquidityChangeRequest": {
         "properties": {
@@ -2042,7 +2054,13 @@
           "start_block",
           "asset"
         ],
-        "title": "AaveGetLiquidityChangeRequest"
+        "title": "AaveGetLiquidityChangeRequest",
+        "example": {
+          "asset": "USDC",
+          "chain": "arbitrum:mainnet",
+          "end_block": 319407231,
+          "start_block": 0
+        }
       },
       "AaveGetUserPositionPerTokenRequest": {
         "properties": {
@@ -2071,7 +2089,12 @@
           "user",
           "asset"
         ],
-        "title": "AaveGetUserPositionPerTokenRequest"
+        "title": "AaveGetUserPositionPerTokenRequest",
+        "example": {
+          "asset": "USDC",
+          "chain": "arbitrum:mainnet",
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "AaveGetUserPositionSummaryRequest": {
         "properties": {
@@ -2092,7 +2115,11 @@
           "chain",
           "user"
         ],
-        "title": "AaveGetUserPositionSummaryRequest"
+        "title": "AaveGetUserPositionSummaryRequest",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "AaveLiquidityChangeResponse": {
         "properties": {
@@ -2187,7 +2214,15 @@
           "amount",
           "interest_rate_mode"
         ],
-        "title": "AaveRepayRequest"
+        "title": "AaveRepayRequest",
+        "example": {
+          "amount": 1,
+          "asset": "USDT",
+          "chain": "arbitrum:mainnet",
+          "interest_rate_mode": 2,
+          "on_behalf_of": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "AaveSupplyRequest": {
         "properties": {
@@ -2244,7 +2279,13 @@
           "asset",
           "amount"
         ],
-        "title": "AaveSupplyRequest"
+        "title": "AaveSupplyRequest",
+        "example": {
+          "amount": 1,
+          "asset": "USDC",
+          "chain": "arbitrum:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "AaveUserPositionPerTokenResponse": {
         "properties": {
@@ -2403,7 +2444,14 @@
           "amount",
           "recipient"
         ],
-        "title": "AaveWithdrawRequest"
+        "title": "AaveWithdrawRequest",
+        "example": {
+          "amount": 1,
+          "asset": "USDC",
+          "chain": "arbitrum:mainnet",
+          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "AerodromeLPPositionsInfo": {
         "properties": {
@@ -4087,7 +4135,7 @@
           "base:mainnet"
         ],
         "title": "Chain",
-        "description": "The chain to use.\n\nAll token balances are per-chain."
+        "description": "The chain to use."
       },
       "ContractName": {
         "type": "string",
@@ -4801,7 +4849,17 @@
           "amount_out",
           "amount_in_maximum"
         ],
-        "title": "UniswapBuyExactlyRequest"
+        "title": "UniswapBuyExactlyRequest",
+        "example": {
+          "amount_in_maximum": 1.1,
+          "amount_out": 1,
+          "chain": "arbitrum:mainnet",
+          "fee": "0.01",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_in": "USDC",
+          "token_out": "USDT",
+          "wrap_eth": false
+        }
       },
       "UniswapBuyQuoteInfoResponse": {
         "properties": {
@@ -4841,7 +4899,11 @@
           "token_id"
         ],
         "title": "UniswapCheckInRangeRequest",
-        "description": "Endpoint parameters for checking if liquidity position is in active tick range on\nuniswap v3."
+        "description": "Endpoint parameters for checking if liquidity position is in active tick range on\nuniswap v3.",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "token_id": 4318185
+        }
       },
       "UniswapCheckInRangeResponse": {
         "properties": {
@@ -4908,7 +4970,14 @@
           "fee",
           "amount_out"
         ],
-        "title": "UniswapGetBuyQuoteRequest"
+        "title": "UniswapGetBuyQuoteRequest",
+        "example": {
+          "amount_out": 1,
+          "chain": "arbitrum:mainnet",
+          "fee": "0.01",
+          "token_in": "USDC",
+          "token_out": "USDT"
+        }
       },
       "UniswapGetLiquidityProvisionPositionsRequest": {
         "properties": {
@@ -4927,7 +4996,11 @@
           "chain",
           "user"
         ],
-        "title": "UniswapGetLiquidityProvisionPositionsRequest"
+        "title": "UniswapGetLiquidityProvisionPositionsRequest",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
       },
       "UniswapGetPoolPriceRequest": {
         "properties": {
@@ -4963,7 +5036,13 @@
           "token_out",
           "fee"
         ],
-        "title": "UniswapGetPoolPriceRequest"
+        "title": "UniswapGetPoolPriceRequest",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "fee": "0.01",
+          "token_in": "USDC",
+          "token_out": "USDT"
+        }
       },
       "UniswapGetSellQuoteRequest": {
         "properties": {
@@ -5016,7 +5095,14 @@
           "fee",
           "amount_in"
         ],
-        "title": "UniswapGetSellQuoteRequest"
+        "title": "UniswapGetSellQuoteRequest",
+        "example": {
+          "amount_in": 1,
+          "chain": "arbitrum:mainnet",
+          "fee": "0.01",
+          "token_in": "USDC",
+          "token_out": "USDT"
+        }
       },
       "UniswapIncreaseLiquidityProvision": {
         "properties": {
@@ -5105,7 +5191,16 @@
           "amount0_min",
           "amount1_min"
         ],
-        "title": "UniswapIncreaseLiquidityProvision"
+        "title": "UniswapIncreaseLiquidityProvision",
+        "example": {
+          "amount0_desired": 0.1,
+          "amount0_min": 0.05,
+          "amount1_desired": 0.1,
+          "amount1_min": 0.05,
+          "chain": "arbitrum:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_id": 4318185
+        }
       },
       "UniswapLPPositionsInfoResponse": {
         "properties": {
@@ -5270,7 +5365,21 @@
           "amount0_min",
           "amount1_min"
         ],
-        "title": "UniswapMintLiquidityProvision"
+        "title": "UniswapMintLiquidityProvision",
+        "example": {
+          "amount0_desired": 0.1,
+          "amount0_min": 0.05,
+          "amount1_desired": 0.1,
+          "amount1_min": 0.05,
+          "chain": "arbitrum:mainnet",
+          "fee": "0.01",
+          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "tick_lower": -1000,
+          "tick_upper": 1000,
+          "token0": "USDC",
+          "token1": "USDT"
+        }
       },
       "UniswapPoolPriceResponse": {
         "properties": {
@@ -5456,7 +5565,17 @@
           "fee",
           "amount_in"
         ],
-        "title": "UniswapSellExactlyRequest"
+        "title": "UniswapSellExactlyRequest",
+        "example": {
+          "amount_in": 1,
+          "amount_out_minimum": 0.5,
+          "chain": "arbitrum:mainnet",
+          "fee": "0.01",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_in": "USDC",
+          "token_out": "USDT",
+          "wrap_eth": false
+        }
       },
       "UniswapSellQuoteInfoResponse": {
         "properties": {
@@ -5523,7 +5642,13 @@
           "percentage_for_withdrawal"
         ],
         "title": "UniswapWithdrawLiquidityProvision",
-        "description": "Endpoint parameters for liquidity provision withdrawal on uniswap v3.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user."
+        "description": "Endpoint parameters for liquidity provision withdrawal on uniswap v3.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user.",
+        "example": {
+          "chain": "arbitrum:mainnet",
+          "percentage_for_withdrawal": 1,
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_id": 4318185
+        }
       },
       "UnsignedTransaction": {
         "properties": {

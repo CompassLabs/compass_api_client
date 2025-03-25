@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class Chain(str, Enum):
     """
-    The chain to use.  All token balances are per-chain.
+    The chain to use.
     """
 
     """
