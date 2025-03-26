@@ -12,7 +12,7 @@
           "Aave V3"
         ],
         "summary": "Supply/Stake",
-        "description": "By supplying assets, users can earn interest on their deposits\n\n        The supplied collateral can be used as a basis for borrowing other assets, allowing users to\n        leverage their positions. In combination with a trading protocol, this can create leverage.  \n\n        Overall, this endpoint is a critical component for users looking to maximize their asset\n        utility within the AAVEv3 ecosystem, providing both earning potential and borrowing\n        flexibility.",
+        "description": "By supplying assets, users can earn interest on their deposits\n\nThe supplied collateral can be used as a basis for borrowing other assets, allowing users to\nleverage their positions. In combination with a trading protocol, this can create leverage.  \n\nOverall, this endpoint is a critical component for users looking to maximize their asset\nutility within the AAVEv3 ecosystem, providing both earning potential and borrowing\nflexibility.",
         "operationId": "supply_v0_aave_supply_post",
         "requestBody": {
           "content": {
@@ -54,7 +54,7 @@
           "Aave V3"
         ],
         "summary": "Borrow/Lend",
-        "description": "You will pay interest for your borrows. Price changes in the assets may lead to\n    some or all of your collateral being liquidated, if the borrow position becomes unhealthy.",
+        "description": "You will pay interest for your borrows. Price changes in the assets may lead to\nsome or all of your collateral being liquidated, if the borrow position becomes unhealthy.",
         "operationId": "borrow_v0_aave_borrow_post",
         "requestBody": {
           "content": {
@@ -96,7 +96,7 @@
           "Aave V3"
         ],
         "summary": "Repay loans",
-        "description": "This endpoint allows users to repay a portion or the entirety of their borrowed tokens on\n        the Aave platform. By repaying borrowed amounts, users can improve their health factor,\n        which is a measure of the safety of their loan position. A higher health factor reduces the\n        risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires\n        specifying the chain and the details of the repayment transaction, including the amount and\n        the asset to be repaid.",
+        "description": "This endpoint allows users to repay a portion or the entirety of their borrowed tokens on\nthe Aave platform. By repaying borrowed amounts, users can improve their health factor,\nwhich is a measure of the safety of their loan position. A higher health factor reduces the\nrisk of liquidation, ensuring a more secure borrowing experience. The endpoint requires\nspecifying the chain and the details of the repayment transaction, including the amount and\nthe asset to be repaid.",
         "operationId": "repay_v0_aave_repay_post",
         "requestBody": {
           "content": {
@@ -138,7 +138,7 @@
           "Aave V3"
         ],
         "summary": "Unstake",
-        "description": "This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can\n        withdraw a portion or all of their collateral, which may increase the risk of liquidation if\n        there are outstanding borrows. The withdrawal process also includes the collection of any\n        interest earned on the collateral. It is important for users to carefully consider their\n        outstanding debts and the potential impact on their liquidation threshold before proceeding\n        with a withdrawal. This endpoint is designed to provide a seamless and efficient way to\n        manage your collateral within the Aave ecosystem.",
+        "description": "This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can\nwithdraw a portion or all of their collateral, which may increase the risk of liquidation if\nthere are outstanding borrows. The withdrawal process also includes the collection of any\ninterest earned on the collateral. It is important for users to carefully consider their\noutstanding debts and the potential impact on their liquidation threshold before proceeding\nwith a withdrawal. This endpoint is designed to provide a seamless and efficient way to\nmanage your collateral within the Aave ecosystem.",
         "operationId": "withdraw_v0_aave_withdraw_post",
         "requestBody": {
           "content": {
@@ -180,7 +180,7 @@
           "Aave V3"
         ],
         "summary": "Token prices",
-        "description": "This endpoint retrieves the current price of a specified asset in USD as\n        determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the\n        asset price, ensuring accurate and up-to-date information. The request\n        requires the asset identifier and the blockchain network (chain) on which the\n        asset resides. The response provides the asset price in a standardized format,\n        converted from Wei to the base currency decimals defined by Aave.",
+        "description": "This endpoint retrieves the current price of a specified asset in USD as\ndetermined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the\nasset price, ensuring accurate and up-to-date information. The request\nrequires the asset identifier and the blockchain network (chain) on which the\nasset resides. The response provides the asset price in a standardized format,\nconverted from Wei to the base currency decimals defined by Aave.",
         "operationId": "get_asset_price_v0_aave_asset_price_get_post",
         "requestBody": {
           "content": {
@@ -348,7 +348,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Swap",
-        "description": "Swap one token for another on Aerodrome.\n        Ensure you specify the minimum amount you expect to receive to\n        avoid trading at an unfavorable exchange rate. This endpoint\n        facilitates the exchange of tokens by interacting with the\n        Aerodrome smart contract, ensuring that the transaction is\n        executed only if the specified minimum output is met.",
+        "description": "Swap one token for another on Aerodrome.\nEnsure you specify the minimum amount you expect to receive to\navoid trading at an unfavorable exchange rate. This endpoint\nfacilitates the exchange of tokens by interacting with the\nAerodrome smart contract, ensuring that the transaction is\nexecuted only if the specified minimum output is met.",
         "operationId": "process_request_v0_aerodrome_basic_swap_tokens_post",
         "requestBody": {
           "content": {
@@ -390,7 +390,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Swap from ETH",
-        "description": "This endpoint allows you to swap a specified amount of ETH for a\n        desired token on the Aerodrome platform. To protect against\n        unfavorable exchange rates, you must specify the minimum amount\n        of the token you wish to receive. The transaction will only be\n        executed if this minimum amount is met, ensuring you do not\n        accidentally trade at a disadvantageous rate.",
+        "description": "This endpoint allows you to swap a specified amount of ETH for a\ndesired token on the Aerodrome platform. To protect against\nunfavorable exchange rates, you must specify the minimum amount\nof the token you wish to receive. The transaction will only be\nexecuted if this minimum amount is met, ensuring you do not\naccidentally trade at a disadvantageous rate.",
         "operationId": "process_request_v0_aerodrome_basic_swap_eth_for_token_post",
         "requestBody": {
           "content": {
@@ -432,7 +432,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Swap to ETH",
-        "description": "Swap a specified amount of a token for ETH using the Aerodrome platform.\n        To protect against unfavorable exchange rates, you must specify the minimum\n        amount of ETH you wish to receive. The transaction will only be executed if\n        this minimum amount is met, ensuring you do not trade at a disadvantageous rate.",
+        "description": "Swap a specified amount of a token for ETH using the Aerodrome platform.\nTo protect against unfavorable exchange rates, you must specify the minimum\namount of ETH you wish to receive. The transaction will only be executed if\nthis minimum amount is met, ensuring you do not trade at a disadvantageous rate.",
         "operationId": "process_request_v0_aerodrome_basic_swap_token_for_eth_post",
         "requestBody": {
           "content": {
@@ -474,7 +474,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Provide liquidity",
-        "description": "This endpoint allows users to provide liquidity to a specified pool on the\n        Aerodrome platform. Users must specify the tokens, desired amounts, minimum\n        amounts, and a deadline for the transaction. The operation will ensure the\n        pool exists and will use the sender's address if no recipient is specified.",
+        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform. Users must specify the tokens, desired amounts, minimum\namounts, and a deadline for the transaction. The operation will ensure the\npool exists and will use the sender's address if no recipient is specified.",
         "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post",
         "requestBody": {
           "content": {
@@ -516,7 +516,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Provide liquidity using WETH",
-        "description": "This endpoint allows users to provide liquidity to a specified pool on the\n        Aerodrome platform using Wrapped Ether (WETH) and another token. Users must\n        specify the token pair, desired amounts, minimum amounts, and a deadline for\n        the transaction. The operation will ensure the pool exists and will use the\n        sender's address if no recipient is specified. The transaction will be executed\n        through the Aerodrome Basic Router contract, and the specified amount of WETH\n        will be sent along with the transaction.",
+        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform using Wrapped Ether (WETH) and another token. Users must\nspecify the token pair, desired amounts, minimum amounts, and a deadline for\nthe transaction. The operation will ensure the pool exists and will use the\nsender's address if no recipient is specified. The transaction will be executed\nthrough the Aerodrome Basic Router contract, and the specified amount of WETH\nwill be sent along with the transaction.",
         "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post",
         "requestBody": {
           "content": {
@@ -558,7 +558,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Remove liquidity",
-        "description": "This endpoint allows users to remove liquidity from a specified pool on the\n        Aerodrome platform. Users must specify the token pair, the amount of liquidity\n        to remove, minimum amounts for each token, and a deadline for the transaction.\n        The operation will ensure the pool exists and will use the sender's address if\n        no recipient is specified. The transaction will be executed through the\n        Aerodrome Basic Router contract, and the specified amount of liquidity will be\n        withdrawn from the pool.",
+        "description": "This endpoint allows users to remove liquidity from a specified pool on the\nAerodrome platform. Users must specify the token pair, the amount of liquidity\nto remove, minimum amounts for each token, and a deadline for the transaction.\nThe operation will ensure the pool exists and will use the sender's address if\nno recipient is specified. The transaction will be executed through the\nAerodrome Basic Router contract, and the specified amount of liquidity will be\nwithdrawn from the pool.",
         "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post",
         "requestBody": {
           "content": {
@@ -600,7 +600,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Remove liquidity using WETH",
-        "description": "This endpoint allows users to remove liquidity from a pool on the Aerodrome\n        platform using WETH and another token. Users must specify the token pair, the\n        amount of liquidity to remove, minimum amounts for each token, and a deadline\n        for the transaction. The operation will ensure the pool exists and will use\n        the sender's address if no recipient is specified. The transaction will be\n        executed through the Aerodrome Basic Router contract, and the specified amount\n        of liquidity will be withdrawn from the pool.",
+        "description": "This endpoint allows users to remove liquidity from a pool on the Aerodrome\nplatform using WETH and another token. Users must specify the token pair, the\namount of liquidity to remove, minimum amounts for each token, and a deadline\nfor the transaction. The operation will ensure the pool exists and will use\nthe sender's address if no recipient is specified. The transaction will be\nexecuted through the Aerodrome Basic Router contract, and the specified amount\nof liquidity will be withdrawn from the pool.",
         "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post",
         "requestBody": {
           "content": {
@@ -642,7 +642,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Pool price",
-        "description": "This endpoint retrieves the current price of a pool, indicating how many token0\n        you can purchase for 1 token1. Note that this is an instantaneous price and may\n        change during any trade. For a more accurate representation of the trade ratios\n        between the two assets, consider using the quote endpoint.",
+        "description": "This endpoint retrieves the current price of a pool, indicating how many token0\nyou can purchase for 1 token1. Note that this is an instantaneous price and may\nchange during any trade. For a more accurate representation of the trade ratios\nbetween the two assets, consider using the quote endpoint.",
         "operationId": "process_request_v0_aerodrome_slipstream_pool_price_get_post",
         "requestBody": {
           "content": {
@@ -684,7 +684,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Swap - from specified amount",
-        "description": "This endpoint allows users to trade a specific amount of one token\n        into another token using the Aerodrome Slipstream protocol. The\n        transaction is executed by specifying the exact amount of the input\n        token to be sold, and the system calculates the amount of the output\n        token that will be received. The operation ensures that the trade is\n        conducted within the constraints of the current market conditions,\n        taking into account the liquidity and price impact. This endpoint is\n        suitable for users who want to sell a precise quantity of a token\n        and are willing to accept the resulting amount of the other token.",
+        "description": "This endpoint allows users to trade a specific amount of one token\ninto another token using the Aerodrome Slipstream protocol. The\ntransaction is executed by specifying the exact amount of the input\ntoken to be sold, and the system calculates the amount of the output\ntoken that will be received. The operation ensures that the trade is\nconducted within the constraints of the current market conditions,\ntaking into account the liquidity and price impact. This endpoint is\nsuitable for users who want to sell a precise quantity of a token\nand are willing to accept the resulting amount of the other token.",
         "operationId": "process_request_v0_aerodrome_slipstream_swap_sell_exactly_post",
         "requestBody": {
           "content": {
@@ -726,7 +726,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Swap - into specified amount",
-        "description": "This endpoint facilitates the trading of tokens by allowing users to\n        specify the exact amount of the output token they wish to receive.\n        Utilizing the Aerodrome Slipstream protocol, the system calculates\n        the necessary amount of the input token required to achieve the\n        desired output. This operation is particularly useful for users who\n        have a specific target amount of the output token in mind and are\n        willing to provide the corresponding input token amount. The\n        transaction is executed with consideration of current market\n        conditions, including liquidity and price impact, ensuring that the\n        trade is completed efficiently and effectively.",
+        "description": "This endpoint facilitates the trading of tokens by allowing users to\nspecify the exact amount of the output token they wish to receive.\nUtilizing the Aerodrome Slipstream protocol, the system calculates\nthe necessary amount of the input token required to achieve the\ndesired output. This operation is particularly useful for users who\nhave a specific target amount of the output token in mind and are\nwilling to provide the corresponding input token amount. The\ntransaction is executed with consideration of current market\nconditions, including liquidity and price impact, ensuring that the\ntrade is completed efficiently and effectively.",
         "operationId": "process_request_v0_aerodrome_slipstream_swap_buy_exactly_post",
         "requestBody": {
           "content": {
@@ -768,7 +768,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "List LP positions",
-        "description": "Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.\n        This endpoint allows users to query and obtain detailed information about their LP positions,\n        including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,\n        provides a structured representation of the LP positions data, ensuring clarity and ease of use.\n        This functionality is essential for users managing their liquidity provision activities,\n        enabling them to make informed decisions based on their current positions.",
+        "description": "Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.\nThis endpoint allows users to query and obtain detailed information about their LP positions,\nincluding the number of active positions they hold. The response model, AerodromeLPPositionsInfo,\nprovides a structured representation of the LP positions data, ensuring clarity and ease of use.\nThis functionality is essential for users managing their liquidity provision activities,\nenabling them to make informed decisions based on their current positions.",
         "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post",
         "requestBody": {
           "content": {
@@ -810,7 +810,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Open a new LP position",
-        "description": "Initiate a new Liquidity Provider (LP) position by minting tokens.\n        This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision.\n        The minting process involves creating a new position with specified parameters,\n        such as token amounts and pool details. The response will confirm the successful creation of the LP position,\n        providing users with the necessary information to manage their newly minted position.\n        This functionality is crucial for users looking to expand their liquidity provision activities,\n        offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.",
+        "description": "Initiate a new Liquidity Provider (LP) position by minting tokens.\nThis endpoint allows users to open a new LP position, enabling them to participate in liquidity provision.\nThe minting process involves creating a new position with specified parameters,\nsuch as token amounts and pool details. The response will confirm the successful creation of the LP position,\nproviding users with the necessary information to manage their newly minted position.\nThis functionality is crucial for users looking to expand their liquidity provision activities,\noffering them the opportunity to engage in decentralized finance (DeFi) markets effectively.",
         "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_mint_post",
         "requestBody": {
           "content": {
@@ -852,7 +852,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Increase an LP position",
-        "description": "Increase the liquidity of an existing Liquidity Provider (LP) position.\n        This endpoint allows users to add more tokens to their current LP position,\n        enhancing their participation in liquidity provision. By increasing liquidity,\n        users can potentially earn more rewards and improve their position in the pool.\n        The process involves specifying additional token amounts and updating the pool details.\n        The response will confirm the successful increase of the LP position,\n        providing users with updated information about their enhanced position.\n        This functionality is vital for users aiming to optimize their liquidity provision strategy,\n        enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.",
+        "description": "Increase the liquidity of an existing Liquidity Provider (LP) position.\nThis endpoint allows users to add more tokens to their current LP position,\nenhancing their participation in liquidity provision. By increasing liquidity,\nusers can potentially earn more rewards and improve their position in the pool.\nThe process involves specifying additional token amounts and updating the pool details.\nThe response will confirm the successful increase of the LP position,\nproviding users with updated information about their enhanced position.\nThis functionality is vital for users aiming to optimize their liquidity provision strategy,\nenabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.",
         "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post",
         "requestBody": {
           "content": {
@@ -894,7 +894,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Withdraw an LP position",
-        "description": "Withdraw an existing Liquidity Provider (LP) position.\n        This endpoint allows users to remove their tokens from an LP position,\n        effectively closing their participation in the liquidity pool.\n        The withdrawal process involves specifying the LP position to be closed,\n        and the response will confirm the successful removal of liquidity,\n        providing users with details about the withdrawn tokens and any remaining balances.\n        This functionality is essential for users who wish to exit their liquidity provision activities,\n        enabling them to reclaim their assets and potentially reallocate them to other investment opportunities.\n        The endpoint ensures a smooth and secure withdrawal process,\n        facilitating users' strategic management of their decentralized finance (DeFi) portfolios.",
+        "description": "Withdraw an existing Liquidity Provider (LP) position.\nThis endpoint allows users to remove their tokens from an LP position,\neffectively closing their participation in the liquidity pool.\nThe withdrawal process involves specifying the LP position to be closed,\nand the response will confirm the successful removal of liquidity,\nproviding users with details about the withdrawn tokens and any remaining balances.\nThis functionality is essential for users who wish to exit their liquidity provision activities,\nenabling them to reclaim their assets and potentially reallocate them to other investment opportunities.\nThe endpoint ensures a smooth and secure withdrawal process,\nfacilitating users' strategic management of their decentralized finance (DeFi) portfolios.",
         "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post",
         "requestBody": {
           "content": {
@@ -1926,7 +1926,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to borrow.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the underlying asset to borrow.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -1995,7 +1995,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the asset whose price you want.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the asset whose price you want.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -2042,7 +2042,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the asset to fetch liquidity index change for.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the asset to fetch liquidity index change for.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -2077,7 +2077,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the asset to fetch the user's position on.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the asset to fetch the user's position on.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -2162,7 +2162,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to repay.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the underlying asset to repay.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -2237,7 +2237,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -2406,7 +2406,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to withdraw.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the underlying asset to withdraw.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -2474,14 +2474,14 @@
         "properties": {
           "token_a": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to provide liquidity for<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to provide liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
           },
           "token_b": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to provide liquidity for<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to provide liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDT"
             ]
@@ -2613,7 +2613,7 @@
         "properties": {
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to provide liquidity for alongside WETH.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to provide liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
@@ -2814,14 +2814,14 @@
         "properties": {
           "token_a": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to remove liquidity for<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to remove liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
           },
           "token_b": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to remove liquidity for<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to remove liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDT"
             ]
@@ -2935,7 +2935,7 @@
         "properties": {
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to remove liquidity for alongside WETH.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to remove liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
@@ -3047,14 +3047,14 @@
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -3159,14 +3159,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of a token in the pool<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of a token in the pool<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -3297,14 +3297,14 @@
         "properties": {
           "token0": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the first token in the pair<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
           },
           "token1": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the second token in the pair<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
@@ -3489,14 +3489,14 @@
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -3615,7 +3615,7 @@
         "properties": {
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
@@ -3691,7 +3691,7 @@
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
@@ -3767,14 +3767,14 @@
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -3868,7 +3868,7 @@
           },
           "token_symbol": {
             "$ref": "#/components/schemas/Token",
-            "description": "Symbol of the token<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "Symbol of the token<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -3921,7 +3921,7 @@
           },
           "token_symbol": {
             "$ref": "#/components/schemas/Token",
-            "description": "Symbol of the token<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "Symbol of the token<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -4331,7 +4331,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which the allowance is checked.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token for which the allowance is checked.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -4375,7 +4375,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which the balance is checked.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token for which the balance is checked.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -4500,7 +4500,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which the allowance is increased.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token for which the allowance is increased.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -4614,7 +4614,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which to get the price<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token for which to get the price<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -4719,7 +4719,7 @@
           },
           "token_symbol": {
             "$ref": "#/components/schemas/Token",
-            "description": "Symbol of the token<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "Symbol of the token<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -4821,7 +4821,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to transfer.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to transfer.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -4918,14 +4918,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -5066,14 +5066,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
@@ -5149,14 +5149,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of a token in the pool<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of a token in the pool<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -5191,14 +5191,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "USDC"
             ]
@@ -5372,14 +5372,14 @@
           },
           "token0": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the first token in the pair<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
           },
           "token1": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the second token in the pair<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
@@ -5634,14 +5634,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:  \n  `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:  \n  `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:  \n  `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
             "examples": [
               "WETH"
             ]

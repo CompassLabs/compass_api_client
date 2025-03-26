@@ -67,7 +67,7 @@ class AaveV3Api:
     ) -> UnsignedTransaction:
         """Borrow/Lend
 
-        You will pay interest for your borrows. Price changes in the assets may lead to     some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+        You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
         :param aave_borrow_request: (required)
         :type aave_borrow_request: AaveBorrowRequest
@@ -135,7 +135,7 @@ class AaveV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Borrow/Lend
 
-        You will pay interest for your borrows. Price changes in the assets may lead to     some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+        You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
         :param aave_borrow_request: (required)
         :type aave_borrow_request: AaveBorrowRequest
@@ -203,7 +203,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Borrow/Lend
 
-        You will pay interest for your borrows. Price changes in the assets may lead to     some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+        You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
         :param aave_borrow_request: (required)
         :type aave_borrow_request: AaveBorrowRequest
@@ -344,7 +344,7 @@ class AaveV3Api:
     ) -> AaveAssetPriceResponse:
         """Token prices
 
-        This endpoint retrieves the current price of a specified asset in USD as         determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the         asset price, ensuring accurate and up-to-date information. The request         requires the asset identifier and the blockchain network (chain) on which the         asset resides. The response provides the asset price in a standardized format,         converted from Wei to the base currency decimals defined by Aave.
+        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
 
         :param aave_get_asset_price_request: (required)
         :type aave_get_asset_price_request: AaveGetAssetPriceRequest
@@ -412,7 +412,7 @@ class AaveV3Api:
     ) -> ApiResponse[AaveAssetPriceResponse]:
         """Token prices
 
-        This endpoint retrieves the current price of a specified asset in USD as         determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the         asset price, ensuring accurate and up-to-date information. The request         requires the asset identifier and the blockchain network (chain) on which the         asset resides. The response provides the asset price in a standardized format,         converted from Wei to the base currency decimals defined by Aave.
+        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
 
         :param aave_get_asset_price_request: (required)
         :type aave_get_asset_price_request: AaveGetAssetPriceRequest
@@ -480,7 +480,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Token prices
 
-        This endpoint retrieves the current price of a specified asset in USD as         determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the         asset price, ensuring accurate and up-to-date information. The request         requires the asset identifier and the blockchain network (chain) on which the         asset resides. The response provides the asset price in a standardized format,         converted from Wei to the base currency decimals defined by Aave.
+        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
 
         :param aave_get_asset_price_request: (required)
         :type aave_get_asset_price_request: AaveGetAssetPriceRequest
@@ -1452,7 +1452,7 @@ class AaveV3Api:
     ) -> UnsignedTransaction:
         """Repay loans
 
-        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on         the Aave platform. By repaying borrowed amounts, users can improve their health factor,         which is a measure of the safety of their loan position. A higher health factor reduces the         risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires         specifying the chain and the details of the repayment transaction, including the amount and         the asset to be repaid.
+        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform. By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
 
         :param aave_repay_request: (required)
         :type aave_repay_request: AaveRepayRequest
@@ -1520,7 +1520,7 @@ class AaveV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Repay loans
 
-        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on         the Aave platform. By repaying borrowed amounts, users can improve their health factor,         which is a measure of the safety of their loan position. A higher health factor reduces the         risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires         specifying the chain and the details of the repayment transaction, including the amount and         the asset to be repaid.
+        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform. By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
 
         :param aave_repay_request: (required)
         :type aave_repay_request: AaveRepayRequest
@@ -1588,7 +1588,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Repay loans
 
-        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on         the Aave platform. By repaying borrowed amounts, users can improve their health factor,         which is a measure of the safety of their loan position. A higher health factor reduces the         risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires         specifying the chain and the details of the repayment transaction, including the amount and         the asset to be repaid.
+        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform. By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
 
         :param aave_repay_request: (required)
         :type aave_repay_request: AaveRepayRequest
@@ -1729,7 +1729,7 @@ class AaveV3Api:
     ) -> UnsignedTransaction:
         """Supply/Stake
 
-        By supplying assets, users can earn interest on their deposits          The supplied collateral can be used as a basis for borrowing other assets, allowing users to         leverage their positions. In combination with a trading protocol, this can create leverage.            Overall, this endpoint is a critical component for users looking to maximize their asset         utility within the AAVEv3 ecosystem, providing both earning potential and borrowing         flexibility.
+        By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 
         :param aave_supply_request: (required)
         :type aave_supply_request: AaveSupplyRequest
@@ -1797,7 +1797,7 @@ class AaveV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Supply/Stake
 
-        By supplying assets, users can earn interest on their deposits          The supplied collateral can be used as a basis for borrowing other assets, allowing users to         leverage their positions. In combination with a trading protocol, this can create leverage.            Overall, this endpoint is a critical component for users looking to maximize their asset         utility within the AAVEv3 ecosystem, providing both earning potential and borrowing         flexibility.
+        By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 
         :param aave_supply_request: (required)
         :type aave_supply_request: AaveSupplyRequest
@@ -1865,7 +1865,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Supply/Stake
 
-        By supplying assets, users can earn interest on their deposits          The supplied collateral can be used as a basis for borrowing other assets, allowing users to         leverage their positions. In combination with a trading protocol, this can create leverage.            Overall, this endpoint is a critical component for users looking to maximize their asset         utility within the AAVEv3 ecosystem, providing both earning potential and borrowing         flexibility.
+        By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 
         :param aave_supply_request: (required)
         :type aave_supply_request: AaveSupplyRequest
@@ -2006,7 +2006,7 @@ class AaveV3Api:
     ) -> UnsignedTransaction:
         """Unstake
 
-        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can         withdraw a portion or all of their collateral, which may increase the risk of liquidation if         there are outstanding borrows. The withdrawal process also includes the collection of any         interest earned on the collateral. It is important for users to carefully consider their         outstanding debts and the potential impact on their liquidation threshold before proceeding         with a withdrawal. This endpoint is designed to provide a seamless and efficient way to         manage your collateral within the Aave ecosystem.
+        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
 
         :param aave_withdraw_request: (required)
         :type aave_withdraw_request: AaveWithdrawRequest
@@ -2074,7 +2074,7 @@ class AaveV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Unstake
 
-        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can         withdraw a portion or all of their collateral, which may increase the risk of liquidation if         there are outstanding borrows. The withdrawal process also includes the collection of any         interest earned on the collateral. It is important for users to carefully consider their         outstanding debts and the potential impact on their liquidation threshold before proceeding         with a withdrawal. This endpoint is designed to provide a seamless and efficient way to         manage your collateral within the Aave ecosystem.
+        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
 
         :param aave_withdraw_request: (required)
         :type aave_withdraw_request: AaveWithdrawRequest
@@ -2142,7 +2142,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Unstake
 
-        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can         withdraw a portion or all of their collateral, which may increase the risk of liquidation if         there are outstanding borrows. The withdrawal process also includes the collection of any         interest earned on the collateral. It is important for users to carefully consider their         outstanding debts and the potential impact on their liquidation threshold before proceeding         with a withdrawal. This endpoint is designed to provide a seamless and efficient way to         manage your collateral within the Aave ecosystem.
+        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
 
         :param aave_withdraw_request: (required)
         :type aave_withdraw_request: AaveWithdrawRequest

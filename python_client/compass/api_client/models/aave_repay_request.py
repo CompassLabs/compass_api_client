@@ -32,7 +32,7 @@ class AaveRepayRequest(BaseModel):
     """ # noqa: E501
     chain: Chain
     sender: StrictStr = Field(description="The address of the transaction sender")
-    asset: Token = Field(description="The symbol of the underlying asset to repay.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:     `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:     `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:     `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>")
+    asset: Token = Field(description="The symbol of the underlying asset to repay.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     amount: Amount1
     interest_rate_mode: InterestRateMode = Field(description="The interest rate mode to borrow")
     on_behalf_of: Optional[StrictStr] = None

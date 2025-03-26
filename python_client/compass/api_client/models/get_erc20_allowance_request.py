@@ -31,7 +31,7 @@ class GetErc20AllowanceRequest(BaseModel):
     """ # noqa: E501
     chain: Chain
     user: StrictStr = Field(description="The user to get the ERC20 allowance of.")
-    token: Token = Field(description="The symbol of the token for which the allowance is checked.<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:     `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:     `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:     `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>")
+    token: Token = Field(description="The symbol of the token for which the allowance is checked.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     contract_name: ContractName = Field(description="The name of the contract to check allowance for.")
     __properties: ClassVar[List[str]] = ["chain", "user", "token", "contract_name"]
 

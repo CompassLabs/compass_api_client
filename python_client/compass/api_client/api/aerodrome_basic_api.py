@@ -62,7 +62,7 @@ class AerodromeBasicApi:
     ) -> UnsignedTransaction:
         """Provide liquidity using WETH
 
-        This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform using Wrapped Ether (WETH) and another token. Users must         specify the token pair, desired amounts, minimum amounts, and a deadline for         the transaction. The operation will ensure the pool exists and will use the         sender's address if no recipient is specified. The transaction will be executed         through the Aerodrome Basic Router contract, and the specified amount of WETH         will be sent along with the transaction.
+        This endpoint allows users to provide liquidity to a specified pool on the Aerodrome platform using Wrapped Ether (WETH) and another token. Users must specify the token pair, desired amounts, minimum amounts, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of WETH will be sent along with the transaction.
 
         :param base_transaction_request_aerodrome_liquidity_provision_eth_call_data: (required)
         :type base_transaction_request_aerodrome_liquidity_provision_eth_call_data: BaseTransactionRequestAerodromeLiquidityProvisionEthCallData
@@ -130,7 +130,7 @@ class AerodromeBasicApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Provide liquidity using WETH
 
-        This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform using Wrapped Ether (WETH) and another token. Users must         specify the token pair, desired amounts, minimum amounts, and a deadline for         the transaction. The operation will ensure the pool exists and will use the         sender's address if no recipient is specified. The transaction will be executed         through the Aerodrome Basic Router contract, and the specified amount of WETH         will be sent along with the transaction.
+        This endpoint allows users to provide liquidity to a specified pool on the Aerodrome platform using Wrapped Ether (WETH) and another token. Users must specify the token pair, desired amounts, minimum amounts, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of WETH will be sent along with the transaction.
 
         :param base_transaction_request_aerodrome_liquidity_provision_eth_call_data: (required)
         :type base_transaction_request_aerodrome_liquidity_provision_eth_call_data: BaseTransactionRequestAerodromeLiquidityProvisionEthCallData
@@ -198,7 +198,7 @@ class AerodromeBasicApi:
     ) -> RESTResponseType:
         """Provide liquidity using WETH
 
-        This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform using Wrapped Ether (WETH) and another token. Users must         specify the token pair, desired amounts, minimum amounts, and a deadline for         the transaction. The operation will ensure the pool exists and will use the         sender's address if no recipient is specified. The transaction will be executed         through the Aerodrome Basic Router contract, and the specified amount of WETH         will be sent along with the transaction.
+        This endpoint allows users to provide liquidity to a specified pool on the Aerodrome platform using Wrapped Ether (WETH) and another token. Users must specify the token pair, desired amounts, minimum amounts, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of WETH will be sent along with the transaction.
 
         :param base_transaction_request_aerodrome_liquidity_provision_eth_call_data: (required)
         :type base_transaction_request_aerodrome_liquidity_provision_eth_call_data: BaseTransactionRequestAerodromeLiquidityProvisionEthCallData
@@ -339,7 +339,7 @@ class AerodromeBasicApi:
     ) -> UnsignedTransaction:
         """Provide liquidity
 
-        This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform. Users must specify the tokens, desired amounts, minimum         amounts, and a deadline for the transaction. The operation will ensure the         pool exists and will use the sender's address if no recipient is specified.
+        This endpoint allows users to provide liquidity to a specified pool on the Aerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified.
 
         :param base_transaction_request_aerodrome_liquidity_provision_call_data: (required)
         :type base_transaction_request_aerodrome_liquidity_provision_call_data: BaseTransactionRequestAerodromeLiquidityProvisionCallData
@@ -407,7 +407,7 @@ class AerodromeBasicApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Provide liquidity
 
-        This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform. Users must specify the tokens, desired amounts, minimum         amounts, and a deadline for the transaction. The operation will ensure the         pool exists and will use the sender's address if no recipient is specified.
+        This endpoint allows users to provide liquidity to a specified pool on the Aerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified.
 
         :param base_transaction_request_aerodrome_liquidity_provision_call_data: (required)
         :type base_transaction_request_aerodrome_liquidity_provision_call_data: BaseTransactionRequestAerodromeLiquidityProvisionCallData
@@ -475,7 +475,7 @@ class AerodromeBasicApi:
     ) -> RESTResponseType:
         """Provide liquidity
 
-        This endpoint allows users to provide liquidity to a specified pool on the         Aerodrome platform. Users must specify the tokens, desired amounts, minimum         amounts, and a deadline for the transaction. The operation will ensure the         pool exists and will use the sender's address if no recipient is specified.
+        This endpoint allows users to provide liquidity to a specified pool on the Aerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified.
 
         :param base_transaction_request_aerodrome_liquidity_provision_call_data: (required)
         :type base_transaction_request_aerodrome_liquidity_provision_call_data: BaseTransactionRequestAerodromeLiquidityProvisionCallData
@@ -616,7 +616,7 @@ class AerodromeBasicApi:
     ) -> UnsignedTransaction:
         """Remove liquidity using WETH
 
-        This endpoint allows users to remove liquidity from a pool on the Aerodrome         platform using WETH and another token. Users must specify the token pair, the         amount of liquidity to remove, minimum amounts for each token, and a deadline         for the transaction. The operation will ensure the pool exists and will use         the sender's address if no recipient is specified. The transaction will be         executed through the Aerodrome Basic Router contract, and the specified amount         of liquidity will be withdrawn from the pool.
+        This endpoint allows users to remove liquidity from a pool on the Aerodrome platform using WETH and another token. Users must specify the token pair, the amount of liquidity to remove, minimum amounts for each token, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of liquidity will be withdrawn from the pool.
 
         :param base_transaction_request_aerodrome_remove_liquidity_eth_call_data: (required)
         :type base_transaction_request_aerodrome_remove_liquidity_eth_call_data: BaseTransactionRequestAerodromeRemoveLiquidityEthCallData
@@ -684,7 +684,7 @@ class AerodromeBasicApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Remove liquidity using WETH
 
-        This endpoint allows users to remove liquidity from a pool on the Aerodrome         platform using WETH and another token. Users must specify the token pair, the         amount of liquidity to remove, minimum amounts for each token, and a deadline         for the transaction. The operation will ensure the pool exists and will use         the sender's address if no recipient is specified. The transaction will be         executed through the Aerodrome Basic Router contract, and the specified amount         of liquidity will be withdrawn from the pool.
+        This endpoint allows users to remove liquidity from a pool on the Aerodrome platform using WETH and another token. Users must specify the token pair, the amount of liquidity to remove, minimum amounts for each token, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of liquidity will be withdrawn from the pool.
 
         :param base_transaction_request_aerodrome_remove_liquidity_eth_call_data: (required)
         :type base_transaction_request_aerodrome_remove_liquidity_eth_call_data: BaseTransactionRequestAerodromeRemoveLiquidityEthCallData
@@ -752,7 +752,7 @@ class AerodromeBasicApi:
     ) -> RESTResponseType:
         """Remove liquidity using WETH
 
-        This endpoint allows users to remove liquidity from a pool on the Aerodrome         platform using WETH and another token. Users must specify the token pair, the         amount of liquidity to remove, minimum amounts for each token, and a deadline         for the transaction. The operation will ensure the pool exists and will use         the sender's address if no recipient is specified. The transaction will be         executed through the Aerodrome Basic Router contract, and the specified amount         of liquidity will be withdrawn from the pool.
+        This endpoint allows users to remove liquidity from a pool on the Aerodrome platform using WETH and another token. Users must specify the token pair, the amount of liquidity to remove, minimum amounts for each token, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of liquidity will be withdrawn from the pool.
 
         :param base_transaction_request_aerodrome_remove_liquidity_eth_call_data: (required)
         :type base_transaction_request_aerodrome_remove_liquidity_eth_call_data: BaseTransactionRequestAerodromeRemoveLiquidityEthCallData
@@ -893,7 +893,7 @@ class AerodromeBasicApi:
     ) -> UnsignedTransaction:
         """Remove liquidity
 
-        This endpoint allows users to remove liquidity from a specified pool on the         Aerodrome platform. Users must specify the token pair, the amount of liquidity         to remove, minimum amounts for each token, and a deadline for the transaction.         The operation will ensure the pool exists and will use the sender's address if         no recipient is specified. The transaction will be executed through the         Aerodrome Basic Router contract, and the specified amount of liquidity will be         withdrawn from the pool.
+        This endpoint allows users to remove liquidity from a specified pool on the Aerodrome platform. Users must specify the token pair, the amount of liquidity to remove, minimum amounts for each token, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of liquidity will be withdrawn from the pool.
 
         :param base_transaction_request_aerodrome_remove_liquidity_call_data: (required)
         :type base_transaction_request_aerodrome_remove_liquidity_call_data: BaseTransactionRequestAerodromeRemoveLiquidityCallData
@@ -961,7 +961,7 @@ class AerodromeBasicApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Remove liquidity
 
-        This endpoint allows users to remove liquidity from a specified pool on the         Aerodrome platform. Users must specify the token pair, the amount of liquidity         to remove, minimum amounts for each token, and a deadline for the transaction.         The operation will ensure the pool exists and will use the sender's address if         no recipient is specified. The transaction will be executed through the         Aerodrome Basic Router contract, and the specified amount of liquidity will be         withdrawn from the pool.
+        This endpoint allows users to remove liquidity from a specified pool on the Aerodrome platform. Users must specify the token pair, the amount of liquidity to remove, minimum amounts for each token, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of liquidity will be withdrawn from the pool.
 
         :param base_transaction_request_aerodrome_remove_liquidity_call_data: (required)
         :type base_transaction_request_aerodrome_remove_liquidity_call_data: BaseTransactionRequestAerodromeRemoveLiquidityCallData
@@ -1029,7 +1029,7 @@ class AerodromeBasicApi:
     ) -> RESTResponseType:
         """Remove liquidity
 
-        This endpoint allows users to remove liquidity from a specified pool on the         Aerodrome platform. Users must specify the token pair, the amount of liquidity         to remove, minimum amounts for each token, and a deadline for the transaction.         The operation will ensure the pool exists and will use the sender's address if         no recipient is specified. The transaction will be executed through the         Aerodrome Basic Router contract, and the specified amount of liquidity will be         withdrawn from the pool.
+        This endpoint allows users to remove liquidity from a specified pool on the Aerodrome platform. Users must specify the token pair, the amount of liquidity to remove, minimum amounts for each token, and a deadline for the transaction. The operation will ensure the pool exists and will use the sender's address if no recipient is specified. The transaction will be executed through the Aerodrome Basic Router contract, and the specified amount of liquidity will be withdrawn from the pool.
 
         :param base_transaction_request_aerodrome_remove_liquidity_call_data: (required)
         :type base_transaction_request_aerodrome_remove_liquidity_call_data: BaseTransactionRequestAerodromeRemoveLiquidityCallData
@@ -1170,7 +1170,7 @@ class AerodromeBasicApi:
     ) -> UnsignedTransaction:
         """Swap from ETH
 
-        This endpoint allows you to swap a specified amount of ETH for a         desired token on the Aerodrome platform. To protect against         unfavorable exchange rates, you must specify the minimum amount         of the token you wish to receive. The transaction will only be         executed if this minimum amount is met, ensuring you do not         accidentally trade at a disadvantageous rate.
+        This endpoint allows you to swap a specified amount of ETH for a desired token on the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the minimum amount of the token you wish to receive. The transaction will only be executed if this minimum amount is met, ensuring you do not accidentally trade at a disadvantageous rate.
 
         :param base_transaction_request_aerodrome_swap_eth_for_token_call_data: (required)
         :type base_transaction_request_aerodrome_swap_eth_for_token_call_data: BaseTransactionRequestAerodromeSwapEthForTokenCallData
@@ -1238,7 +1238,7 @@ class AerodromeBasicApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Swap from ETH
 
-        This endpoint allows you to swap a specified amount of ETH for a         desired token on the Aerodrome platform. To protect against         unfavorable exchange rates, you must specify the minimum amount         of the token you wish to receive. The transaction will only be         executed if this minimum amount is met, ensuring you do not         accidentally trade at a disadvantageous rate.
+        This endpoint allows you to swap a specified amount of ETH for a desired token on the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the minimum amount of the token you wish to receive. The transaction will only be executed if this minimum amount is met, ensuring you do not accidentally trade at a disadvantageous rate.
 
         :param base_transaction_request_aerodrome_swap_eth_for_token_call_data: (required)
         :type base_transaction_request_aerodrome_swap_eth_for_token_call_data: BaseTransactionRequestAerodromeSwapEthForTokenCallData
@@ -1306,7 +1306,7 @@ class AerodromeBasicApi:
     ) -> RESTResponseType:
         """Swap from ETH
 
-        This endpoint allows you to swap a specified amount of ETH for a         desired token on the Aerodrome platform. To protect against         unfavorable exchange rates, you must specify the minimum amount         of the token you wish to receive. The transaction will only be         executed if this minimum amount is met, ensuring you do not         accidentally trade at a disadvantageous rate.
+        This endpoint allows you to swap a specified amount of ETH for a desired token on the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the minimum amount of the token you wish to receive. The transaction will only be executed if this minimum amount is met, ensuring you do not accidentally trade at a disadvantageous rate.
 
         :param base_transaction_request_aerodrome_swap_eth_for_token_call_data: (required)
         :type base_transaction_request_aerodrome_swap_eth_for_token_call_data: BaseTransactionRequestAerodromeSwapEthForTokenCallData
@@ -1447,7 +1447,7 @@ class AerodromeBasicApi:
     ) -> UnsignedTransaction:
         """Swap to ETH
 
-        Swap a specified amount of a token for ETH using the Aerodrome platform.         To protect against unfavorable exchange rates, you must specify the minimum         amount of ETH you wish to receive. The transaction will only be executed if         this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
+        Swap a specified amount of a token for ETH using the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the minimum amount of ETH you wish to receive. The transaction will only be executed if this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
 
         :param base_transaction_request_aerodrome_swap_token_for_eth_call_data: (required)
         :type base_transaction_request_aerodrome_swap_token_for_eth_call_data: BaseTransactionRequestAerodromeSwapTokenForEthCallData
@@ -1515,7 +1515,7 @@ class AerodromeBasicApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Swap to ETH
 
-        Swap a specified amount of a token for ETH using the Aerodrome platform.         To protect against unfavorable exchange rates, you must specify the minimum         amount of ETH you wish to receive. The transaction will only be executed if         this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
+        Swap a specified amount of a token for ETH using the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the minimum amount of ETH you wish to receive. The transaction will only be executed if this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
 
         :param base_transaction_request_aerodrome_swap_token_for_eth_call_data: (required)
         :type base_transaction_request_aerodrome_swap_token_for_eth_call_data: BaseTransactionRequestAerodromeSwapTokenForEthCallData
@@ -1583,7 +1583,7 @@ class AerodromeBasicApi:
     ) -> RESTResponseType:
         """Swap to ETH
 
-        Swap a specified amount of a token for ETH using the Aerodrome platform.         To protect against unfavorable exchange rates, you must specify the minimum         amount of ETH you wish to receive. The transaction will only be executed if         this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
+        Swap a specified amount of a token for ETH using the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the minimum amount of ETH you wish to receive. The transaction will only be executed if this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
 
         :param base_transaction_request_aerodrome_swap_token_for_eth_call_data: (required)
         :type base_transaction_request_aerodrome_swap_token_for_eth_call_data: BaseTransactionRequestAerodromeSwapTokenForEthCallData
@@ -1724,7 +1724,7 @@ class AerodromeBasicApi:
     ) -> UnsignedTransaction:
         """Swap
 
-        Swap one token for another on Aerodrome.         Ensure you specify the minimum amount you expect to receive to         avoid trading at an unfavorable exchange rate. This endpoint         facilitates the exchange of tokens by interacting with the         Aerodrome smart contract, ensuring that the transaction is         executed only if the specified minimum output is met.
+        Swap one token for another on Aerodrome. Ensure you specify the minimum amount you expect to receive to avoid trading at an unfavorable exchange rate. This endpoint facilitates the exchange of tokens by interacting with the Aerodrome smart contract, ensuring that the transaction is executed only if the specified minimum output is met.
 
         :param base_transaction_request_aerodrome_swap_tokens_call_data: (required)
         :type base_transaction_request_aerodrome_swap_tokens_call_data: BaseTransactionRequestAerodromeSwapTokensCallData
@@ -1792,7 +1792,7 @@ class AerodromeBasicApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Swap
 
-        Swap one token for another on Aerodrome.         Ensure you specify the minimum amount you expect to receive to         avoid trading at an unfavorable exchange rate. This endpoint         facilitates the exchange of tokens by interacting with the         Aerodrome smart contract, ensuring that the transaction is         executed only if the specified minimum output is met.
+        Swap one token for another on Aerodrome. Ensure you specify the minimum amount you expect to receive to avoid trading at an unfavorable exchange rate. This endpoint facilitates the exchange of tokens by interacting with the Aerodrome smart contract, ensuring that the transaction is executed only if the specified minimum output is met.
 
         :param base_transaction_request_aerodrome_swap_tokens_call_data: (required)
         :type base_transaction_request_aerodrome_swap_tokens_call_data: BaseTransactionRequestAerodromeSwapTokensCallData
@@ -1860,7 +1860,7 @@ class AerodromeBasicApi:
     ) -> RESTResponseType:
         """Swap
 
-        Swap one token for another on Aerodrome.         Ensure you specify the minimum amount you expect to receive to         avoid trading at an unfavorable exchange rate. This endpoint         facilitates the exchange of tokens by interacting with the         Aerodrome smart contract, ensuring that the transaction is         executed only if the specified minimum output is met.
+        Swap one token for another on Aerodrome. Ensure you specify the minimum amount you expect to receive to avoid trading at an unfavorable exchange rate. This endpoint facilitates the exchange of tokens by interacting with the Aerodrome smart contract, ensuring that the transaction is executed only if the specified minimum output is met.
 
         :param base_transaction_request_aerodrome_swap_tokens_call_data: (required)
         :type base_transaction_request_aerodrome_swap_tokens_call_data: BaseTransactionRequestAerodromeSwapTokensCallData

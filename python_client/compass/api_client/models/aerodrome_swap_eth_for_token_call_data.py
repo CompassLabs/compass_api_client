@@ -29,7 +29,7 @@ class AerodromeSwapEthForTokenCallData(BaseModel):
     """
     AerodromeSwapEthForTokenCallData
     """ # noqa: E501
-    token_out: Token = Field(description="The symbol of the token to swap to<br> Note the supported tokens per chain:<br>**ethereum:mainnet**:     `1INCH`, `AAVE`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `ENS`, `ETHx`, `FRAX`, `FXS`, `GHO`, `KNC`, `LDO`, `LINK`, `LUSD`, `MKR`, `osETH`, `PYUSD`, `rETH`, `RPL`, `rsETH`, `sDAI`, `SNX`, `STG`, `sUSDe`, `tBTC`, `UNI`, `USDC`, `USDe`, `USDS`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**arbitrum:mainnet**:     `AAVE`, `ARB`, `DAI`, `EURS`, `FRAX`, `GHO`, `LINK`, `LUSD`, `MAI`, `rETH`, `USDC`, `USDCe`, `USDT`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>**base:mainnet**:     `1INCH`, `AERO`, `ARB`, `BAL`, `cbBTC`, `cbETH`, `CRV`, `crvUSD`, `DAI`, `EUR`, `LUSD`, `MKR`, `osETH`, `rETH`, `SNX`, `STG`, `tBTC`, `USDC`, `UNI`, `USDT`, `VIRTUAL`, `WBTC`, `weETH`, `WETH`, `wstETH`<br><br>")
+    token_out: Token = Field(description="The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     amount_in: AmountIn1
     amount_out_min: AmountOutMin
     stable: StrictBool = Field(description="If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy")
