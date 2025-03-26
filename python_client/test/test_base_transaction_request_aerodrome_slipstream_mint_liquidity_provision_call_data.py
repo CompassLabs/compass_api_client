@@ -35,7 +35,7 @@ class TestBaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallDat
         model = BaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallData()
         if include_optional:
             return BaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallData(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.aerodrome_slipstream_mint_liquidity_provision_call_data.AerodromeSlipstreamMintLiquidityProvisionCallData(
                     token0 = '1INCH', 
@@ -51,7 +51,7 @@ class TestBaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallDat
             )
         else:
             return BaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallData(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.aerodrome_slipstream_mint_liquidity_provision_call_data.AerodromeSlipstreamMintLiquidityProvisionCallData(
                     token0 = '1INCH', 

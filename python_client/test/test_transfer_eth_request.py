@@ -35,14 +35,14 @@ class TestTransferEthRequest(unittest.TestCase):
         model = TransferEthRequest()
         if include_optional:
             return TransferEthRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 amount = None,
                 to = ''
             )
         else:
             return TransferEthRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 amount = None,
                 to = '',

@@ -35,7 +35,7 @@ class TestAaveBorrowRequest(unittest.TestCase):
         model = AaveBorrowRequest()
         if include_optional:
             return AaveBorrowRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,
@@ -44,7 +44,7 @@ class TestAaveBorrowRequest(unittest.TestCase):
             )
         else:
             return AaveBorrowRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,

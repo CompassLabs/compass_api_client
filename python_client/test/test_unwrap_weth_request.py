@@ -35,13 +35,13 @@ class TestUnwrapWethRequest(unittest.TestCase):
         model = UnwrapWethRequest()
         if include_optional:
             return UnwrapWethRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 amount = None
             )
         else:
             return UnwrapWethRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 amount = None,
         )

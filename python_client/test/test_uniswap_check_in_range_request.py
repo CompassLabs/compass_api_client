@@ -35,12 +35,12 @@ class TestUniswapCheckInRangeRequest(unittest.TestCase):
         model = UniswapCheckInRangeRequest()
         if include_optional:
             return UniswapCheckInRangeRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token_id = 0.0
             )
         else:
             return UniswapCheckInRangeRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token_id = 0.0,
         )
         """

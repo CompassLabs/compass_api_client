@@ -35,7 +35,7 @@ class TestBaseTransactionRequestAerodromeSwapTokensCallData(unittest.TestCase):
         model = BaseTransactionRequestAerodromeSwapTokensCallData()
         if include_optional:
             return BaseTransactionRequestAerodromeSwapTokensCallData(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.aerodrome_swap_tokens_call_data.AerodromeSwapTokensCallData(
                     token_in = '1INCH', 
@@ -47,7 +47,7 @@ class TestBaseTransactionRequestAerodromeSwapTokensCallData(unittest.TestCase):
             )
         else:
             return BaseTransactionRequestAerodromeSwapTokensCallData(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.aerodrome_swap_tokens_call_data.AerodromeSwapTokensCallData(
                     token_in = '1INCH', 

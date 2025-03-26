@@ -35,13 +35,13 @@ class TestAaveGetUserPositionPerTokenRequest(unittest.TestCase):
         model = AaveGetUserPositionPerTokenRequest()
         if include_optional:
             return AaveGetUserPositionPerTokenRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
                 asset = '1INCH'
             )
         else:
             return AaveGetUserPositionPerTokenRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
                 asset = '1INCH',
         )

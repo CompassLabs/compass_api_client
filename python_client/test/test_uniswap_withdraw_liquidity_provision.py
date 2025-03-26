@@ -35,14 +35,14 @@ class TestUniswapWithdrawLiquidityProvision(unittest.TestCase):
         model = UniswapWithdrawLiquidityProvision()
         if include_optional:
             return UniswapWithdrawLiquidityProvision(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_id = 56,
                 percentage_for_withdrawal = None
             )
         else:
             return UniswapWithdrawLiquidityProvision(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_id = 56,
                 percentage_for_withdrawal = None,

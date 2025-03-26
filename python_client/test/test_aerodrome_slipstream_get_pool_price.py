@@ -35,14 +35,14 @@ class TestAerodromeSlipstreamGetPoolPrice(unittest.TestCase):
         model = AerodromeSlipstreamGetPoolPrice()
         if include_optional:
             return AerodromeSlipstreamGetPoolPrice(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 tick_spacing = 1.0
             )
         else:
             return AerodromeSlipstreamGetPoolPrice(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 tick_spacing = 1.0,

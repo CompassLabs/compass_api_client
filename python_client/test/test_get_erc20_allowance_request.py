@@ -35,14 +35,14 @@ class TestGetErc20AllowanceRequest(unittest.TestCase):
         model = GetErc20AllowanceRequest()
         if include_optional:
             return GetErc20AllowanceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
                 token = '1INCH',
                 contract_name = 'AaveV3Pool'
             )
         else:
             return GetErc20AllowanceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
                 token = '1INCH',
                 contract_name = 'AaveV3Pool',

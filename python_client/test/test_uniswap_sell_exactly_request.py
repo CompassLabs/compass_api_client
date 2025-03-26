@@ -35,7 +35,7 @@ class TestUniswapSellExactlyRequest(unittest.TestCase):
         model = UniswapSellExactlyRequest()
         if include_optional:
             return UniswapSellExactlyRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_in = '1INCH',
                 token_out = '1INCH',
@@ -46,7 +46,7 @@ class TestUniswapSellExactlyRequest(unittest.TestCase):
             )
         else:
             return UniswapSellExactlyRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_in = '1INCH',
                 token_out = '1INCH',

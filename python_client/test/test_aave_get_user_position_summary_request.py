@@ -35,12 +35,12 @@ class TestAaveGetUserPositionSummaryRequest(unittest.TestCase):
         model = AaveGetUserPositionSummaryRequest()
         if include_optional:
             return AaveGetUserPositionSummaryRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = ''
             )
         else:
             return AaveGetUserPositionSummaryRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
         )
         """

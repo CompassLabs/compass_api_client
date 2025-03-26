@@ -35,7 +35,7 @@ class TestIncreaseAllowanceRequest(unittest.TestCase):
         model = IncreaseAllowanceRequest()
         if include_optional:
             return IncreaseAllowanceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token = '1INCH',
                 contract_name = 'AaveV3Pool',
@@ -43,7 +43,7 @@ class TestIncreaseAllowanceRequest(unittest.TestCase):
             )
         else:
             return IncreaseAllowanceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token = '1INCH',
                 contract_name = 'AaveV3Pool',

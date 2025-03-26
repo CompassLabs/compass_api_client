@@ -35,11 +35,11 @@ class TestTokensRequest(unittest.TestCase):
         model = TokensRequest()
         if include_optional:
             return TokensRequest(
-                chain = 'ethereum:mainnet'
+                chain = 'base:mainnet'
             )
         else:
             return TokensRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
         )
         """
 

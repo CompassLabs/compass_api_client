@@ -35,12 +35,12 @@ class TestPortfolioRequest(unittest.TestCase):
         model = PortfolioRequest()
         if include_optional:
             return PortfolioRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = ''
             )
         else:
             return PortfolioRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
         )
         """

@@ -35,7 +35,7 @@ class TestUniswapGetSellQuoteRequest(unittest.TestCase):
         model = UniswapGetSellQuoteRequest()
         if include_optional:
             return UniswapGetSellQuoteRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 fee = '0.01',
@@ -43,7 +43,7 @@ class TestUniswapGetSellQuoteRequest(unittest.TestCase):
             )
         else:
             return UniswapGetSellQuoteRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 fee = '0.01',

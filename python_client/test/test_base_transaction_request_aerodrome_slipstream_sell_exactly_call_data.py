@@ -35,7 +35,7 @@ class TestBaseTransactionRequestAerodromeSlipstreamSellExactlyCallData(unittest.
         model = BaseTransactionRequestAerodromeSlipstreamSellExactlyCallData()
         if include_optional:
             return BaseTransactionRequestAerodromeSlipstreamSellExactlyCallData(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.aerodrome_slipstream_sell_exactly_call_data.AerodromeSlipstreamSellExactlyCallData(
                     token_in = '1INCH', 
@@ -46,7 +46,7 @@ class TestBaseTransactionRequestAerodromeSlipstreamSellExactlyCallData(unittest.
             )
         else:
             return BaseTransactionRequestAerodromeSlipstreamSellExactlyCallData(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.aerodrome_slipstream_sell_exactly_call_data.AerodromeSlipstreamSellExactlyCallData(
                     token_in = '1INCH', 

@@ -35,12 +35,12 @@ class TestVisualizePortfolioRequest(unittest.TestCase):
         model = VisualizePortfolioRequest()
         if include_optional:
             return VisualizePortfolioRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = ''
             )
         else:
             return VisualizePortfolioRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
         )
         """

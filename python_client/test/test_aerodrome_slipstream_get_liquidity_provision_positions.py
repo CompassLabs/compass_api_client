@@ -35,12 +35,12 @@ class TestAerodromeSlipstreamGetLiquidityProvisionPositions(unittest.TestCase):
         model = AerodromeSlipstreamGetLiquidityProvisionPositions()
         if include_optional:
             return AerodromeSlipstreamGetLiquidityProvisionPositions(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AerodromeSlipstreamGetLiquidityProvisionPositions(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """

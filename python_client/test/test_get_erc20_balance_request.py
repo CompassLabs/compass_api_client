@@ -35,13 +35,13 @@ class TestGetErc20BalanceRequest(unittest.TestCase):
         model = GetErc20BalanceRequest()
         if include_optional:
             return GetErc20BalanceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
                 token = '1INCH'
             )
         else:
             return GetErc20BalanceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '',
                 token = '1INCH',
         )

@@ -35,12 +35,12 @@ class TestAaveGetAssetPriceRequest(unittest.TestCase):
         model = AaveGetAssetPriceRequest()
         if include_optional:
             return AaveGetAssetPriceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 asset = '1INCH'
             )
         else:
             return AaveGetAssetPriceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 asset = '1INCH',
         )
         """

@@ -35,14 +35,14 @@ class TestAaveGetLiquidityChangeRequest(unittest.TestCase):
         model = AaveGetLiquidityChangeRequest()
         if include_optional:
             return AaveGetLiquidityChangeRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 start_block = 56,
                 end_block = 56,
                 asset = '1INCH'
             )
         else:
             return AaveGetLiquidityChangeRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 start_block = 56,
                 asset = '1INCH',
         )

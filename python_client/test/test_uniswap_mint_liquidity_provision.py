@@ -35,7 +35,7 @@ class TestUniswapMintLiquidityProvision(unittest.TestCase):
         model = UniswapMintLiquidityProvision()
         if include_optional:
             return UniswapMintLiquidityProvision(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token0 = '1INCH',
                 token1 = '1INCH',
@@ -50,7 +50,7 @@ class TestUniswapMintLiquidityProvision(unittest.TestCase):
             )
         else:
             return UniswapMintLiquidityProvision(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token0 = '1INCH',
                 token1 = '1INCH',

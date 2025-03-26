@@ -35,7 +35,7 @@ class TestBaseTransactionRequestAerodromeRemoveLiquidityCallData(unittest.TestCa
         model = BaseTransactionRequestAerodromeRemoveLiquidityCallData()
         if include_optional:
             return BaseTransactionRequestAerodromeRemoveLiquidityCallData(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.aerodrome_remove_liquidity_call_data.AerodromeRemoveLiquidityCallData(
                     token_a = '1INCH', 
@@ -49,7 +49,7 @@ class TestBaseTransactionRequestAerodromeRemoveLiquidityCallData(unittest.TestCa
             )
         else:
             return BaseTransactionRequestAerodromeRemoveLiquidityCallData(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 call_data = compass.api_client.models.aerodrome_remove_liquidity_call_data.AerodromeRemoveLiquidityCallData(
                     token_a = '1INCH', 

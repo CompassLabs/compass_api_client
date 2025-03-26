@@ -35,12 +35,12 @@ class TestUniswapGetLiquidityProvisionPositionsRequest(unittest.TestCase):
         model = UniswapGetLiquidityProvisionPositionsRequest()
         if include_optional:
             return UniswapGetLiquidityProvisionPositionsRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return UniswapGetLiquidityProvisionPositionsRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 user = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """

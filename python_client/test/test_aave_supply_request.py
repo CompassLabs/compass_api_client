@@ -35,7 +35,7 @@ class TestAaveSupplyRequest(unittest.TestCase):
         model = AaveSupplyRequest()
         if include_optional:
             return AaveSupplyRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,
@@ -43,7 +43,7 @@ class TestAaveSupplyRequest(unittest.TestCase):
             )
         else:
             return AaveSupplyRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,

@@ -35,12 +35,12 @@ class TestPriceRequest(unittest.TestCase):
         model = PriceRequest()
         if include_optional:
             return PriceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token = '1INCH'
             )
         else:
             return PriceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token = '1INCH',
         )
         """

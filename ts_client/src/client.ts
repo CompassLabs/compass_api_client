@@ -752,6 +752,13 @@ const Portfolio = z
         token_balances: z.array(TokenBalance).describe('List of token balances in the portfolio'),
     })
     .passthrough();
+const VisualizePortfolioRequest = z
+    .object({
+        chain: Chain.describe('The chain to use.'),
+        user: z.string().describe('The address of the user.'),
+    })
+    .passthrough();
+const Image = z.object({ image: z.string().describe('Base64 encoded SVG image') }).passthrough();
 const PriceRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
@@ -772,13 +779,6 @@ const TokenInfo = z
         tokens: z.array(Token).describe('List of supported tokens for a given chain'),
     })
     .passthrough();
-const VisualizePortfolioRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The address of the user.'),
-    })
-    .passthrough();
-const Image = z.object({ image: z.string().describe('Base64 encoded SVG image') }).passthrough();
 const GetErc20BalanceRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
@@ -1270,12 +1270,12 @@ export const schemas = {
     PortfolioRequest,
     TokenBalance,
     Portfolio,
+    VisualizePortfolioRequest,
+    Image,
     PriceRequest,
     PriceResponse,
     TokensRequest,
     TokenInfo,
-    VisualizePortfolioRequest,
-    Image,
     GetErc20BalanceRequest,
     BalanceInfoResponse,
     ContractName,

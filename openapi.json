@@ -4130,9 +4130,9 @@
       "Chain": {
         "type": "string",
         "enum": [
+          "base:mainnet",
           "ethereum:mainnet",
-          "arbitrum:mainnet",
-          "base:mainnet"
+          "arbitrum:mainnet"
         ],
         "title": "Chain",
         "description": "The chain to use."

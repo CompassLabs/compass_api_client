@@ -26,9 +26,9 @@ class Chain(str, Enum):
     """
     allowed enum values
     """
+    BASE_COLON_MAINNET = 'base:mainnet'
     ETHEREUM_COLON_MAINNET = 'ethereum:mainnet'
     ARBITRUM_COLON_MAINNET = 'arbitrum:mainnet'
-    BASE_COLON_MAINNET = 'base:mainnet'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

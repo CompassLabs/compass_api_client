@@ -35,12 +35,12 @@ class TestGetEnsDetailsRequest(unittest.TestCase):
         model = GetEnsDetailsRequest()
         if include_optional:
             return GetEnsDetailsRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 ens_name = ''
             )
         else:
             return GetEnsDetailsRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 ens_name = '',
         )
         """

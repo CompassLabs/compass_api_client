@@ -35,14 +35,14 @@ class TestUniswapGetPoolPriceRequest(unittest.TestCase):
         model = UniswapGetPoolPriceRequest()
         if include_optional:
             return UniswapGetPoolPriceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 fee = '0.01'
             )
         else:
             return UniswapGetPoolPriceRequest(
-                chain = 'ethereum:mainnet',
+                chain = 'base:mainnet',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 fee = '0.01',
