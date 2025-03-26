@@ -37,13 +37,13 @@ class TestBaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallDat
             return BaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = {amount0_desired=0.1, amount0_min=0, amount1_desired=4.8E-5, amount1_min=0, recipient=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, tick_lower=-199994, tick_spacing=100, tick_upper=1000, token0=USDC, token1=WETH}
+                call_data = {amount0_desired=0.1, amount0_min=0, amount1_desired=4.8E-5, amount1_min=0, recipient=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, tick_lower=-201200, tick_spacing=100, tick_upper=-199200, token0=WETH, token1=USDC}
             )
         else:
             return BaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = {amount0_desired=0.1, amount0_min=0, amount1_desired=4.8E-5, amount1_min=0, recipient=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, tick_lower=-199994, tick_spacing=100, tick_upper=1000, token0=USDC, token1=WETH},
+                call_data = {amount0_desired=0.1, amount0_min=0, amount1_desired=4.8E-5, amount1_min=0, recipient=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, tick_lower=-201200, tick_spacing=100, tick_upper=-199200, token0=WETH, token1=USDC},
         )
         """
 
