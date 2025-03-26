@@ -1313,11 +1313,11 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aave/asset_price/get',
         description: `This endpoint retrieves the current price of a specified asset in USD as
-        determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
-        asset price, ensuring accurate and up-to-date information. The request
-        requires the asset identifier and the blockchain network (chain) on which the
-        asset resides. The response provides the asset price in a standardized format,
-        converted from Wei to the base currency decimals defined by Aave.`,
+determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
+asset price, ensuring accurate and up-to-date information. The request
+requires the asset identifier and the blockchain network (chain) on which the
+asset resides. The response provides the asset price in a standardized format,
+converted from Wei to the base currency decimals defined by Aave.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1341,7 +1341,7 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aave/borrow',
         description: `You will pay interest for your borrows. Price changes in the assets may lead to
-    some or all of your collateral being liquidated, if the borrow position becomes unhealthy.`,
+some or all of your collateral being liquidated, if the borrow position becomes unhealthy.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1391,11 +1391,11 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aave/repay',
         description: `This endpoint allows users to repay a portion or the entirety of their borrowed tokens on
-        the Aave platform. By repaying borrowed amounts, users can improve their health factor,
-        which is a measure of the safety of their loan position. A higher health factor reduces the
-        risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires
-        specifying the chain and the details of the repayment transaction, including the amount and
-        the asset to be repaid.`,
+the Aave platform. By repaying borrowed amounts, users can improve their health factor,
+which is a measure of the safety of their loan position. A higher health factor reduces the
+risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires
+specifying the chain and the details of the repayment transaction, including the amount and
+the asset to be repaid.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1418,12 +1418,12 @@ const endpoints = makeApi([
         path: '/v0/aave/supply',
         description: `By supplying assets, users can earn interest on their deposits
 
-        The supplied collateral can be used as a basis for borrowing other assets, allowing users to
-        leverage their positions. In combination with a trading protocol, this can create leverage.  
+The supplied collateral can be used as a basis for borrowing other assets, allowing users to
+leverage their positions. In combination with a trading protocol, this can create leverage.  
 
-        Overall, this endpoint is a critical component for users looking to maximize their asset
-        utility within the AAVEv3 ecosystem, providing both earning potential and borrowing
-        flexibility.`,
+Overall, this endpoint is a critical component for users looking to maximize their asset
+utility within the AAVEv3 ecosystem, providing both earning potential and borrowing
+flexibility.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1498,12 +1498,12 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aave/withdraw',
         description: `This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can
-        withdraw a portion or all of their collateral, which may increase the risk of liquidation if
-        there are outstanding borrows. The withdrawal process also includes the collection of any
-        interest earned on the collateral. It is important for users to carefully consider their
-        outstanding debts and the potential impact on their liquidation threshold before proceeding
-        with a withdrawal. This endpoint is designed to provide a seamless and efficient way to
-        manage your collateral within the Aave ecosystem.`,
+withdraw a portion or all of their collateral, which may increase the risk of liquidation if
+there are outstanding borrows. The withdrawal process also includes the collection of any
+interest earned on the collateral. It is important for users to carefully consider their
+outstanding debts and the potential impact on their liquidation threshold before proceeding
+with a withdrawal. This endpoint is designed to provide a seamless and efficient way to
+manage your collateral within the Aave ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1525,9 +1525,9 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/add_liquidity',
         description: `This endpoint allows users to provide liquidity to a specified pool on the
-        Aerodrome platform. Users must specify the tokens, desired amounts, minimum
-        amounts, and a deadline for the transaction. The operation will ensure the
-        pool exists and will use the sender&#x27;s address if no recipient is specified.`,
+Aerodrome platform. Users must specify the tokens, desired amounts, minimum
+amounts, and a deadline for the transaction. The operation will ensure the
+pool exists and will use the sender&#x27;s address if no recipient is specified.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1549,12 +1549,12 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/add_liquidity_eth',
         description: `This endpoint allows users to provide liquidity to a specified pool on the
-        Aerodrome platform using Wrapped Ether (WETH) and another token. Users must
-        specify the token pair, desired amounts, minimum amounts, and a deadline for
-        the transaction. The operation will ensure the pool exists and will use the
-        sender&#x27;s address if no recipient is specified. The transaction will be executed
-        through the Aerodrome Basic Router contract, and the specified amount of WETH
-        will be sent along with the transaction.`,
+Aerodrome platform using Wrapped Ether (WETH) and another token. Users must
+specify the token pair, desired amounts, minimum amounts, and a deadline for
+the transaction. The operation will ensure the pool exists and will use the
+sender&#x27;s address if no recipient is specified. The transaction will be executed
+through the Aerodrome Basic Router contract, and the specified amount of WETH
+will be sent along with the transaction.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1576,12 +1576,12 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/remove_liquidity',
         description: `This endpoint allows users to remove liquidity from a specified pool on the
-        Aerodrome platform. Users must specify the token pair, the amount of liquidity
-        to remove, minimum amounts for each token, and a deadline for the transaction.
-        The operation will ensure the pool exists and will use the sender&#x27;s address if
-        no recipient is specified. The transaction will be executed through the
-        Aerodrome Basic Router contract, and the specified amount of liquidity will be
-        withdrawn from the pool.`,
+Aerodrome platform. Users must specify the token pair, the amount of liquidity
+to remove, minimum amounts for each token, and a deadline for the transaction.
+The operation will ensure the pool exists and will use the sender&#x27;s address if
+no recipient is specified. The transaction will be executed through the
+Aerodrome Basic Router contract, and the specified amount of liquidity will be
+withdrawn from the pool.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1603,12 +1603,12 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/remove_liquidity_eth',
         description: `This endpoint allows users to remove liquidity from a pool on the Aerodrome
-        platform using WETH and another token. Users must specify the token pair, the
-        amount of liquidity to remove, minimum amounts for each token, and a deadline
-        for the transaction. The operation will ensure the pool exists and will use
-        the sender&#x27;s address if no recipient is specified. The transaction will be
-        executed through the Aerodrome Basic Router contract, and the specified amount
-        of liquidity will be withdrawn from the pool.`,
+platform using WETH and another token. Users must specify the token pair, the
+amount of liquidity to remove, minimum amounts for each token, and a deadline
+for the transaction. The operation will ensure the pool exists and will use
+the sender&#x27;s address if no recipient is specified. The transaction will be
+executed through the Aerodrome Basic Router contract, and the specified amount
+of liquidity will be withdrawn from the pool.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1630,11 +1630,11 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_basic/swap/eth_for_token',
         description: `This endpoint allows you to swap a specified amount of ETH for a
-        desired token on the Aerodrome platform. To protect against
-        unfavorable exchange rates, you must specify the minimum amount
-        of the token you wish to receive. The transaction will only be
-        executed if this minimum amount is met, ensuring you do not
-        accidentally trade at a disadvantageous rate.`,
+desired token on the Aerodrome platform. To protect against
+unfavorable exchange rates, you must specify the minimum amount
+of the token you wish to receive. The transaction will only be
+executed if this minimum amount is met, ensuring you do not
+accidentally trade at a disadvantageous rate.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1656,9 +1656,9 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_basic/swap/token_for_eth',
         description: `Swap a specified amount of a token for ETH using the Aerodrome platform.
-        To protect against unfavorable exchange rates, you must specify the minimum
-        amount of ETH you wish to receive. The transaction will only be executed if
-        this minimum amount is met, ensuring you do not trade at a disadvantageous rate.`,
+To protect against unfavorable exchange rates, you must specify the minimum
+amount of ETH you wish to receive. The transaction will only be executed if
+this minimum amount is met, ensuring you do not trade at a disadvantageous rate.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1680,11 +1680,11 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_basic/swap/tokens',
         description: `Swap one token for another on Aerodrome.
-        Ensure you specify the minimum amount you expect to receive to
-        avoid trading at an unfavorable exchange rate. This endpoint
-        facilitates the exchange of tokens by interacting with the
-        Aerodrome smart contract, ensuring that the transaction is
-        executed only if the specified minimum output is met.`,
+Ensure you specify the minimum amount you expect to receive to
+avoid trading at an unfavorable exchange rate. This endpoint
+facilitates the exchange of tokens by interacting with the
+Aerodrome smart contract, ensuring that the transaction is
+executed only if the specified minimum output is met.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1706,14 +1706,14 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/increase',
         description: `Increase the liquidity of an existing Liquidity Provider (LP) position.
-        This endpoint allows users to add more tokens to their current LP position,
-        enhancing their participation in liquidity provision. By increasing liquidity,
-        users can potentially earn more rewards and improve their position in the pool.
-        The process involves specifying additional token amounts and updating the pool details.
-        The response will confirm the successful increase of the LP position,
-        providing users with updated information about their enhanced position.
-        This functionality is vital for users aiming to optimize their liquidity provision strategy,
-        enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.`,
+This endpoint allows users to add more tokens to their current LP position,
+enhancing their participation in liquidity provision. By increasing liquidity,
+users can potentially earn more rewards and improve their position in the pool.
+The process involves specifying additional token amounts and updating the pool details.
+The response will confirm the successful increase of the LP position,
+providing users with updated information about their enhanced position.
+This functionality is vital for users aiming to optimize their liquidity provision strategy,
+enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1735,12 +1735,12 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/mint',
         description: `Initiate a new Liquidity Provider (LP) position by minting tokens.
-        This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision.
-        The minting process involves creating a new position with specified parameters,
-        such as token amounts and pool details. The response will confirm the successful creation of the LP position,
-        providing users with the necessary information to manage their newly minted position.
-        This functionality is crucial for users looking to expand their liquidity provision activities,
-        offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.`,
+This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision.
+The minting process involves creating a new position with specified parameters,
+such as token amounts and pool details. The response will confirm the successful creation of the LP position,
+providing users with the necessary information to manage their newly minted position.
+This functionality is crucial for users looking to expand their liquidity provision activities,
+offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1762,11 +1762,11 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/positions/get',
         description: `Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.
-        This endpoint allows users to query and obtain detailed information about their LP positions,
-        including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,
-        provides a structured representation of the LP positions data, ensuring clarity and ease of use.
-        This functionality is essential for users managing their liquidity provision activities,
-        enabling them to make informed decisions based on their current positions.`,
+This endpoint allows users to query and obtain detailed information about their LP positions,
+including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,
+provides a structured representation of the LP positions data, ensuring clarity and ease of use.
+This functionality is essential for users managing their liquidity provision activities,
+enabling them to make informed decisions based on their current positions.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1788,15 +1788,15 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/withdraw',
         description: `Withdraw an existing Liquidity Provider (LP) position.
-        This endpoint allows users to remove their tokens from an LP position,
-        effectively closing their participation in the liquidity pool.
-        The withdrawal process involves specifying the LP position to be closed,
-        and the response will confirm the successful removal of liquidity,
-        providing users with details about the withdrawn tokens and any remaining balances.
-        This functionality is essential for users who wish to exit their liquidity provision activities,
-        enabling them to reclaim their assets and potentially reallocate them to other investment opportunities.
-        The endpoint ensures a smooth and secure withdrawal process,
-        facilitating users&#x27; strategic management of their decentralized finance (DeFi) portfolios.`,
+This endpoint allows users to remove their tokens from an LP position,
+effectively closing their participation in the liquidity pool.
+The withdrawal process involves specifying the LP position to be closed,
+and the response will confirm the successful removal of liquidity,
+providing users with details about the withdrawn tokens and any remaining balances.
+This functionality is essential for users who wish to exit their liquidity provision activities,
+enabling them to reclaim their assets and potentially reallocate them to other investment opportunities.
+The endpoint ensures a smooth and secure withdrawal process,
+facilitating users&#x27; strategic management of their decentralized finance (DeFi) portfolios.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1818,9 +1818,9 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_slipstream/pool_price/get',
         description: `This endpoint retrieves the current price of a pool, indicating how many token0
-        you can purchase for 1 token1. Note that this is an instantaneous price and may
-        change during any trade. For a more accurate representation of the trade ratios
-        between the two assets, consider using the quote endpoint.`,
+you can purchase for 1 token1. Note that this is an instantaneous price and may
+change during any trade. For a more accurate representation of the trade ratios
+between the two assets, consider using the quote endpoint.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1842,15 +1842,15 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_slipstream/swap/buy_exactly',
         description: `This endpoint facilitates the trading of tokens by allowing users to
-        specify the exact amount of the output token they wish to receive.
-        Utilizing the Aerodrome Slipstream protocol, the system calculates
-        the necessary amount of the input token required to achieve the
-        desired output. This operation is particularly useful for users who
-        have a specific target amount of the output token in mind and are
-        willing to provide the corresponding input token amount. The
-        transaction is executed with consideration of current market
-        conditions, including liquidity and price impact, ensuring that the
-        trade is completed efficiently and effectively.`,
+specify the exact amount of the output token they wish to receive.
+Utilizing the Aerodrome Slipstream protocol, the system calculates
+the necessary amount of the input token required to achieve the
+desired output. This operation is particularly useful for users who
+have a specific target amount of the output token in mind and are
+willing to provide the corresponding input token amount. The
+transaction is executed with consideration of current market
+conditions, including liquidity and price impact, ensuring that the
+trade is completed efficiently and effectively.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1872,14 +1872,14 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aerodrome_slipstream/swap/sell_exactly',
         description: `This endpoint allows users to trade a specific amount of one token
-        into another token using the Aerodrome Slipstream protocol. The
-        transaction is executed by specifying the exact amount of the input
-        token to be sold, and the system calculates the amount of the output
-        token that will be received. The operation ensures that the trade is
-        conducted within the constraints of the current market conditions,
-        taking into account the liquidity and price impact. This endpoint is
-        suitable for users who want to sell a precise quantity of a token
-        and are willing to accept the resulting amount of the other token.`,
+into another token using the Aerodrome Slipstream protocol. The
+transaction is executed by specifying the exact amount of the input
+token to be sold, and the system calculates the amount of the output
+token that will be received. The operation ensures that the trade is
+conducted within the constraints of the current market conditions,
+taking into account the liquidity and price impact. This endpoint is
+suitable for users who want to sell a precise quantity of a token
+and are willing to accept the resulting amount of the other token.`,
         requestFormat: 'json',
         parameters: [
             {
