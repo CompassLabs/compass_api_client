@@ -37,27 +37,13 @@ class TestBaseTransactionRequestAerodromeRemoveLiquidityEthCallData(unittest.Tes
             return BaseTransactionRequestAerodromeRemoveLiquidityEthCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_remove_liquidity_eth_call_data.AerodromeRemoveLiquidityEthCallData(
-                    token = '1INCH', 
-                    stable = True, 
-                    liquidity = null, 
-                    amount_token_min = null, 
-                    amount_eth_min = null, 
-                    to = '', 
-                    deadline = 0.0, )
+                call_data = {amount_eth_min=0, amount_token_min=0, deadline=0, liquidity=0.1, stable=true, to=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, token=USDC}
             )
         else:
             return BaseTransactionRequestAerodromeRemoveLiquidityEthCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_remove_liquidity_eth_call_data.AerodromeRemoveLiquidityEthCallData(
-                    token = '1INCH', 
-                    stable = True, 
-                    liquidity = null, 
-                    amount_token_min = null, 
-                    amount_eth_min = null, 
-                    to = '', 
-                    deadline = 0.0, ),
+                call_data = {amount_eth_min=0, amount_token_min=0, deadline=0, liquidity=0.1, stable=true, to=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, token=USDC},
         )
         """
 

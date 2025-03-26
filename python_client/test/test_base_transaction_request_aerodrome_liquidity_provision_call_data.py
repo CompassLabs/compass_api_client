@@ -37,31 +37,13 @@ class TestBaseTransactionRequestAerodromeLiquidityProvisionCallData(unittest.Tes
             return BaseTransactionRequestAerodromeLiquidityProvisionCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_liquidity_provision_call_data.AerodromeLiquidityProvisionCallData(
-                    token_a = '1INCH', 
-                    token_b = '1INCH', 
-                    stable = True, 
-                    amount_a_desired = null, 
-                    amount_b_desired = null, 
-                    amount_a_min = null, 
-                    amount_b_min = null, 
-                    to = '', 
-                    deadline = 0.0, )
+                call_data = {amount_a_desired=1, amount_a_min=0, amount_b_desired=1, amount_b_min=0, deadline=0, stable=true, to=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, token_a=USDC, token_b=USDT}
             )
         else:
             return BaseTransactionRequestAerodromeLiquidityProvisionCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_liquidity_provision_call_data.AerodromeLiquidityProvisionCallData(
-                    token_a = '1INCH', 
-                    token_b = '1INCH', 
-                    stable = True, 
-                    amount_a_desired = null, 
-                    amount_b_desired = null, 
-                    amount_a_min = null, 
-                    amount_b_min = null, 
-                    to = '', 
-                    deadline = 0.0, ),
+                call_data = {amount_a_desired=1, amount_a_min=0, amount_b_desired=1, amount_b_min=0, deadline=0, stable=true, to=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, token_a=USDC, token_b=USDT},
         )
         """
 

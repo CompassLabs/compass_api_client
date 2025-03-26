@@ -37,25 +37,13 @@ class TestBaseTransactionRequestAerodromeSwapTokensCallData(unittest.TestCase):
             return BaseTransactionRequestAerodromeSwapTokensCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_swap_tokens_call_data.AerodromeSwapTokensCallData(
-                    token_in = '1INCH', 
-                    token_out = '1INCH', 
-                    amount_in = null, 
-                    amount_out_min = null, 
-                    stable = True, 
-                    to = '', )
+                call_data = {amount_in=1, amount_out_min=0, stable=true, to=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, token_in=USDC, token_out=USDT}
             )
         else:
             return BaseTransactionRequestAerodromeSwapTokensCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_swap_tokens_call_data.AerodromeSwapTokensCallData(
-                    token_in = '1INCH', 
-                    token_out = '1INCH', 
-                    amount_in = null, 
-                    amount_out_min = null, 
-                    stable = True, 
-                    to = '', ),
+                call_data = {amount_in=1, amount_out_min=0, stable=true, to=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, token_in=USDC, token_out=USDT},
         )
         """
 

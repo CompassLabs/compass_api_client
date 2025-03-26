@@ -37,23 +37,13 @@ class TestBaseTransactionRequestAerodromeSlipstreamSellExactlyCallData(unittest.
             return BaseTransactionRequestAerodromeSlipstreamSellExactlyCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_slipstream_sell_exactly_call_data.AerodromeSlipstreamSellExactlyCallData(
-                    token_in = '1INCH', 
-                    token_out = '1INCH', 
-                    tick_spacing = 1.0, 
-                    amount_in = null, 
-                    amount_out_minimum = null, )
+                call_data = {amount_in=1, amount_out_minimum=0, tick_spacing=100, token_in=USDC, token_out=WETH}
             )
         else:
             return BaseTransactionRequestAerodromeSlipstreamSellExactlyCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_slipstream_sell_exactly_call_data.AerodromeSlipstreamSellExactlyCallData(
-                    token_in = '1INCH', 
-                    token_out = '1INCH', 
-                    tick_spacing = 1.0, 
-                    amount_in = null, 
-                    amount_out_minimum = null, ),
+                call_data = {amount_in=1, amount_out_minimum=0, tick_spacing=100, token_in=USDC, token_out=WETH},
         )
         """
 

@@ -1,7 +1,7 @@
 import { makeApi, Zodios, type ZodiosOptions } from '@zodios/core';
 import { z } from 'zod';
 
-const Chain = z.enum(['ethereum:mainnet', 'arbitrum:mainnet', 'base:mainnet']);
+const Chain = z.enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet']);
 const Token = z.enum([
     '1INCH',
     'AAVE',

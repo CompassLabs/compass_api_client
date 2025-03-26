@@ -37,33 +37,13 @@ class TestBaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallDat
             return BaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_slipstream_mint_liquidity_provision_call_data.AerodromeSlipstreamMintLiquidityProvisionCallData(
-                    token0 = '1INCH', 
-                    token1 = '1INCH', 
-                    tick_spacing = 1.0, 
-                    tick_lower = 56, 
-                    tick_upper = 56, 
-                    amount0_desired = null, 
-                    amount1_desired = null, 
-                    amount0_min = null, 
-                    amount1_min = null, 
-                    recipient = '', )
+                call_data = {amount0_desired=0.1, amount0_min=0, amount1_desired=4.8E-5, amount1_min=0, recipient=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, tick_lower=-199994, tick_spacing=100, tick_upper=1000, token0=USDC, token1=WETH}
             )
         else:
             return BaseTransactionRequestAerodromeSlipstreamMintLiquidityProvisionCallData(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                call_data = compass.api_client.models.aerodrome_slipstream_mint_liquidity_provision_call_data.AerodromeSlipstreamMintLiquidityProvisionCallData(
-                    token0 = '1INCH', 
-                    token1 = '1INCH', 
-                    tick_spacing = 1.0, 
-                    tick_lower = 56, 
-                    tick_upper = 56, 
-                    amount0_desired = null, 
-                    amount1_desired = null, 
-                    amount0_min = null, 
-                    amount1_min = null, 
-                    recipient = '', ),
+                call_data = {amount0_desired=0.1, amount0_min=0, amount1_desired=4.8E-5, amount1_min=0, recipient=0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B, tick_lower=-199994, tick_spacing=100, tick_upper=1000, token0=USDC, token1=WETH},
         )
         """
 

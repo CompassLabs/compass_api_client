@@ -2596,7 +2596,18 @@
           "amount_b_min",
           "deadline"
         ],
-        "title": "AerodromeLiquidityProvisionCallData"
+        "title": "AerodromeLiquidityProvisionCallData",
+        "example": {
+          "amount_a_desired": 1,
+          "amount_a_min": 0,
+          "amount_b_desired": 1,
+          "amount_b_min": 0,
+          "deadline": 0,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_a": "USDC",
+          "token_b": "USDT"
+        }
       },
       "AerodromeLiquidityProvisionEthCallData": {
         "properties": {
@@ -2716,7 +2727,17 @@
           "amount_eth_min",
           "deadline"
         ],
-        "title": "AerodromeLiquidityProvisionEthCallData"
+        "title": "AerodromeLiquidityProvisionEthCallData",
+        "example": {
+          "amount_eth_desired": 0.00048,
+          "amount_eth_min": 0,
+          "amount_token_desired": 1,
+          "amount_token_min": 0,
+          "deadline": 0,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC"
+        }
       },
       "AerodromePosition": {
         "properties": {
@@ -2898,7 +2919,17 @@
           "amount_b_min",
           "deadline"
         ],
-        "title": "AerodromeRemoveLiquidityCallData"
+        "title": "AerodromeRemoveLiquidityCallData",
+        "example": {
+          "amount_a_min": 0,
+          "amount_b_min": 0,
+          "deadline": 0,
+          "liquidity": 0.1,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_a": "USDC",
+          "token_b": "USDT"
+        }
       },
       "AerodromeRemoveLiquidityEthCallData": {
         "properties": {
@@ -3001,7 +3032,16 @@
           "amount_eth_min",
           "deadline"
         ],
-        "title": "AerodromeRemoveLiquidityEthCallData"
+        "title": "AerodromeRemoveLiquidityEthCallData",
+        "example": {
+          "amount_eth_min": 0,
+          "amount_token_min": 0,
+          "deadline": 0,
+          "liquidity": 0.1,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC"
+        }
       },
       "AerodromeSlipstreamBuyExactlyCallData": {
         "properties": {
@@ -3084,7 +3124,14 @@
           "amount_out",
           "amount_in_maximum"
         ],
-        "title": "AerodromeSlipstreamBuyExactlyCallData"
+        "title": "AerodromeSlipstreamBuyExactlyCallData",
+        "example": {
+          "amount_in_maximum": 0.1,
+          "amount_out": 0.000048,
+          "tick_spacing": 100,
+          "token_in": "USDC",
+          "token_out": "WETH"
+        }
       },
       "AerodromeSlipstreamGetLiquidityProvisionPositions": {
         "properties": {
@@ -3156,7 +3203,13 @@
           "token_out",
           "tick_spacing"
         ],
-        "title": "AerodromeSlipstreamGetPoolPrice"
+        "title": "AerodromeSlipstreamGetPoolPrice",
+        "example": {
+          "chain": "base:mainnet",
+          "tick_spacing": 100,
+          "token_in": "USDC",
+          "token_out": "WETH"
+        }
       },
       "AerodromeSlipstreamIncreaseLiquidityProvisionCallData": {
         "properties": {
@@ -3388,7 +3441,19 @@
           "amount0_min",
           "amount1_min"
         ],
-        "title": "AerodromeSlipstreamMintLiquidityProvisionCallData"
+        "title": "AerodromeSlipstreamMintLiquidityProvisionCallData",
+        "example": {
+          "amount0_desired": 0.1,
+          "amount0_min": 0,
+          "amount1_desired": 0.000048,
+          "amount1_min": 0,
+          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "tick_lower": -199994,
+          "tick_spacing": 100,
+          "tick_upper": 1000,
+          "token0": "USDC",
+          "token1": "WETH"
+        }
       },
       "AerodromeSlipstreamPoolPrice": {
         "properties": {
@@ -3501,7 +3566,14 @@
           "tick_spacing",
           "amount_in"
         ],
-        "title": "AerodromeSlipstreamSellExactlyCallData"
+        "title": "AerodromeSlipstreamSellExactlyCallData",
+        "example": {
+          "amount_in": 1,
+          "amount_out_minimum": 0,
+          "tick_spacing": 100,
+          "token_in": "USDC",
+          "token_out": "WETH"
+        }
       },
       "AerodromeSlipstreamWithdrawLiquidityProvisionCallData": {
         "properties": {
@@ -3606,7 +3678,14 @@
           "amount_out_min",
           "stable"
         ],
-        "title": "AerodromeSwapEthForTokenCallData"
+        "title": "AerodromeSwapEthForTokenCallData",
+        "example": {
+          "amount_in": 0.00047753,
+          "amount_out_min": 0,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_out": "USDC"
+        }
       },
       "AerodromeSwapTokenForEthCallData": {
         "properties": {
@@ -3675,7 +3754,14 @@
           "amount_out_min",
           "stable"
         ],
-        "title": "AerodromeSwapTokenForEthCallData"
+        "title": "AerodromeSwapTokenForEthCallData",
+        "example": {
+          "amount_in": 1,
+          "amount_out_min": 0,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_in": "USDC"
+        }
       },
       "AerodromeSwapTokensCallData": {
         "properties": {
@@ -3752,7 +3838,15 @@
           "amount_out_min",
           "stable"
         ],
-        "title": "AerodromeSwapTokensCallData"
+        "title": "AerodromeSwapTokensCallData",
+        "example": {
+          "amount_in": 1,
+          "amount_out_min": 0,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_in": "USDC",
+          "token_out": "USDT"
+        }
       },
       "AllowanceInfoResponse": {
         "properties": {
