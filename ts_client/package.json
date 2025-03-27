@@ -1,6 +1,6 @@
 {
   "name": "@compass-labs/sdk",
-  "version": "1.0.109",
+  "version": "1.0.110",
   "description": "Package structured tools for AI agents using compass API.",
   "keywords": [
     "compass-api",
