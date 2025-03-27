@@ -4,20 +4,20 @@ All URIs are relative to *https://api.compasslabs.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**borrow_v0_aave_borrow_post**](AaveV3Api.md#borrow_v0_aave_borrow_post) | **POST** /v0/aave/borrow | Borrow/Lend
+[**borrow_v0_aave_borrow_post**](AaveV3Api.md#borrow_v0_aave_borrow_post) | **POST** /v0/aave/borrow | Borrow
 [**get_asset_price_v0_aave_asset_price_get_post**](AaveV3Api.md#get_asset_price_v0_aave_asset_price_get_post) | **POST** /v0/aave/asset_price/get | Token prices
 [**get_liquidity_change_v0_aave_liquidity_change_get_post**](AaveV3Api.md#get_liquidity_change_v0_aave_liquidity_change_get_post) | **POST** /v0/aave/liquidity/change/get | Liquidity index
 [**get_user_position_per_token_v0_aave_user_position_per_token_get_post**](AaveV3Api.md#get_user_position_per_token_v0_aave_user_position_per_token_get_post) | **POST** /v0/aave/user_position_per_token/get | Positions - per token
 [**get_user_position_summary_v0_aave_user_position_summary_get_post**](AaveV3Api.md#get_user_position_summary_v0_aave_user_position_summary_get_post) | **POST** /v0/aave/user_position_summary/get | Positions - total
 [**repay_v0_aave_repay_post**](AaveV3Api.md#repay_v0_aave_repay_post) | **POST** /v0/aave/repay | Repay loans
-[**supply_v0_aave_supply_post**](AaveV3Api.md#supply_v0_aave_supply_post) | **POST** /v0/aave/supply | Supply/Stake
+[**supply_v0_aave_supply_post**](AaveV3Api.md#supply_v0_aave_supply_post) | **POST** /v0/aave/supply | Supply/Lend
 [**withdraw_v0_aave_withdraw_post**](AaveV3Api.md#withdraw_v0_aave_withdraw_post) | **POST** /v0/aave/withdraw | Unstake
 
 
 # **borrow_v0_aave_borrow_post**
 > UnsignedTransaction borrow_v0_aave_borrow_post(aave_borrow_request)
 
-Borrow/Lend
+Borrow
 
 You will pay interest for your borrows. Price changes in the assets may lead to
 some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
@@ -57,7 +57,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_borrow_request = compass.api_client.AaveBorrowRequest() # AaveBorrowRequest | 
 
     try:
-        # Borrow/Lend
+        # Borrow
         api_response = api_instance.borrow_v0_aave_borrow_post(aave_borrow_request)
         print("The response of AaveV3Api->borrow_v0_aave_borrow_post:\n")
         pprint(api_response)
@@ -532,7 +532,7 @@ Name | Type | Description  | Notes
 # **supply_v0_aave_supply_post**
 > UnsignedTransaction supply_v0_aave_supply_post(aave_supply_request)
 
-Supply/Stake
+Supply/Lend
 
 By supplying assets, users can earn interest on their deposits
 
@@ -578,7 +578,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
     aave_supply_request = compass.api_client.AaveSupplyRequest() # AaveSupplyRequest | 
 
     try:
-        # Supply/Stake
+        # Supply/Lend
         api_response = api_instance.supply_v0_aave_supply_post(aave_supply_request)
         print("The response of AaveV3Api->supply_v0_aave_supply_post:\n")
         pprint(api_response)

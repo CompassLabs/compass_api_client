@@ -65,7 +65,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Borrow/Lend
+        """Borrow
 
         You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
@@ -133,7 +133,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Borrow/Lend
+        """Borrow
 
         You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
@@ -201,7 +201,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Borrow/Lend
+        """Borrow
 
         You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
 
@@ -1727,7 +1727,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UnsignedTransaction:
-        """Supply/Stake
+        """Supply/Lend
 
         By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 
@@ -1795,7 +1795,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UnsignedTransaction]:
-        """Supply/Stake
+        """Supply/Lend
 
         By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 
@@ -1863,7 +1863,7 @@ class AaveV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Supply/Stake
+        """Supply/Lend
 
         By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 

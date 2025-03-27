@@ -29,7 +29,7 @@ class TestAaveV3Api(unittest.TestCase):
     def test_borrow_v0_aave_borrow_post(self) -> None:
         """Test case for borrow_v0_aave_borrow_post
 
-        Borrow/Lend
+        Borrow
         """
         pass
 
@@ -71,7 +71,7 @@ class TestAaveV3Api(unittest.TestCase):
     def test_supply_v0_aave_supply_post(self) -> None:
         """Test case for supply_v0_aave_supply_post
 
-        Supply/Stake
+        Supply/Lend
         """
         pass
 

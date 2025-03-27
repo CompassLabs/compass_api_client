@@ -17,7 +17,7 @@
         "tags": [
           "Aave V3"
         ],
-        "summary": "Supply/Stake",
+        "summary": "Supply/Lend",
         "description": "By supplying assets, users can earn interest on their deposits\n\nThe supplied collateral can be used as a basis for borrowing other assets, allowing users to\nleverage their positions. In combination with a trading protocol, this can create leverage.  \n\nOverall, this endpoint is a critical component for users looking to maximize their asset\nutility within the AAVEv3 ecosystem, providing both earning potential and borrowing\nflexibility.",
         "operationId": "supply_v0_aave_supply_post",
         "requestBody": {
@@ -59,7 +59,7 @@
         "tags": [
           "Aave V3"
         ],
-        "summary": "Borrow/Lend",
+        "summary": "Borrow",
         "description": "You will pay interest for your borrows. Price changes in the assets may lead to\nsome or all of your collateral being liquidated, if the borrow position becomes unhealthy.",
         "operationId": "borrow_v0_aave_borrow_post",
         "requestBody": {
