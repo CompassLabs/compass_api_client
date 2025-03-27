@@ -80,7 +80,8 @@ jobs:
             -i /local/openapi.json \
             -g python \
             -o /local/out/python \
-            -p projectName=compass.api_client,packageName=compass.api_client,packageVersion=$NEXT_VERSION
+            -p projectName=compass.api_client,packageName=compass.api_client,packageVersion=$NEXT_VERSION \
+            --openapi-generator-ignore-list "README.md,api_client.py"
           sudo chown -R $USER out/python/
           find out/python -type f | xargs -n1 chmod 666
           rsync -a out/python/* .
