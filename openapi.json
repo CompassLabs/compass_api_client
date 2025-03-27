@@ -5,6 +5,12 @@
     "description": "#### Welcome to the DeFi API from [Compass Labs](https://www.compasslabs.ai)!\n\nOur API allows you to interact and transact in DeFi with ease.\n\nWe help you construct your transactions via a **simple REST API**.  \nYou maintain custody at all times and **sign** all transactions **yourself**.",
     "version": "0.0.1"
   },
+  "servers": [
+    {
+      "url": "https://api.compasslabs.ai",
+      "description": "Production server"
+    }
+  ],
   "paths": {
     "/v0/aave/supply": {
       "post": {

@@ -1,6 +1,6 @@
 # compass.api_client.UniswapV3Api
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.compasslabs.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -40,10 +40,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -124,10 +124,10 @@ from compass.api_client.models.uniswap_get_buy_quote_request import UniswapGetBu
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -206,10 +206,10 @@ from compass.api_client.models.uniswap_pool_price_response import UniswapPoolPri
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -292,10 +292,10 @@ from compass.api_client.models.uniswap_lp_positions_info_response import Uniswap
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -375,10 +375,10 @@ from compass.api_client.models.uniswap_sell_quote_info_response import UniswapSe
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -462,10 +462,10 @@ from compass.api_client.models.uniswap_check_in_range_response import UniswapChe
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -548,10 +548,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -634,10 +634,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -721,10 +721,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -809,10 +809,10 @@ from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.compasslabs.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = compass.api_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.compasslabs.ai"
 )
 
 # The client must configure the authentication and authorization parameters
