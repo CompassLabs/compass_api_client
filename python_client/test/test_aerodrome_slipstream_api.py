@@ -26,52 +26,52 @@ class TestAerodromeSlipstreamApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post(self) -> None:
-        """Test case for process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post
-
-        Increase an LP position
-        """
-        pass
-
-    def test_process_request_v0_aerodrome_slipstream_liquidity_provision_mint_post(self) -> None:
-        """Test case for process_request_v0_aerodrome_slipstream_liquidity_provision_mint_post
-
-        Open a new LP position
-        """
-        pass
-
-    def test_process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post(self) -> None:
-        """Test case for process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post
-
-        List LP positions
-        """
-        pass
-
-    def test_process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post(self) -> None:
-        """Test case for process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post
-
-        Withdraw an LP position
-        """
-        pass
-
-    def test_process_request_v0_aerodrome_slipstream_pool_price_get_post(self) -> None:
-        """Test case for process_request_v0_aerodrome_slipstream_pool_price_get_post
-
-        Pool price
-        """
-        pass
-
-    def test_process_request_v0_aerodrome_slipstream_swap_buy_exactly_post(self) -> None:
-        """Test case for process_request_v0_aerodrome_slipstream_swap_buy_exactly_post
+    def test_buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post(self) -> None:
+        """Test case for buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post
 
         Swap - into specified amount
         """
         pass
 
-    def test_process_request_v0_aerodrome_slipstream_swap_sell_exactly_post(self) -> None:
-        """Test case for process_request_v0_aerodrome_slipstream_swap_sell_exactly_post
+    def test_get_pool_price_v0_aerodrome_slipstream_pool_price_get_post(self) -> None:
+        """Test case for get_pool_price_v0_aerodrome_slipstream_pool_price_get_post
+
+        Pool price
+        """
+        pass
+
+    def test_get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post(self) -> None:
+        """Test case for get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post
+
+        List LP positions
+        """
+        pass
+
+    def test_increase_v0_aerodrome_slipstream_liquidity_provision_increase_post(self) -> None:
+        """Test case for increase_v0_aerodrome_slipstream_liquidity_provision_increase_post
+
+        Increase an LP position
+        """
+        pass
+
+    def test_mint_v0_aerodrome_slipstream_liquidity_provision_mint_post(self) -> None:
+        """Test case for mint_v0_aerodrome_slipstream_liquidity_provision_mint_post
+
+        Open a new LP position
+        """
+        pass
+
+    def test_sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post(self) -> None:
+        """Test case for sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post
 
         Swap - from specified amount
+        """
+        pass
+
+    def test_withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post(self) -> None:
+        """Test case for withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post
+
+        Withdraw an LP position
         """
         pass
 

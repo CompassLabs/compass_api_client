@@ -348,145 +348,19 @@
         }
       }
     },
-    "/v0/aerodrome_basic/swap/tokens": {
-      "post": {
-        "tags": [
-          "Aerodrome Basic"
-        ],
-        "summary": "Swap",
-        "description": "Swap one token for another on Aerodrome.\nEnsure you specify the minimum amount you expect to receive to\navoid trading at an unfavorable exchange rate. This endpoint\nfacilitates the exchange of tokens by interacting with the\nAerodrome smart contract, ensuring that the transaction is\nexecuted only if the specified minimum output is met.",
-        "operationId": "process_request_v0_aerodrome_basic_swap_tokens_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeSwapTokensCallData_"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/aerodrome_basic/swap/eth_for_token": {
-      "post": {
-        "tags": [
-          "Aerodrome Basic"
-        ],
-        "summary": "Swap from ETH",
-        "description": "This endpoint allows you to swap a specified amount of ETH for a\ndesired token on the Aerodrome platform. To protect against\nunfavorable exchange rates, you must specify the minimum amount\nof the token you wish to receive. The transaction will only be\nexecuted if this minimum amount is met, ensuring you do not\naccidentally trade at a disadvantageous rate.",
-        "operationId": "process_request_v0_aerodrome_basic_swap_eth_for_token_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeSwapEthForTokenCallData_"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/aerodrome_basic/swap/token_for_eth": {
-      "post": {
-        "tags": [
-          "Aerodrome Basic"
-        ],
-        "summary": "Swap to ETH",
-        "description": "Swap a specified amount of a token for ETH using the Aerodrome platform.\nTo protect against unfavorable exchange rates, you must specify the minimum\namount of ETH you wish to receive. The transaction will only be executed if\nthis minimum amount is met, ensuring you do not trade at a disadvantageous rate.",
-        "operationId": "process_request_v0_aerodrome_basic_swap_token_for_eth_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeSwapTokenForEthCallData_"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v0/aerodrome_basic/liquidity_provision/add_liquidity": {
       "post": {
         "tags": [
           "Aerodrome Basic"
         ],
         "summary": "Provide liquidity",
-        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform. Users must specify the tokens, desired amounts, minimum\namounts, and a deadline for the transaction. The operation will ensure the\npool exists and will use the sender's address if no recipient is specified.",
-        "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_post",
+        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a\ndeadline for the transaction. The operation will ensure the pool exists and will use the\nsender's address if no recipient is specified.",
+        "operationId": "add_liquidity_v0_aerodrome_basic_liquidity_provision_add_liquidity_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeLiquidityProvisionCallData_"
+                "$ref": "#/components/schemas/AerodromeAddLiquidityRequest"
               }
             }
           },
@@ -522,13 +396,13 @@
           "Aerodrome Basic"
         ],
         "summary": "Provide liquidity using WETH",
-        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform using Wrapped Ether (WETH) and another token. Users must\nspecify the token pair, desired amounts, minimum amounts, and a deadline for\nthe transaction. The operation will ensure the pool exists and will use the\nsender's address if no recipient is specified. The transaction will be executed\nthrough the Aerodrome Basic Router contract, and the specified amount of WETH\nwill be sent along with the transaction.",
-        "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post",
+        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform using Wrapped Ether (WETH) and another token. Users must specify the token\npair, desired amounts, minimum amounts, and a deadline for the transaction. The operation will\nensure the pool exists and will use the sender's address if no recipient is specified. The\ntransaction will be executed through the Aerodrome Basic Router contract, and the specified\namount of WETH will be sent along with the transaction.",
+        "operationId": "add_liquidity_eth_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeLiquidityProvisionEthCallData_"
+                "$ref": "#/components/schemas/AerodromeAddLiquidityEthRequest"
               }
             }
           },
@@ -564,13 +438,13 @@
           "Aerodrome Basic"
         ],
         "summary": "Remove liquidity",
-        "description": "This endpoint allows users to remove liquidity from a specified pool on the\nAerodrome platform. Users must specify the token pair, the amount of liquidity\nto remove, minimum amounts for each token, and a deadline for the transaction.\nThe operation will ensure the pool exists and will use the sender's address if\nno recipient is specified. The transaction will be executed through the\nAerodrome Basic Router contract, and the specified amount of liquidity will be\nwithdrawn from the pool.",
-        "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post",
+        "description": "This endpoint allows users to remove liquidity from a specified pool on the\nAerodrome platform. Users must specify the token pair, the amount of liquidity to remove,\nminimum amounts for each token, and a deadline for the transaction. The operation will ensure\nthe pool exists and will use the sender's address if no recipient is specified. The transaction\nwill be executed through the Aerodrome Basic Router contract, and the specified amount of\nliquidity will be withdrawn from the pool.",
+        "operationId": "remove_liquidity_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeRemoveLiquidityCallData_"
+                "$ref": "#/components/schemas/AerodromeRemoveLiquidityRequest"
               }
             }
           },
@@ -606,13 +480,13 @@
           "Aerodrome Basic"
         ],
         "summary": "Remove liquidity using WETH",
-        "description": "This endpoint allows users to remove liquidity from a pool on the Aerodrome\nplatform using WETH and another token. Users must specify the token pair, the\namount of liquidity to remove, minimum amounts for each token, and a deadline\nfor the transaction. The operation will ensure the pool exists and will use\nthe sender's address if no recipient is specified. The transaction will be\nexecuted through the Aerodrome Basic Router contract, and the specified amount\nof liquidity will be withdrawn from the pool.",
-        "operationId": "process_request_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post",
+        "description": "This endpoint allows users to remove liquidity from a pool on the Aerodrome\nplatform using WETH and another token. Users must specify the token pair, the amount of\nliquidity to remove, minimum amounts for each token, and a deadline for the transaction. The\noperation will ensure the pool exists and will use the sender's address if no recipient is\nspecified. The transaction will be executed through the Aerodrome Basic Router contract, and the\nspecified amount of liquidity will be withdrawn from the pool.",
+        "operationId": "remove_liquidity_eth_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeRemoveLiquidityEthCallData_"
+                "$ref": "#/components/schemas/AerodromeRemoveLiquidityEthRequest"
               }
             }
           },
@@ -642,19 +516,19 @@
         }
       }
     },
-    "/v0/aerodrome_slipstream/pool_price/get": {
+    "/v0/aerodrome_basic/swap/tokens": {
       "post": {
         "tags": [
-          "Aerodrome Slipstream"
+          "Aerodrome Basic"
         ],
-        "summary": "Pool price",
-        "description": "This endpoint retrieves the current price of a pool, indicating how many token0\nyou can purchase for 1 token1. Note that this is an instantaneous price and may\nchange during any trade. For a more accurate representation of the trade ratios\nbetween the two assets, consider using the quote endpoint.",
-        "operationId": "process_request_v0_aerodrome_slipstream_pool_price_get_post",
+        "summary": "Swap",
+        "description": "Swap one token for another on Aerodrome. Ensure you specify the minimum amount\nyou expect to receive to avoid trading at an unfavorable exchange rate. This endpoint\nfacilitates the exchange of tokens by interacting with the Aerodrome smart contract, ensuring\nthat the transaction is executed only if the specified minimum output is met.",
+        "operationId": "swap_tokens_v0_aerodrome_basic_swap_tokens_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AerodromeSlipstreamGetPoolPrice"
+                "$ref": "#/components/schemas/AerodromeSwapTokensRequest"
               }
             }
           },
@@ -666,7 +540,91 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AerodromeSlipstreamPoolPrice"
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/aerodrome_basic/swap/eth_for_token": {
+      "post": {
+        "tags": [
+          "Aerodrome Basic"
+        ],
+        "summary": "Swap from ETH",
+        "description": "This endpoint allows you to swap a specified amount of ETH for a desired token\non the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the\nminimum amount of the token you wish to receive. The transaction will only be executed if this\nminimum amount is met, ensuring you do not accidentally trade at a disadvantageous rate.",
+        "operationId": "eth_for_token_v0_aerodrome_basic_swap_eth_for_token_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AerodromeSwapEthForTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/aerodrome_basic/swap/token_for_eth": {
+      "post": {
+        "tags": [
+          "Aerodrome Basic"
+        ],
+        "summary": "Swap token for ETH",
+        "description": "Swap a specified amount of a token for ETH using the Aerodrome platform. To\nprotect against unfavorable exchange rates, you must specify the minimum amount of ETH you wish\nto receive. The transaction will only be executed if this minimum amount is met, ensuring you do\nnot trade at a disadvantageous rate.",
+        "operationId": "token_for_eth_v0_aerodrome_basic_swap_token_for_eth_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AerodromeSwapTokenForEthRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
                 }
               }
             }
@@ -690,13 +648,13 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Swap - from specified amount",
-        "description": "This endpoint allows users to trade a specific amount of one token\ninto another token using the Aerodrome Slipstream protocol. The\ntransaction is executed by specifying the exact amount of the input\ntoken to be sold, and the system calculates the amount of the output\ntoken that will be received. The operation ensures that the trade is\nconducted within the constraints of the current market conditions,\ntaking into account the liquidity and price impact. This endpoint is\nsuitable for users who want to sell a precise quantity of a token\nand are willing to accept the resulting amount of the other token.",
-        "operationId": "process_request_v0_aerodrome_slipstream_swap_sell_exactly_post",
+        "description": "This endpoint allows users to trade a specific amount of one token into another\ntoken using the Aerodrome Slipstream protocol. The transaction is executed by specifying the\nexact amount of the input token to be sold, and the system calculates the amount of the output\ntoken that will be received. The operation ensures that the trade is conducted within the\nconstraints of the current market conditions, taking into account the liquidity and price\nimpact. This endpoint is suitable for users who want to sell a precise quantity of a token and\nare willing to accept the resulting amount of the other token.",
+        "operationId": "sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeSlipstreamSellExactlyCallData_"
+                "$ref": "#/components/schemas/AerodromeSlipstreamSellExactlyRequest"
               }
             }
           },
@@ -732,13 +690,139 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Swap - into specified amount",
-        "description": "This endpoint facilitates the trading of tokens by allowing users to\nspecify the exact amount of the output token they wish to receive.\nUtilizing the Aerodrome Slipstream protocol, the system calculates\nthe necessary amount of the input token required to achieve the\ndesired output. This operation is particularly useful for users who\nhave a specific target amount of the output token in mind and are\nwilling to provide the corresponding input token amount. The\ntransaction is executed with consideration of current market\nconditions, including liquidity and price impact, ensuring that the\ntrade is completed efficiently and effectively.",
-        "operationId": "process_request_v0_aerodrome_slipstream_swap_buy_exactly_post",
+        "description": "This endpoint facilitates the trading of tokens by allowing users to specify the\nexact amount of the output token they wish to receive. Utilizing the Aerodrome Slipstream\nprotocol, the system calculates the necessary amount of the input token required to achieve the\ndesired output. This operation is particularly useful for users who have a specific target\namount of the output token in mind and are willing to provide the corresponding input token\namount. The transaction is executed with consideration of current market conditions, including\nliquidity and price impact, ensuring that the trade is completed efficiently and effectively.",
+        "operationId": "buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeSlipstreamBuyExactlyCallData_"
+                "$ref": "#/components/schemas/AerodromeSlipstreamBuyExactlyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/aerodrome_slipstream/liquidity_provision/mint": {
+      "post": {
+        "tags": [
+          "Aerodrome Slipstream"
+        ],
+        "summary": "Open a new LP position",
+        "description": "Initiate a new Liquidity Provider (LP) position by minting tokens. This endpoint\nallows users to open a new LP position, enabling them to participate in liquidity provision. The\nminting process involves creating a new position with specified parameters, such as token\namounts and pool details. The response will confirm the successful creation of the LP position,\nproviding users with the necessary information to manage their newly minted position. This\nfunctionality is crucial for users looking to expand their liquidity provision activities,\noffering them the opportunity to engage in decentralized finance (DeFi) markets effectively.",
+        "operationId": "mint_v0_aerodrome_slipstream_liquidity_provision_mint_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AerodromeSlipstreamMintLiquidityProvisionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/aerodrome_slipstream/liquidity_provision/increase": {
+      "post": {
+        "tags": [
+          "Aerodrome Slipstream"
+        ],
+        "summary": "Increase an LP position",
+        "description": "Increase the liquidity of an existing Liquidity Provider (LP) position. This\nendpoint allows users to add more tokens to their current LP position, enhancing their\nparticipation in liquidity provision. By increasing liquidity, users can potentially earn more\nrewards and improve their position in the pool. The process involves specifying additional token\namounts and updating the pool details. The response will confirm the successful increase of the\nLP position, providing users with updated information about their enhanced position. This\nfunctionality is vital for users aiming to optimize their liquidity provision strategy, enabling\nthem to adapt to market conditions and maximize their returns in decentralized finance (DeFi)\nmarkets.",
+        "operationId": "increase_v0_aerodrome_slipstream_liquidity_provision_increase_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AerodromeSlipstreamIncreaseLiquidityProvisionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/aerodrome_slipstream/liquidity_provision/withdraw": {
+      "post": {
+        "tags": [
+          "Aerodrome Slipstream"
+        ],
+        "summary": "Withdraw an LP position",
+        "description": "Withdraw an existing Liquidity Provider (LP) position. This endpoint allows\nusers to remove their tokens from an LP position, effectively closing their participation in the\nliquidity pool. The withdrawal process involves specifying the LP position to be closed, and the\nresponse will confirm the successful removal of liquidity, providing users with details about\nthe withdrawn tokens and any remaining balances. This functionality is essential for users who\nwish to exit their liquidity provision activities, enabling them to reclaim their assets and\npotentially reallocate them to other investment opportunities. The endpoint ensures a smooth and\nsecure withdrawal process, facilitating users' strategic management of their decentralized\nfinance (DeFi) portfolios.",
+        "operationId": "withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AerodromeSlipstreamWithdrawLiquidityProvisionRequest"
               }
             }
           },
@@ -775,12 +859,12 @@
         ],
         "summary": "List LP positions",
         "description": "Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.\nThis endpoint allows users to query and obtain detailed information about their LP positions,\nincluding the number of active positions they hold. The response model, AerodromeLPPositionsInfo,\nprovides a structured representation of the LP positions data, ensuring clarity and ease of use.\nThis functionality is essential for users managing their liquidity provision activities,\nenabling them to make informed decisions based on their current positions.",
-        "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_positions_get_post",
+        "operationId": "get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AerodromeSlipstreamGetLiquidityProvisionPositions"
+                "$ref": "#/components/schemas/AerodromeSlipstreamGetLiquidityProvisionPositionsRequest"
               }
             }
           },
@@ -792,7 +876,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AerodromeLPPositionsInfo"
+                  "$ref": "#/components/schemas/AerodromeLPPositionsResponse"
                 }
               }
             }
@@ -810,19 +894,19 @@
         }
       }
     },
-    "/v0/aerodrome_slipstream/liquidity_provision/mint": {
+    "/v0/aerodrome_slipstream/pool_price/get": {
       "post": {
         "tags": [
           "Aerodrome Slipstream"
         ],
-        "summary": "Open a new LP position",
-        "description": "Initiate a new Liquidity Provider (LP) position by minting tokens.\nThis endpoint allows users to open a new LP position, enabling them to participate in liquidity provision.\nThe minting process involves creating a new position with specified parameters,\nsuch as token amounts and pool details. The response will confirm the successful creation of the LP position,\nproviding users with the necessary information to manage their newly minted position.\nThis functionality is crucial for users looking to expand their liquidity provision activities,\noffering them the opportunity to engage in decentralized finance (DeFi) markets effectively.",
-        "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_mint_post",
+        "summary": "Pool price",
+        "description": "This endpoint retrieves the current price of a pool, indicating how many token0\nyou can purchase for 1 token1. Note that this is an instantaneous price and may change during\nany trade. For a more accurate representation of the trade ratios between the two assets,\nconsider using the quote endpoint.",
+        "operationId": "get_pool_price_v0_aerodrome_slipstream_pool_price_get_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeSlipstreamMintLiquidityProvisionCallData_"
+                "$ref": "#/components/schemas/AerodromeSlipstreamGetPoolPriceRequest"
               }
             }
           },
@@ -834,91 +918,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/aerodrome_slipstream/liquidity_provision/increase": {
-      "post": {
-        "tags": [
-          "Aerodrome Slipstream"
-        ],
-        "summary": "Increase an LP position",
-        "description": "Increase the liquidity of an existing Liquidity Provider (LP) position.\nThis endpoint allows users to add more tokens to their current LP position,\nenhancing their participation in liquidity provision. By increasing liquidity,\nusers can potentially earn more rewards and improve their position in the pool.\nThe process involves specifying additional token amounts and updating the pool details.\nThe response will confirm the successful increase of the LP position,\nproviding users with updated information about their enhanced position.\nThis functionality is vital for users aiming to optimize their liquidity provision strategy,\nenabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.",
-        "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_increase_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeSlipstreamIncreaseLiquidityProvisionCallData_"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v0/aerodrome_slipstream/liquidity_provision/withdraw": {
-      "post": {
-        "tags": [
-          "Aerodrome Slipstream"
-        ],
-        "summary": "Withdraw an LP position",
-        "description": "Withdraw an existing Liquidity Provider (LP) position.\nThis endpoint allows users to remove their tokens from an LP position,\neffectively closing their participation in the liquidity pool.\nThe withdrawal process involves specifying the LP position to be closed,\nand the response will confirm the successful removal of liquidity,\nproviding users with details about the withdrawn tokens and any remaining balances.\nThis functionality is essential for users who wish to exit their liquidity provision activities,\nenabling them to reclaim their assets and potentially reallocate them to other investment opportunities.\nThe endpoint ensures a smooth and secure withdrawal process,\nfacilitating users' strategic management of their decentralized finance (DeFi) portfolios.",
-        "operationId": "process_request_v0_aerodrome_slipstream_liquidity_provision_withdraw_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BaseTransactionRequest_AerodromeSlipstreamWithdrawLiquidityProvisionCallData_"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
+                  "$ref": "#/components/schemas/AerodromeSlipstreamPoolPriceResponse"
                 }
               }
             }
@@ -2459,25 +2459,158 @@
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
-      "AerodromeLPPositionsInfo": {
+      "AerodromeAddLiquidityEthRequest": {
         "properties": {
-          "positions": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AerodromePosition"
-            },
-            "type": "object",
-            "title": "Positions",
-            "description": "Liquidity provision positions belonging to a particular user. The key is a tuple of the token0, token1, tick_spacing, tick_lower, and tick_upper of the position."
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token to provide liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "USDC"
+            ]
+          },
+          "stable": {
+            "type": "boolean",
+            "title": "Stable",
+            "description": "If true, try to provide liquidity on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to provide liquidity on a volatile pool with a bonding curve of K=xy"
+          },
+          "amount_token_desired": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount Token Desired",
+            "description": "The amount of token you want to provide",
+            "examples": [
+              1000
+            ]
+          },
+          "amount_eth_desired": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount Eth Desired",
+            "description": "The amount of WETH you want to provide",
+            "examples": [
+              1.5
+            ]
+          },
+          "amount_token_min": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount Token Min",
+            "description": "The minimal amount of token you are willing to provide",
+            "examples": [
+              900
+            ]
+          },
+          "amount_eth_min": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount Eth Min",
+            "description": "The minimal amount of WETH you are willing to provide",
+            "examples": [
+              1.5
+            ]
+          },
+          "to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To",
+            "description": "The receiver of the LP tokens from this trade, default to sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline",
+            "description": "The deadline for this transaction in seconds since epoch",
+            "examples": [
+              1630000000
+            ]
           }
         },
         "type": "object",
         "required": [
-          "positions"
+          "chain",
+          "sender",
+          "token",
+          "stable",
+          "amount_token_desired",
+          "amount_eth_desired",
+          "amount_token_min",
+          "amount_eth_min",
+          "deadline"
         ],
-        "title": "AerodromeLPPositionsInfo"
+        "title": "AerodromeAddLiquidityEthRequest",
+        "example": {
+          "amount_eth_desired": 0.00048,
+          "amount_eth_min": 0,
+          "amount_token_desired": 1,
+          "amount_token_min": 0,
+          "deadline": 0,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC"
+        }
       },
-      "AerodromeLiquidityProvisionCallData": {
+      "AerodromeAddLiquidityRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_a": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to provide liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -2593,6 +2726,8 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_a",
           "token_b",
           "stable",
@@ -2602,7 +2737,7 @@
           "amount_b_min",
           "deadline"
         ],
-        "title": "AerodromeLiquidityProvisionCallData",
+        "title": "AerodromeAddLiquidityRequest",
         "example": {
           "amount_a_desired": 1,
           "amount_a_min": 0,
@@ -2615,135 +2750,22 @@
           "token_b": "USDT"
         }
       },
-      "AerodromeLiquidityProvisionEthCallData": {
+      "AerodromeLPPositionsResponse": {
         "properties": {
-          "token": {
-            "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to provide liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
-            "examples": [
-              "USDC"
-            ]
-          },
-          "stable": {
-            "type": "boolean",
-            "title": "Stable",
-            "description": "If true, try to provide liquidity on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to provide liquidity on a volatile pool with a bonding curve of K=xy"
-          },
-          "amount_token_desired": {
-            "anyOf": [
-              {
-                "type": "number",
-                "minimum": 0.0
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Amount Token Desired",
-            "description": "The amount of token you want to provide",
-            "examples": [
-              1000
-            ]
-          },
-          "amount_eth_desired": {
-            "anyOf": [
-              {
-                "type": "number",
-                "minimum": 0.0
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Amount Eth Desired",
-            "description": "The amount of WETH you want to provide",
-            "examples": [
-              1.5
-            ]
-          },
-          "amount_token_min": {
-            "anyOf": [
-              {
-                "type": "number",
-                "minimum": 0.0
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Amount Token Min",
-            "description": "The minimal amount of token you are willing to provide",
-            "examples": [
-              900
-            ]
-          },
-          "amount_eth_min": {
-            "anyOf": [
-              {
-                "type": "number",
-                "minimum": 0.0
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Amount Eth Min",
-            "description": "The minimal amount of WETH you are willing to provide",
-            "examples": [
-              1.5
-            ]
-          },
-          "to": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "To",
-            "description": "The receiver of the LP tokens from this trade, default to sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "deadline": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Deadline",
-            "description": "The deadline for this transaction in seconds since epoch",
-            "examples": [
-              1630000000
-            ]
+          "positions": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AerodromePosition"
+            },
+            "type": "object",
+            "title": "Positions",
+            "description": "Liquidity provision positions belonging to a particular user. The key is a\ntuple of the token0, token1, tick_spacing, tick_lower, and tick_upper of the position."
           }
         },
         "type": "object",
         "required": [
-          "token",
-          "stable",
-          "amount_token_desired",
-          "amount_eth_desired",
-          "amount_token_min",
-          "amount_eth_min",
-          "deadline"
+          "positions"
         ],
-        "title": "AerodromeLiquidityProvisionEthCallData",
-        "example": {
-          "amount_eth_desired": 0.00048,
-          "amount_eth_min": 0,
-          "amount_token_desired": 1,
-          "amount_token_min": 0,
-          "deadline": 0,
-          "stable": true,
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token": "USDC"
-        }
+        "title": "AerodromeLPPositionsResponse"
       },
       "AerodromePosition": {
         "properties": {
@@ -2816,8 +2838,140 @@
         ],
         "title": "AerodromePosition"
       },
-      "AerodromeRemoveLiquidityCallData": {
+      "AerodromeRemoveLiquidityEthRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token to remove liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "USDC"
+            ]
+          },
+          "stable": {
+            "type": "boolean",
+            "title": "Stable",
+            "description": "If true, try to remove liquidity from a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to remove liquidity from a volatile pool with a bonding curve of K=xy"
+          },
+          "liquidity": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Liquidity",
+            "description": "The amount of liquidity you want to remove",
+            "examples": [
+              1000
+            ]
+          },
+          "amount_token_min": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount Token Min",
+            "description": "The minimal amount of token you are willing to receive",
+            "examples": [
+              900
+            ]
+          },
+          "amount_eth_min": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount Eth Min",
+            "description": "The minimal amount of WETH you are willing to receive",
+            "examples": [
+              900
+            ]
+          },
+          "to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To",
+            "description": "The receiver of the tokens from this liquidity removal, default to sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline",
+            "description": "The deadline for this transaction in seconds since epoch",
+            "examples": [
+              1630000000
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "sender",
+          "token",
+          "stable",
+          "liquidity",
+          "amount_token_min",
+          "amount_eth_min",
+          "deadline"
+        ],
+        "title": "AerodromeRemoveLiquidityEthRequest",
+        "example": {
+          "amount_eth_min": 0,
+          "amount_token_min": 0,
+          "deadline": 0,
+          "liquidity": 0.1,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC"
+        }
+      },
+      "AerodromeRemoveLiquidityRequest": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_a": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to remove liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -2917,6 +3071,8 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_a",
           "token_b",
           "stable",
@@ -2925,7 +3081,7 @@
           "amount_b_min",
           "deadline"
         ],
-        "title": "AerodromeRemoveLiquidityCallData",
+        "title": "AerodromeRemoveLiquidityRequest",
         "example": {
           "amount_a_min": 0,
           "amount_b_min": 0,
@@ -2937,120 +3093,17 @@
           "token_b": "USDT"
         }
       },
-      "AerodromeRemoveLiquidityEthCallData": {
+      "AerodromeSlipstreamBuyExactlyRequest": {
         "properties": {
-          "token": {
-            "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to remove liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
-            "examples": [
-              "USDC"
-            ]
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
           },
-          "stable": {
-            "type": "boolean",
-            "title": "Stable",
-            "description": "If true, try to remove liquidity from a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to remove liquidity from a volatile pool with a bonding curve of K=xy"
-          },
-          "liquidity": {
-            "anyOf": [
-              {
-                "type": "number",
-                "exclusiveMinimum": 0.0
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Liquidity",
-            "description": "The amount of liquidity you want to remove",
-            "examples": [
-              1000
-            ]
-          },
-          "amount_token_min": {
-            "anyOf": [
-              {
-                "type": "number",
-                "minimum": 0.0
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Amount Token Min",
-            "description": "The minimal amount of token you are willing to receive",
-            "examples": [
-              900
-            ]
-          },
-          "amount_eth_min": {
-            "anyOf": [
-              {
-                "type": "number",
-                "minimum": 0.0
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Amount Eth Min",
-            "description": "The minimal amount of WETH you are willing to receive",
-            "examples": [
-              900
-            ]
-          },
-          "to": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "To",
-            "description": "The receiver of the tokens from this liquidity removal, default to sender",
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
             "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
-          "deadline": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Deadline",
-            "description": "The deadline for this transaction in seconds since epoch",
-            "examples": [
-              1630000000
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "token",
-          "stable",
-          "liquidity",
-          "amount_token_min",
-          "amount_eth_min",
-          "deadline"
-        ],
-        "title": "AerodromeRemoveLiquidityEthCallData",
-        "example": {
-          "amount_eth_min": 0,
-          "amount_token_min": 0,
-          "deadline": 0,
-          "liquidity": 0.1,
-          "stable": true,
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token": "USDC"
-        }
-      },
-      "AerodromeSlipstreamBuyExactlyCallData": {
-        "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3124,13 +3177,15 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_in",
           "token_out",
           "tick_spacing",
           "amount_out",
           "amount_in_maximum"
         ],
-        "title": "AerodromeSlipstreamBuyExactlyCallData",
+        "title": "AerodromeSlipstreamBuyExactlyRequest",
         "example": {
           "amount_in_maximum": 0.1,
           "amount_out": 0.000048,
@@ -3139,7 +3194,7 @@
           "token_out": "WETH"
         }
       },
-      "AerodromeSlipstreamGetLiquidityProvisionPositions": {
+      "AerodromeSlipstreamGetLiquidityProvisionPositionsRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -3156,9 +3211,9 @@
           "chain",
           "user"
         ],
-        "title": "AerodromeSlipstreamGetLiquidityProvisionPositions"
+        "title": "AerodromeSlipstreamGetLiquidityProvisionPositionsRequest"
       },
-      "AerodromeSlipstreamGetPoolPrice": {
+      "AerodromeSlipstreamGetPoolPriceRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -3209,7 +3264,7 @@
           "token_out",
           "tick_spacing"
         ],
-        "title": "AerodromeSlipstreamGetPoolPrice",
+        "title": "AerodromeSlipstreamGetPoolPriceRequest",
         "example": {
           "chain": "base:mainnet",
           "tick_spacing": 100,
@@ -3217,8 +3272,17 @@
           "token_out": "WETH"
         }
       },
-      "AerodromeSlipstreamIncreaseLiquidityProvisionCallData": {
+      "AerodromeSlipstreamIncreaseLiquidityProvisionRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_id": {
             "type": "integer",
             "title": "Token Id",
@@ -3291,16 +3355,27 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_id",
           "amount0_desired",
           "amount1_desired",
           "amount0_min",
           "amount1_min"
         ],
-        "title": "AerodromeSlipstreamIncreaseLiquidityProvisionCallData"
+        "title": "AerodromeSlipstreamIncreaseLiquidityProvisionRequest"
       },
-      "AerodromeSlipstreamMintLiquidityProvisionCallData": {
+      "AerodromeSlipstreamMintLiquidityProvisionRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token0": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3437,6 +3512,8 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token0",
           "token1",
           "tick_spacing",
@@ -3447,7 +3524,7 @@
           "amount0_min",
           "amount1_min"
         ],
-        "title": "AerodromeSlipstreamMintLiquidityProvisionCallData",
+        "title": "AerodromeSlipstreamMintLiquidityProvisionRequest",
         "example": {
           "amount0_desired": 0.1,
           "amount0_min": 0,
@@ -3461,7 +3538,7 @@
           "token1": "USDC"
         }
       },
-      "AerodromeSlipstreamPoolPrice": {
+      "AerodromeSlipstreamPoolPriceResponse": {
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
@@ -3474,12 +3551,12 @@
           "price": {
             "type": "string",
             "title": "Price",
-            "description": "The price of the pool. This is expressed as an instantanteous amount of how many token0 you need to buy 1 token1. In any swap this will not change during the trade; use the quote endpoint to get a better idea of how much you will pay!"
+            "description": "The price of the pool. This is expressed as an instantaneous amount of how\nmany token0 you need to buy 1 token1. In any swap this will not change during the trade; use\nthe quote endpoint to get a better idea of how much you will pay!"
           },
           "tick": {
             "type": "integer",
             "title": "Tick",
-            "description": "The current tick in the pool. This is a number that represents the price of the pool according to the aerodrome_slipstream v3 concentrated liquidity concept."
+            "description": "The current tick in the pool. This is a number that represents the price of\nthe pool according to the aerodrome_slipstream v3 concentrated liquidity concept."
           }
         },
         "type": "object",
@@ -3489,10 +3566,19 @@
           "price",
           "tick"
         ],
-        "title": "AerodromeSlipstreamPoolPrice"
+        "title": "AerodromeSlipstreamPoolPriceResponse"
       },
-      "AerodromeSlipstreamSellExactlyCallData": {
+      "AerodromeSlipstreamSellExactlyRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3567,12 +3653,14 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_in",
           "token_out",
           "tick_spacing",
           "amount_in"
         ],
-        "title": "AerodromeSlipstreamSellExactlyCallData",
+        "title": "AerodromeSlipstreamSellExactlyRequest",
         "example": {
           "amount_in": 1,
           "amount_out_minimum": 0,
@@ -3581,8 +3669,17 @@
           "token_out": "WETH"
         }
       },
-      "AerodromeSlipstreamWithdrawLiquidityProvisionCallData": {
+      "AerodromeSlipstreamWithdrawLiquidityProvisionRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_id": {
             "type": "integer",
             "title": "Token Id",
@@ -3611,14 +3708,25 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_id",
           "percentage_for_withdrawal"
         ],
-        "title": "AerodromeSlipstreamWithdrawLiquidityProvisionCallData",
+        "title": "AerodromeSlipstreamWithdrawLiquidityProvisionRequest",
         "description": "Endpoint parameters for liquidity provision withdrawal on aerodrome slipstream.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/AerodromeSlipstream/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user."
       },
-      "AerodromeSwapEthForTokenCallData": {
+      "AerodromeSwapEthForTokenRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_out": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3679,12 +3787,14 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_out",
           "amount_in",
           "amount_out_min",
           "stable"
         ],
-        "title": "AerodromeSwapEthForTokenCallData",
+        "title": "AerodromeSwapEthForTokenRequest",
         "example": {
           "amount_in": 0.00047753,
           "amount_out_min": 0,
@@ -3693,8 +3803,17 @@
           "token_out": "USDC"
         }
       },
-      "AerodromeSwapTokenForEthCallData": {
+      "AerodromeSwapTokenForEthRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3755,12 +3874,14 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_in",
           "amount_in",
           "amount_out_min",
           "stable"
         ],
-        "title": "AerodromeSwapTokenForEthCallData",
+        "title": "AerodromeSwapTokenForEthRequest",
         "example": {
           "amount_in": 1,
           "amount_out_min": 0,
@@ -3769,8 +3890,17 @@
           "token_in": "USDC"
         }
       },
-      "AerodromeSwapTokensCallData": {
+      "AerodromeSwapTokensRequest": {
         "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3812,7 +3942,7 @@
               }
             ],
             "title": "Amount Out Min",
-            "description": "The minimal amount of token you are willing to receive (will revert if the swap gives you less)",
+            "description": "The minimal amount of token you are willing to receive (will revert if the\n        swap gives you less)",
             "examples": [
               1.5
             ]
@@ -3820,7 +3950,7 @@
           "stable": {
             "type": "boolean",
             "title": "Stable",
-            "description": "If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy"
+            "description": "If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x.\n        If false, try to trade on a volatile pool with a bonding curve of K=xy"
           },
           "to": {
             "anyOf": [
@@ -3838,13 +3968,15 @@
         },
         "type": "object",
         "required": [
+          "chain",
+          "sender",
           "token_in",
           "token_out",
           "amount_in",
           "amount_out_min",
           "stable"
         ],
-        "title": "AerodromeSwapTokensCallData",
+        "title": "AerodromeSwapTokensRequest",
         "example": {
           "amount_in": 1,
           "amount_out_min": 0,
@@ -3950,282 +4082,6 @@
         ],
         "title": "BalanceInfoResponse",
         "description": "Response model for token balance information."
-      },
-      "BaseTransactionRequest_AerodromeLiquidityProvisionCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeLiquidityProvisionCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeLiquidityProvisionCallData]"
-      },
-      "BaseTransactionRequest_AerodromeLiquidityProvisionEthCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeLiquidityProvisionEthCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeLiquidityProvisionEthCallData]"
-      },
-      "BaseTransactionRequest_AerodromeRemoveLiquidityCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeRemoveLiquidityCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeRemoveLiquidityCallData]"
-      },
-      "BaseTransactionRequest_AerodromeRemoveLiquidityEthCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeRemoveLiquidityEthCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeRemoveLiquidityEthCallData]"
-      },
-      "BaseTransactionRequest_AerodromeSlipstreamBuyExactlyCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeSlipstreamBuyExactlyCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeSlipstreamBuyExactlyCallData]"
-      },
-      "BaseTransactionRequest_AerodromeSlipstreamIncreaseLiquidityProvisionCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeSlipstreamIncreaseLiquidityProvisionCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeSlipstreamIncreaseLiquidityProvisionCallData]"
-      },
-      "BaseTransactionRequest_AerodromeSlipstreamMintLiquidityProvisionCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeSlipstreamMintLiquidityProvisionCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeSlipstreamMintLiquidityProvisionCallData]"
-      },
-      "BaseTransactionRequest_AerodromeSlipstreamSellExactlyCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeSlipstreamSellExactlyCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeSlipstreamSellExactlyCallData]"
-      },
-      "BaseTransactionRequest_AerodromeSlipstreamWithdrawLiquidityProvisionCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeSlipstreamWithdrawLiquidityProvisionCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeSlipstreamWithdrawLiquidityProvisionCallData]"
-      },
-      "BaseTransactionRequest_AerodromeSwapEthForTokenCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeSwapEthForTokenCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeSwapEthForTokenCallData]"
-      },
-      "BaseTransactionRequest_AerodromeSwapTokenForEthCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeSwapTokenForEthCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeSwapTokenForEthCallData]"
-      },
-      "BaseTransactionRequest_AerodromeSwapTokensCallData_": {
-        "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
-          "call_data": {
-            "$ref": "#/components/schemas/AerodromeSwapTokensCallData"
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "call_data"
-        ],
-        "title": "BaseTransactionRequest[AerodromeSwapTokensCallData]"
       },
       "Chain": {
         "type": "string",
