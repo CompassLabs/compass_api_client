@@ -247,108 +247,10 @@ const AaveUserPositionPerTokenResponse = z
         liquidity_rate: z.string().describe('The annualised interest rate for deposited supplies.'),
     })
     .passthrough();
-const AerodromeSwapTokensCallData = z
-    .object({
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        amount_in: z
-            .union([z.number(), z.string()])
-            .describe('The amount of tokens you will give to aerodrome_basic for this trade'),
-        amount_out_min: z
-            .union([z.number(), z.string()])
-            .describe(
-                'The minimal amount of token you are willing to receive (will revert if the swap gives you less)'
-            ),
-        stable: z
-            .boolean()
-            .describe(
-                'If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy'
-            ),
-        to: z
-            .union([z.string(), z.null()])
-            .describe('The receiver of the funds from this trade, default to sender')
-            .optional(),
-    })
-    .passthrough();
-const BaseTransactionRequest_AerodromeSwapTokensCallData_ = z
+const AerodromeAddLiquidityRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeSwapTokensCallData,
-    })
-    .passthrough();
-const AerodromeSwapEthForTokenCallData = z
-    .object({
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        amount_in: z
-            .union([z.number(), z.string()])
-            .describe('The amount of ETH you will give to aerodrome_basic for this trade'),
-        amount_out_min: z
-            .union([z.number(), z.string()])
-            .describe(
-                'The minimal amount of token you are willing to receive (will revert if the swap gives you less)'
-            ),
-        stable: z
-            .boolean()
-            .describe(
-                'If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy'
-            ),
-        to: z
-            .union([z.string(), z.null()])
-            .describe('The receiver of the funds from this trade, default to sender')
-            .optional(),
-    })
-    .passthrough();
-const BaseTransactionRequest_AerodromeSwapEthForTokenCallData_ = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeSwapEthForTokenCallData,
-    })
-    .passthrough();
-const AerodromeSwapTokenForEthCallData = z
-    .object({
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        amount_in: z
-            .union([z.number(), z.string()])
-            .describe('The amount of tokens you will give to aerodrome_basic for this trade'),
-        amount_out_min: z
-            .union([z.number(), z.string()])
-            .describe(
-                'The minimal amount of ETH you are willing to receive (will revert if the swap gives you less)'
-            ),
-        stable: z
-            .boolean()
-            .describe(
-                'If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy'
-            ),
-        to: z
-            .union([z.string(), z.null()])
-            .describe('The receiver of the funds from this trade, default to sender')
-            .optional(),
-    })
-    .passthrough();
-const BaseTransactionRequest_AerodromeSwapTokenForEthCallData_ = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeSwapTokenForEthCallData,
-    })
-    .passthrough();
-const AerodromeLiquidityProvisionCallData = z
-    .object({
         token_a: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -383,15 +285,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe('The deadline for this transaction in seconds since epoch'),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeLiquidityProvisionCallData_ = z
+const AerodromeAddLiquidityEthRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeLiquidityProvisionCallData,
-    })
-    .passthrough();
-const AerodromeLiquidityProvisionEthCallData = z
-    .object({
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -422,15 +319,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe('The deadline for this transaction in seconds since epoch'),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeLiquidityProvisionEthCallData_ = z
+const AerodromeRemoveLiquidityRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeLiquidityProvisionEthCallData,
-    })
-    .passthrough();
-const AerodromeRemoveLiquidityCallData = z
-    .object({
         token_a: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -462,15 +354,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe('The deadline for this transaction in seconds since epoch'),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeRemoveLiquidityCallData_ = z
+const AerodromeRemoveLiquidityEthRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeRemoveLiquidityCallData,
-    })
-    .passthrough();
-const AerodromeRemoveLiquidityEthCallData = z
-    .object({
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -498,52 +385,93 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe('The deadline for this transaction in seconds since epoch'),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeRemoveLiquidityEthCallData_ = z
+const AerodromeSwapTokensRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeRemoveLiquidityEthCallData,
+        token_in: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        amount_in: z
+            .union([z.number(), z.string()])
+            .describe('The amount of tokens you will give to aerodrome_basic for this trade'),
+        amount_out_min: z
+            .union([z.number(), z.string()])
+            .describe(`The minimal amount of token you are willing to receive (will revert if the
+        swap gives you less)`),
+        stable: z
+            .boolean()
+            .describe(`If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x.
+        If false, try to trade on a volatile pool with a bonding curve of K=xy`),
+        to: z
+            .union([z.string(), z.null()])
+            .describe('The receiver of the funds from this trade, default to sender')
+            .optional(),
     })
     .passthrough();
-const AerodromeSlipstreamGetPoolPrice = z
+const AerodromeSwapEthForTokenRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
+        sender: z.string().describe('The address of the transaction sender'),
         token_out: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        tick_spacing: z.number().int().gte(1).describe('The tick spacing of the pool'),
+        amount_in: z
+            .union([z.number(), z.string()])
+            .describe('The amount of ETH you will give to aerodrome_basic for this trade'),
+        amount_out_min: z
+            .union([z.number(), z.string()])
+            .describe(
+                'The minimal amount of token you are willing to receive (will revert if the swap gives you less)'
+            ),
+        stable: z
+            .boolean()
+            .describe(
+                'If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy'
+            ),
+        to: z
+            .union([z.string(), z.null()])
+            .describe('The receiver of the funds from this trade, default to sender')
+            .optional(),
     })
     .passthrough();
-const AerodromeSlipstreamPoolPrice = z
+const AerodromeSwapTokenForEthRequest = z
     .object({
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        price: z
-            .string()
+        amount_in: z
+            .union([z.number(), z.string()])
+            .describe('The amount of tokens you will give to aerodrome_basic for this trade'),
+        amount_out_min: z
+            .union([z.number(), z.string()])
             .describe(
-                'The price of the pool. This is expressed as an instantanteous amount of how many token0 you need to buy 1 token1. In any swap this will not change during the trade; use the quote endpoint to get a better idea of how much you will pay!'
+                'The minimal amount of ETH you are willing to receive (will revert if the swap gives you less)'
             ),
-        tick: z
-            .number()
-            .int()
+        stable: z
+            .boolean()
             .describe(
-                'The current tick in the pool. This is a number that represents the price of the pool according to the aerodrome_slipstream v3 concentrated liquidity concept.'
+                'If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy'
             ),
+        to: z
+            .union([z.string(), z.null()])
+            .describe('The receiver of the funds from this trade, default to sender')
+            .optional(),
     })
     .passthrough();
-const AerodromeSlipstreamSellExactlyCallData = z
+const AerodromeSlipstreamSellExactlyRequest = z
     .object({
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -563,15 +491,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .default('0'),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeSlipstreamSellExactlyCallData_ = z
+const AerodromeSlipstreamBuyExactlyRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeSlipstreamSellExactlyCallData,
-    })
-    .passthrough();
-const AerodromeSlipstreamBuyExactlyCallData = z
-    .object({
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -589,53 +512,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe('The maximum amount of the token to swap from'),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeSlipstreamBuyExactlyCallData_ = z
+const AerodromeSlipstreamMintLiquidityProvisionRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeSlipstreamBuyExactlyCallData,
-    })
-    .passthrough();
-const AerodromeSlipstreamGetLiquidityProvisionPositions = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The address of the user to check the balance of'),
-    })
-    .passthrough();
-const AerodromePosition = z
-    .object({
-        nonce: z.number().int(),
-        operator: z.string(),
-        token0: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token1: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        tick_spacing: z.number().int(),
-        tick_lower: z.number().int(),
-        tick_upper: z.number().int(),
-        liquidity: z.number().int(),
-        fee_growth_inside0_last_x128: z.number().int(),
-        fee_growth_inside1_last_x128: z.number().int(),
-        tokens_owed0: z.number().int(),
-        tokens_owed1: z.number().int(),
-        token_id: z.number().int(),
-    })
-    .passthrough();
-const AerodromeLPPositionsInfo = z
-    .object({
-        positions: z
-            .record(AerodromePosition)
-            .describe(
-                'Liquidity provision positions belonging to a particular user. The key is a tuple of the token0, token1, tick_spacing, tick_lower, and tick_upper of the position.'
-            ),
-    })
-    .passthrough();
-const AerodromeSlipstreamMintLiquidityProvisionCallData = z
-    .object({
         token0: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -671,15 +551,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .optional(),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeSlipstreamMintLiquidityProvisionCallData_ = z
+const AerodromeSlipstreamIncreaseLiquidityProvisionRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeSlipstreamMintLiquidityProvisionCallData,
-    })
-    .passthrough();
-const AerodromeSlipstreamIncreaseLiquidityProvisionCallData = z
-    .object({
         token_id: z
             .number()
             .int()
@@ -698,15 +573,10 @@ const AerodromeSlipstreamIncreaseLiquidityProvisionCallData = z
             .describe('The minimum amount of the second token to deposit'),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeSlipstreamIncreaseLiquidityProvisionCallData_ = z
+const AerodromeSlipstreamWithdrawLiquidityProvisionRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        call_data: AerodromeSlipstreamIncreaseLiquidityProvisionCallData,
-    })
-    .passthrough();
-const AerodromeSlipstreamWithdrawLiquidityProvisionCallData = z
-    .object({
         token_id: z
             .number()
             .int()
@@ -716,15 +586,77 @@ const AerodromeSlipstreamWithdrawLiquidityProvisionCallData = z
             .describe('How much liquidity to take out in percentage.'),
     })
     .passthrough();
-const BaseTransactionRequest_AerodromeSlipstreamWithdrawLiquidityProvisionCallData_ = z
+const AerodromeSlipstreamGetLiquidityProvisionPositionsRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
-        call_data:
-            AerodromeSlipstreamWithdrawLiquidityProvisionCallData.describe(`Endpoint parameters for liquidity provision withdrawal on aerodrome slipstream.
+        user: z.string().describe('The address of the user to check the balance of'),
+    })
+    .passthrough();
+const AerodromePosition = z
+    .object({
+        nonce: z.number().int(),
+        operator: z.string(),
+        token0: Token.describe(`A class representing the token.
 
-This action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/AerodromeSlipstream/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27
-First, we call decrease liquidity then collect the tokens owed to the user.`),
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token1: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        tick_spacing: z.number().int(),
+        tick_lower: z.number().int(),
+        tick_upper: z.number().int(),
+        liquidity: z.number().int(),
+        fee_growth_inside0_last_x128: z.number().int(),
+        fee_growth_inside1_last_x128: z.number().int(),
+        tokens_owed0: z.number().int(),
+        tokens_owed1: z.number().int(),
+        token_id: z.number().int(),
+    })
+    .passthrough();
+const AerodromeLPPositionsResponse = z
+    .object({
+        positions: z
+            .record(AerodromePosition)
+            .describe(`Liquidity provision positions belonging to a particular user. The key is a
+tuple of the token0, token1, tick_spacing, tick_lower, and tick_upper of the position.`),
+    })
+    .passthrough();
+const AerodromeSlipstreamGetPoolPriceRequest = z
+    .object({
+        chain: Chain.describe('The chain to use.'),
+        token_in: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        tick_spacing: z.number().int().gte(1).describe('The tick spacing of the pool'),
+    })
+    .passthrough();
+const AerodromeSlipstreamPoolPriceResponse = z
+    .object({
+        token_in: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        price: z
+            .string()
+            .describe(`The price of the pool. This is expressed as an instantaneous amount of how
+many token0 you need to buy 1 token1. In any swap this will not change during the trade; use
+the quote endpoint to get a better idea of how much you will pay!`),
+        tick: z
+            .number()
+            .int()
+            .describe(`The current tick in the pool. This is a number that represents the price of
+the pool according to the aerodrome_slipstream v3 concentrated liquidity concept.`),
     })
     .passthrough();
 const PortfolioRequest = z
@@ -1238,35 +1170,23 @@ export const schemas = {
     AaveUserPositionSummaryResponse,
     AaveGetUserPositionPerTokenRequest,
     AaveUserPositionPerTokenResponse,
-    AerodromeSwapTokensCallData,
-    BaseTransactionRequest_AerodromeSwapTokensCallData_,
-    AerodromeSwapEthForTokenCallData,
-    BaseTransactionRequest_AerodromeSwapEthForTokenCallData_,
-    AerodromeSwapTokenForEthCallData,
-    BaseTransactionRequest_AerodromeSwapTokenForEthCallData_,
-    AerodromeLiquidityProvisionCallData,
-    BaseTransactionRequest_AerodromeLiquidityProvisionCallData_,
-    AerodromeLiquidityProvisionEthCallData,
-    BaseTransactionRequest_AerodromeLiquidityProvisionEthCallData_,
-    AerodromeRemoveLiquidityCallData,
-    BaseTransactionRequest_AerodromeRemoveLiquidityCallData_,
-    AerodromeRemoveLiquidityEthCallData,
-    BaseTransactionRequest_AerodromeRemoveLiquidityEthCallData_,
-    AerodromeSlipstreamGetPoolPrice,
-    AerodromeSlipstreamPoolPrice,
-    AerodromeSlipstreamSellExactlyCallData,
-    BaseTransactionRequest_AerodromeSlipstreamSellExactlyCallData_,
-    AerodromeSlipstreamBuyExactlyCallData,
-    BaseTransactionRequest_AerodromeSlipstreamBuyExactlyCallData_,
-    AerodromeSlipstreamGetLiquidityProvisionPositions,
+    AerodromeAddLiquidityRequest,
+    AerodromeAddLiquidityEthRequest,
+    AerodromeRemoveLiquidityRequest,
+    AerodromeRemoveLiquidityEthRequest,
+    AerodromeSwapTokensRequest,
+    AerodromeSwapEthForTokenRequest,
+    AerodromeSwapTokenForEthRequest,
+    AerodromeSlipstreamSellExactlyRequest,
+    AerodromeSlipstreamBuyExactlyRequest,
+    AerodromeSlipstreamMintLiquidityProvisionRequest,
+    AerodromeSlipstreamIncreaseLiquidityProvisionRequest,
+    AerodromeSlipstreamWithdrawLiquidityProvisionRequest,
+    AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
     AerodromePosition,
-    AerodromeLPPositionsInfo,
-    AerodromeSlipstreamMintLiquidityProvisionCallData,
-    BaseTransactionRequest_AerodromeSlipstreamMintLiquidityProvisionCallData_,
-    AerodromeSlipstreamIncreaseLiquidityProvisionCallData,
-    BaseTransactionRequest_AerodromeSlipstreamIncreaseLiquidityProvisionCallData_,
-    AerodromeSlipstreamWithdrawLiquidityProvisionCallData,
-    BaseTransactionRequest_AerodromeSlipstreamWithdrawLiquidityProvisionCallData_,
+    AerodromeLPPositionsResponse,
+    AerodromeSlipstreamGetPoolPriceRequest,
+    AerodromeSlipstreamPoolPriceResponse,
     PortfolioRequest,
     TokenBalance,
     Portfolio,
@@ -1525,15 +1445,15 @@ manage your collateral within the Aave ecosystem.`,
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/add_liquidity',
         description: `This endpoint allows users to provide liquidity to a specified pool on the
-Aerodrome platform. Users must specify the tokens, desired amounts, minimum
-amounts, and a deadline for the transaction. The operation will ensure the
-pool exists and will use the sender&#x27;s address if no recipient is specified.`,
+Aerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a
+deadline for the transaction. The operation will ensure the pool exists and will use the
+sender&#x27;s address if no recipient is specified.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeLiquidityProvisionCallData_,
+                schema: AerodromeAddLiquidityRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1549,18 +1469,17 @@ pool exists and will use the sender&#x27;s address if no recipient is specified.
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/add_liquidity_eth',
         description: `This endpoint allows users to provide liquidity to a specified pool on the
-Aerodrome platform using Wrapped Ether (WETH) and another token. Users must
-specify the token pair, desired amounts, minimum amounts, and a deadline for
-the transaction. The operation will ensure the pool exists and will use the
-sender&#x27;s address if no recipient is specified. The transaction will be executed
-through the Aerodrome Basic Router contract, and the specified amount of WETH
-will be sent along with the transaction.`,
+Aerodrome platform using Wrapped Ether (WETH) and another token. Users must specify the token
+pair, desired amounts, minimum amounts, and a deadline for the transaction. The operation will
+ensure the pool exists and will use the sender&#x27;s address if no recipient is specified. The
+transaction will be executed through the Aerodrome Basic Router contract, and the specified
+amount of WETH will be sent along with the transaction.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeLiquidityProvisionEthCallData_,
+                schema: AerodromeAddLiquidityEthRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1576,18 +1495,17 @@ will be sent along with the transaction.`,
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/remove_liquidity',
         description: `This endpoint allows users to remove liquidity from a specified pool on the
-Aerodrome platform. Users must specify the token pair, the amount of liquidity
-to remove, minimum amounts for each token, and a deadline for the transaction.
-The operation will ensure the pool exists and will use the sender&#x27;s address if
-no recipient is specified. The transaction will be executed through the
-Aerodrome Basic Router contract, and the specified amount of liquidity will be
-withdrawn from the pool.`,
+Aerodrome platform. Users must specify the token pair, the amount of liquidity to remove,
+minimum amounts for each token, and a deadline for the transaction. The operation will ensure
+the pool exists and will use the sender&#x27;s address if no recipient is specified. The transaction
+will be executed through the Aerodrome Basic Router contract, and the specified amount of
+liquidity will be withdrawn from the pool.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeRemoveLiquidityCallData_,
+                schema: AerodromeRemoveLiquidityRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1603,18 +1521,17 @@ withdrawn from the pool.`,
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/remove_liquidity_eth',
         description: `This endpoint allows users to remove liquidity from a pool on the Aerodrome
-platform using WETH and another token. Users must specify the token pair, the
-amount of liquidity to remove, minimum amounts for each token, and a deadline
-for the transaction. The operation will ensure the pool exists and will use
-the sender&#x27;s address if no recipient is specified. The transaction will be
-executed through the Aerodrome Basic Router contract, and the specified amount
-of liquidity will be withdrawn from the pool.`,
+platform using WETH and another token. Users must specify the token pair, the amount of
+liquidity to remove, minimum amounts for each token, and a deadline for the transaction. The
+operation will ensure the pool exists and will use the sender&#x27;s address if no recipient is
+specified. The transaction will be executed through the Aerodrome Basic Router contract, and the
+specified amount of liquidity will be withdrawn from the pool.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeRemoveLiquidityEthCallData_,
+                schema: AerodromeRemoveLiquidityEthRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1629,18 +1546,16 @@ of liquidity will be withdrawn from the pool.`,
     {
         method: 'post',
         path: '/v0/aerodrome_basic/swap/eth_for_token',
-        description: `This endpoint allows you to swap a specified amount of ETH for a
-desired token on the Aerodrome platform. To protect against
-unfavorable exchange rates, you must specify the minimum amount
-of the token you wish to receive. The transaction will only be
-executed if this minimum amount is met, ensuring you do not
-accidentally trade at a disadvantageous rate.`,
+        description: `This endpoint allows you to swap a specified amount of ETH for a desired token
+on the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the
+minimum amount of the token you wish to receive. The transaction will only be executed if this
+minimum amount is met, ensuring you do not accidentally trade at a disadvantageous rate.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeSwapEthForTokenCallData_,
+                schema: AerodromeSwapEthForTokenRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1655,16 +1570,16 @@ accidentally trade at a disadvantageous rate.`,
     {
         method: 'post',
         path: '/v0/aerodrome_basic/swap/token_for_eth',
-        description: `Swap a specified amount of a token for ETH using the Aerodrome platform.
-To protect against unfavorable exchange rates, you must specify the minimum
-amount of ETH you wish to receive. The transaction will only be executed if
-this minimum amount is met, ensuring you do not trade at a disadvantageous rate.`,
+        description: `Swap a specified amount of a token for ETH using the Aerodrome platform. To
+protect against unfavorable exchange rates, you must specify the minimum amount of ETH you wish
+to receive. The transaction will only be executed if this minimum amount is met, ensuring you do
+not trade at a disadvantageous rate.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeSwapTokenForEthCallData_,
+                schema: AerodromeSwapTokenForEthRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1679,18 +1594,16 @@ this minimum amount is met, ensuring you do not trade at a disadvantageous rate.
     {
         method: 'post',
         path: '/v0/aerodrome_basic/swap/tokens',
-        description: `Swap one token for another on Aerodrome.
-Ensure you specify the minimum amount you expect to receive to
-avoid trading at an unfavorable exchange rate. This endpoint
-facilitates the exchange of tokens by interacting with the
-Aerodrome smart contract, ensuring that the transaction is
-executed only if the specified minimum output is met.`,
+        description: `Swap one token for another on Aerodrome. Ensure you specify the minimum amount
+you expect to receive to avoid trading at an unfavorable exchange rate. This endpoint
+facilitates the exchange of tokens by interacting with the Aerodrome smart contract, ensuring
+that the transaction is executed only if the specified minimum output is met.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeSwapTokensCallData_,
+                schema: AerodromeSwapTokensRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1705,21 +1618,21 @@ executed only if the specified minimum output is met.`,
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/increase',
-        description: `Increase the liquidity of an existing Liquidity Provider (LP) position.
-This endpoint allows users to add more tokens to their current LP position,
-enhancing their participation in liquidity provision. By increasing liquidity,
-users can potentially earn more rewards and improve their position in the pool.
-The process involves specifying additional token amounts and updating the pool details.
-The response will confirm the successful increase of the LP position,
-providing users with updated information about their enhanced position.
-This functionality is vital for users aiming to optimize their liquidity provision strategy,
-enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.`,
+        description: `Increase the liquidity of an existing Liquidity Provider (LP) position. This
+endpoint allows users to add more tokens to their current LP position, enhancing their
+participation in liquidity provision. By increasing liquidity, users can potentially earn more
+rewards and improve their position in the pool. The process involves specifying additional token
+amounts and updating the pool details. The response will confirm the successful increase of the
+LP position, providing users with updated information about their enhanced position. This
+functionality is vital for users aiming to optimize their liquidity provision strategy, enabling
+them to adapt to market conditions and maximize their returns in decentralized finance (DeFi)
+markets.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeSlipstreamIncreaseLiquidityProvisionCallData_,
+                schema: AerodromeSlipstreamIncreaseLiquidityProvisionRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1734,19 +1647,19 @@ enabling them to adapt to market conditions and maximize their returns in decent
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/mint',
-        description: `Initiate a new Liquidity Provider (LP) position by minting tokens.
-This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision.
-The minting process involves creating a new position with specified parameters,
-such as token amounts and pool details. The response will confirm the successful creation of the LP position,
-providing users with the necessary information to manage their newly minted position.
-This functionality is crucial for users looking to expand their liquidity provision activities,
+        description: `Initiate a new Liquidity Provider (LP) position by minting tokens. This endpoint
+allows users to open a new LP position, enabling them to participate in liquidity provision. The
+minting process involves creating a new position with specified parameters, such as token
+amounts and pool details. The response will confirm the successful creation of the LP position,
+providing users with the necessary information to manage their newly minted position. This
+functionality is crucial for users looking to expand their liquidity provision activities,
 offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeSlipstreamMintLiquidityProvisionCallData_,
+                schema: AerodromeSlipstreamMintLiquidityProvisionRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1772,10 +1685,10 @@ enabling them to make informed decisions based on their current positions.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamGetLiquidityProvisionPositions,
+                schema: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
             },
         ],
-        response: AerodromeLPPositionsInfo,
+        response: AerodromeLPPositionsResponse,
         errors: [
             {
                 status: 422,
@@ -1787,22 +1700,21 @@ enabling them to make informed decisions based on their current positions.`,
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/withdraw',
-        description: `Withdraw an existing Liquidity Provider (LP) position.
-This endpoint allows users to remove their tokens from an LP position,
-effectively closing their participation in the liquidity pool.
-The withdrawal process involves specifying the LP position to be closed,
-and the response will confirm the successful removal of liquidity,
-providing users with details about the withdrawn tokens and any remaining balances.
-This functionality is essential for users who wish to exit their liquidity provision activities,
-enabling them to reclaim their assets and potentially reallocate them to other investment opportunities.
-The endpoint ensures a smooth and secure withdrawal process,
-facilitating users&#x27; strategic management of their decentralized finance (DeFi) portfolios.`,
+        description: `Withdraw an existing Liquidity Provider (LP) position. This endpoint allows
+users to remove their tokens from an LP position, effectively closing their participation in the
+liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the
+response will confirm the successful removal of liquidity, providing users with details about
+the withdrawn tokens and any remaining balances. This functionality is essential for users who
+wish to exit their liquidity provision activities, enabling them to reclaim their assets and
+potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and
+secure withdrawal process, facilitating users&#x27; strategic management of their decentralized
+finance (DeFi) portfolios.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeSlipstreamWithdrawLiquidityProvisionCallData_,
+                schema: AerodromeSlipstreamWithdrawLiquidityProvisionRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1818,18 +1730,18 @@ facilitating users&#x27; strategic management of their decentralized finance (De
         method: 'post',
         path: '/v0/aerodrome_slipstream/pool_price/get',
         description: `This endpoint retrieves the current price of a pool, indicating how many token0
-you can purchase for 1 token1. Note that this is an instantaneous price and may
-change during any trade. For a more accurate representation of the trade ratios
-between the two assets, consider using the quote endpoint.`,
+you can purchase for 1 token1. Note that this is an instantaneous price and may change during
+any trade. For a more accurate representation of the trade ratios between the two assets,
+consider using the quote endpoint.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamGetPoolPrice,
+                schema: AerodromeSlipstreamGetPoolPriceRequest,
             },
         ],
-        response: AerodromeSlipstreamPoolPrice,
+        response: AerodromeSlipstreamPoolPriceResponse,
         errors: [
             {
                 status: 422,
@@ -1841,22 +1753,19 @@ between the two assets, consider using the quote endpoint.`,
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/swap/buy_exactly',
-        description: `This endpoint facilitates the trading of tokens by allowing users to
-specify the exact amount of the output token they wish to receive.
-Utilizing the Aerodrome Slipstream protocol, the system calculates
-the necessary amount of the input token required to achieve the
-desired output. This operation is particularly useful for users who
-have a specific target amount of the output token in mind and are
-willing to provide the corresponding input token amount. The
-transaction is executed with consideration of current market
-conditions, including liquidity and price impact, ensuring that the
-trade is completed efficiently and effectively.`,
+        description: `This endpoint facilitates the trading of tokens by allowing users to specify the
+exact amount of the output token they wish to receive. Utilizing the Aerodrome Slipstream
+protocol, the system calculates the necessary amount of the input token required to achieve the
+desired output. This operation is particularly useful for users who have a specific target
+amount of the output token in mind and are willing to provide the corresponding input token
+amount. The transaction is executed with consideration of current market conditions, including
+liquidity and price impact, ensuring that the trade is completed efficiently and effectively.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeSlipstreamBuyExactlyCallData_,
+                schema: AerodromeSlipstreamBuyExactlyRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -1871,21 +1780,19 @@ trade is completed efficiently and effectively.`,
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/swap/sell_exactly',
-        description: `This endpoint allows users to trade a specific amount of one token
-into another token using the Aerodrome Slipstream protocol. The
-transaction is executed by specifying the exact amount of the input
-token to be sold, and the system calculates the amount of the output
-token that will be received. The operation ensures that the trade is
-conducted within the constraints of the current market conditions,
-taking into account the liquidity and price impact. This endpoint is
-suitable for users who want to sell a precise quantity of a token
-and are willing to accept the resulting amount of the other token.`,
+        description: `This endpoint allows users to trade a specific amount of one token into another
+token using the Aerodrome Slipstream protocol. The transaction is executed by specifying the
+exact amount of the input token to be sold, and the system calculates the amount of the output
+token that will be received. The operation ensures that the trade is conducted within the
+constraints of the current market conditions, taking into account the liquidity and price
+impact. This endpoint is suitable for users who want to sell a precise quantity of a token and
+are willing to accept the resulting amount of the other token.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: BaseTransactionRequest_AerodromeSlipstreamSellExactlyCallData_,
+                schema: AerodromeSlipstreamSellExactlyRequest,
             },
         ],
         response: UnsignedTransaction,
