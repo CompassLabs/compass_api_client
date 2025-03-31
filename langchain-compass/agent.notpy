@@ -1,0 +1,209 @@
+import json
+import os
+import uuid
+from typing import Literal
+
+import requests
+from dotenv import load_dotenv
+from langchain_core.messages import BaseMessage, HumanMessage, ToolMessage
+from langchain_core.runnables.config import RunnableConfig
+from langchain_openai import ChatOpenAI
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.graph.graph import CompiledGraph
+from langgraph.prebuilt import create_react_agent
+
+from answer_types import AnswerType, ChatAnswer
+from langchain_compass.toolkits import LangchainCompassToolkit
+
+load_dotenv()
+
+SUPPORTED_MODELS_TYPE = Literal["gpt-4o", "o1-2024-12-17", "gpt-4o-mini"]
+
+
+def initialize_agent(
+    model: str = "gpt-4o",
+) -> CompiledGraph:
+    llm = ChatOpenAI(
+        model=model,
+        api_key=os.environ.get("OPENAI_API_KEY"),
+    )
+
+    tool_to_output_format = {}
+
+    compass_tools = LangchainCompassToolkit(compass_api_key=None).get_tools()
+    for i, tool in enumerate(compass_tools):
+        tool_to_output_format[tool.name] = tool.output_schema
+        print(i, tool.name)
+
+    # Store buffered conversation history in memory.
+    memory = MemorySaver()
+
+    agent_id: str = str(uuid.uuid4())
+
+    agent_executor = create_react_agent(
+        llm,
+        tools=compass_tools,
+        response_format=None,
+        checkpointer=memory,
+        prompt=(
+            "You are a helpful agent that can interact onchain using APIs that you've"
+            "been told. Most importantly the Compass API. "
+            "Think step by step."
+            "You will help users to make transactions on chain as well as return"
+            "useful information and insights."
+            "Always try to be concise. If you are missing information, always ask for it."
+            "If there is a 5XX (internal) HTTP error code, ask the user to try "
+            "again later. If someone asks you to do something you can't do with"
+            "your currently available tools, "
+            "If it's ambiguous which tool to use, always prefer Compass tools over"
+            "Coinbase tools or Coingecko tools."
+            "you must say so, and encourage them to implement it themselves using"
+            "the Compass API."
+            "Then can contact Compass Labs at contact@compasslabs.ai."
+        ),
+    )
+    agent_executor.id = agent_id  # type: ignore
+    return agent_executor
+
+
+def _get_trajectory(  # for eval.yaml # returns (response, trajectory)
+    *, agent_executor: CompiledGraph, user_input: str, thread_id: str
+):
+    config = RunnableConfig(configurable={"thread_id": thread_id})
+    r = agent_executor.invoke(
+        {"messages": [HumanMessage(content=user_input)]}, config=config
+    )
+    return r["messages"][-1].content, [
+        m.name for m in r["messages"] if isinstance(m, ToolMessage)
+    ]
+
+
+def _determine_answer_type(messages: list[BaseMessage]) -> AnswerType:
+    last_message = messages[-1]
+    if isinstance(last_message, ToolMessage):
+        if last_message.status == "error":
+            return AnswerType.ERROR
+        if last_message.status == "success":
+            data = json.loads(last_message.json())  # type: ignore
+            t = (
+                AnswerType.IMAGE
+                if data["type"] == "image"
+                else AnswerType.UNSIGNED_TRANSACTION
+            )
+            return t
+        raise ValueError(f"Unknown status: {last_message.status}")
+    return AnswerType.TEXT
+
+
+def _get_non_stream_response_with_trajectory(
+    *, agent_executor: CompiledGraph, user_input: str, thread_id: str
+) -> list[ChatAnswer]:
+    config = RunnableConfig(configurable={"thread_id": thread_id})
+
+    r = agent_executor.invoke(
+        {"messages": [HumanMessage(content=user_input)]}, config=config
+    )
+
+    answer_type: AnswerType = _determine_answer_type(messages=r["messages"])
+
+    if answer_type in [AnswerType.IMAGE, AnswerType.UNSIGNED_TRANSACTION]:
+        data = json.loads(r["messages"][-1].content)
+        completion = f"""
+                Assume you give a correct answer to the following prompt: {user_input}.
+                Phrase a short message to put on top of the answer. Something like 'Here is...'
+        """
+        rr = agent_executor.invoke(
+            {"messages": [HumanMessage(content=completion)]}, config=config
+        )
+        content = (
+            data["content"]
+            if answer_type == AnswerType.UNSIGNED_TRANSACTION
+            else data["image"]
+        )
+        return [
+            ChatAnswer(type=AnswerType.TEXT, content=rr["messages"][-1].content),
+            ChatAnswer(type=answer_type, content=content),
+        ]
+    if answer_type == AnswerType.ERROR:
+        return [ChatAnswer(type=AnswerType.TEXT, content=r["messages"][-1].content)]
+    if answer_type == AnswerType.TEXT:
+        return [ChatAnswer(type=AnswerType.TEXT, content=r["messages"][-1].content)]
+    else:
+        raise ValueError(f"Unknown answer type: {answer_type}")
+
+
+def get_non_stream_response(
+    *, agent_executor: CompiledGraph, user_input: str, thread_id: str
+):
+    try:
+        return _get_non_stream_response_with_trajectory(
+            agent_executor=agent_executor, user_input=user_input, thread_id=thread_id
+        )
+    except Exception as e:  # noqa: E722
+        # TODO: this should raise an all-quite alert, with the conversation thread and user-input.
+
+        url = "https://allquiet.app/api/webhook/fcbd4705-ccee-44b5-bd65-1e886014541a"
+
+        payload = json.dumps(
+            {
+                "Status": "Open",
+                "Severity": "Critical",
+                "Title": "Unexpected ERROR in AI answer.",
+                "agent_id": agent_executor.id,  # type: ignore
+                "thread_id": thread_id,  # type: ignore
+                "user_input": user_input,
+                "url": "https://smith.langchain.com",
+                "error_message": str(e),
+            }
+        )
+        headers = {"Content-Type": "application/json"}
+
+        _ = requests.request("POST", url, headers=headers, data=payload)
+
+        return [
+            ChatAnswer(
+                type=AnswerType.TEXT,
+                content="Something went wrong on Compass AI side. "
+                "Please mail contact@compasslabs.ai to report this issue.",
+            )
+        ]
+
+
+if __name__ == "__main__":
+    test_messages = [
+        "Who is Elon?",
+        "Please set my DAI allowance to 5.5 DAI for the UniswapV3Router for my wallet "
+        "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E on arbitrum.",
+        "What is my current USDC allowance on AAVE on ethereum? "
+        "My address is 0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E.",
+        "Can you visualize my portfolio on arbitrum?"
+        "My address is 0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E.",
+        "Please use the aave_supply_ tool on Arbitrum Mainnet "
+        "with my wallet address, 0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E,"
+        "as both the sender and on-behalf-of address, supply 0.1 USDT, and ensure "
+        "all transactions are performed using the correct chain and asset details.",
+        "visualize the portfolio of 0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E on Base",
+    ]
+
+    agent_executor = initialize_agent()
+    response = get_non_stream_response(
+        agent_executor=agent_executor,
+        user_input=test_messages[5],
+        thread_id=str(uuid.uuid4()),
+    )
+    print(response)
+
+
+"""
+['ApiClient', 'ApiException', 'ApiResponse', 'ApiResponseT',
+'ApiValueError', 'Configuration', 'Dict', 'Enum', 'List', 'Optional',
+'RequestSerialized', 'SecretStr', 'Tuple', 'Union', '__builtins__',
+'__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__',
+'__spec__', 'compass', 'datetime', 'decimal', 'json', 'mimetypes', 'os', 'parse', 'quote', 're', 'rest', 'tempfile']
+
+api_client.compass.api_client
+['AaveAssetPriceResponse', 'AaveBorrowRequest', 'AaveGetAssetPriceRequest', 'AaveGetLiquidityChangeRequest', 'AaveGetUserPositionPerTokenRequest', 'AaveGetUserPositionSummaryRequest', 'AaveLiquidityChangeResponse', 'AaveRepayRequest', 'AaveSupplyRequest', 'AaveUserPositionPerTokenResponse', 'AaveUserPositionSummaryResponse', 'AaveV3Api', 'AaveWithdrawRequest', 'AerodromeAddLiquidityEthRequest', 'AerodromeAddLiquidityRequest', 'AerodromeBasicApi', 'AerodromeLPPositionsResponse', 'AerodromePosition', 'AerodromeRemoveLiquidityEthRequest', 'AerodromeRemoveLiquidityRequest', 'AerodromeSlipstreamApi', 'AerodromeSlipstreamBuyExactlyRequest', 'AerodromeSlipstreamGetLiquidityProvisionPositionsRequest', 'AerodromeSlipstreamGetPoolPriceRequest', 'AerodromeSlipstreamIncreaseLiquidityProvisionRequest', 'AerodromeSlipstreamMintLiquidityProvisionRequest', 'AerodromeSlipstreamPoolPriceResponse', 'AerodromeSlipstreamSellExactlyRequest', 'AerodromeSlipstreamWithdrawLiquidityProvisionRequest', 'AerodromeSwapEthForTokenRequest', 'AerodromeSwapTokenForEthRequest', 'AerodromeSwapTokensRequest', 'AllowanceInfoResponse', 'Amount', 'Amount0Desired', 'Amount0Desired1', 'Amount0Min', 'Amount0Min1', 'Amount1', 'Amount1Desired', 'Amount1Desired1', 'Amount1Min', 'Amount1Min1', 'Amount2', 'Amount3', 'Amount4', 'Amount5', 'Amount6', 'Amount7', 'Amount8', 'AmountADesired', 'AmountAMin', 'AmountAMin1', 'AmountBDesired', 'AmountBMin', 'AmountBMin1', 'AmountEthDesired', 'AmountEthMin', 'AmountEthMin1', 'AmountIn', 'AmountIn1', 'AmountIn2', 'AmountInMaximum', 'AmountOut', 'AmountOutMin', 'AmountOutMin1', 'AmountOutMin2', 'AmountOutMinimum', 'AmountTokenDesired', 'AmountTokenMin', 'AmountTokenMin1', 'ApiAttributeError', 'ApiClient', 'ApiException', 'ApiKeyError', 'ApiResponse', 'ApiTypeError', 'ApiValueError', 'BalanceInfoResponse', 'Chain', 'Configuration', 'ContractName', 'EnsNameInfoResponse', 'FeeEnum', 'GetEnsDetailsRequest', 'GetErc20AllowanceRequest', 'GetErc20BalanceRequest', 'HTTPValidationError', 'Image', 'IncreaseAllowanceAnyRequest', 'IncreaseAllowanceRequest', 'InterestRateMode', 'Liquidity', 'OpenApiException', 'OthersApi', 'PercentageForWithdrawal', 'Portfolio', 'PortfolioRequest', 'PriceRequest', 'PriceResponse', 'Token', 'TokenBalance', 'TokenInfo', 'TokensRequest', 'TransferERC20Request', 'TransferEthRequest', 'UniswapBuyExactlyRequest', 'UniswapBuyQuoteInfoResponse', 'UniswapCheckInRangeRequest', 'UniswapCheckInRangeResponse', 'UniswapGetBuyQuoteRequest', 'UniswapGetLiquidityProvisionPositionsRequest', 'UniswapGetPoolPriceRequest', 'UniswapGetSellQuoteRequest', 'UniswapIncreaseLiquidityProvision', 'UniswapLPPositionsInfoResponse', 'UniswapMintLiquidityProvision', 'UniswapPoolPriceResponse', 'UniswapPosition', 'UniswapSellExactlyRequest', 'UniswapSellQuoteInfoResponse', 'UniswapV3Api', 'UniswapWithdrawLiquidityProvision', 'UnsignedTransaction', 'UnwrapWethRequest', 'ValidationError', 'ValidationErrorLocInner', 'VisualizePortfolioRequest', 'WrapEthRequest', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', 'api', 'api_client', 'api_response', 'configuration', 'exceptions', 'models', 'rest']
+
+
+api_client.compass.api_client.api.AaveV3Api
+"""

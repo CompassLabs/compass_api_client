@@ -34,3 +34,7 @@ In this repository, you'll find step-by-step tutorials designed to help you use 
 - [Compass API](https://api.compasslabs.ai/)
 - [Python API Client GitHub](https://github.com/CompassLabs/compass_api_client/tree/main/python_client)
 - [TypeScript API Client GitHub](https://github.com/CompassLabs/compass_api_client/tree/main/ts_client)
+
+---
+
+poetry install --with lint,typing,test,test_integration
