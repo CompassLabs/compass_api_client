@@ -354,7 +354,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Provide liquidity",
-        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a\ndeadline for the transaction. The operation will ensure the pool exists and will use the\nsender address if no recipient is specified.",
+        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a\ndeadline for the transaction. The operation will ensure the pool exists and will use the\nsender's address if no recipient is specified.",
         "operationId": "add_liquidity_v0_aerodrome_basic_liquidity_provision_add_liquidity_post",
         "requestBody": {
           "content": {
