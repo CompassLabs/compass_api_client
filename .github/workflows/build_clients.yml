@@ -134,6 +134,22 @@ jobs:
           npm run build
           npm publish --access public
 
+
+      ##############################################################################################
+
+      - name: Build langchain-compass package
+        if: env.changes == 'true'
+        run: |
+          cd ./python_client
+          poetry build
+          ls -la dist/
+      - name: Publish to PyPi
+#        if: env.changes == 'true'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          attestations: false
+          packages-dir: langchain-compass/dist
+
       ##############################################################################################      - name: Commit clients
       - name: Commit Changes
         # always run, this way versions will always increment even if there is a failure
