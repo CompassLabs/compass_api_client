@@ -25,8 +25,10 @@ types-requests = "^2.32.0.20250328"
 dotenv = "^0.9.9"
 langchain-openai = "^0.3.11"
 langgraph = "^0.3.21"
-compass-api-client = { path = "../python_client", develop = true}
+compass-api-client = "*"
 
+[tool.poetry.dev-dependencies]
+compass-api-client = { path = "../python_client", develop = true}
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "T201"]
