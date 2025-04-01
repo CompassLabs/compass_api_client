@@ -150,7 +150,6 @@ jobs:
       ##############################################################################################
 
       - name: Build langchain-compass package
-        if: env.changes == 'true'
         run: |
           cd ./python_client
           poetry build
