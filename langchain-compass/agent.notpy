@@ -188,7 +188,7 @@ if __name__ == "__main__":
     agent_executor = initialize_agent()
     response = get_non_stream_response(
         agent_executor=agent_executor,
-        user_input=test_messages[5],
+        user_input=test_messages[2],
         thread_id=str(uuid.uuid4()),
     )
     print(response)
