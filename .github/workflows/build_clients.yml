@@ -151,17 +151,17 @@ jobs:
 
       - name: Build langchain-compass package
         run: |
-          cd ./python_client
+          cd ./langchain-compass
           poetry build
           pwd
           ls -la ./
           ls -la dist/
       - name: Publish to PyPi
-        continue-on-error: true
+#        continue-on-error: true
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           attestations: false
-          packages-dir: langchain_compass/dist
+          packages-dir: langchain-compass/dist
 
       ##############################################################################################      - name: Commit clients
       - name: Commit Changes
