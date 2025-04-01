@@ -153,13 +153,15 @@ jobs:
         run: |
           cd ./python_client
           poetry build
+          pwd
+          ls -la ./
           ls -la dist/
       - name: Publish to PyPi
-#        if: env.changes == 'true'
+        continue-on-error: true
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           attestations: false
-          packages-dir: langchain-compass/dist
+          packages-dir: langchain_compass/dist
 
       ##############################################################################################      - name: Commit clients
       - name: Commit Changes
