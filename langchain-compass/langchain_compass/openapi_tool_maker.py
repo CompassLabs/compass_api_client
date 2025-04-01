@@ -9,6 +9,7 @@ from langchain_core.callbacks import (
 from langchain_core.tools import BaseTool
 from pydantic import BaseModel
 from pydantic._internal._model_construction import ModelMetaclass
+from requests import get
 
 from langchain_compass.params_converter import generate_pydantic_model
 
@@ -25,7 +26,7 @@ class PostRequestTool(BaseTool):
     return_direct: bool = False
     verbose: bool = False
     response_type: Any = None
-    example_args: Optional[dict] = {}
+    example_args: Optional[dict] = None
     api_key: Optional[str] = None
 
     def _run(
@@ -96,8 +97,10 @@ def make_tools(
     func_check_direct_return: Callable[[ModelMetaclass], bool],
     api_key: Optional[str] = None,
 ) -> List[BaseTool]:
-    with open("../openapi.json", "r") as f:
-        openapi_data = json.loads(f.read())
+    response = get("https://api.compasslabs.ai/openapi.json")
+    if response.status_code != 200:
+        raise Exception("Could not fetch https://api.compasslabs.ai/openapi.json!")
+    openapi_data = json.loads(response.text)
 
     def get_response_schema_name(endpoint: dict) -> str:
         return endpoint["responses"]["200"]["content"]["application/json"]["schema"][
