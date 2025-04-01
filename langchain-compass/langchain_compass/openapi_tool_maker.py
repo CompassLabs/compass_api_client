@@ -1,5 +1,4 @@
 import json
-from functools import lru_cache
 from typing import Any, Callable, List, Optional, Type
 
 import requests
@@ -14,26 +13,19 @@ from pydantic._internal._model_construction import ModelMetaclass
 from langchain_compass.params_converter import generate_pydantic_model
 
 
-@lru_cache(maxsize=None)
-def _get_request_cached(openapi_json_address: str) -> str:
-    return requests.get(openapi_json_address).text
-
-
-def snake_to_camel(snake_str: str) -> str:
-    return "".join(
-        word[:1].upper() + word[1:] for word in snake_str.strip("_").split("_")
-    )
+class EmptySchema(BaseModel):
+    pass
 
 
 class PostRequestTool(BaseTool):
-    name: str
-    description: str
-    url: str
-    args_schema: Type[BaseModel]
-    return_direct: bool
-    verbose: bool
-    response_type: Any
-    example_args: Optional[dict]
+    name: str = "This is the tool name."
+    description: str = "A description of what your tools is doing"
+    url: str = "https://api.compasslabs.ai"
+    args_schema: Type[BaseModel] = EmptySchema
+    return_direct: bool = False
+    verbose: bool = False
+    response_type: Any = None
+    example_args: Optional[dict] = {}
     api_key: Optional[str] = None
 
     def _run(
@@ -102,7 +94,7 @@ class GetRequestTool(BaseTool):
 
 def make_tools(
     func_check_direct_return: Callable[[ModelMetaclass], bool],
-    api_key: Optional[str]=None,
+    api_key: Optional[str] = None,
 ) -> List[BaseTool]:
     with open("../openapi.json", "r") as f:
         openapi_data = json.loads(f.read())

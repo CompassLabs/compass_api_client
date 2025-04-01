@@ -87,5 +87,5 @@ class LangchainCompassToolkit(BaseToolkit):
             tool
             for tool in compass_tools
             if "aero" not in tool.get_name() and "set_any" not in tool.get_name()
-        ][:1]
+        ]
         return compass_tools
