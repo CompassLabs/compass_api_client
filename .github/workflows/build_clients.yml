@@ -89,13 +89,11 @@ jobs:
           sed -i 's/name =.*/name = "compass.api_client"\npackages = [ { include = "compass"} ]/' pyproject.toml
           rm openapi.json
       - name: Build package
-        if: env.changes == 'true'
         run: |
           cd ./python_client
           poetry build
           ls -la dist/
       - name: Publish to PyPi
-        if: env.changes == 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           attestations: false
