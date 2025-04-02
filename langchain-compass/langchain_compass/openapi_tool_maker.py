@@ -126,7 +126,15 @@ def make_tools(
                 "schema"
             ]["$ref"].split("/")[-1]
 
-            args_schema = getattr(api_client.compass.api_client, schema_name)
+            # TODO: The SDK itself is inconsistent here.
+            #  Maybe we should just run datamodel-codegen in CI.
+            args_schema = (
+                getattr(api_client.compass.api_client, schema_name)
+                if hasattr(api_client.compass.api_client, schema_name)
+                else getattr(
+                    api_client.compass.api_client, schema_name.rstrip("Request")
+                )
+            )
 
             description: str = (
                 endpoint["description"]
