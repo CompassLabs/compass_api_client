@@ -13,11 +13,6 @@ on:
         default: 'false'
   repository_dispatch:
     types: [Integration-with-Automation]
-    inputs:
-      fetch_openapi:
-        description: 'Whether to fetch openapi'
-        required: true
-        default: 'true'
 
 run-name: ${{ github.actor }} triggered build clients 🚀
 
@@ -32,7 +27,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Download OpenAPI file
-        if: ${{ github.event.inputs.fetch_openapi == 'true' }}
+        if: ${{ !(github.event.inputs.fetch_openapi == 'false') }}
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{ secrets.PAT_TOKEN }}
@@ -41,13 +36,13 @@ jobs:
           name: openapi-spec
           branch: main
       - name: Modify OpenAPI description
-        if: ${{ github.event.inputs.fetch_openapi == 'true' }}
+        if: ${{ !(github.event.inputs.fetch_openapi == 'false') }}
         run: |
           DESCRIPTION=$(cat description.md)
           jq --arg description "$DESCRIPTION" '.info.description = $description' openapi.json > temp_openapi.json && mv temp_openapi.json openapi.json
 
       - name: Check for openapi-spec changes
-        if: ${{ github.event.inputs.fetch_openapi == 'true' }}
+        if: ${{ !(github.event.inputs.fetch_openapi == 'false') }}
         id: check_changes
         run: |
           git fetch origin main
