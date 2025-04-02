@@ -84,8 +84,6 @@ class LangchainCompassToolkit(BaseToolkit):
             in ["unsignedtransaction", "image"],
         )
         compass_tools = [
-            tool
-            for tool in compass_tools
-            if "aero" not in tool.get_name() and "set_any" not in tool.get_name()
+            tool for tool in compass_tools if "set_any" not in tool.get_name()
         ]
         return compass_tools
