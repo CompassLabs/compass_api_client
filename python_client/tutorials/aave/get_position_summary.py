@@ -5,8 +5,10 @@ Requirements:
     `pip install compass.api-client`
 """
 
+from compass.api_client.models.aave_get_user_position_summary_request import (
+    AaveGetUserPositionSummaryRequest,
+)
 from compass.api_client.api.aave_v3_api import AaveV3Api
-from compass.api_client.models.aave_get_user_position_summary import AaveGetUserPositionSummary
 
 aave_api = AaveV3Api()
 
@@ -17,13 +19,16 @@ payload = {
     "chain": chain,
     "user": user,
 }
-aave_position_summary = AaveGetUserPositionSummary.from_dict(payload)
+aave_position_summary = AaveGetUserPositionSummaryRequest.from_dict(payload)
+assert aave_position_summary is not None
 
-response = aave_api.process_request_v0_aave_user_position_summary_get_post_with_http_info(aave_position_summary)
+response = aave_api.get_user_position_summary_v0_aave_user_position_summary_get_post_with_http_info(
+    aave_position_summary
+)
 
 print(f"Health Factor: {response.data.health_factor}")
 print(f"Max LTV: {response.data.maximum_loan_to_value_ratio}")
 print(f"Liquidation Threshold: {response.data.liquidation_threshold}")
-print(f"Available Borrows:", response.data.available_borrows)
-print(f"Total Debt:", response.data.total_debt)
-print(f"Total Collateral:", response.data.total_collateral)
+print("Available Borrows:", response.data.available_borrows)
+print("Total Debt:", response.data.total_debt)
+print("Total Collateral:", response.data.total_collateral)

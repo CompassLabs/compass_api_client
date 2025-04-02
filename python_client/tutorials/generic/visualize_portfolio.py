@@ -5,9 +5,11 @@ Requirements:
     `pip install compass.api-client`
 """
 
+from compass.api_client.models.visualize_portfolio_request import (
+    VisualizePortfolioRequest,
+)
 import base64
 from compass.api_client.api.others_api import OthersApi
-from compass.api_client.models.request_user_address import RequestUserAddress
 
 generic_api = OthersApi()
 
@@ -18,9 +20,12 @@ payload = {
     "chain": chain,
     "user": user,
 }
-portfolio = RequestUserAddress.from_dict(payload)
+portfolio = VisualizePortfolioRequest.from_dict(payload)
+assert portfolio is not None
 
-response = generic_api.process_request_v0_generic_visualize_portfolio_get_post_with_http_info(portfolio)
+response = generic_api.visualize_portfolio_v0_generic_visualize_portfolio_get_post_with_http_info(
+    portfolio
+)
 
 image_data = response.data.image.split(",")[1]
 decoded_image = base64.b64decode(image_data)

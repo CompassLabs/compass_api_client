@@ -5,8 +5,8 @@ Requirements:
     `pip install compass.api-client`
 """
 
+from compass.api_client.models.get_ens_details_request import GetEnsDetailsRequest
 from compass.api_client.api.others_api import OthersApi
-from compass.api_client.models.request_ens_details import RequestEnsDetails
 
 generic_api = OthersApi()
 
@@ -17,7 +17,10 @@ payload = {
     "chain": chain,
     "ens_name": ens_name,
 }
-ens_details = RequestEnsDetails.from_dict(payload)
+ens_details = GetEnsDetailsRequest.from_dict(payload)
+assert ens_details is not None
 
-response = generic_api.process_request_v0_generic_ens_get_post_with_http_info(ens_details)
+response = generic_api.get_ens_details_v0_generic_ens_get_post_with_http_info(
+    ens_details
+)
 print("Wallet address:", response.data.wallet_address)

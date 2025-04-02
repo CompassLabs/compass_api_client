@@ -5,8 +5,8 @@ Requirements:
     `pip install compass.api-client`
 """
 
+from compass.api_client.models.portfolio_request import PortfolioRequest
 from compass.api_client.api.others_api import OthersApi
-from compass.api_client.models.request_user_address import RequestUserAddress
 
 generic_api = OthersApi()
 
@@ -17,9 +17,14 @@ payload = {
     "chain": chain,
     "user": user,
 }
-portfolio = RequestUserAddress.from_dict(payload)
+portfolio = PortfolioRequest.from_dict(payload)
+assert portfolio is not None
 
-response = generic_api.process_request_v0_generic_portfolio_get_post_with_http_info(portfolio)
+response = generic_api.get_portfolio_v0_generic_portfolio_get_post_with_http_info(
+    portfolio
+)
 print(f"Total portfolio value: ${float(response.data.total_value_in_usd):.2f}")
 for token in response.data.token_balances:
-    print(f"{token.amount} {token.token_symbol} = ${float(token.token_value_in_usd):.2f}")
+    print(
+        f"{token.amount} {token.token_symbol} = ${float(token.token_value_in_usd):.2f}"
+    )

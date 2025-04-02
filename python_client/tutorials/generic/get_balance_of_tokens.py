@@ -5,8 +5,8 @@ Requirements:
     `pip install compass.api-client`
 """
 
+from compass.api_client.models.get_erc20_balance_request import GetErc20BalanceRequest
 from compass.api_client.api.others_api import OthersApi
-from compass.api_client.models.get_erc20_balance import GetErc20Balance
 
 generic_api = OthersApi()
 
@@ -19,7 +19,10 @@ payload = {
     "user": user,
     "token": token,
 }
-token_balance = GetErc20Balance.from_dict(payload)
+token_balance = GetErc20BalanceRequest.from_dict(payload)
+assert token_balance
 
-response = generic_api.process_request_v0_generic_balance_get_post_with_http_info(token_balance)
+response = generic_api.get_balance_v0_generic_balance_get_post_with_http_info(
+    token_balance
+)
 print(f"{token} balance:", response.data.amount)
