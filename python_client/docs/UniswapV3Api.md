@@ -526,7 +526,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **increase_liquidity_v0_uniswap_liquidity_provision_increase_post**
-> UnsignedTransaction increase_liquidity_v0_uniswap_liquidity_provision_increase_post(uniswap_increase_liquidity_provision)
+> UnsignedTransaction increase_liquidity_v0_uniswap_liquidity_provision_increase_post(uniswap_increase_liquidity_provision_request)
 
 Increase an LP position
 
@@ -543,7 +543,7 @@ This endpoint allows users to increase their existing Liquidity Provider (LP) po
 
 ```python
 import compass.api_client
-from compass.api_client.models.uniswap_increase_liquidity_provision import UniswapIncreaseLiquidityProvision
+from compass.api_client.models.uniswap_increase_liquidity_provision_request import UniswapIncreaseLiquidityProvisionRequest
 from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
@@ -569,11 +569,11 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.UniswapV3Api(api_client)
-    uniswap_increase_liquidity_provision = compass.api_client.UniswapIncreaseLiquidityProvision() # UniswapIncreaseLiquidityProvision | 
+    uniswap_increase_liquidity_provision_request = compass.api_client.UniswapIncreaseLiquidityProvisionRequest() # UniswapIncreaseLiquidityProvisionRequest | 
 
     try:
         # Increase an LP position
-        api_response = api_instance.increase_liquidity_v0_uniswap_liquidity_provision_increase_post(uniswap_increase_liquidity_provision)
+        api_response = api_instance.increase_liquidity_v0_uniswap_liquidity_provision_increase_post(uniswap_increase_liquidity_provision_request)
         print("The response of UniswapV3Api->increase_liquidity_v0_uniswap_liquidity_provision_increase_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -587,7 +587,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uniswap_increase_liquidity_provision** | [**UniswapIncreaseLiquidityProvision**](UniswapIncreaseLiquidityProvision.md)|  | 
+ **uniswap_increase_liquidity_provision_request** | [**UniswapIncreaseLiquidityProvisionRequest**](UniswapIncreaseLiquidityProvisionRequest.md)|  | 
 
 ### Return type
 

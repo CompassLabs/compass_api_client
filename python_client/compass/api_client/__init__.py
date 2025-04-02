@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.141"
+__version__ = "1.0.142"
 
 # import apis into sdk package
 from compass.api_client.api.aave_v3_api import AaveV3Api
@@ -136,7 +136,7 @@ from compass.api_client.models.uniswap_get_buy_quote_request import UniswapGetBu
 from compass.api_client.models.uniswap_get_liquidity_provision_positions_request import UniswapGetLiquidityProvisionPositionsRequest
 from compass.api_client.models.uniswap_get_pool_price_request import UniswapGetPoolPriceRequest
 from compass.api_client.models.uniswap_get_sell_quote_request import UniswapGetSellQuoteRequest
-from compass.api_client.models.uniswap_increase_liquidity_provision import UniswapIncreaseLiquidityProvision
+from compass.api_client.models.uniswap_increase_liquidity_provision_request import UniswapIncreaseLiquidityProvisionRequest
 from compass.api_client.models.uniswap_lp_positions_info_response import UniswapLPPositionsInfoResponse
 from compass.api_client.models.uniswap_mint_liquidity_provision import UniswapMintLiquidityProvision
 from compass.api_client.models.uniswap_pool_price_response import UniswapPoolPriceResponse

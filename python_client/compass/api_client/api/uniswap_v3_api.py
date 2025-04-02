@@ -24,7 +24,7 @@ from compass.api_client.models.uniswap_get_buy_quote_request import UniswapGetBu
 from compass.api_client.models.uniswap_get_liquidity_provision_positions_request import UniswapGetLiquidityProvisionPositionsRequest
 from compass.api_client.models.uniswap_get_pool_price_request import UniswapGetPoolPriceRequest
 from compass.api_client.models.uniswap_get_sell_quote_request import UniswapGetSellQuoteRequest
-from compass.api_client.models.uniswap_increase_liquidity_provision import UniswapIncreaseLiquidityProvision
+from compass.api_client.models.uniswap_increase_liquidity_provision_request import UniswapIncreaseLiquidityProvisionRequest
 from compass.api_client.models.uniswap_lp_positions_info_response import UniswapLPPositionsInfoResponse
 from compass.api_client.models.uniswap_mint_liquidity_provision import UniswapMintLiquidityProvision
 from compass.api_client.models.uniswap_pool_price_response import UniswapPoolPriceResponse
@@ -1716,7 +1716,7 @@ class UniswapV3Api:
     @validate_call
     def increase_liquidity_v0_uniswap_liquidity_provision_increase_post(
         self,
-        uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision,
+        uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1734,8 +1734,8 @@ class UniswapV3Api:
 
         This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
 
-        :param uniswap_increase_liquidity_provision: (required)
-        :type uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision
+        :param uniswap_increase_liquidity_provision_request: (required)
+        :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1759,7 +1759,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._increase_liquidity_v0_uniswap_liquidity_provision_increase_post_serialize(
-            uniswap_increase_liquidity_provision=uniswap_increase_liquidity_provision,
+            uniswap_increase_liquidity_provision_request=uniswap_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1784,7 +1784,7 @@ class UniswapV3Api:
     @validate_call
     def increase_liquidity_v0_uniswap_liquidity_provision_increase_post_with_http_info(
         self,
-        uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision,
+        uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1802,8 +1802,8 @@ class UniswapV3Api:
 
         This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
 
-        :param uniswap_increase_liquidity_provision: (required)
-        :type uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision
+        :param uniswap_increase_liquidity_provision_request: (required)
+        :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1827,7 +1827,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._increase_liquidity_v0_uniswap_liquidity_provision_increase_post_serialize(
-            uniswap_increase_liquidity_provision=uniswap_increase_liquidity_provision,
+            uniswap_increase_liquidity_provision_request=uniswap_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1852,7 +1852,7 @@ class UniswapV3Api:
     @validate_call
     def increase_liquidity_v0_uniswap_liquidity_provision_increase_post_without_preload_content(
         self,
-        uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision,
+        uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1870,8 +1870,8 @@ class UniswapV3Api:
 
         This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
 
-        :param uniswap_increase_liquidity_provision: (required)
-        :type uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision
+        :param uniswap_increase_liquidity_provision_request: (required)
+        :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1895,7 +1895,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._increase_liquidity_v0_uniswap_liquidity_provision_increase_post_serialize(
-            uniswap_increase_liquidity_provision=uniswap_increase_liquidity_provision,
+            uniswap_increase_liquidity_provision_request=uniswap_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1915,7 +1915,7 @@ class UniswapV3Api:
 
     def _increase_liquidity_v0_uniswap_liquidity_provision_increase_post_serialize(
         self,
-        uniswap_increase_liquidity_provision,
+        uniswap_increase_liquidity_provision_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1941,8 +1941,8 @@ class UniswapV3Api:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if uniswap_increase_liquidity_provision is not None:
-            _body_params = uniswap_increase_liquidity_provision
+        if uniswap_increase_liquidity_provision_request is not None:
+            _body_params = uniswap_increase_liquidity_provision_request
 
 
         # set the HTTP header `Accept`

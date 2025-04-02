@@ -1578,7 +1578,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UniswapIncreaseLiquidityProvision"
+                "$ref": "#/components/schemas/UniswapIncreaseLiquidityProvisionRequest"
               }
             }
           },
@@ -5106,7 +5106,7 @@
           "token_out": "USDT"
         }
       },
-      "UniswapIncreaseLiquidityProvision": {
+      "UniswapIncreaseLiquidityProvisionRequest": {
         "properties": {
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -5193,7 +5193,7 @@
           "amount0_min",
           "amount1_min"
         ],
-        "title": "UniswapIncreaseLiquidityProvision",
+        "title": "UniswapIncreaseLiquidityProvisionRequest",
         "example": {
           "amount0_desired": 0.1,
           "amount0_min": 0.05,
