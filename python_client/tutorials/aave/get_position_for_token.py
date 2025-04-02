@@ -5,8 +5,10 @@ Requirements:
     `pip install compass.api-client`
 """
 
+from compass.api_client.models.aave_get_user_position_per_token_request import (
+    AaveGetUserPositionPerTokenRequest,
+)
 from compass.api_client.api.aave_v3_api import AaveV3Api
-from compass.api_client.models.aave_get_user_position_per_token import AaveGetUserPositionPerToken
 
 aave_api = AaveV3Api()
 
@@ -19,13 +21,17 @@ payload = {
     "user": user,
     "asset": asset,
 }
-aave_position_summary = AaveGetUserPositionPerToken.from_dict(payload)
+aave_position_summary = AaveGetUserPositionPerTokenRequest.from_dict(payload)
+assert aave_position_summary is not None
 
-response = aave_api.process_request_v0_aave_user_position_per_token_get_post_with_http_info(aave_position_summary)
+response = aave_api.get_user_position_per_token_v0_aave_user_position_per_token_get_post_with_http_info(
+    aave_position_summary
+)
 
-print(f"aToken Balance: {response.data.atoken_balance}")
+
+print(f"aToken Balance: {response.data.token_balance}")
 print(f"Liquidity Rate: {response.data.liquidity_rate}")
 print(f"Variable Borrow Rate: {response.data.variable_borrow_rate}")
 print(f"Stable Borrow Rate: {response.data.stable_borrow_rate}")
-print(f"Stable Debt:", response.data.stable_debt)
-print(f"Variable Debt:", response.data.variable_debt)
+print("Stable Debt:", response.data.stable_debt)
+print("Variable Debt:", response.data.variable_debt)

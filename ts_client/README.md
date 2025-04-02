@@ -2,10 +2,9 @@
 
 This package is a TypeScript SDK for [Compass API](https://api.compasslabs.ai/) created specifically for the use in AI Agents.
 
-
 ## Overview
 
-The `@compass-labs/sdk` package is a TypeScript SDK designed to facilitate interaction with various blockchain protocols through a structured API. It is particularly useful for AI agents, such as [ElizaOS](https://github.com/elizaOS/eliza), that require seamless integration with blockchain functionalities. 
+The `@compass-labs/sdk` package is a TypeScript SDK designed to facilitate interaction with various blockchain protocols through a structured API. It is particularly useful for AI agents, such as [ElizaOS](https://github.com/elizaOS/eliza), that require seamless integration with blockchain functionalities.
 
 ## Features
 
@@ -28,6 +27,7 @@ The API exposes two different endpoint types:
 - **Read endpoints, ie endpoints making contract calls to retrieve on-chain data**
 
 Example, getting asset prices according to AAVE Oracle.
+
 ```
 import { createApiClient } from '@compass-labs/sdk';
 
@@ -41,18 +41,18 @@ apiClient["post"]("/v0/aave/asset_price/get", {"chain": "arbitrum:mainnet", "ass
 ```
 
 Each read endpoint has its own response schema, this can be found in the [Compass API Docs](https://api.compasslabs.ai)
+
 - **Unsigned transaction endpoints, ie endpoints generating an unsigned transcation to be broadcast to the blockchain**:
 
 Example, supplying WETH on AAVE:
+
 ```
 apiClient["post"]("/v0/aave/supply", {
     "chain": "arbitrum:mainnet",
     "sender": "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c",
-    "call_data": {
-      "asset": "WETH",
-      "amount": 1.5,
-      "on_behalf_of": "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-    }
+    "asset": "WETH",
+    "amount": 1.5,
+    "on_behalf_of": "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
   }).then((response: any) => {
     console.log(response);
 }).catch((error: any) => {
@@ -84,11 +84,9 @@ import { createWalletClient } from 'viem';
 apiClient["post"]("/v0/aave/supply", {
     "chain": "arbitrum:mainnet",
     "sender": "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c",
-    "call_data": {
-      "asset": "WETH",
-      "amount": 1.5,
-      "on_behalf_of": "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
-    }
+    "asset": "WETH",
+    "amount": 1.5,
+    "on_behalf_of": "0x8A2c9eD8F6B9aD09036Cc0F5AAcaE7E6708f3D0c"
   }).then((response: any) => {
     const walletClient = createWalletClient(...);
     const txHash = await walletClient.sendTransaction(response);
