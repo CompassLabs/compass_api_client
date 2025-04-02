@@ -21,13 +21,13 @@ Method | HTTP request | Description
 
 Buy exact amount
 
-This endpoint allows users to trade a variable amount of one token
-        to receive an exact amount of another token using the Uniswap protocol.
-        The transaction is executed on the specified blockchain network, and
-        the user must provide the necessary transaction details, including the
-        token to buy, the token to pay with, and the exact amount to receive.
-        If the token being paid with is WETH and needs to be wrapped, the
-        appropriate amount will be wrapped automatically.
+This endpoint allows users to trade a variable amount of one token to receive an
+exact amount of another token using the Uniswap protocol.
+
+The transaction is executed on the specified blockchain network, and the user must
+provide the necessary transaction details, including the token to buy, the token to
+pay with, and the exact amount to receive. If the token being paid with is WETH and
+needs to be wrapped, the appropriate amount will be wrapped automatically.
 
 ### Example
 
@@ -108,10 +108,11 @@ Name | Type | Description  | Notes
 
 Get quote - to specified amount
 
-This endpoint calculates the amount of input tokens required to purchase a specified amount
-        of output tokens from a Uniswap pool. It also provides the resulting price after the
-        transaction. The calculation takes into account the current pool state and the specified fee
-        tier.
+This endpoint calculates the amount of input tokens required to purchase a
+specified amount of output tokens from a Uniswap pool.
+
+It also provides the resulting price after the transaction. The calculation takes
+into account the current pool state and the specified fee tier.
 
 ### Example
 
@@ -192,8 +193,9 @@ Name | Type | Description  | Notes
 
 Pool price
 
-This endpoint calculates the price of a token in a Uniswap pool. The price is
-        calculated based on the current pool state and the specified fee tier.
+This endpoint calculates the price of a token in a Uniswap pool.
+
+The price is calculated based on the current pool state and the specified fee tier.
 
 ### Example
 
@@ -275,11 +277,12 @@ Name | Type | Description  | Notes
 List LP
 
 This endpoint retrieves the number of Liquidity Provider (LP) positions
-        associated with a specific sender address on the Uniswap platform.
-        Users can query this endpoint to obtain detailed information about their
-        LP positions, including the total number of positions and relevant metadata.
-        This information is crucial for users to manage and analyze their liquidity
-        provision activities effectively.
+associated with a specific sender address on the Uniswap platform.
+
+Users can query this endpoint to obtain detailed information about their LP
+positions, including the total number of positions and relevant metadata. This
+information is crucial for users to manage and analyze their liquidity provision
+activities effectively.
 
 ### Example
 
@@ -360,9 +363,11 @@ Name | Type | Description  | Notes
 
 Get quote - from specified amount
 
-This endpoint calculates the amount of input tokens required to purchase a specified amount of
-    output tokens from a Uniswap pool. It also provides the resulting price after the transaction.
-    The calculation takes into account the current pool state and the specified fee tier.
+This endpoint calculates the amount of input tokens required to purchase a
+specified amount of output tokens from a Uniswap pool.
+
+It also provides the resulting price after the transaction. The calculation takes
+into account the current pool state and the specified fee tier.
 
 ### Example
 
@@ -443,13 +448,14 @@ Name | Type | Description  | Notes
 
 Check if LP is active.
 
-this endpoint allows users to check whether a specific liquidity provider (lp)
-        position is within the active tick range on the uniswap platform. by providing
-        the token id associated with the position, users can verify if the position is
-        currently within the tick range where trading occurs. this information is essential
-        for users to monitor the status of their lp positions and ensure that they are
-        actively participating in the trading activities within the liquidity pool and
-        earning trading fees.
+This endpoint allows users to check whether a specific liquidity provider ()
+position is within the active tick range on the uniswap platform.
+
+by providing the token id associated with the position, users can verify if the
+position is currently within the tick range where trading occurs. this information
+is essential for users to monitor the status of their lp positions and ensure that
+they are actively participating in the trading activities within the liquidity pool
+and earning trading fees.
 
 ### Example
 
@@ -530,12 +536,15 @@ Name | Type | Description  | Notes
 
 Increase an LP position
 
-This endpoint allows users to increase their existing Liquidity Provider (LP) positions on
-        the Uniswap platform. By providing the necessary parameters, users can add more liquidity to
-        their current positions, thereby increasing their stake in the liquidity pool. This
-        operation is beneficial for users who wish to enhance their potential earnings from trading
-        fees within the pool. The endpoint requires details such as the token pair, additional
-        amount to be added, and any other parameters necessary for the liquidity increase process.
+This endpoint allows users to increase their existing Liquidity Provider (LP)
+positions on the Uniswap platform.
+
+By providing the necessary parameters, users can add more liquidity to their current
+positions, thereby increasing their stake in the liquidity pool. This operation is
+beneficial for users who wish to enhance their potential earnings from trading fees
+within the pool. The endpoint requires details such as the token pair, additional
+amount to be added, and any other parameters necessary for the liquidity increase
+process.
 
 ### Example
 
@@ -616,12 +625,15 @@ Name | Type | Description  | Notes
 
 Open a new LP position
 
-This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap
-    platform. By providing the necessary parameters, users can initiate a minting process to create
-    a new LP token, which represents their stake in a specific liquidity pool. This operation is
-    essential for users looking to participate in liquidity provision, enabling them to earn fees
-    from trades that occur within the pool. The endpoint requires details such as the token pair,
-    amount, and any additional parameters needed for the minting process.
+This endpoint allows users to open a new Liquidity Provider (LP) position on the
+Uniswap platform.
+
+By providing the necessary parameters, users can initiate a minting process to
+create a new LP token, which represents their stake in a specific liquidity pool.
+This operation is essential for users looking to participate in liquidity provision,
+enabling them to earn fees from trades that occur within the pool. The endpoint
+requires details such as the token pair, amount, and any additional parameters
+needed for the minting process.
 
 ### Example
 
@@ -702,13 +714,13 @@ Name | Type | Description  | Notes
 
 Sell exact amount
 
-This endpoint allows users to trade a specific amount of one token
-        into another token using the Uniswap protocol. The transaction is
-        executed on the specified blockchain network, and the user must
-        provide the necessary transaction details, including the token to
-        sell, the token to receive, and the amount to sell. If the token
-        being sold is WETH and needs to be wrapped, the appropriate amount
-        will be wrapped automatically.
+This endpoint allows users to trade a specific amount of one token into another
+token using the Uniswap protocol.
+
+The transaction is executed on the specified blockchain network, and the user must
+provide the necessary transaction details, including the token to sell, the token to
+receive, and the amount to sell. If the token being sold is WETH and needs to be
+wrapped, the appropriate amount will be wrapped automatically.
 
 ### Example
 
@@ -790,13 +802,15 @@ Name | Type | Description  | Notes
 Withdraw an LP position
 
 This endpoint allows users to withdraw their Liquidity Provider (LP) positions
-    from the Uniswap platform. By specifying the necessary parameters, users can initiate the
-    withdrawal process to remove their stake from a specific liquidity pool. This operation is
-    crucial for users who wish to reclaim their assets or reallocate their liquidity to different
-    pools or investments. The endpoint requires details such as the token pair, the amount to be
-    withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure
-    they meet any protocol requirements or conditions before initiating a withdrawal to avoid
-    potential issues or penalties.
+from the Uniswap platform.
+
+By specifying the necessary parameters, users can initiate the withdrawal process to
+remove their stake from a specific liquidity pool. This operation is crucial for
+users who wish to reclaim their assets or reallocate their liquidity to different
+pools or investments. The endpoint requires details such as the token pair, the
+amount to be withdrawn, and any additional parameters needed for the withdrawal
+process. Users should ensure they meet any protocol requirements or conditions
+before initiating a withdrawal to avoid potential issues or penalties.
 
 ### Example
 

@@ -75,7 +75,7 @@ class OthersApi:
     ) -> AllowanceInfoResponse:
         """Get allowance - Protocol
 
-        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
+        In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set a token allowance to authorize the protocol to spend a specified amount of their tokens on their behalf.  This is a crucial step before engaging in any transactions or operations within these protocols, ensuring that the protocol has the necessary permissions to manage the user's tokens securely and efficiently.
 
         :param get_erc20_allowance_request: (required)
         :type get_erc20_allowance_request: GetErc20AllowanceRequest
@@ -143,7 +143,7 @@ class OthersApi:
     ) -> ApiResponse[AllowanceInfoResponse]:
         """Get allowance - Protocol
 
-        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
+        In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set a token allowance to authorize the protocol to spend a specified amount of their tokens on their behalf.  This is a crucial step before engaging in any transactions or operations within these protocols, ensuring that the protocol has the necessary permissions to manage the user's tokens securely and efficiently.
 
         :param get_erc20_allowance_request: (required)
         :type get_erc20_allowance_request: GetErc20AllowanceRequest
@@ -211,7 +211,7 @@ class OthersApi:
     ) -> RESTResponseType:
         """Get allowance - Protocol
 
-        In decentralized finance (DeFi) protocols such as Uniswap or AAVE,         users must set a token allowance to authorize the protocol to spend         a specified amount of their tokens on their behalf. This is a crucial         step before engaging in any transactions or operations within these         protocols, ensuring that the protocol has the necessary permissions         to manage the user's tokens securely and efficiently.
+        In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set a token allowance to authorize the protocol to spend a specified amount of their tokens on their behalf.  This is a crucial step before engaging in any transactions or operations within these protocols, ensuring that the protocol has the necessary permissions to manage the user's tokens securely and efficiently.
 
         :param get_erc20_allowance_request: (required)
         :type get_erc20_allowance_request: GetErc20AllowanceRequest
@@ -629,7 +629,7 @@ class OthersApi:
     ) -> EnsNameInfoResponse:
         """Resolve ENS
 
-        An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
+        An ENS name is a string ending in `.eth`.  E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
         :param get_ens_details_request: (required)
         :type get_ens_details_request: GetEnsDetailsRequest
@@ -697,7 +697,7 @@ class OthersApi:
     ) -> ApiResponse[EnsNameInfoResponse]:
         """Resolve ENS
 
-        An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
+        An ENS name is a string ending in `.eth`.  E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
         :param get_ens_details_request: (required)
         :type get_ens_details_request: GetEnsDetailsRequest
@@ -765,7 +765,7 @@ class OthersApi:
     ) -> RESTResponseType:
         """Resolve ENS
 
-        An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
+        An ENS name is a string ending in `.eth`.  E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
 
         :param get_ens_details_request: (required)
         :type get_ens_details_request: GetEnsDetailsRequest
@@ -906,7 +906,7 @@ class OthersApi:
     ) -> Portfolio:
         """List user portfolio
 
-        Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
+        Fetch the detailed portfolio of a specific wallet address on a given blockchain.  This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
         :param portfolio_request: (required)
         :type portfolio_request: PortfolioRequest
@@ -974,7 +974,7 @@ class OthersApi:
     ) -> ApiResponse[Portfolio]:
         """List user portfolio
 
-        Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
+        Fetch the detailed portfolio of a specific wallet address on a given blockchain.  This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
         :param portfolio_request: (required)
         :type portfolio_request: PortfolioRequest
@@ -1042,7 +1042,7 @@ class OthersApi:
     ) -> RESTResponseType:
         """List user portfolio
 
-        Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
+        Fetch the detailed portfolio of a specific wallet address on a given blockchain.  This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
 
         :param portfolio_request: (required)
         :type portfolio_request: PortfolioRequest
@@ -1183,7 +1183,7 @@ class OthersApi:
     ) -> PriceResponse:
         """Token price
 
-        Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+        Retrieves the price of the specified token relative to USD using Chainlink's on- chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
         :param price_request: (required)
         :type price_request: PriceRequest
@@ -1251,7 +1251,7 @@ class OthersApi:
     ) -> ApiResponse[PriceResponse]:
         """Token price
 
-        Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+        Retrieves the price of the specified token relative to USD using Chainlink's on- chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
         :param price_request: (required)
         :type price_request: PriceRequest
@@ -1319,7 +1319,7 @@ class OthersApi:
     ) -> RESTResponseType:
         """Token price
 
-        Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+        Retrieves the price of the specified token relative to USD using Chainlink's on- chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
         :param price_request: (required)
         :type price_request: PriceRequest
@@ -1737,7 +1737,7 @@ class OthersApi:
     ) -> UnsignedTransaction:
         """Set Allowance - Protocol
 
-        This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
+        This endpoint allows users to modify the token allowance for a specific protocol.  In decentralized finance (DeFi), setting an allowance is a necessary step to authorize a protocol to spend a specified amount of tokens on behalf of the user. This operation is crucial for ensuring that the protocol can manage the user's tokens securely and efficiently, enabling seamless transactions and operations within the DeFi ecosystem.
 
         :param increase_allowance_request: (required)
         :type increase_allowance_request: IncreaseAllowanceRequest
@@ -1805,7 +1805,7 @@ class OthersApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Set Allowance - Protocol
 
-        This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
+        This endpoint allows users to modify the token allowance for a specific protocol.  In decentralized finance (DeFi), setting an allowance is a necessary step to authorize a protocol to spend a specified amount of tokens on behalf of the user. This operation is crucial for ensuring that the protocol can manage the user's tokens securely and efficiently, enabling seamless transactions and operations within the DeFi ecosystem.
 
         :param increase_allowance_request: (required)
         :type increase_allowance_request: IncreaseAllowanceRequest
@@ -1873,7 +1873,7 @@ class OthersApi:
     ) -> RESTResponseType:
         """Set Allowance - Protocol
 
-        This endpoint allows users to modify the token allowance for a specific     protocol. In decentralized finance (DeFi), setting an allowance is a     necessary step to authorize a protocol to spend a specified amount of     tokens on behalf of the user. This operation is crucial for ensuring     that the protocol can manage the user's tokens securely and efficiently,     enabling seamless transactions and operations within the DeFi ecosystem.
+        This endpoint allows users to modify the token allowance for a specific protocol.  In decentralized finance (DeFi), setting an allowance is a necessary step to authorize a protocol to spend a specified amount of tokens on behalf of the user. This operation is crucial for ensuring that the protocol can manage the user's tokens securely and efficiently, enabling seamless transactions and operations within the DeFi ecosystem.
 
         :param increase_allowance_request: (required)
         :type increase_allowance_request: IncreaseAllowanceRequest
@@ -2014,7 +2014,7 @@ class OthersApi:
     ) -> UnsignedTransaction:
         """Set Allowance - Token
 
-        This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
+        This endpoint allows users to set an allowance for any arbitrary ERC20 token address.  In decentralized finance (DeFi), setting an allowance is a critical operation that permits a protocol to spend a specified amount of tokens on behalf of the user. This functionality is essential for enabling secure and efficient token management, facilitating smooth transactions and operations within the DeFi ecosystem. By using this endpoint, users can specify the token address and the amount they wish to authorize, ensuring precise control over their token allowances.
 
         :param increase_allowance_any_request: (required)
         :type increase_allowance_any_request: IncreaseAllowanceAnyRequest
@@ -2082,7 +2082,7 @@ class OthersApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Set Allowance - Token
 
-        This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
+        This endpoint allows users to set an allowance for any arbitrary ERC20 token address.  In decentralized finance (DeFi), setting an allowance is a critical operation that permits a protocol to spend a specified amount of tokens on behalf of the user. This functionality is essential for enabling secure and efficient token management, facilitating smooth transactions and operations within the DeFi ecosystem. By using this endpoint, users can specify the token address and the amount they wish to authorize, ensuring precise control over their token allowances.
 
         :param increase_allowance_any_request: (required)
         :type increase_allowance_any_request: IncreaseAllowanceAnyRequest
@@ -2150,7 +2150,7 @@ class OthersApi:
     ) -> RESTResponseType:
         """Set Allowance - Token
 
-        This endpoint allows users to set an allowance for any arbitrary ERC20     token address. In decentralized finance (DeFi), setting an allowance     is a critical operation that permits a protocol to spend a specified     amount of tokens on behalf of the user. This functionality is essential     for enabling secure and efficient token management, facilitating smooth     transactions and operations within the DeFi ecosystem. By using this     endpoint, users can specify the token address and the amount they wish     to authorize, ensuring precise control over their token allowances.
+        This endpoint allows users to set an allowance for any arbitrary ERC20 token address.  In decentralized finance (DeFi), setting an allowance is a critical operation that permits a protocol to spend a specified amount of tokens on behalf of the user. This functionality is essential for enabling secure and efficient token management, facilitating smooth transactions and operations within the DeFi ecosystem. By using this endpoint, users can specify the token address and the amount they wish to authorize, ensuring precise control over their token allowances.
 
         :param increase_allowance_any_request: (required)
         :type increase_allowance_any_request: IncreaseAllowanceAnyRequest
@@ -3122,7 +3122,7 @@ class OthersApi:
     ) -> Image:
         """Visualize user portfolio
 
-        Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
+        Generate a visual representation of the token portfolio for a wallet address.  The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
         :param visualize_portfolio_request: (required)
         :type visualize_portfolio_request: VisualizePortfolioRequest
@@ -3190,7 +3190,7 @@ class OthersApi:
     ) -> ApiResponse[Image]:
         """Visualize user portfolio
 
-        Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
+        Generate a visual representation of the token portfolio for a wallet address.  The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
         :param visualize_portfolio_request: (required)
         :type visualize_portfolio_request: VisualizePortfolioRequest
@@ -3258,7 +3258,7 @@ class OthersApi:
     ) -> RESTResponseType:
         """Visualize user portfolio
 
-        Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
+        Generate a visual representation of the token portfolio for a wallet address.  The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
 
         :param visualize_portfolio_request: (required)
         :type visualize_portfolio_request: VisualizePortfolioRequest

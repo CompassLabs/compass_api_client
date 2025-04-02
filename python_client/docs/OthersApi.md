@@ -24,12 +24,13 @@ Method | HTTP request | Description
 
 Get allowance - Protocol
 
-In decentralized finance (DeFi) protocols such as Uniswap or AAVE,
-        users must set a token allowance to authorize the protocol to spend
-        a specified amount of their tokens on their behalf. This is a crucial
-        step before engaging in any transactions or operations within these
-        protocols, ensuring that the protocol has the necessary permissions
-        to manage the user's tokens securely and efficiently.
+In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set
+a token allowance to authorize the protocol to spend a specified amount of their
+tokens on their behalf.
+
+This is a crucial step before engaging in any transactions or operations within
+these protocols, ensuring that the protocol has the necessary permissions to manage
+the user's tokens securely and efficiently.
 
 ### Example
 
@@ -191,7 +192,10 @@ Name | Type | Description  | Notes
 
 Resolve ENS
 
-An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
+An ENS name is a string ending in `.eth`.
+
+E.g. `vitalik.eth`. This endpoint can be used to
+query the actual ethereum wallet address behind the ENS name.
 
 ### Example
 
@@ -272,7 +276,10 @@ Name | Type | Description  | Notes
 
 List user portfolio
 
-Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
+Fetch the detailed portfolio of a specific wallet address on a given blockchain.
+
+This includes the total value of the portfolio in USD and a breakdown of token
+balances, including their respective values and quantities.
 
 ### Example
 
@@ -353,7 +360,12 @@ Name | Type | Description  | Notes
 
 Token price
 
-Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+Retrieves the price of the specified token relative to USD using Chainlink's on-
+chain price feeds.
+
+Chainlink is a decentralized oracle that aggregates price data from off-chain
+sources. This ensures the price is tamper-resistant but the price might be stale
+with the update frequency of the oracle.
 
 ### Example
 
@@ -515,12 +527,13 @@ Name | Type | Description  | Notes
 
 Set Allowance - Protocol
 
-This endpoint allows users to modify the token allowance for a specific
-    protocol. In decentralized finance (DeFi), setting an allowance is a
-    necessary step to authorize a protocol to spend a specified amount of
-    tokens on behalf of the user. This operation is crucial for ensuring
-    that the protocol can manage the user's tokens securely and efficiently,
-    enabling seamless transactions and operations within the DeFi ecosystem.
+This endpoint allows users to modify the token allowance for a specific protocol.
+
+In decentralized finance (DeFi), setting an allowance is a necessary step to
+authorize a protocol to spend a specified amount of tokens on behalf of the user.
+This operation is crucial for ensuring that the protocol can manage the user's
+tokens securely and efficiently, enabling seamless transactions and operations
+within the DeFi ecosystem.
 
 ### Example
 
@@ -601,14 +614,15 @@ Name | Type | Description  | Notes
 
 Set Allowance - Token
 
-This endpoint allows users to set an allowance for any arbitrary ERC20
-    token address. In decentralized finance (DeFi), setting an allowance
-    is a critical operation that permits a protocol to spend a specified
-    amount of tokens on behalf of the user. This functionality is essential
-    for enabling secure and efficient token management, facilitating smooth
-    transactions and operations within the DeFi ecosystem. By using this
-    endpoint, users can specify the token address and the amount they wish
-    to authorize, ensuring precise control over their token allowances.
+This endpoint allows users to set an allowance for any arbitrary ERC20 token
+address.
+
+In decentralized finance (DeFi), setting an allowance is a critical operation that
+permits a protocol to spend a specified amount of tokens on behalf of the user. This
+functionality is essential for enabling secure and efficient token management,
+facilitating smooth transactions and operations within the DeFi ecosystem. By using
+this endpoint, users can specify the token address and the amount they wish to
+authorize, ensuring precise control over their token allowances.
 
 ### Example
 
@@ -851,7 +865,8 @@ Name | Type | Description  | Notes
 
 Unwrap WETH
 
-Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
+Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that
+can be used for gas and other native purposes.
 
 ### Example
 
@@ -932,7 +947,11 @@ Name | Type | Description  | Notes
 
 Visualize user portfolio
 
-Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
+Generate a visual representation of the token portfolio for a wallet address.
+
+The response is an SVG image of a pie chart depicting the relative distribution of
+tokens held, colored and labeled with token symbols, percentages and token values in
+USD.
 
 ### Example
 
@@ -1013,7 +1032,8 @@ Name | Type | Description  | Notes
 
 Wrap ETH
 
-Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
+Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for
+it to be traded on DeFi protocols.
 
 ### Example
 

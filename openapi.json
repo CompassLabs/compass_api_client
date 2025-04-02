@@ -18,7 +18,7 @@
           "Aave V3"
         ],
         "summary": "Supply/Lend",
-        "description": "By supplying assets, users can earn interest on their deposits\n\nThe supplied collateral can be used as a basis for borrowing other assets, allowing users to\nleverage their positions. In combination with a trading protocol, this can create leverage.  \n\nOverall, this endpoint is a critical component for users looking to maximize their asset\nutility within the AAVEv3 ecosystem, providing both earning potential and borrowing\nflexibility.",
+        "description": "By supplying assets, users can earn interest on their deposits.\n\nThe supplied collateral can be used as a basis for borrowing other assets, allowing\nusers to leverage their positions. In combination with a trading protocol, this can\ncreate leverage.\n\nOverall, this endpoint is a critical component for users looking to maximize their\nasset utility within the AAVEv3 ecosystem, providing both earning potential and\nborrowing flexibility.",
         "operationId": "supply_v0_aave_supply_post",
         "requestBody": {
           "content": {
@@ -60,7 +60,7 @@
           "Aave V3"
         ],
         "summary": "Borrow",
-        "description": "You will pay interest for your borrows. Price changes in the assets may lead to\nsome or all of your collateral being liquidated, if the borrow position becomes unhealthy.",
+        "description": "You will pay interest for your borrows.\n\nPrice changes in the assets may lead to some or all of your collateral being\nliquidated, if the borrow position becomes unhealthy.",
         "operationId": "borrow_v0_aave_borrow_post",
         "requestBody": {
           "content": {
@@ -102,7 +102,7 @@
           "Aave V3"
         ],
         "summary": "Repay loans",
-        "description": "This endpoint allows users to repay a portion or the entirety of their borrowed tokens on\nthe Aave platform. By repaying borrowed amounts, users can improve their health factor,\nwhich is a measure of the safety of their loan position. A higher health factor reduces the\nrisk of liquidation, ensuring a more secure borrowing experience. The endpoint requires\nspecifying the chain and the details of the repayment transaction, including the amount and\nthe asset to be repaid.",
+        "description": "This endpoint allows users to repay a portion or the entirety of their borrowed\ntokens on the Aave platform.\n\nBy repaying borrowed amounts, users can improve their health factor, which is a\nmeasure of the safety of their loan position. A higher health factor reduces the\nrisk of liquidation, ensuring a more secure borrowing experience. The endpoint\nrequires specifying the chain and the details of the repayment transaction,\nincluding the amount and the asset to be repaid.",
         "operationId": "repay_v0_aave_repay_post",
         "requestBody": {
           "content": {
@@ -144,7 +144,7 @@
           "Aave V3"
         ],
         "summary": "Unstake",
-        "description": "This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can\nwithdraw a portion or all of their collateral, which may increase the risk of liquidation if\nthere are outstanding borrows. The withdrawal process also includes the collection of any\ninterest earned on the collateral. It is important for users to carefully consider their\noutstanding debts and the potential impact on their liquidation threshold before proceeding\nwith a withdrawal. This endpoint is designed to provide a seamless and efficient way to\nmanage your collateral within the Aave ecosystem.",
+        "description": "This endpoint facilitates the withdrawal of collateral from the Aave protocol.\n\nUsers can withdraw a portion or all of their collateral, which may increase the risk\nof liquidation if there are outstanding borrows. The withdrawal process also\nincludes the collection of any interest earned on the collateral. It is important\nfor users to carefully consider their outstanding debts and the potential impact on\ntheir liquidation threshold before proceeding with a withdrawal. This endpoint is\ndesigned to provide a seamless and efficient way to manage your collateral within\nthe Aave ecosystem.",
         "operationId": "withdraw_v0_aave_withdraw_post",
         "requestBody": {
           "content": {
@@ -186,7 +186,7 @@
           "Aave V3"
         ],
         "summary": "Token prices",
-        "description": "This endpoint retrieves the current price of a specified asset in USD as\ndetermined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the\nasset price, ensuring accurate and up-to-date information. The request\nrequires the asset identifier and the blockchain network (chain) on which the\nasset resides. The response provides the asset price in a standardized format,\nconverted from Wei to the base currency decimals defined by Aave.",
+        "description": "This endpoint retrieves the current price of a specified asset in USD as\ndetermined by the Aave protocol.\n\nIt utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-\nto-date information. The request requires the asset identifier and the blockchain\nnetwork (chain) on which the asset resides. The response provides the asset price in\na standardized format, converted from Wei to the base currency decimals defined by\nAave.",
         "operationId": "get_asset_price_v0_aave_asset_price_get_post",
         "requestBody": {
           "content": {
@@ -228,7 +228,7 @@
           "Aave V3"
         ],
         "summary": "Liquidity index",
-        "description": "This endpoint retrieves the change in the reserve liquidity index between two provided\n        blocks. This is then converted to a percentage change. The liquidity index represents the\n        change in debt and interest accrual over each block. Aave does not store individual user\n        balances directly. Instead, it keeps a scaled balance and uses the liquidity index to\n        compute real balances dynamically. If a user was to have deposited tokens at the start\n        block, a positive liquidity index change will represent accrued interest and a profit. If\n        tokens were borrowed at the start block, this debt will increase, compound on itself and\n        represent large debt. The reverse in both cases is true if the liquidity index is negative.",
+        "description": "This endpoint retrieves the change in the reserve liquidity index between two\nprovided blocks.\n\nThis is then converted to a percentage change. The liquidity index represents the\nchange in debt and interest accrual over each block. Aave does not store individual\nuser balances directly. Instead, it keeps a scaled balance and uses the liquidity\nindex to compute real balances dynamically. If a user was to have deposited tokens\nat the start block, a positive liquidity index change will represent accrued\ninterest and a profit. If tokens were borrowed at the start block, this debt will\nincrease, compound on itself and represent large debt. The reverse in both cases is\ntrue if the liquidity index is negative.",
         "operationId": "get_liquidity_change_v0_aave_liquidity_change_get_post",
         "requestBody": {
           "content": {
@@ -270,7 +270,7 @@
           "Aave V3"
         ],
         "summary": "Positions - total",
-        "description": "This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.\n        It provides key financial metrics including the total collateral deposited, total debt\n        accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,\n        and the health factor of the user's account. These metrics are calculated by aggregating\n        data across all open positions held by the user, offering a holistic view of their financial\n        standing within the AAVE ecosystem.",
+        "description": "This endpoint retrieves a comprehensive summary of a user's position on the AAVE\nplatform.\n\nIt provides key financial metrics including the total collateral deposited, total\ndebt accrued, available borrowing capacity, liquidation threshold, maximum loan-to-\nvalue ratio, and the health factor of the user's account. These metrics are\ncalculated by aggregating data across all open positions held by the user, offering\na holistic view of their financial standing within the AAVE ecosystem.",
         "operationId": "get_user_position_summary_v0_aave_user_position_summary_get_post",
         "requestBody": {
           "content": {
@@ -312,7 +312,7 @@
           "Aave V3"
         ],
         "summary": "Positions - per token",
-        "description": "This endpoint retrieves the user's position for a specific token on the AAVE\n        platform. It provides key financial metrics including the current aToken balance,\n        current stable debt, current variable debt, principal stable debt, principal variable\n        debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and\n        liquidity rate. These metrics are calculated by aggregating data across all open\n        positions held by the user for the specified token, offering a detailed view of their\n        financial standing within the AAVE ecosystem.",
+        "description": "This endpoint retrieves the user's position for a specific token on the AAVE\nplatform.\n\nIt provides key financial metrics including the current aToken balance, current\nstable debt, current variable debt, principal stable debt, principal variable debt,\nstable borrow rate, stable borrow rate for new loans, variable borrow rate, and\nliquidity rate. These metrics are calculated by aggregating data across all open\npositions held by the user for the specified token, offering a detailed view of\ntheir financial standing within the AAVE ecosystem.",
         "operationId": "get_user_position_per_token_v0_aave_user_position_per_token_get_post",
         "requestBody": {
           "content": {
@@ -354,7 +354,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Provide liquidity",
-        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a\ndeadline for the transaction. The operation will ensure the pool exists and will use the\nsender's address if no recipient is specified.",
+        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform.\n\nUsers must specify the tokens, desired amounts, minimum amounts, and a deadline for\nthe transaction. The operation will ensure the pool exists and will use the sender's\naddress if no recipient is specified.",
         "operationId": "add_liquidity_v0_aerodrome_basic_liquidity_provision_add_liquidity_post",
         "requestBody": {
           "content": {
@@ -396,7 +396,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Provide liquidity using WETH",
-        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform using Wrapped Ether (WETH) and another token. Users must specify the token\npair, desired amounts, minimum amounts, and a deadline for the transaction. The operation will\nensure the pool exists and will use the sender's address if no recipient is specified. The\ntransaction will be executed through the Aerodrome Basic Router contract, and the specified\namount of WETH will be sent along with the transaction.",
+        "description": "This endpoint allows users to provide liquidity to a specified pool on the\nAerodrome platform using Wrapped Ether (WETH) and another token.\n\nUsers must specify the token pair, desired amounts, minimum amounts, and a deadline\nfor the transaction. The operation will ensure the pool exists and will use the\nsender's address if no recipient is specified. The transaction will be executed\nthrough the Aerodrome Basic Router contract, and the specified amount of WETH will\nbe sent along with the transaction.",
         "operationId": "add_liquidity_eth_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post",
         "requestBody": {
           "content": {
@@ -438,7 +438,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Remove liquidity",
-        "description": "This endpoint allows users to remove liquidity from a specified pool on the\nAerodrome platform. Users must specify the token pair, the amount of liquidity to remove,\nminimum amounts for each token, and a deadline for the transaction. The operation will ensure\nthe pool exists and will use the sender's address if no recipient is specified. The transaction\nwill be executed through the Aerodrome Basic Router contract, and the specified amount of\nliquidity will be withdrawn from the pool.",
+        "description": "This endpoint allows users to remove liquidity from a specified pool on the\nAerodrome platform.\n\nUsers must specify the token pair, the amount of liquidity to remove, minimum\namounts for each token, and a deadline for the transaction. The operation will\nensure the pool exists and will use the sender's address if no recipient is\nspecified. The transaction will be executed through the Aerodrome Basic Router\ncontract, and the specified amount of liquidity will be withdrawn from the pool.",
         "operationId": "remove_liquidity_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post",
         "requestBody": {
           "content": {
@@ -480,7 +480,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Remove liquidity using WETH",
-        "description": "This endpoint allows users to remove liquidity from a pool on the Aerodrome\nplatform using WETH and another token. Users must specify the token pair, the amount of\nliquidity to remove, minimum amounts for each token, and a deadline for the transaction. The\noperation will ensure the pool exists and will use the sender's address if no recipient is\nspecified. The transaction will be executed through the Aerodrome Basic Router contract, and the\nspecified amount of liquidity will be withdrawn from the pool.",
+        "description": "This endpoint allows users to remove liquidity from a pool on the Aerodrome\nplatform using WETH and another token.\n\nUsers must specify the token pair, the amount of liquidity to remove, minimum\namounts for each token, and a deadline for the transaction. The operation will\nensure the pool exists and will use the sender's address if no recipient is\nspecified. The transaction will be executed through the Aerodrome Basic Router\ncontract, and the specified amount of liquidity will be withdrawn from the pool.",
         "operationId": "remove_liquidity_eth_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post",
         "requestBody": {
           "content": {
@@ -522,7 +522,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Swap",
-        "description": "Swap one token for another on Aerodrome. Ensure you specify the minimum amount\nyou expect to receive to avoid trading at an unfavorable exchange rate. This endpoint\nfacilitates the exchange of tokens by interacting with the Aerodrome smart contract, ensuring\nthat the transaction is executed only if the specified minimum output is met.",
+        "description": "Swap one token for another on Aerodrome.\n\nEnsure you specify the minimum amount you expect to receive to avoid trading at an\nunfavorable exchange rate. This endpoint facilitates the exchange of tokens by\ninteracting with the Aerodrome smart contract, ensuring that the transaction is\nexecuted only if the specified minimum output is met.",
         "operationId": "swap_tokens_v0_aerodrome_basic_swap_tokens_post",
         "requestBody": {
           "content": {
@@ -564,7 +564,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Swap from ETH",
-        "description": "This endpoint allows you to swap a specified amount of ETH for a desired token\non the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the\nminimum amount of the token you wish to receive. The transaction will only be executed if this\nminimum amount is met, ensuring you do not accidentally trade at a disadvantageous rate.",
+        "description": "This endpoint allows you to swap a specified amount of ETH for a desired token on\nthe Aerodrome platform.\n\nTo protect against unfavorable exchange rates, you must specify the minimum amount\nof the token you wish to receive. The transaction will only be executed if this\nminimum amount is met, ensuring you do not accidentally trade at a disadvantageous\nrate.",
         "operationId": "eth_for_token_v0_aerodrome_basic_swap_eth_for_token_post",
         "requestBody": {
           "content": {
@@ -606,7 +606,7 @@
           "Aerodrome Basic"
         ],
         "summary": "Swap token for ETH",
-        "description": "Swap a specified amount of a token for ETH using the Aerodrome platform. To\nprotect against unfavorable exchange rates, you must specify the minimum amount of ETH you wish\nto receive. The transaction will only be executed if this minimum amount is met, ensuring you do\nnot trade at a disadvantageous rate.",
+        "description": "Swap a specified amount of a token for ETH using the Aerodrome platform.\n\nTo protect against unfavorable exchange rates, you must specify the minimum amount\nof ETH you wish to receive. The transaction will only be executed if this minimum\namount is met, ensuring you do not trade at a disadvantageous rate.",
         "operationId": "token_for_eth_v0_aerodrome_basic_swap_token_for_eth_post",
         "requestBody": {
           "content": {
@@ -648,7 +648,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Swap - from specified amount",
-        "description": "This endpoint allows users to trade a specific amount of one token into another\ntoken using the Aerodrome Slipstream protocol. The transaction is executed by specifying the\nexact amount of the input token to be sold, and the system calculates the amount of the output\ntoken that will be received. The operation ensures that the trade is conducted within the\nconstraints of the current market conditions, taking into account the liquidity and price\nimpact. This endpoint is suitable for users who want to sell a precise quantity of a token and\nare willing to accept the resulting amount of the other token.",
+        "description": "This endpoint allows users to trade a specific amount of one token into another\ntoken using the Aerodrome Slipstream protocol.\n\nThe transaction is executed by specifying the exact amount of the input token to be\nsold, and the system calculates the amount of the output token that will be\nreceived. The operation ensures that the trade is conducted within the constraints\nof the current market conditions, taking into account the liquidity and price\nimpact. This endpoint is suitable for users who want to sell a precise quantity of a\ntoken and are willing to accept the resulting amount of the other token.",
         "operationId": "sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post",
         "requestBody": {
           "content": {
@@ -690,7 +690,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Swap - into specified amount",
-        "description": "This endpoint facilitates the trading of tokens by allowing users to specify the\nexact amount of the output token they wish to receive. Utilizing the Aerodrome Slipstream\nprotocol, the system calculates the necessary amount of the input token required to achieve the\ndesired output. This operation is particularly useful for users who have a specific target\namount of the output token in mind and are willing to provide the corresponding input token\namount. The transaction is executed with consideration of current market conditions, including\nliquidity and price impact, ensuring that the trade is completed efficiently and effectively.",
+        "description": "This endpoint facilitates the trading of tokens by allowing users to specify the\nexact amount of the output token they wish to receive.\n\nUtilizing the Aerodrome Slipstream protocol, the system calculates the necessary\namount of the input token required to achieve the desired output. This operation is\nparticularly useful for users who have a specific target amount of the output token\nin mind and are willing to provide the corresponding input token amount. The\ntransaction is executed with consideration of current market conditions, including\nliquidity and price impact, ensuring that the trade is completed efficiently and\neffectively.",
         "operationId": "buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post",
         "requestBody": {
           "content": {
@@ -732,7 +732,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Open a new LP position",
-        "description": "Initiate a new Liquidity Provider (LP) position by minting tokens. This endpoint\nallows users to open a new LP position, enabling them to participate in liquidity provision. The\nminting process involves creating a new position with specified parameters, such as token\namounts and pool details. The response will confirm the successful creation of the LP position,\nproviding users with the necessary information to manage their newly minted position. This\nfunctionality is crucial for users looking to expand their liquidity provision activities,\noffering them the opportunity to engage in decentralized finance (DeFi) markets effectively.",
+        "description": "Initiate a new Liquidity Provider (LP) position by minting tokens.\n\nThis endpoint allows users to open a new LP position, enabling them to participate\nin liquidity provision. The minting process involves creating a new position with\nspecified parameters, such as token amounts and pool details. The response will\nconfirm the successful creation of the LP position, providing users with the\nnecessary information to manage their newly minted position. This functionality is\ncrucial for users looking to expand their liquidity provision activities, offering\nthem the opportunity to engage in decentralized finance (DeFi) markets effectively.",
         "operationId": "mint_v0_aerodrome_slipstream_liquidity_provision_mint_post",
         "requestBody": {
           "content": {
@@ -774,7 +774,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Increase an LP position",
-        "description": "Increase the liquidity of an existing Liquidity Provider (LP) position. This\nendpoint allows users to add more tokens to their current LP position, enhancing their\nparticipation in liquidity provision. By increasing liquidity, users can potentially earn more\nrewards and improve their position in the pool. The process involves specifying additional token\namounts and updating the pool details. The response will confirm the successful increase of the\nLP position, providing users with updated information about their enhanced position. This\nfunctionality is vital for users aiming to optimize their liquidity provision strategy, enabling\nthem to adapt to market conditions and maximize their returns in decentralized finance (DeFi)\nmarkets.",
+        "description": "Increase the liquidity of an existing Liquidity Provider (LP) position.\n\nThis endpoint allows users to add more tokens to their current LP position,\nenhancing their participation in liquidity provision. By increasing liquidity, users\ncan potentially earn more rewards and improve their position in the pool. The\nprocess involves specifying additional token amounts and updating the pool details.\nThe response will confirm the successful increase of the LP position, providing\nusers with updated information about their enhanced position. This functionality is\nvital for users aiming to optimize their liquidity provision strategy, enabling them\nto adapt to market conditions and maximize their returns in decentralized finance\n(DeFi) markets.",
         "operationId": "increase_v0_aerodrome_slipstream_liquidity_provision_increase_post",
         "requestBody": {
           "content": {
@@ -816,7 +816,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Withdraw an LP position",
-        "description": "Withdraw an existing Liquidity Provider (LP) position. This endpoint allows\nusers to remove their tokens from an LP position, effectively closing their participation in the\nliquidity pool. The withdrawal process involves specifying the LP position to be closed, and the\nresponse will confirm the successful removal of liquidity, providing users with details about\nthe withdrawn tokens and any remaining balances. This functionality is essential for users who\nwish to exit their liquidity provision activities, enabling them to reclaim their assets and\npotentially reallocate them to other investment opportunities. The endpoint ensures a smooth and\nsecure withdrawal process, facilitating users' strategic management of their decentralized\nfinance (DeFi) portfolios.",
+        "description": "Withdraw an existing Liquidity Provider (LP) position.\n\nThis endpoint allows users to remove their tokens from an LP position, effectively\nclosing their participation in the liquidity pool. The withdrawal process involves\nspecifying the LP position to be closed, and the response will confirm the\nsuccessful removal of liquidity, providing users with details about the withdrawn\ntokens and any remaining balances. This functionality is essential for users who\nwish to exit their liquidity provision activities, enabling them to reclaim their\nassets and potentially reallocate them to other investment opportunities. The\nendpoint ensures a smooth and secure withdrawal process, facilitating users'\nstrategic management of their decentralized finance (DeFi) portfolios.",
         "operationId": "withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post",
         "requestBody": {
           "content": {
@@ -858,7 +858,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "List LP positions",
-        "description": "Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.\nThis endpoint allows users to query and obtain detailed information about their LP positions,\nincluding the number of active positions they hold. The response model, AerodromeLPPositionsInfo,\nprovides a structured representation of the LP positions data, ensuring clarity and ease of use.\nThis functionality is essential for users managing their liquidity provision activities,\nenabling them to make informed decisions based on their current positions.",
+        "description": "Retrieve the total number of Liquidity Provider (LP) positions associated with a\nspecific sender.\n\nThis endpoint allows users to query and obtain detailed information about their LP\npositions, including the number of active positions they hold. The response model,\nAerodromeLPPositionsInfo, provides a structured representation of the LP positions\ndata, ensuring clarity and ease of use. This functionality is essential for users\nmanaging their liquidity provision activities, enabling them to make informed\ndecisions based on their current positions.",
         "operationId": "get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post",
         "requestBody": {
           "content": {
@@ -900,7 +900,7 @@
           "Aerodrome Slipstream"
         ],
         "summary": "Pool price",
-        "description": "This endpoint retrieves the current price of a pool, indicating how many token0\nyou can purchase for 1 token1. Note that this is an instantaneous price and may change during\nany trade. For a more accurate representation of the trade ratios between the two assets,\nconsider using the quote endpoint.",
+        "description": "This endpoint retrieves the current price of a pool, indicating how many token0\nyou can purchase for 1 token1.\n\nNote that this is an instantaneous price and may change during any trade. For a more\naccurate representation of the trade ratios between the two assets, consider using\nthe quote endpoint.",
         "operationId": "get_pool_price_v0_aerodrome_slipstream_pool_price_get_post",
         "requestBody": {
           "content": {
@@ -942,7 +942,7 @@
           "Others"
         ],
         "summary": "List user portfolio",
-        "description": "Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.",
+        "description": "Fetch the detailed portfolio of a specific wallet address on a given blockchain.\n\nThis includes the total value of the portfolio in USD and a breakdown of token\nbalances, including their respective values and quantities.",
         "operationId": "get_portfolio_v0_generic_portfolio_get_post",
         "requestBody": {
           "content": {
@@ -984,7 +984,7 @@
           "Others"
         ],
         "summary": "Visualize user portfolio",
-        "description": "Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.",
+        "description": "Generate a visual representation of the token portfolio for a wallet address.\n\nThe response is an SVG image of a pie chart depicting the relative distribution of\ntokens held, colored and labeled with token symbols, percentages and token values in\nUSD.",
         "operationId": "visualize_portfolio_v0_generic_visualize_portfolio_get_post",
         "requestBody": {
           "content": {
@@ -1026,7 +1026,7 @@
           "Others"
         ],
         "summary": "Token price",
-        "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.",
+        "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-\nchain price feeds.\n\nChainlink is a decentralized oracle that aggregates price data from off-chain\nsources. This ensures the price is tamper-resistant but the price might be stale\nwith the update frequency of the oracle.",
         "operationId": "get_price_v0_generic_price_usd_get_post",
         "requestBody": {
           "content": {
@@ -1152,7 +1152,7 @@
           "Others"
         ],
         "summary": "Get allowance - Protocol",
-        "description": "In decentralized finance (DeFi) protocols such as Uniswap or AAVE,\n        users must set a token allowance to authorize the protocol to spend\n        a specified amount of their tokens on their behalf. This is a crucial\n        step before engaging in any transactions or operations within these\n        protocols, ensuring that the protocol has the necessary permissions\n        to manage the user's tokens securely and efficiently.",
+        "description": "In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set\na token allowance to authorize the protocol to spend a specified amount of their\ntokens on their behalf.\n\nThis is a crucial step before engaging in any transactions or operations within\nthese protocols, ensuring that the protocol has the necessary permissions to manage\nthe user's tokens securely and efficiently.",
         "operationId": "get_allowance_v0_generic_allowance_get_post",
         "requestBody": {
           "content": {
@@ -1194,7 +1194,7 @@
           "Others"
         ],
         "summary": "Resolve ENS",
-        "description": "An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.",
+        "description": "An ENS name is a string ending in `.eth`.\n\nE.g. `vitalik.eth`. This endpoint can be used to\nquery the actual ethereum wallet address behind the ENS name.",
         "operationId": "get_ens_details_v0_generic_ens_get_post",
         "requestBody": {
           "content": {
@@ -1236,7 +1236,7 @@
           "Others"
         ],
         "summary": "Wrap ETH",
-        "description": "Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.",
+        "description": "Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for\nit to be traded on DeFi protocols.",
         "operationId": "wrap_eth_v0_generic_wrap_eth_post",
         "requestBody": {
           "content": {
@@ -1278,7 +1278,7 @@
           "Others"
         ],
         "summary": "Unwrap WETH",
-        "description": "Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.",
+        "description": "Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that\ncan be used for gas and other native purposes.",
         "operationId": "unwrap_weth_v0_generic_unwrap_weth_post",
         "requestBody": {
           "content": {
@@ -1404,7 +1404,7 @@
           "Others"
         ],
         "summary": "Set Allowance - Protocol",
-        "description": "This endpoint allows users to modify the token allowance for a specific\n    protocol. In decentralized finance (DeFi), setting an allowance is a\n    necessary step to authorize a protocol to spend a specified amount of\n    tokens on behalf of the user. This operation is crucial for ensuring\n    that the protocol can manage the user's tokens securely and efficiently,\n    enabling seamless transactions and operations within the DeFi ecosystem.",
+        "description": "This endpoint allows users to modify the token allowance for a specific protocol.\n\nIn decentralized finance (DeFi), setting an allowance is a necessary step to\nauthorize a protocol to spend a specified amount of tokens on behalf of the user.\nThis operation is crucial for ensuring that the protocol can manage the user's\ntokens securely and efficiently, enabling seamless transactions and operations\nwithin the DeFi ecosystem.",
         "operationId": "set_allowance_v0_generic_allowance_set_post",
         "requestBody": {
           "content": {
@@ -1446,7 +1446,7 @@
           "Others"
         ],
         "summary": "Set Allowance - Token",
-        "description": "This endpoint allows users to set an allowance for any arbitrary ERC20\n    token address. In decentralized finance (DeFi), setting an allowance\n    is a critical operation that permits a protocol to spend a specified\n    amount of tokens on behalf of the user. This functionality is essential\n    for enabling secure and efficient token management, facilitating smooth\n    transactions and operations within the DeFi ecosystem. By using this\n    endpoint, users can specify the token address and the amount they wish\n    to authorize, ensuring precise control over their token allowances.",
+        "description": "This endpoint allows users to set an allowance for any arbitrary ERC20 token\naddress.\n\nIn decentralized finance (DeFi), setting an allowance is a critical operation that\npermits a protocol to spend a specified amount of tokens on behalf of the user. This\nfunctionality is essential for enabling secure and efficient token management,\nfacilitating smooth transactions and operations within the DeFi ecosystem. By using\nthis endpoint, users can specify the token address and the amount they wish to\nauthorize, ensuring precise control over their token allowances.",
         "operationId": "set_any_allowance_v0_generic_allowance_set_any_post",
         "requestBody": {
           "content": {
@@ -1488,7 +1488,7 @@
           "Uniswap V3"
         ],
         "summary": "Buy exact amount",
-        "description": "This endpoint allows users to trade a variable amount of one token\n        to receive an exact amount of another token using the Uniswap protocol.\n        The transaction is executed on the specified blockchain network, and\n        the user must provide the necessary transaction details, including the\n        token to buy, the token to pay with, and the exact amount to receive.\n        If the token being paid with is WETH and needs to be wrapped, the\n        appropriate amount will be wrapped automatically.",
+        "description": "This endpoint allows users to trade a variable amount of one token to receive an\nexact amount of another token using the Uniswap protocol.\n\nThe transaction is executed on the specified blockchain network, and the user must\nprovide the necessary transaction details, including the token to buy, the token to\npay with, and the exact amount to receive. If the token being paid with is WETH and\nneeds to be wrapped, the appropriate amount will be wrapped automatically.",
         "operationId": "buy_exactly_v0_uniswap_swap_buy_exactly_post",
         "requestBody": {
           "content": {
@@ -1530,7 +1530,7 @@
           "Uniswap V3"
         ],
         "summary": "Sell exact amount",
-        "description": "This endpoint allows users to trade a specific amount of one token\n        into another token using the Uniswap protocol. The transaction is\n        executed on the specified blockchain network, and the user must\n        provide the necessary transaction details, including the token to\n        sell, the token to receive, and the amount to sell. If the token\n        being sold is WETH and needs to be wrapped, the appropriate amount\n        will be wrapped automatically.",
+        "description": "This endpoint allows users to trade a specific amount of one token into another\ntoken using the Uniswap protocol.\n\nThe transaction is executed on the specified blockchain network, and the user must\nprovide the necessary transaction details, including the token to sell, the token to\nreceive, and the amount to sell. If the token being sold is WETH and needs to be\nwrapped, the appropriate amount will be wrapped automatically.",
         "operationId": "sell_exactly_v0_uniswap_swap_sell_exactly_post",
         "requestBody": {
           "content": {
@@ -1572,7 +1572,7 @@
           "Uniswap V3"
         ],
         "summary": "Increase an LP position",
-        "description": "This endpoint allows users to increase their existing Liquidity Provider (LP) positions on\n        the Uniswap platform. By providing the necessary parameters, users can add more liquidity to\n        their current positions, thereby increasing their stake in the liquidity pool. This\n        operation is beneficial for users who wish to enhance their potential earnings from trading\n        fees within the pool. The endpoint requires details such as the token pair, additional\n        amount to be added, and any other parameters necessary for the liquidity increase process.",
+        "description": "This endpoint allows users to increase their existing Liquidity Provider (LP)\npositions on the Uniswap platform.\n\nBy providing the necessary parameters, users can add more liquidity to their current\npositions, thereby increasing their stake in the liquidity pool. This operation is\nbeneficial for users who wish to enhance their potential earnings from trading fees\nwithin the pool. The endpoint requires details such as the token pair, additional\namount to be added, and any other parameters necessary for the liquidity increase\nprocess.",
         "operationId": "increase_liquidity_v0_uniswap_liquidity_provision_increase_post",
         "requestBody": {
           "content": {
@@ -1614,7 +1614,7 @@
           "Uniswap V3"
         ],
         "summary": "Open a new LP position",
-        "description": "This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap\n    platform. By providing the necessary parameters, users can initiate a minting process to create\n    a new LP token, which represents their stake in a specific liquidity pool. This operation is\n    essential for users looking to participate in liquidity provision, enabling them to earn fees\n    from trades that occur within the pool. The endpoint requires details such as the token pair,\n    amount, and any additional parameters needed for the minting process.",
+        "description": "This endpoint allows users to open a new Liquidity Provider (LP) position on the\nUniswap platform.\n\nBy providing the necessary parameters, users can initiate a minting process to\ncreate a new LP token, which represents their stake in a specific liquidity pool.\nThis operation is essential for users looking to participate in liquidity provision,\nenabling them to earn fees from trades that occur within the pool. The endpoint\nrequires details such as the token pair, amount, and any additional parameters\nneeded for the minting process.",
         "operationId": "mint_v0_uniswap_liquidity_provision_mint_post",
         "requestBody": {
           "content": {
@@ -1656,7 +1656,7 @@
           "Uniswap V3"
         ],
         "summary": "Withdraw an LP position",
-        "description": "This endpoint allows users to withdraw their Liquidity Provider (LP) positions\n    from the Uniswap platform. By specifying the necessary parameters, users can initiate the\n    withdrawal process to remove their stake from a specific liquidity pool. This operation is\n    crucial for users who wish to reclaim their assets or reallocate their liquidity to different\n    pools or investments. The endpoint requires details such as the token pair, the amount to be\n    withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure\n    they meet any protocol requirements or conditions before initiating a withdrawal to avoid\n    potential issues or penalties.",
+        "description": "This endpoint allows users to withdraw their Liquidity Provider (LP) positions\nfrom the Uniswap platform.\n\nBy specifying the necessary parameters, users can initiate the withdrawal process to\nremove their stake from a specific liquidity pool. This operation is crucial for\nusers who wish to reclaim their assets or reallocate their liquidity to different\npools or investments. The endpoint requires details such as the token pair, the\namount to be withdrawn, and any additional parameters needed for the withdrawal\nprocess. Users should ensure they meet any protocol requirements or conditions\nbefore initiating a withdrawal to avoid potential issues or penalties.",
         "operationId": "withdraw_v0_uniswap_liquidity_provision_withdraw_post",
         "requestBody": {
           "content": {
@@ -1698,7 +1698,7 @@
           "Uniswap V3"
         ],
         "summary": "Get quote - to specified amount",
-        "description": "This endpoint calculates the amount of input tokens required to purchase a specified amount\n        of output tokens from a Uniswap pool. It also provides the resulting price after the\n        transaction. The calculation takes into account the current pool state and the specified fee\n        tier.",
+        "description": "This endpoint calculates the amount of input tokens required to purchase a\nspecified amount of output tokens from a Uniswap pool.\n\nIt also provides the resulting price after the transaction. The calculation takes\ninto account the current pool state and the specified fee tier.",
         "operationId": "get_buy_quote_v0_uniswap_quote_buy_exactly_get_post",
         "requestBody": {
           "content": {
@@ -1740,7 +1740,7 @@
           "Uniswap V3"
         ],
         "summary": "Get quote - from specified amount",
-        "description": "This endpoint calculates the amount of input tokens required to purchase a specified amount of\n    output tokens from a Uniswap pool. It also provides the resulting price after the transaction.\n    The calculation takes into account the current pool state and the specified fee tier.",
+        "description": "This endpoint calculates the amount of input tokens required to purchase a\nspecified amount of output tokens from a Uniswap pool.\n\nIt also provides the resulting price after the transaction. The calculation takes\ninto account the current pool state and the specified fee tier.",
         "operationId": "get_sell_quote_v0_uniswap_quote_sell_exactly_get_post",
         "requestBody": {
           "content": {
@@ -1782,7 +1782,7 @@
           "Uniswap V3"
         ],
         "summary": "Pool price",
-        "description": "This endpoint calculates the price of a token in a Uniswap pool. The price is\n        calculated based on the current pool state and the specified fee tier.",
+        "description": "This endpoint calculates the price of a token in a Uniswap pool.\n\nThe price is calculated based on the current pool state and the specified fee tier.",
         "operationId": "get_pool_price_v0_uniswap_pool_price_get_post",
         "requestBody": {
           "content": {
@@ -1824,7 +1824,7 @@
           "Uniswap V3"
         ],
         "summary": "Check if LP is active.",
-        "description": "this endpoint allows users to check whether a specific liquidity provider (lp)\n        position is within the active tick range on the uniswap platform. by providing\n        the token id associated with the position, users can verify if the position is\n        currently within the tick range where trading occurs. this information is essential\n        for users to monitor the status of their lp positions and ensure that they are\n        actively participating in the trading activities within the liquidity pool and\n        earning trading fees.",
+        "description": "This endpoint allows users to check whether a specific liquidity provider ()\nposition is within the active tick range on the uniswap platform.\n\nby providing the token id associated with the position, users can verify if the\nposition is currently within the tick range where trading occurs. this information\nis essential for users to monitor the status of their lp positions and ensure that\nthey are actively participating in the trading activities within the liquidity pool\nand earning trading fees.",
         "operationId": "in_range_v0_uniswap_liquidity_provision_in_range_get_post",
         "requestBody": {
           "content": {
@@ -1866,7 +1866,7 @@
           "Uniswap V3"
         ],
         "summary": "List LP",
-        "description": "This endpoint retrieves the number of Liquidity Provider (LP) positions\n        associated with a specific sender address on the Uniswap platform.\n        Users can query this endpoint to obtain detailed information about their\n        LP positions, including the total number of positions and relevant metadata.\n        This information is crucial for users to manage and analyze their liquidity\n        provision activities effectively.",
+        "description": "This endpoint retrieves the number of Liquidity Provider (LP) positions\nassociated with a specific sender address on the Uniswap platform.\n\nUsers can query this endpoint to obtain detailed information about their LP\npositions, including the total number of positions and relevant metadata. This\ninformation is crucial for users to manage and analyze their liquidity provision\nactivities effectively.",
         "operationId": "get_positions_v0_uniswap_liquidity_provision_positions_get_post",
         "requestBody": {
           "content": {

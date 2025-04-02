@@ -70,7 +70,7 @@ class UniswapV3Api:
     ) -> UnsignedTransaction:
         """Buy exact amount
 
-        This endpoint allows users to trade a variable amount of one token         to receive an exact amount of another token using the Uniswap protocol.         The transaction is executed on the specified blockchain network, and         the user must provide the necessary transaction details, including the         token to buy, the token to pay with, and the exact amount to receive.         If the token being paid with is WETH and needs to be wrapped, the         appropriate amount will be wrapped automatically.
+        This endpoint allows users to trade a variable amount of one token to receive an exact amount of another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to buy, the token to pay with, and the exact amount to receive. If the token being paid with is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
 
         :param uniswap_buy_exactly_request: (required)
         :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
@@ -138,7 +138,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Buy exact amount
 
-        This endpoint allows users to trade a variable amount of one token         to receive an exact amount of another token using the Uniswap protocol.         The transaction is executed on the specified blockchain network, and         the user must provide the necessary transaction details, including the         token to buy, the token to pay with, and the exact amount to receive.         If the token being paid with is WETH and needs to be wrapped, the         appropriate amount will be wrapped automatically.
+        This endpoint allows users to trade a variable amount of one token to receive an exact amount of another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to buy, the token to pay with, and the exact amount to receive. If the token being paid with is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
 
         :param uniswap_buy_exactly_request: (required)
         :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
@@ -206,7 +206,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Buy exact amount
 
-        This endpoint allows users to trade a variable amount of one token         to receive an exact amount of another token using the Uniswap protocol.         The transaction is executed on the specified blockchain network, and         the user must provide the necessary transaction details, including the         token to buy, the token to pay with, and the exact amount to receive.         If the token being paid with is WETH and needs to be wrapped, the         appropriate amount will be wrapped automatically.
+        This endpoint allows users to trade a variable amount of one token to receive an exact amount of another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to buy, the token to pay with, and the exact amount to receive. If the token being paid with is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
 
         :param uniswap_buy_exactly_request: (required)
         :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
@@ -347,7 +347,7 @@ class UniswapV3Api:
     ) -> UniswapBuyQuoteInfoResponse:
         """Get quote - to specified amount
 
-        This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
 
         :param uniswap_get_buy_quote_request: (required)
         :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
@@ -415,7 +415,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UniswapBuyQuoteInfoResponse]:
         """Get quote - to specified amount
 
-        This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
 
         :param uniswap_get_buy_quote_request: (required)
         :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
@@ -483,7 +483,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Get quote - to specified amount
 
-        This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
 
         :param uniswap_get_buy_quote_request: (required)
         :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
@@ -624,7 +624,7 @@ class UniswapV3Api:
     ) -> UniswapPoolPriceResponse:
         """Pool price
 
-        This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
+        This endpoint calculates the price of a token in a Uniswap pool.  The price is calculated based on the current pool state and the specified fee tier.
 
         :param uniswap_get_pool_price_request: (required)
         :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
@@ -692,7 +692,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UniswapPoolPriceResponse]:
         """Pool price
 
-        This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
+        This endpoint calculates the price of a token in a Uniswap pool.  The price is calculated based on the current pool state and the specified fee tier.
 
         :param uniswap_get_pool_price_request: (required)
         :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
@@ -760,7 +760,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Pool price
 
-        This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
+        This endpoint calculates the price of a token in a Uniswap pool.  The price is calculated based on the current pool state and the specified fee tier.
 
         :param uniswap_get_pool_price_request: (required)
         :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
@@ -901,7 +901,7 @@ class UniswapV3Api:
     ) -> UniswapLPPositionsInfoResponse:
         """List LP
 
-        This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
+        This endpoint retrieves the number of Liquidity Provider (LP) positions associated with a specific sender address on the Uniswap platform.  Users can query this endpoint to obtain detailed information about their LP positions, including the total number of positions and relevant metadata. This information is crucial for users to manage and analyze their liquidity provision activities effectively.
 
         :param uniswap_get_liquidity_provision_positions_request: (required)
         :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
@@ -969,7 +969,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UniswapLPPositionsInfoResponse]:
         """List LP
 
-        This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
+        This endpoint retrieves the number of Liquidity Provider (LP) positions associated with a specific sender address on the Uniswap platform.  Users can query this endpoint to obtain detailed information about their LP positions, including the total number of positions and relevant metadata. This information is crucial for users to manage and analyze their liquidity provision activities effectively.
 
         :param uniswap_get_liquidity_provision_positions_request: (required)
         :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
@@ -1037,7 +1037,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """List LP
 
-        This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
+        This endpoint retrieves the number of Liquidity Provider (LP) positions associated with a specific sender address on the Uniswap platform.  Users can query this endpoint to obtain detailed information about their LP positions, including the total number of positions and relevant metadata. This information is crucial for users to manage and analyze their liquidity provision activities effectively.
 
         :param uniswap_get_liquidity_provision_positions_request: (required)
         :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
@@ -1178,7 +1178,7 @@ class UniswapV3Api:
     ) -> UniswapSellQuoteInfoResponse:
         """Get quote - from specified amount
 
-        This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
 
         :param uniswap_get_sell_quote_request: (required)
         :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
@@ -1246,7 +1246,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UniswapSellQuoteInfoResponse]:
         """Get quote - from specified amount
 
-        This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
 
         :param uniswap_get_sell_quote_request: (required)
         :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
@@ -1314,7 +1314,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Get quote - from specified amount
 
-        This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
 
         :param uniswap_get_sell_quote_request: (required)
         :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
@@ -1455,7 +1455,7 @@ class UniswapV3Api:
     ) -> UniswapCheckInRangeResponse:
         """Check if LP is active.
 
-        this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
+        This endpoint allows users to check whether a specific liquidity provider () position is within the active tick range on the uniswap platform.  by providing the token id associated with the position, users can verify if the position is currently within the tick range where trading occurs. this information is essential for users to monitor the status of their lp positions and ensure that they are actively participating in the trading activities within the liquidity pool and earning trading fees.
 
         :param uniswap_check_in_range_request: (required)
         :type uniswap_check_in_range_request: UniswapCheckInRangeRequest
@@ -1523,7 +1523,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UniswapCheckInRangeResponse]:
         """Check if LP is active.
 
-        this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
+        This endpoint allows users to check whether a specific liquidity provider () position is within the active tick range on the uniswap platform.  by providing the token id associated with the position, users can verify if the position is currently within the tick range where trading occurs. this information is essential for users to monitor the status of their lp positions and ensure that they are actively participating in the trading activities within the liquidity pool and earning trading fees.
 
         :param uniswap_check_in_range_request: (required)
         :type uniswap_check_in_range_request: UniswapCheckInRangeRequest
@@ -1591,7 +1591,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Check if LP is active.
 
-        this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
+        This endpoint allows users to check whether a specific liquidity provider () position is within the active tick range on the uniswap platform.  by providing the token id associated with the position, users can verify if the position is currently within the tick range where trading occurs. this information is essential for users to monitor the status of their lp positions and ensure that they are actively participating in the trading activities within the liquidity pool and earning trading fees.
 
         :param uniswap_check_in_range_request: (required)
         :type uniswap_check_in_range_request: UniswapCheckInRangeRequest
@@ -1732,7 +1732,7 @@ class UniswapV3Api:
     ) -> UnsignedTransaction:
         """Increase an LP position
 
-        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
+        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on the Uniswap platform.  By providing the necessary parameters, users can add more liquidity to their current positions, thereby increasing their stake in the liquidity pool. This operation is beneficial for users who wish to enhance their potential earnings from trading fees within the pool. The endpoint requires details such as the token pair, additional amount to be added, and any other parameters necessary for the liquidity increase process.
 
         :param uniswap_increase_liquidity_provision_request: (required)
         :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
@@ -1800,7 +1800,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Increase an LP position
 
-        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
+        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on the Uniswap platform.  By providing the necessary parameters, users can add more liquidity to their current positions, thereby increasing their stake in the liquidity pool. This operation is beneficial for users who wish to enhance their potential earnings from trading fees within the pool. The endpoint requires details such as the token pair, additional amount to be added, and any other parameters necessary for the liquidity increase process.
 
         :param uniswap_increase_liquidity_provision_request: (required)
         :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
@@ -1868,7 +1868,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Increase an LP position
 
-        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
+        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on the Uniswap platform.  By providing the necessary parameters, users can add more liquidity to their current positions, thereby increasing their stake in the liquidity pool. This operation is beneficial for users who wish to enhance their potential earnings from trading fees within the pool. The endpoint requires details such as the token pair, additional amount to be added, and any other parameters necessary for the liquidity increase process.
 
         :param uniswap_increase_liquidity_provision_request: (required)
         :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
@@ -2009,7 +2009,7 @@ class UniswapV3Api:
     ) -> UnsignedTransaction:
         """Open a new LP position
 
-        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap     platform. By providing the necessary parameters, users can initiate a minting process to create     a new LP token, which represents their stake in a specific liquidity pool. This operation is     essential for users looking to participate in liquidity provision, enabling them to earn fees     from trades that occur within the pool. The endpoint requires details such as the token pair,     amount, and any additional parameters needed for the minting process.
+        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
         :param uniswap_mint_liquidity_provision: (required)
         :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
@@ -2077,7 +2077,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Open a new LP position
 
-        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap     platform. By providing the necessary parameters, users can initiate a minting process to create     a new LP token, which represents their stake in a specific liquidity pool. This operation is     essential for users looking to participate in liquidity provision, enabling them to earn fees     from trades that occur within the pool. The endpoint requires details such as the token pair,     amount, and any additional parameters needed for the minting process.
+        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
         :param uniswap_mint_liquidity_provision: (required)
         :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
@@ -2145,7 +2145,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Open a new LP position
 
-        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap     platform. By providing the necessary parameters, users can initiate a minting process to create     a new LP token, which represents their stake in a specific liquidity pool. This operation is     essential for users looking to participate in liquidity provision, enabling them to earn fees     from trades that occur within the pool. The endpoint requires details such as the token pair,     amount, and any additional parameters needed for the minting process.
+        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
         :param uniswap_mint_liquidity_provision: (required)
         :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
@@ -2286,7 +2286,7 @@ class UniswapV3Api:
     ) -> UnsignedTransaction:
         """Sell exact amount
 
-        This endpoint allows users to trade a specific amount of one token         into another token using the Uniswap protocol. The transaction is         executed on the specified blockchain network, and the user must         provide the necessary transaction details, including the token to         sell, the token to receive, and the amount to sell. If the token         being sold is WETH and needs to be wrapped, the appropriate amount         will be wrapped automatically.
+        This endpoint allows users to trade a specific amount of one token into another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to sell, the token to receive, and the amount to sell. If the token being sold is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
 
         :param uniswap_sell_exactly_request: (required)
         :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
@@ -2354,7 +2354,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Sell exact amount
 
-        This endpoint allows users to trade a specific amount of one token         into another token using the Uniswap protocol. The transaction is         executed on the specified blockchain network, and the user must         provide the necessary transaction details, including the token to         sell, the token to receive, and the amount to sell. If the token         being sold is WETH and needs to be wrapped, the appropriate amount         will be wrapped automatically.
+        This endpoint allows users to trade a specific amount of one token into another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to sell, the token to receive, and the amount to sell. If the token being sold is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
 
         :param uniswap_sell_exactly_request: (required)
         :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
@@ -2422,7 +2422,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Sell exact amount
 
-        This endpoint allows users to trade a specific amount of one token         into another token using the Uniswap protocol. The transaction is         executed on the specified blockchain network, and the user must         provide the necessary transaction details, including the token to         sell, the token to receive, and the amount to sell. If the token         being sold is WETH and needs to be wrapped, the appropriate amount         will be wrapped automatically.
+        This endpoint allows users to trade a specific amount of one token into another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to sell, the token to receive, and the amount to sell. If the token being sold is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
 
         :param uniswap_sell_exactly_request: (required)
         :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
@@ -2563,7 +2563,7 @@ class UniswapV3Api:
     ) -> UnsignedTransaction:
         """Withdraw an LP position
 
-        This endpoint allows users to withdraw their Liquidity Provider (LP) positions     from the Uniswap platform. By specifying the necessary parameters, users can initiate the     withdrawal process to remove their stake from a specific liquidity pool. This operation is     crucial for users who wish to reclaim their assets or reallocate their liquidity to different     pools or investments. The endpoint requires details such as the token pair, the amount to be     withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure     they meet any protocol requirements or conditions before initiating a withdrawal to avoid     potential issues or penalties.
+        This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
         :param uniswap_withdraw_liquidity_provision: (required)
         :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision
@@ -2631,7 +2631,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Withdraw an LP position
 
-        This endpoint allows users to withdraw their Liquidity Provider (LP) positions     from the Uniswap platform. By specifying the necessary parameters, users can initiate the     withdrawal process to remove their stake from a specific liquidity pool. This operation is     crucial for users who wish to reclaim their assets or reallocate their liquidity to different     pools or investments. The endpoint requires details such as the token pair, the amount to be     withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure     they meet any protocol requirements or conditions before initiating a withdrawal to avoid     potential issues or penalties.
+        This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
         :param uniswap_withdraw_liquidity_provision: (required)
         :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision
@@ -2699,7 +2699,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Withdraw an LP position
 
-        This endpoint allows users to withdraw their Liquidity Provider (LP) positions     from the Uniswap platform. By specifying the necessary parameters, users can initiate the     withdrawal process to remove their stake from a specific liquidity pool. This operation is     crucial for users who wish to reclaim their assets or reallocate their liquidity to different     pools or investments. The endpoint requires details such as the token pair, the amount to be     withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure     they meet any protocol requirements or conditions before initiating a withdrawal to avoid     potential issues or penalties.
+        This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
         :param uniswap_withdraw_liquidity_provision: (required)
         :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision

@@ -19,12 +19,15 @@ Method | HTTP request | Description
 Swap - into specified amount
 
 This endpoint facilitates the trading of tokens by allowing users to specify the
-exact amount of the output token they wish to receive. Utilizing the Aerodrome Slipstream
-protocol, the system calculates the necessary amount of the input token required to achieve the
-desired output. This operation is particularly useful for users who have a specific target
-amount of the output token in mind and are willing to provide the corresponding input token
-amount. The transaction is executed with consideration of current market conditions, including
-liquidity and price impact, ensuring that the trade is completed efficiently and effectively.
+exact amount of the output token they wish to receive.
+
+Utilizing the Aerodrome Slipstream protocol, the system calculates the necessary
+amount of the input token required to achieve the desired output. This operation is
+particularly useful for users who have a specific target amount of the output token
+in mind and are willing to provide the corresponding input token amount. The
+transaction is executed with consideration of current market conditions, including
+liquidity and price impact, ensuring that the trade is completed efficiently and
+effectively.
 
 ### Example
 
@@ -106,9 +109,11 @@ Name | Type | Description  | Notes
 Pool price
 
 This endpoint retrieves the current price of a pool, indicating how many token0
-you can purchase for 1 token1. Note that this is an instantaneous price and may change during
-any trade. For a more accurate representation of the trade ratios between the two assets,
-consider using the quote endpoint.
+you can purchase for 1 token1.
+
+Note that this is an instantaneous price and may change during any trade. For a more
+accurate representation of the trade ratios between the two assets, consider using
+the quote endpoint.
 
 ### Example
 
@@ -189,12 +194,15 @@ Name | Type | Description  | Notes
 
 List LP positions
 
-Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.
-This endpoint allows users to query and obtain detailed information about their LP positions,
-including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,
-provides a structured representation of the LP positions data, ensuring clarity and ease of use.
-This functionality is essential for users managing their liquidity provision activities,
-enabling them to make informed decisions based on their current positions.
+Retrieve the total number of Liquidity Provider (LP) positions associated with a
+specific sender.
+
+This endpoint allows users to query and obtain detailed information about their LP
+positions, including the number of active positions they hold. The response model,
+AerodromeLPPositionsInfo, provides a structured representation of the LP positions
+data, ensuring clarity and ease of use. This functionality is essential for users
+managing their liquidity provision activities, enabling them to make informed
+decisions based on their current positions.
 
 ### Example
 
@@ -275,15 +283,17 @@ Name | Type | Description  | Notes
 
 Increase an LP position
 
-Increase the liquidity of an existing Liquidity Provider (LP) position. This
-endpoint allows users to add more tokens to their current LP position, enhancing their
-participation in liquidity provision. By increasing liquidity, users can potentially earn more
-rewards and improve their position in the pool. The process involves specifying additional token
-amounts and updating the pool details. The response will confirm the successful increase of the
-LP position, providing users with updated information about their enhanced position. This
-functionality is vital for users aiming to optimize their liquidity provision strategy, enabling
-them to adapt to market conditions and maximize their returns in decentralized finance (DeFi)
-markets.
+Increase the liquidity of an existing Liquidity Provider (LP) position.
+
+This endpoint allows users to add more tokens to their current LP position,
+enhancing their participation in liquidity provision. By increasing liquidity, users
+can potentially earn more rewards and improve their position in the pool. The
+process involves specifying additional token amounts and updating the pool details.
+The response will confirm the successful increase of the LP position, providing
+users with updated information about their enhanced position. This functionality is
+vital for users aiming to optimize their liquidity provision strategy, enabling them
+to adapt to market conditions and maximize their returns in decentralized finance
+(DeFi) markets.
 
 ### Example
 
@@ -364,13 +374,15 @@ Name | Type | Description  | Notes
 
 Open a new LP position
 
-Initiate a new Liquidity Provider (LP) position by minting tokens. This endpoint
-allows users to open a new LP position, enabling them to participate in liquidity provision. The
-minting process involves creating a new position with specified parameters, such as token
-amounts and pool details. The response will confirm the successful creation of the LP position,
-providing users with the necessary information to manage their newly minted position. This
-functionality is crucial for users looking to expand their liquidity provision activities,
-offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.
+Initiate a new Liquidity Provider (LP) position by minting tokens.
+
+This endpoint allows users to open a new LP position, enabling them to participate
+in liquidity provision. The minting process involves creating a new position with
+specified parameters, such as token amounts and pool details. The response will
+confirm the successful creation of the LP position, providing users with the
+necessary information to manage their newly minted position. This functionality is
+crucial for users looking to expand their liquidity provision activities, offering
+them the opportunity to engage in decentralized finance (DeFi) markets effectively.
 
 ### Example
 
@@ -452,12 +464,14 @@ Name | Type | Description  | Notes
 Swap - from specified amount
 
 This endpoint allows users to trade a specific amount of one token into another
-token using the Aerodrome Slipstream protocol. The transaction is executed by specifying the
-exact amount of the input token to be sold, and the system calculates the amount of the output
-token that will be received. The operation ensures that the trade is conducted within the
-constraints of the current market conditions, taking into account the liquidity and price
-impact. This endpoint is suitable for users who want to sell a precise quantity of a token and
-are willing to accept the resulting amount of the other token.
+token using the Aerodrome Slipstream protocol.
+
+The transaction is executed by specifying the exact amount of the input token to be
+sold, and the system calculates the amount of the output token that will be
+received. The operation ensures that the trade is conducted within the constraints
+of the current market conditions, taking into account the liquidity and price
+impact. This endpoint is suitable for users who want to sell a precise quantity of a
+token and are willing to accept the resulting amount of the other token.
 
 ### Example
 
@@ -538,15 +552,17 @@ Name | Type | Description  | Notes
 
 Withdraw an LP position
 
-Withdraw an existing Liquidity Provider (LP) position. This endpoint allows
-users to remove their tokens from an LP position, effectively closing their participation in the
-liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the
-response will confirm the successful removal of liquidity, providing users with details about
-the withdrawn tokens and any remaining balances. This functionality is essential for users who
-wish to exit their liquidity provision activities, enabling them to reclaim their assets and
-potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and
-secure withdrawal process, facilitating users' strategic management of their decentralized
-finance (DeFi) portfolios.
+Withdraw an existing Liquidity Provider (LP) position.
+
+This endpoint allows users to remove their tokens from an LP position, effectively
+closing their participation in the liquidity pool. The withdrawal process involves
+specifying the LP position to be closed, and the response will confirm the
+successful removal of liquidity, providing users with details about the withdrawn
+tokens and any remaining balances. This functionality is essential for users who
+wish to exit their liquidity provision activities, enabling them to reclaim their
+assets and potentially reallocate them to other investment opportunities. The
+endpoint ensures a smooth and secure withdrawal process, facilitating users'
+strategic management of their decentralized finance (DeFi) portfolios.
 
 ### Example
 
