@@ -913,7 +913,7 @@ Uniswap supports 4 different fee levels.`),
             .default(false),
     })
     .passthrough();
-const UniswapIncreaseLiquidityProvision = z
+const UniswapIncreaseLiquidityProvisionRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
@@ -1212,7 +1212,7 @@ export const schemas = {
     FeeEnum,
     UniswapBuyExactlyRequest,
     UniswapSellExactlyRequest,
-    UniswapIncreaseLiquidityProvision,
+    UniswapIncreaseLiquidityProvisionRequest,
     UniswapMintLiquidityProvision,
     UniswapWithdrawLiquidityProvision,
     UniswapGetBuyQuoteRequest,
@@ -2149,7 +2149,7 @@ are willing to accept the resulting amount of the other token.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapIncreaseLiquidityProvision,
+                schema: UniswapIncreaseLiquidityProvisionRequest,
             },
         ],
         response: UnsignedTransaction,
