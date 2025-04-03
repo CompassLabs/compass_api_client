@@ -26,52 +26,52 @@ class TestAerodromeBasicApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_add_liquidity_eth_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post(self) -> None:
-        """Test case for add_liquidity_eth_v0_aerodrome_basic_liquidity_provision_add_liquidity_eth_post
-
-        Provide liquidity using WETH
-        """
-        pass
-
-    def test_add_liquidity_v0_aerodrome_basic_liquidity_provision_add_liquidity_post(self) -> None:
-        """Test case for add_liquidity_v0_aerodrome_basic_liquidity_provision_add_liquidity_post
+    def test_aerodrome_basic_liquidity_provision_add_liquidity(self) -> None:
+        """Test case for aerodrome_basic_liquidity_provision_add_liquidity
 
         Provide liquidity
         """
         pass
 
-    def test_eth_for_token_v0_aerodrome_basic_swap_eth_for_token_post(self) -> None:
-        """Test case for eth_for_token_v0_aerodrome_basic_swap_eth_for_token_post
+    def test_aerodrome_basic_liquidity_provision_add_liquidity_eth(self) -> None:
+        """Test case for aerodrome_basic_liquidity_provision_add_liquidity_eth
 
-        Swap from ETH
+        Provide liquidity using WETH
         """
         pass
 
-    def test_remove_liquidity_eth_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post(self) -> None:
-        """Test case for remove_liquidity_eth_v0_aerodrome_basic_liquidity_provision_remove_liquidity_eth_post
-
-        Remove liquidity using WETH
-        """
-        pass
-
-    def test_remove_liquidity_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post(self) -> None:
-        """Test case for remove_liquidity_v0_aerodrome_basic_liquidity_provision_remove_liquidity_post
+    def test_aerodrome_basic_liquidity_provision_remove_liquidity(self) -> None:
+        """Test case for aerodrome_basic_liquidity_provision_remove_liquidity
 
         Remove liquidity
         """
         pass
 
-    def test_swap_tokens_v0_aerodrome_basic_swap_tokens_post(self) -> None:
-        """Test case for swap_tokens_v0_aerodrome_basic_swap_tokens_post
+    def test_aerodrome_basic_liquidity_provision_remove_liquidity_eth(self) -> None:
+        """Test case for aerodrome_basic_liquidity_provision_remove_liquidity_eth
 
-        Swap
+        Remove liquidity using WETH
         """
         pass
 
-    def test_token_for_eth_v0_aerodrome_basic_swap_token_for_eth_post(self) -> None:
-        """Test case for token_for_eth_v0_aerodrome_basic_swap_token_for_eth_post
+    def test_aerodrome_basic_swap_eth_for_token(self) -> None:
+        """Test case for aerodrome_basic_swap_eth_for_token
+
+        Swap from ETH
+        """
+        pass
+
+    def test_aerodrome_basic_swap_token_for_eth(self) -> None:
+        """Test case for aerodrome_basic_swap_token_for_eth
 
         Swap token for ETH
+        """
+        pass
+
+    def test_aerodrome_basic_swap_tokens(self) -> None:
+        """Test case for aerodrome_basic_swap_tokens
+
+        Swap
         """
         pass
 
