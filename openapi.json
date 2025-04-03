@@ -2594,7 +2594,9 @@
           "amount_eth_min": 0,
           "amount_token_desired": 1,
           "amount_token_min": 0,
+          "chain": "base:mainnet",
           "deadline": 0,
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "stable": true,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token": "USDC"
@@ -2743,7 +2745,9 @@
           "amount_a_min": 0,
           "amount_b_desired": 1,
           "amount_b_min": 0,
+          "chain": "base:mainnet",
           "deadline": 0,
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "stable": true,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_a": "USDC",
@@ -2954,8 +2958,10 @@
         "example": {
           "amount_eth_min": 0,
           "amount_token_min": 0,
+          "chain": "base:mainnet",
           "deadline": 0,
           "liquidity": 0.1,
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "stable": true,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token": "USDC"
@@ -3085,8 +3091,10 @@
         "example": {
           "amount_a_min": 0,
           "amount_b_min": 0,
+          "chain": "base:mainnet",
           "deadline": 0,
           "liquidity": 0.1,
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "stable": true,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_a": "USDC",
@@ -3189,6 +3197,8 @@
         "example": {
           "amount_in_maximum": 0.1,
           "amount_out": 0.000048,
+          "chain": "base:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "tick_spacing": 100,
           "token_in": "USDC",
           "token_out": "WETH"
@@ -3664,6 +3674,8 @@
         "example": {
           "amount_in": 1,
           "amount_out_minimum": 0,
+          "chain": "base:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "tick_spacing": 100,
           "token_in": "USDC",
           "token_out": "WETH"
@@ -3798,6 +3810,8 @@
         "example": {
           "amount_in": 0.00047753,
           "amount_out_min": 0,
+          "chain": "base:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "stable": true,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_out": "USDC"
@@ -3885,6 +3899,8 @@
         "example": {
           "amount_in": 1,
           "amount_out_min": 0,
+          "chain": "base:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "stable": true,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_in": "USDC"
@@ -3980,6 +3996,8 @@
         "example": {
           "amount_in": 1,
           "amount_out_min": 0,
+          "chain": "base:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "stable": true,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_in": "USDC",

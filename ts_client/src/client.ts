@@ -1233,11 +1233,13 @@ const endpoints = makeApi([
         method: 'post',
         path: '/v0/aave/asset_price/get',
         description: `This endpoint retrieves the current price of a specified asset in USD as
-determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the
-asset price, ensuring accurate and up-to-date information. The request
-requires the asset identifier and the blockchain network (chain) on which the
-asset resides. The response provides the asset price in a standardized format,
-converted from Wei to the base currency decimals defined by Aave.`,
+determined by the Aave protocol.
+
+It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-
+to-date information. The request requires the asset identifier and the blockchain
+network (chain) on which the asset resides. The response provides the asset price in
+a standardized format, converted from Wei to the base currency decimals defined by
+Aave.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1260,8 +1262,10 @@ converted from Wei to the base currency decimals defined by Aave.`,
     {
         method: 'post',
         path: '/v0/aave/borrow',
-        description: `You will pay interest for your borrows. Price changes in the assets may lead to
-some or all of your collateral being liquidated, if the borrow position becomes unhealthy.`,
+        description: `You will pay interest for your borrows.
+
+Price changes in the assets may lead to some or all of your collateral being
+liquidated, if the borrow position becomes unhealthy.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1282,14 +1286,17 @@ some or all of your collateral being liquidated, if the borrow position becomes 
     {
         method: 'post',
         path: '/v0/aave/liquidity/change/get',
-        description: `This endpoint retrieves the change in the reserve liquidity index between two provided
-        blocks. This is then converted to a percentage change. The liquidity index represents the
-        change in debt and interest accrual over each block. Aave does not store individual user
-        balances directly. Instead, it keeps a scaled balance and uses the liquidity index to
-        compute real balances dynamically. If a user was to have deposited tokens at the start
-        block, a positive liquidity index change will represent accrued interest and a profit. If
-        tokens were borrowed at the start block, this debt will increase, compound on itself and
-        represent large debt. The reverse in both cases is true if the liquidity index is negative.`,
+        description: `This endpoint retrieves the change in the reserve liquidity index between two
+provided blocks.
+
+This is then converted to a percentage change. The liquidity index represents the
+change in debt and interest accrual over each block. Aave does not store individual
+user balances directly. Instead, it keeps a scaled balance and uses the liquidity
+index to compute real balances dynamically. If a user was to have deposited tokens
+at the start block, a positive liquidity index change will represent accrued
+interest and a profit. If tokens were borrowed at the start block, this debt will
+increase, compound on itself and represent large debt. The reverse in both cases is
+true if the liquidity index is negative.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1310,12 +1317,14 @@ some or all of your collateral being liquidated, if the borrow position becomes 
     {
         method: 'post',
         path: '/v0/aave/repay',
-        description: `This endpoint allows users to repay a portion or the entirety of their borrowed tokens on
-the Aave platform. By repaying borrowed amounts, users can improve their health factor,
-which is a measure of the safety of their loan position. A higher health factor reduces the
-risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires
-specifying the chain and the details of the repayment transaction, including the amount and
-the asset to be repaid.`,
+        description: `This endpoint allows users to repay a portion or the entirety of their borrowed
+tokens on the Aave platform.
+
+By repaying borrowed amounts, users can improve their health factor, which is a
+measure of the safety of their loan position. A higher health factor reduces the
+risk of liquidation, ensuring a more secure borrowing experience. The endpoint
+requires specifying the chain and the details of the repayment transaction,
+including the amount and the asset to be repaid.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1336,14 +1345,15 @@ the asset to be repaid.`,
     {
         method: 'post',
         path: '/v0/aave/supply',
-        description: `By supplying assets, users can earn interest on their deposits
+        description: `By supplying assets, users can earn interest on their deposits.
 
-The supplied collateral can be used as a basis for borrowing other assets, allowing users to
-leverage their positions. In combination with a trading protocol, this can create leverage.  
+The supplied collateral can be used as a basis for borrowing other assets, allowing
+users to leverage their positions. In combination with a trading protocol, this can
+create leverage.
 
-Overall, this endpoint is a critical component for users looking to maximize their asset
-utility within the AAVEv3 ecosystem, providing both earning potential and borrowing
-flexibility.`,
+Overall, this endpoint is a critical component for users looking to maximize their
+asset utility within the AAVEv3 ecosystem, providing both earning potential and
+borrowing flexibility.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1365,12 +1375,14 @@ flexibility.`,
         method: 'post',
         path: '/v0/aave/user_position_per_token/get',
         description: `This endpoint retrieves the user&#x27;s position for a specific token on the AAVE
-        platform. It provides key financial metrics including the current aToken balance,
-        current stable debt, current variable debt, principal stable debt, principal variable
-        debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and
-        liquidity rate. These metrics are calculated by aggregating data across all open
-        positions held by the user for the specified token, offering a detailed view of their
-        financial standing within the AAVE ecosystem.`,
+platform.
+
+It provides key financial metrics including the current aToken balance, current
+stable debt, current variable debt, principal stable debt, principal variable debt,
+stable borrow rate, stable borrow rate for new loans, variable borrow rate, and
+liquidity rate. These metrics are calculated by aggregating data across all open
+positions held by the user for the specified token, offering a detailed view of
+their financial standing within the AAVE ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1391,12 +1403,14 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/aave/user_position_summary/get',
-        description: `This endpoint retrieves a comprehensive summary of a user&#x27;s position on the AAVE platform.
-        It provides key financial metrics including the total collateral deposited, total debt
-        accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,
-        and the health factor of the user&#x27;s account. These metrics are calculated by aggregating
-        data across all open positions held by the user, offering a holistic view of their financial
-        standing within the AAVE ecosystem.`,
+        description: `This endpoint retrieves a comprehensive summary of a user&#x27;s position on the AAVE
+platform.
+
+It provides key financial metrics including the total collateral deposited, total
+debt accrued, available borrowing capacity, liquidation threshold, maximum loan-to-
+value ratio, and the health factor of the user&#x27;s account. These metrics are
+calculated by aggregating data across all open positions held by the user, offering
+a holistic view of their financial standing within the AAVE ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1417,13 +1431,15 @@ flexibility.`,
     {
         method: 'post',
         path: '/v0/aave/withdraw',
-        description: `This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can
-withdraw a portion or all of their collateral, which may increase the risk of liquidation if
-there are outstanding borrows. The withdrawal process also includes the collection of any
-interest earned on the collateral. It is important for users to carefully consider their
-outstanding debts and the potential impact on their liquidation threshold before proceeding
-with a withdrawal. This endpoint is designed to provide a seamless and efficient way to
-manage your collateral within the Aave ecosystem.`,
+        description: `This endpoint facilitates the withdrawal of collateral from the Aave protocol.
+
+Users can withdraw a portion or all of their collateral, which may increase the risk
+of liquidation if there are outstanding borrows. The withdrawal process also
+includes the collection of any interest earned on the collateral. It is important
+for users to carefully consider their outstanding debts and the potential impact on
+their liquidation threshold before proceeding with a withdrawal. This endpoint is
+designed to provide a seamless and efficient way to manage your collateral within
+the Aave ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1445,9 +1461,11 @@ manage your collateral within the Aave ecosystem.`,
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/add_liquidity',
         description: `This endpoint allows users to provide liquidity to a specified pool on the
-Aerodrome platform. Users must specify the tokens, desired amounts, minimum amounts, and a
-deadline for the transaction. The operation will ensure the pool exists and will use the
-sender&#x27;s address if no recipient is specified.`,
+Aerodrome platform.
+
+Users must specify the tokens, desired amounts, minimum amounts, and a deadline for
+the transaction. The operation will ensure the pool exists and will use the sender&#x27;s
+address if no recipient is specified.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1469,11 +1487,13 @@ sender&#x27;s address if no recipient is specified.`,
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/add_liquidity_eth',
         description: `This endpoint allows users to provide liquidity to a specified pool on the
-Aerodrome platform using Wrapped Ether (WETH) and another token. Users must specify the token
-pair, desired amounts, minimum amounts, and a deadline for the transaction. The operation will
-ensure the pool exists and will use the sender&#x27;s address if no recipient is specified. The
-transaction will be executed through the Aerodrome Basic Router contract, and the specified
-amount of WETH will be sent along with the transaction.`,
+Aerodrome platform using Wrapped Ether (WETH) and another token.
+
+Users must specify the token pair, desired amounts, minimum amounts, and a deadline
+for the transaction. The operation will ensure the pool exists and will use the
+sender&#x27;s address if no recipient is specified. The transaction will be executed
+through the Aerodrome Basic Router contract, and the specified amount of WETH will
+be sent along with the transaction.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1495,11 +1515,13 @@ amount of WETH will be sent along with the transaction.`,
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/remove_liquidity',
         description: `This endpoint allows users to remove liquidity from a specified pool on the
-Aerodrome platform. Users must specify the token pair, the amount of liquidity to remove,
-minimum amounts for each token, and a deadline for the transaction. The operation will ensure
-the pool exists and will use the sender&#x27;s address if no recipient is specified. The transaction
-will be executed through the Aerodrome Basic Router contract, and the specified amount of
-liquidity will be withdrawn from the pool.`,
+Aerodrome platform.
+
+Users must specify the token pair, the amount of liquidity to remove, minimum
+amounts for each token, and a deadline for the transaction. The operation will
+ensure the pool exists and will use the sender&#x27;s address if no recipient is
+specified. The transaction will be executed through the Aerodrome Basic Router
+contract, and the specified amount of liquidity will be withdrawn from the pool.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1521,11 +1543,13 @@ liquidity will be withdrawn from the pool.`,
         method: 'post',
         path: '/v0/aerodrome_basic/liquidity_provision/remove_liquidity_eth',
         description: `This endpoint allows users to remove liquidity from a pool on the Aerodrome
-platform using WETH and another token. Users must specify the token pair, the amount of
-liquidity to remove, minimum amounts for each token, and a deadline for the transaction. The
-operation will ensure the pool exists and will use the sender&#x27;s address if no recipient is
-specified. The transaction will be executed through the Aerodrome Basic Router contract, and the
-specified amount of liquidity will be withdrawn from the pool.`,
+platform using WETH and another token.
+
+Users must specify the token pair, the amount of liquidity to remove, minimum
+amounts for each token, and a deadline for the transaction. The operation will
+ensure the pool exists and will use the sender&#x27;s address if no recipient is
+specified. The transaction will be executed through the Aerodrome Basic Router
+contract, and the specified amount of liquidity will be withdrawn from the pool.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1546,10 +1570,13 @@ specified amount of liquidity will be withdrawn from the pool.`,
     {
         method: 'post',
         path: '/v0/aerodrome_basic/swap/eth_for_token',
-        description: `This endpoint allows you to swap a specified amount of ETH for a desired token
-on the Aerodrome platform. To protect against unfavorable exchange rates, you must specify the
-minimum amount of the token you wish to receive. The transaction will only be executed if this
-minimum amount is met, ensuring you do not accidentally trade at a disadvantageous rate.`,
+        description: `This endpoint allows you to swap a specified amount of ETH for a desired token on
+the Aerodrome platform.
+
+To protect against unfavorable exchange rates, you must specify the minimum amount
+of the token you wish to receive. The transaction will only be executed if this
+minimum amount is met, ensuring you do not accidentally trade at a disadvantageous
+rate.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1570,10 +1597,11 @@ minimum amount is met, ensuring you do not accidentally trade at a disadvantageo
     {
         method: 'post',
         path: '/v0/aerodrome_basic/swap/token_for_eth',
-        description: `Swap a specified amount of a token for ETH using the Aerodrome platform. To
-protect against unfavorable exchange rates, you must specify the minimum amount of ETH you wish
-to receive. The transaction will only be executed if this minimum amount is met, ensuring you do
-not trade at a disadvantageous rate.`,
+        description: `Swap a specified amount of a token for ETH using the Aerodrome platform.
+
+To protect against unfavorable exchange rates, you must specify the minimum amount
+of ETH you wish to receive. The transaction will only be executed if this minimum
+amount is met, ensuring you do not trade at a disadvantageous rate.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1594,10 +1622,12 @@ not trade at a disadvantageous rate.`,
     {
         method: 'post',
         path: '/v0/aerodrome_basic/swap/tokens',
-        description: `Swap one token for another on Aerodrome. Ensure you specify the minimum amount
-you expect to receive to avoid trading at an unfavorable exchange rate. This endpoint
-facilitates the exchange of tokens by interacting with the Aerodrome smart contract, ensuring
-that the transaction is executed only if the specified minimum output is met.`,
+        description: `Swap one token for another on Aerodrome.
+
+Ensure you specify the minimum amount you expect to receive to avoid trading at an
+unfavorable exchange rate. This endpoint facilitates the exchange of tokens by
+interacting with the Aerodrome smart contract, ensuring that the transaction is
+executed only if the specified minimum output is met.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1618,15 +1648,17 @@ that the transaction is executed only if the specified minimum output is met.`,
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/increase',
-        description: `Increase the liquidity of an existing Liquidity Provider (LP) position. This
-endpoint allows users to add more tokens to their current LP position, enhancing their
-participation in liquidity provision. By increasing liquidity, users can potentially earn more
-rewards and improve their position in the pool. The process involves specifying additional token
-amounts and updating the pool details. The response will confirm the successful increase of the
-LP position, providing users with updated information about their enhanced position. This
-functionality is vital for users aiming to optimize their liquidity provision strategy, enabling
-them to adapt to market conditions and maximize their returns in decentralized finance (DeFi)
-markets.`,
+        description: `Increase the liquidity of an existing Liquidity Provider (LP) position.
+
+This endpoint allows users to add more tokens to their current LP position,
+enhancing their participation in liquidity provision. By increasing liquidity, users
+can potentially earn more rewards and improve their position in the pool. The
+process involves specifying additional token amounts and updating the pool details.
+The response will confirm the successful increase of the LP position, providing
+users with updated information about their enhanced position. This functionality is
+vital for users aiming to optimize their liquidity provision strategy, enabling them
+to adapt to market conditions and maximize their returns in decentralized finance
+(DeFi) markets.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1647,13 +1679,15 @@ markets.`,
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/mint',
-        description: `Initiate a new Liquidity Provider (LP) position by minting tokens. This endpoint
-allows users to open a new LP position, enabling them to participate in liquidity provision. The
-minting process involves creating a new position with specified parameters, such as token
-amounts and pool details. The response will confirm the successful creation of the LP position,
-providing users with the necessary information to manage their newly minted position. This
-functionality is crucial for users looking to expand their liquidity provision activities,
-offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.`,
+        description: `Initiate a new Liquidity Provider (LP) position by minting tokens.
+
+This endpoint allows users to open a new LP position, enabling them to participate
+in liquidity provision. The minting process involves creating a new position with
+specified parameters, such as token amounts and pool details. The response will
+confirm the successful creation of the LP position, providing users with the
+necessary information to manage their newly minted position. This functionality is
+crucial for users looking to expand their liquidity provision activities, offering
+them the opportunity to engage in decentralized finance (DeFi) markets effectively.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1674,12 +1708,15 @@ offering them the opportunity to engage in decentralized finance (DeFi) markets 
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/positions/get',
-        description: `Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.
-This endpoint allows users to query and obtain detailed information about their LP positions,
-including the number of active positions they hold. The response model, AerodromeLPPositionsInfo,
-provides a structured representation of the LP positions data, ensuring clarity and ease of use.
-This functionality is essential for users managing their liquidity provision activities,
-enabling them to make informed decisions based on their current positions.`,
+        description: `Retrieve the total number of Liquidity Provider (LP) positions associated with a
+specific sender.
+
+This endpoint allows users to query and obtain detailed information about their LP
+positions, including the number of active positions they hold. The response model,
+AerodromeLPPositionsInfo, provides a structured representation of the LP positions
+data, ensuring clarity and ease of use. This functionality is essential for users
+managing their liquidity provision activities, enabling them to make informed
+decisions based on their current positions.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1700,15 +1737,17 @@ enabling them to make informed decisions based on their current positions.`,
     {
         method: 'post',
         path: '/v0/aerodrome_slipstream/liquidity_provision/withdraw',
-        description: `Withdraw an existing Liquidity Provider (LP) position. This endpoint allows
-users to remove their tokens from an LP position, effectively closing their participation in the
-liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the
-response will confirm the successful removal of liquidity, providing users with details about
-the withdrawn tokens and any remaining balances. This functionality is essential for users who
-wish to exit their liquidity provision activities, enabling them to reclaim their assets and
-potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and
-secure withdrawal process, facilitating users&#x27; strategic management of their decentralized
-finance (DeFi) portfolios.`,
+        description: `Withdraw an existing Liquidity Provider (LP) position.
+
+This endpoint allows users to remove their tokens from an LP position, effectively
+closing their participation in the liquidity pool. The withdrawal process involves
+specifying the LP position to be closed, and the response will confirm the
+successful removal of liquidity, providing users with details about the withdrawn
+tokens and any remaining balances. This functionality is essential for users who
+wish to exit their liquidity provision activities, enabling them to reclaim their
+assets and potentially reallocate them to other investment opportunities. The
+endpoint ensures a smooth and secure withdrawal process, facilitating users&#x27;
+strategic management of their decentralized finance (DeFi) portfolios.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1730,9 +1769,11 @@ finance (DeFi) portfolios.`,
         method: 'post',
         path: '/v0/aerodrome_slipstream/pool_price/get',
         description: `This endpoint retrieves the current price of a pool, indicating how many token0
-you can purchase for 1 token1. Note that this is an instantaneous price and may change during
-any trade. For a more accurate representation of the trade ratios between the two assets,
-consider using the quote endpoint.`,
+you can purchase for 1 token1.
+
+Note that this is an instantaneous price and may change during any trade. For a more
+accurate representation of the trade ratios between the two assets, consider using
+the quote endpoint.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1754,12 +1795,15 @@ consider using the quote endpoint.`,
         method: 'post',
         path: '/v0/aerodrome_slipstream/swap/buy_exactly',
         description: `This endpoint facilitates the trading of tokens by allowing users to specify the
-exact amount of the output token they wish to receive. Utilizing the Aerodrome Slipstream
-protocol, the system calculates the necessary amount of the input token required to achieve the
-desired output. This operation is particularly useful for users who have a specific target
-amount of the output token in mind and are willing to provide the corresponding input token
-amount. The transaction is executed with consideration of current market conditions, including
-liquidity and price impact, ensuring that the trade is completed efficiently and effectively.`,
+exact amount of the output token they wish to receive.
+
+Utilizing the Aerodrome Slipstream protocol, the system calculates the necessary
+amount of the input token required to achieve the desired output. This operation is
+particularly useful for users who have a specific target amount of the output token
+in mind and are willing to provide the corresponding input token amount. The
+transaction is executed with consideration of current market conditions, including
+liquidity and price impact, ensuring that the trade is completed efficiently and
+effectively.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1781,12 +1825,14 @@ liquidity and price impact, ensuring that the trade is completed efficiently and
         method: 'post',
         path: '/v0/aerodrome_slipstream/swap/sell_exactly',
         description: `This endpoint allows users to trade a specific amount of one token into another
-token using the Aerodrome Slipstream protocol. The transaction is executed by specifying the
-exact amount of the input token to be sold, and the system calculates the amount of the output
-token that will be received. The operation ensures that the trade is conducted within the
-constraints of the current market conditions, taking into account the liquidity and price
-impact. This endpoint is suitable for users who want to sell a precise quantity of a token and
-are willing to accept the resulting amount of the other token.`,
+token using the Aerodrome Slipstream protocol.
+
+The transaction is executed by specifying the exact amount of the input token to be
+sold, and the system calculates the amount of the output token that will be
+received. The operation ensures that the trade is conducted within the constraints
+of the current market conditions, taking into account the liquidity and price
+impact. This endpoint is suitable for users who want to sell a precise quantity of a
+token and are willing to accept the resulting amount of the other token.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1807,12 +1853,13 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/allowance/get',
-        description: `In decentralized finance (DeFi) protocols such as Uniswap or AAVE,
-        users must set a token allowance to authorize the protocol to spend
-        a specified amount of their tokens on their behalf. This is a crucial
-        step before engaging in any transactions or operations within these
-        protocols, ensuring that the protocol has the necessary permissions
-        to manage the user&#x27;s tokens securely and efficiently.`,
+        description: `In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set
+a token allowance to authorize the protocol to spend a specified amount of their
+tokens on their behalf.
+
+This is a crucial step before engaging in any transactions or operations within
+these protocols, ensuring that the protocol has the necessary permissions to manage
+the user&#x27;s tokens securely and efficiently.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1833,12 +1880,13 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/allowance/set',
-        description: `This endpoint allows users to modify the token allowance for a specific
-    protocol. In decentralized finance (DeFi), setting an allowance is a
-    necessary step to authorize a protocol to spend a specified amount of
-    tokens on behalf of the user. This operation is crucial for ensuring
-    that the protocol can manage the user&#x27;s tokens securely and efficiently,
-    enabling seamless transactions and operations within the DeFi ecosystem.`,
+        description: `This endpoint allows users to modify the token allowance for a specific protocol.
+
+In decentralized finance (DeFi), setting an allowance is a necessary step to
+authorize a protocol to spend a specified amount of tokens on behalf of the user.
+This operation is crucial for ensuring that the protocol can manage the user&#x27;s
+tokens securely and efficiently, enabling seamless transactions and operations
+within the DeFi ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1859,14 +1907,15 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/allowance/set_any',
-        description: `This endpoint allows users to set an allowance for any arbitrary ERC20
-    token address. In decentralized finance (DeFi), setting an allowance
-    is a critical operation that permits a protocol to spend a specified
-    amount of tokens on behalf of the user. This functionality is essential
-    for enabling secure and efficient token management, facilitating smooth
-    transactions and operations within the DeFi ecosystem. By using this
-    endpoint, users can specify the token address and the amount they wish
-    to authorize, ensuring precise control over their token allowances.`,
+        description: `This endpoint allows users to set an allowance for any arbitrary ERC20 token
+address.
+
+In decentralized finance (DeFi), setting an allowance is a critical operation that
+permits a protocol to spend a specified amount of tokens on behalf of the user. This
+functionality is essential for enabling secure and efficient token management,
+facilitating smooth transactions and operations within the DeFi ecosystem. By using
+this endpoint, users can specify the token address and the amount they wish to
+authorize, ensuring precise control over their token allowances.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1908,7 +1957,10 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/ens/get',
-        description: `An ENS name is a string ending in &#x60;.eth&#x60;. E.g. &#x60;vitalik.eth&#x60;. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.`,
+        description: `An ENS name is a string ending in &#x60;.eth&#x60;.
+
+E.g. &#x60;vitalik.eth&#x60;. This endpoint can be used to
+query the actual ethereum wallet address behind the ENS name.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1929,7 +1981,10 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/portfolio/get',
-        description: `Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.`,
+        description: `Fetch the detailed portfolio of a specific wallet address on a given blockchain.
+
+This includes the total value of the portfolio in USD and a breakdown of token
+balances, including their respective values and quantities.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -1950,7 +2005,12 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/price/usd/get',
-        description: `Retrieves the price of the specified token relative to USD using Chainlink&#x27;s on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.`,
+        description: `Retrieves the price of the specified token relative to USD using Chainlink&#x27;s on-
+chain price feeds.
+
+Chainlink is a decentralized oracle that aggregates price data from off-chain
+sources. This ensures the price is tamper-resistant but the price might be stale
+with the update frequency of the oracle.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2038,7 +2098,8 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/unwrap_weth',
-        description: `Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.`,
+        description: `Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that
+can be used for gas and other native purposes.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2059,7 +2120,11 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/visualize_portfolio/get',
-        description: `Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.`,
+        description: `Generate a visual representation of the token portfolio for a wallet address.
+
+The response is an SVG image of a pie chart depicting the relative distribution of
+tokens held, colored and labeled with token symbols, percentages and token values in
+USD.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2082,7 +2147,8 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/generic/wrap_eth',
-        description: `Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.`,
+        description: `Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for
+it to be traded on DeFi protocols.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2103,13 +2169,14 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/uniswap/liquidity_provision/in_range/get',
-        description: `this endpoint allows users to check whether a specific liquidity provider (lp)
-        position is within the active tick range on the uniswap platform. by providing
-        the token id associated with the position, users can verify if the position is
-        currently within the tick range where trading occurs. this information is essential
-        for users to monitor the status of their lp positions and ensure that they are
-        actively participating in the trading activities within the liquidity pool and
-        earning trading fees.`,
+        description: `This endpoint allows users to check whether a specific liquidity provider ()
+position is within the active tick range on the uniswap platform.
+
+by providing the token id associated with the position, users can verify if the
+position is currently within the tick range where trading occurs. this information
+is essential for users to monitor the status of their lp positions and ensure that
+they are actively participating in the trading activities within the liquidity pool
+and earning trading fees.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2138,12 +2205,15 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/uniswap/liquidity_provision/increase',
-        description: `This endpoint allows users to increase their existing Liquidity Provider (LP) positions on
-        the Uniswap platform. By providing the necessary parameters, users can add more liquidity to
-        their current positions, thereby increasing their stake in the liquidity pool. This
-        operation is beneficial for users who wish to enhance their potential earnings from trading
-        fees within the pool. The endpoint requires details such as the token pair, additional
-        amount to be added, and any other parameters necessary for the liquidity increase process.`,
+        description: `This endpoint allows users to increase their existing Liquidity Provider (LP)
+positions on the Uniswap platform.
+
+By providing the necessary parameters, users can add more liquidity to their current
+positions, thereby increasing their stake in the liquidity pool. This operation is
+beneficial for users who wish to enhance their potential earnings from trading fees
+within the pool. The endpoint requires details such as the token pair, additional
+amount to be added, and any other parameters necessary for the liquidity increase
+process.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2164,12 +2234,15 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/uniswap/liquidity_provision/mint',
-        description: `This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap
-    platform. By providing the necessary parameters, users can initiate a minting process to create
-    a new LP token, which represents their stake in a specific liquidity pool. This operation is
-    essential for users looking to participate in liquidity provision, enabling them to earn fees
-    from trades that occur within the pool. The endpoint requires details such as the token pair,
-    amount, and any additional parameters needed for the minting process.`,
+        description: `This endpoint allows users to open a new Liquidity Provider (LP) position on the
+Uniswap platform.
+
+By providing the necessary parameters, users can initiate a minting process to
+create a new LP token, which represents their stake in a specific liquidity pool.
+This operation is essential for users looking to participate in liquidity provision,
+enabling them to earn fees from trades that occur within the pool. The endpoint
+requires details such as the token pair, amount, and any additional parameters
+needed for the minting process.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2191,11 +2264,12 @@ are willing to accept the resulting amount of the other token.`,
         method: 'post',
         path: '/v0/uniswap/liquidity_provision/positions/get',
         description: `This endpoint retrieves the number of Liquidity Provider (LP) positions
-        associated with a specific sender address on the Uniswap platform.
-        Users can query this endpoint to obtain detailed information about their
-        LP positions, including the total number of positions and relevant metadata.
-        This information is crucial for users to manage and analyze their liquidity
-        provision activities effectively.`,
+associated with a specific sender address on the Uniswap platform.
+
+Users can query this endpoint to obtain detailed information about their LP
+positions, including the total number of positions and relevant metadata. This
+information is crucial for users to manage and analyze their liquidity provision
+activities effectively.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2217,13 +2291,15 @@ are willing to accept the resulting amount of the other token.`,
         method: 'post',
         path: '/v0/uniswap/liquidity_provision/withdraw',
         description: `This endpoint allows users to withdraw their Liquidity Provider (LP) positions
-    from the Uniswap platform. By specifying the necessary parameters, users can initiate the
-    withdrawal process to remove their stake from a specific liquidity pool. This operation is
-    crucial for users who wish to reclaim their assets or reallocate their liquidity to different
-    pools or investments. The endpoint requires details such as the token pair, the amount to be
-    withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure
-    they meet any protocol requirements or conditions before initiating a withdrawal to avoid
-    potential issues or penalties.`,
+from the Uniswap platform.
+
+By specifying the necessary parameters, users can initiate the withdrawal process to
+remove their stake from a specific liquidity pool. This operation is crucial for
+users who wish to reclaim their assets or reallocate their liquidity to different
+pools or investments. The endpoint requires details such as the token pair, the
+amount to be withdrawn, and any additional parameters needed for the withdrawal
+process. Users should ensure they meet any protocol requirements or conditions
+before initiating a withdrawal to avoid potential issues or penalties.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2244,8 +2320,9 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/uniswap/pool_price/get',
-        description: `This endpoint calculates the price of a token in a Uniswap pool. The price is
-        calculated based on the current pool state and the specified fee tier.`,
+        description: `This endpoint calculates the price of a token in a Uniswap pool.
+
+The price is calculated based on the current pool state and the specified fee tier.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2266,10 +2343,11 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/uniswap/quote/buy_exactly/get',
-        description: `This endpoint calculates the amount of input tokens required to purchase a specified amount
-        of output tokens from a Uniswap pool. It also provides the resulting price after the
-        transaction. The calculation takes into account the current pool state and the specified fee
-        tier.`,
+        description: `This endpoint calculates the amount of input tokens required to purchase a
+specified amount of output tokens from a Uniswap pool.
+
+It also provides the resulting price after the transaction. The calculation takes
+into account the current pool state and the specified fee tier.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2290,9 +2368,11 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/uniswap/quote/sell_exactly/get',
-        description: `This endpoint calculates the amount of input tokens required to purchase a specified amount of
-    output tokens from a Uniswap pool. It also provides the resulting price after the transaction.
-    The calculation takes into account the current pool state and the specified fee tier.`,
+        description: `This endpoint calculates the amount of input tokens required to purchase a
+specified amount of output tokens from a Uniswap pool.
+
+It also provides the resulting price after the transaction. The calculation takes
+into account the current pool state and the specified fee tier.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2313,13 +2393,13 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/uniswap/swap/buy_exactly',
-        description: `This endpoint allows users to trade a variable amount of one token
-        to receive an exact amount of another token using the Uniswap protocol.
-        The transaction is executed on the specified blockchain network, and
-        the user must provide the necessary transaction details, including the
-        token to buy, the token to pay with, and the exact amount to receive.
-        If the token being paid with is WETH and needs to be wrapped, the
-        appropriate amount will be wrapped automatically.`,
+        description: `This endpoint allows users to trade a variable amount of one token to receive an
+exact amount of another token using the Uniswap protocol.
+
+The transaction is executed on the specified blockchain network, and the user must
+provide the necessary transaction details, including the token to buy, the token to
+pay with, and the exact amount to receive. If the token being paid with is WETH and
+needs to be wrapped, the appropriate amount will be wrapped automatically.`,
         requestFormat: 'json',
         parameters: [
             {
@@ -2340,13 +2420,13 @@ are willing to accept the resulting amount of the other token.`,
     {
         method: 'post',
         path: '/v0/uniswap/swap/sell_exactly',
-        description: `This endpoint allows users to trade a specific amount of one token
-        into another token using the Uniswap protocol. The transaction is
-        executed on the specified blockchain network, and the user must
-        provide the necessary transaction details, including the token to
-        sell, the token to receive, and the amount to sell. If the token
-        being sold is WETH and needs to be wrapped, the appropriate amount
-        will be wrapped automatically.`,
+        description: `This endpoint allows users to trade a specific amount of one token into another
+token using the Uniswap protocol.
+
+The transaction is executed on the specified blockchain network, and the user must
+provide the necessary transaction details, including the token to sell, the token to
+receive, and the amount to sell. If the token being sold is WETH and needs to be
+wrapped, the appropriate amount will be wrapped automatically.`,
         requestFormat: 'json',
         parameters: [
             {
