@@ -3373,7 +3373,17 @@
           "amount0_min",
           "amount1_min"
         ],
-        "title": "AerodromeSlipstreamIncreaseLiquidityProvisionRequest"
+        "title": "AerodromeSlipstreamIncreaseLiquidityProvisionRequest",
+        "example": {
+          "amount0_desired": 0.1,
+          "amount0_min": 0,
+          "amount1_desired": 0.1,
+          "amount1_min": 0,
+          "chain": "base:mainnet",
+          "percentage_for_withdrawal": 1,
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_id": 10433247
+        }
       },
       "AerodromeSlipstreamMintLiquidityProvisionRequest": {
         "properties": {
@@ -3540,12 +3550,14 @@
           "amount0_min": 0,
           "amount1_desired": 0.000048,
           "amount1_min": 0,
+          "chain": "base:mainnet",
           "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "tick_lower": -201200,
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "tick_lower": -300000,
           "tick_spacing": 100,
-          "tick_upper": -199200,
+          "tick_upper": 300000,
           "token0": "WETH",
-          "token1": "USDC"
+          "token1": "USDT"
         }
       },
       "AerodromeSlipstreamPoolPriceResponse": {
@@ -3726,7 +3738,13 @@
           "percentage_for_withdrawal"
         ],
         "title": "AerodromeSlipstreamWithdrawLiquidityProvisionRequest",
-        "description": "Endpoint parameters for liquidity provision withdrawal on aerodrome slipstream.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/AerodromeSlipstream/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user."
+        "description": "Endpoint parameters for liquidity provision withdrawal on aerodrome slipstream.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/AerodromeSlipstream/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user.",
+        "example": {
+          "chain": "base:mainnet",
+          "percentage_for_withdrawal": 1,
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_id": 10433247
+        }
       },
       "AerodromeSwapEthForTokenRequest": {
         "properties": {
