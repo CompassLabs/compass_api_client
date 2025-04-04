@@ -1737,7 +1737,7 @@ class OthersApi:
     ) -> PriceResponse:
         """Token price
 
-        Retrieves the price of the specified token relative to USD using Chainlink's on- chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+        Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
         :param price_request: (required)
         :type price_request: PriceRequest
@@ -1805,7 +1805,7 @@ class OthersApi:
     ) -> ApiResponse[PriceResponse]:
         """Token price
 
-        Retrieves the price of the specified token relative to USD using Chainlink's on- chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+        Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
         :param price_request: (required)
         :type price_request: PriceRequest
@@ -1873,7 +1873,7 @@ class OthersApi:
     ) -> RESTResponseType:
         """Token price
 
-        Retrieves the price of the specified token relative to USD using Chainlink's on- chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+        Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds.  Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
 
         :param price_request: (required)
         :type price_request: PriceRequest
