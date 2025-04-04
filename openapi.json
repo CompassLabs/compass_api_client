@@ -4341,14 +4341,6 @@
               "Custom Token"
             ]
           },
-          "token_address": {
-            "type": "string",
-            "title": "Token Address",
-            "description": "The address of the ERC20 token for which the allowance is increased.",
-            "examples": [
-              "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
-            ]
-          },
           "contract_name": {
             "$ref": "#/components/schemas/ContractName",
             "description": "The name of the contract to increase allowance for.",
@@ -4378,7 +4370,6 @@
           "chain",
           "sender",
           "token",
-          "token_address",
           "contract_name",
           "amount"
         ],
@@ -5244,11 +5235,11 @@
         "properties": {
           "positions": {
             "additionalProperties": {
-              "$ref": "#/components/schemas/UniswapPosition"
+              "$ref": "#/components/schemas/UniswapPositionsSolidityResponse"
             },
             "type": "object",
             "title": "Positions",
-            "description": "Liquidity provision positions belonging to a particular user. The key is a\n        tuple of the token0, token1, fee, tick_lower, and tick_upper of the position."
+            "description": " Liquidity provision positions belonging to a particular user keyed by the\n        token of owner index of the position. "
           }
         },
         "type": "object",
@@ -5449,7 +5440,7 @@
         ],
         "title": "UniswapPoolPriceResponse"
       },
-      "UniswapPosition": {
+      "UniswapPositionsSolidityResponse": {
         "properties": {
           "nonce": {
             "type": "integer",
@@ -5460,13 +5451,16 @@
             "title": "Operator"
           },
           "token0": {
-            "$ref": "#/components/schemas/Token"
+            "type": "string",
+            "title": "Token0"
           },
           "token1": {
-            "$ref": "#/components/schemas/Token"
+            "type": "string",
+            "title": "Token1"
           },
           "fee": {
-            "$ref": "#/components/schemas/FeeEnum"
+            "type": "integer",
+            "title": "Fee"
           },
           "tick_lower": {
             "type": "integer",
@@ -5495,10 +5489,6 @@
           "tokens_owed1": {
             "type": "integer",
             "title": "Tokens Owed1"
-          },
-          "token_id": {
-            "type": "integer",
-            "title": "Token Id"
           }
         },
         "type": "object",
@@ -5514,10 +5504,9 @@
           "fee_growth_inside0_last_x128",
           "fee_growth_inside1_last_x128",
           "tokens_owed0",
-          "tokens_owed1",
-          "token_id"
+          "tokens_owed1"
         ],
-        "title": "UniswapPosition"
+        "title": "UniswapPositionsSolidityResponse"
       },
       "UniswapSellExactlyRequest": {
         "properties": {

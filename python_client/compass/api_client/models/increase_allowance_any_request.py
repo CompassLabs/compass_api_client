@@ -33,10 +33,9 @@ class IncreaseAllowanceAnyRequest(BaseModel):
     chain: Chain
     sender: StrictStr = Field(description="The address of the transaction sender")
     token: Token = Field(description="The name of the token for which the allowance is increased.")
-    token_address: StrictStr = Field(description="The address of the ERC20 token for which the allowance is increased.")
     contract_name: ContractName = Field(description="The name of the contract to increase allowance for.")
     amount: Amount4
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token", "token_address", "contract_name", "amount"]
+    __properties: ClassVar[List[str]] = ["chain", "sender", "token", "contract_name", "amount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +94,6 @@ class IncreaseAllowanceAnyRequest(BaseModel):
             "chain": obj.get("chain"),
             "sender": obj.get("sender"),
             "token": obj.get("token"),
-            "token_address": obj.get("token_address"),
             "contract_name": obj.get("contract_name"),
             "amount": Amount4.from_dict(obj["amount"]) if obj.get("amount") is not None else None
         })

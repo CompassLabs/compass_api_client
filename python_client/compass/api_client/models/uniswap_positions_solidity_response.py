@@ -19,20 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.fee_enum import FeeEnum
-from compass.api_client.models.token import Token
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UniswapPosition(BaseModel):
+class UniswapPositionsSolidityResponse(BaseModel):
     """
-    UniswapPosition
+    UniswapPositionsSolidityResponse
     """ # noqa: E501
     nonce: StrictInt
     operator: StrictStr
-    token0: Token
-    token1: Token
-    fee: FeeEnum
+    token0: StrictStr
+    token1: StrictStr
+    fee: StrictInt
     tick_lower: StrictInt
     tick_upper: StrictInt
     liquidity: StrictInt
@@ -40,8 +38,7 @@ class UniswapPosition(BaseModel):
     fee_growth_inside1_last_x128: StrictInt
     tokens_owed0: StrictInt
     tokens_owed1: StrictInt
-    token_id: StrictInt
-    __properties: ClassVar[List[str]] = ["nonce", "operator", "token0", "token1", "fee", "tick_lower", "tick_upper", "liquidity", "fee_growth_inside0_last_x128", "fee_growth_inside1_last_x128", "tokens_owed0", "tokens_owed1", "token_id"]
+    __properties: ClassVar[List[str]] = ["nonce", "operator", "token0", "token1", "fee", "tick_lower", "tick_upper", "liquidity", "fee_growth_inside0_last_x128", "fee_growth_inside1_last_x128", "tokens_owed0", "tokens_owed1"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -61,7 +58,7 @@ class UniswapPosition(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UniswapPosition from a JSON string"""
+        """Create an instance of UniswapPositionsSolidityResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -86,7 +83,7 @@ class UniswapPosition(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UniswapPosition from a dict"""
+        """Create an instance of UniswapPositionsSolidityResponse from a dict"""
         if obj is None:
             return None
 
@@ -105,8 +102,7 @@ class UniswapPosition(BaseModel):
             "fee_growth_inside0_last_x128": obj.get("fee_growth_inside0_last_x128"),
             "fee_growth_inside1_last_x128": obj.get("fee_growth_inside1_last_x128"),
             "tokens_owed0": obj.get("tokens_owed0"),
-            "tokens_owed1": obj.get("tokens_owed1"),
-            "token_id": obj.get("token_id")
+            "tokens_owed1": obj.get("tokens_owed1")
         })
         return _obj
 

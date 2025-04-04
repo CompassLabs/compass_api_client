@@ -38,7 +38,6 @@ class TestIncreaseAllowanceAnyRequest(unittest.TestCase):
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token = '1INCH',
-                token_address = '',
                 contract_name = 'AaveV3Pool',
                 amount = None
             )
@@ -47,7 +46,6 @@ class TestIncreaseAllowanceAnyRequest(unittest.TestCase):
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token = '1INCH',
-                token_address = '',
                 contract_name = 'AaveV3Pool',
                 amount = None,
         )
