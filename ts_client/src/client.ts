@@ -2006,7 +2006,7 @@ balances, including their respective values and quantities.`,
         method: 'post',
         path: '/v0/generic/price/usd/get',
         description: `Retrieves the price of the specified token relative to USD using Chainlink&#x27;s on-
-chain price feeds.
+chain price feeds..
 
 Chainlink is a decentralized oracle that aggregates price data from off-chain
 sources. This ensures the price is tamper-resistant but the price might be stale

@@ -1026,7 +1026,7 @@
           "Others"
         ],
         "summary": "Token price",
-        "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-\nchain price feeds..\n\nChainlink is a decentralized oracle that aggregates price data from off-chain\nsources. This ensures the price is tamper-resistant but the price might be stale\nwith the update frequency of the oracle.",
+        "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-\nchain price feeds.\n\nChainlink is a decentralized oracle that aggregates price data from off-chain\nsources. This ensures the price is tamper-resistant but the price might be stale\nwith the update frequency of the oracle.",
         "operationId": "generic_price_usd",
         "requestBody": {
           "content": {

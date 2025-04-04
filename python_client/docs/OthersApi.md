@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
 Token price
 
 Retrieves the price of the specified token relative to USD using Chainlink's on-
-chain price feeds..
+chain price feeds.
 
 Chainlink is a decentralized oracle that aggregates price data from off-chain
 sources. This ensures the price is tamper-resistant but the price might be stale
