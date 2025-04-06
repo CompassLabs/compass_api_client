@@ -12,7 +12,7 @@ from pydantic._internal._model_construction import ModelMetaclass
 from requests import get
 
 from langchain_compass.params_converter import generate_pydantic_model
-
+from langchain_compass.model_generator import models_from_openapi
 
 class EmptySchema(BaseModel):
     pass
@@ -24,7 +24,7 @@ class PostRequestTool(BaseTool):
     url: str = "https://api.compasslabs.ai"
     args_schema: Type[BaseModel] = EmptySchema
     return_direct: bool = False
-    verbose: bool = False
+    verbose: bool = True
     response_type: Any = None
     example_args: Optional[dict] = None
     api_key: Optional[str] = None
@@ -40,6 +40,8 @@ class PostRequestTool(BaseTool):
         if self.api_key is not None:
             headers["x-api-key"] = self.api_key
 
+        print(self.url)
+        print(self.args_schema(**kwargs).model_dump(mode="json"))
         response = requests.post(
             self.url,
             json=self.args_schema(**kwargs).model_dump(mode="json"),
@@ -67,6 +69,7 @@ class GetRequestTool(BaseTool):
     def _run(
         self, run_manager: CallbackManagerForToolRun | None = None, **kwargs: Any
     ) -> dict:  # type: ignore
+        raise ValueError("Not implemented")
         headers = {"accept": "application/json", "Content-Type": "application/json"}
         if self.api_key is not None:
             headers["x-api-key"] = self.api_key
@@ -102,6 +105,28 @@ def make_tools(
         raise Exception("Could not fetch https://api.compasslabs.ai/openapi.json!")
     openapi_data = json.loads(response.text)
 
+    import tempfile
+    from pathlib import Path
+    tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".py")
+    path = Path(tmp_file.name)
+
+    _ = models_from_openapi(response.text, path)
+    # from pydantic import Field
+    # exec('from pydantic import Field')
+    # exec(path.open().read())
+
+
+
+    ###
+    import importlib
+    import sys
+    module_name = "temp_schemas"
+    spec = importlib.util.spec_from_file_location(module_name, path.as_posix())
+    schemas = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = schemas
+    spec.loader.exec_module(schemas)
+    ###
+
     def get_response_schema_name(endpoint: dict) -> str:
         return endpoint["responses"]["200"]["content"]["application/json"]["schema"][
             "$ref"
@@ -128,13 +153,9 @@ def make_tools(
 
             # TODO: The SDK itself is inconsistent here.
             #  Maybe we should just run datamodel-codegen in CI.
-            args_schema = (
-                getattr(api_client.compass.api_client, schema_name)
-                if hasattr(api_client.compass.api_client, schema_name)
-                else getattr(
-                    api_client.compass.api_client, schema_name.rstrip("Request")
-                )
-            )
+            # args_schema = test.get(schema_name)
+            # args_schema = globals()[schema_name]
+            args_schema = getattr(schemas, schema_name)
 
             description: str = (
                 endpoint["description"]
@@ -143,7 +164,8 @@ def make_tools(
             )
             response_schema_name = get_response_schema_name(endpoint)
 
-            response_type = getattr(api_client.compass.api_client, response_schema_name)
+            # response_type = test.get(response_schema_name)
+            response_type = getattr(schemas, response_schema_name)
 
             example_args = (
                 openapi_data["components"]["schemas"][schema_name]["example"]
@@ -173,6 +195,7 @@ def make_tools(
             tools.append(post_tool)
 
         if "get" in openapi_data["paths"][path]:
+            assert 5==6
             endpoint = openapi_data["paths"][path]["get"]
 
             response_schema_name = get_response_schema_name(endpoint)
@@ -202,7 +225,9 @@ def make_tools(
 
 
 if __name__ == "__main__":
-    make_tools(
+    tools=make_tools(
         api_key=None,
         func_check_direct_return=lambda x: True,
     )
+    for tool in tools:
+        print(tool)
