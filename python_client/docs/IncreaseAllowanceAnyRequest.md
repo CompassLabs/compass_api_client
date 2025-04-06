@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **chain** | [**Chain**](Chain.md) |  | 
 **sender** | **str** | The address of the transaction sender | 
 **token** | [**Token**](Token.md) | The name of the token for which the allowance is increased. | 
-**token_address** | **str** | The address of the ERC20 token for which the allowance is increased. | 
 **contract_name** | [**ContractName**](ContractName.md) | The name of the contract to increase allowance for. | 
 **amount** | [**Amount4**](Amount4.md) |  | 
 

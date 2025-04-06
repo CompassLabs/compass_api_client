@@ -26,73 +26,73 @@ class TestUniswapV3Api(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_buy_exactly_v0_uniswap_swap_buy_exactly_post(self) -> None:
-        """Test case for buy_exactly_v0_uniswap_swap_buy_exactly_post
-
-        Buy exact amount
-        """
-        pass
-
-    def test_get_buy_quote_v0_uniswap_quote_buy_exactly_get_post(self) -> None:
-        """Test case for get_buy_quote_v0_uniswap_quote_buy_exactly_get_post
-
-        Get quote - to specified amount
-        """
-        pass
-
-    def test_get_pool_price_v0_uniswap_pool_price_get_post(self) -> None:
-        """Test case for get_pool_price_v0_uniswap_pool_price_get_post
-
-        Pool price
-        """
-        pass
-
-    def test_get_positions_v0_uniswap_liquidity_provision_positions_get_post(self) -> None:
-        """Test case for get_positions_v0_uniswap_liquidity_provision_positions_get_post
-
-        List LP
-        """
-        pass
-
-    def test_get_sell_quote_v0_uniswap_quote_sell_exactly_get_post(self) -> None:
-        """Test case for get_sell_quote_v0_uniswap_quote_sell_exactly_get_post
-
-        Get quote - from specified amount
-        """
-        pass
-
-    def test_in_range_v0_uniswap_liquidity_provision_in_range_get_post(self) -> None:
-        """Test case for in_range_v0_uniswap_liquidity_provision_in_range_get_post
+    def test_uniswap_liquidity_provision_in_range(self) -> None:
+        """Test case for uniswap_liquidity_provision_in_range
 
         Check if LP is active.
         """
         pass
 
-    def test_increase_liquidity_v0_uniswap_liquidity_provision_increase_post(self) -> None:
-        """Test case for increase_liquidity_v0_uniswap_liquidity_provision_increase_post
+    def test_uniswap_liquidity_provision_increase(self) -> None:
+        """Test case for uniswap_liquidity_provision_increase
 
         Increase an LP position
         """
         pass
 
-    def test_mint_v0_uniswap_liquidity_provision_mint_post(self) -> None:
-        """Test case for mint_v0_uniswap_liquidity_provision_mint_post
+    def test_uniswap_liquidity_provision_mint(self) -> None:
+        """Test case for uniswap_liquidity_provision_mint
 
         Open a new LP position
         """
         pass
 
-    def test_sell_exactly_v0_uniswap_swap_sell_exactly_post(self) -> None:
-        """Test case for sell_exactly_v0_uniswap_swap_sell_exactly_post
+    def test_uniswap_liquidity_provision_positions(self) -> None:
+        """Test case for uniswap_liquidity_provision_positions
 
-        Sell exact amount
+        List LP
         """
         pass
 
-    def test_withdraw_v0_uniswap_liquidity_provision_withdraw_post(self) -> None:
-        """Test case for withdraw_v0_uniswap_liquidity_provision_withdraw_post
+    def test_uniswap_liquidity_provision_withdraw(self) -> None:
+        """Test case for uniswap_liquidity_provision_withdraw
 
         Withdraw an LP position
+        """
+        pass
+
+    def test_uniswap_pool_price(self) -> None:
+        """Test case for uniswap_pool_price
+
+        Pool price
+        """
+        pass
+
+    def test_uniswap_quote_buy_exactly(self) -> None:
+        """Test case for uniswap_quote_buy_exactly
+
+        Get quote - to specified amount
+        """
+        pass
+
+    def test_uniswap_quote_sell_exactly(self) -> None:
+        """Test case for uniswap_quote_sell_exactly
+
+        Get quote - from specified amount
+        """
+        pass
+
+    def test_uniswap_swap_buy_exactly(self) -> None:
+        """Test case for uniswap_swap_buy_exactly
+
+        Buy exact amount
+        """
+        pass
+
+    def test_uniswap_swap_sell_exactly(self) -> None:
+        """Test case for uniswap_swap_sell_exactly
+
+        Sell exact amount
         """
         pass
 

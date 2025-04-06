@@ -17,21 +17,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.chain import Chain
-from compass.api_client.models.uniswap_withdraw_liquidity_provision_call_data import UniswapWithdrawLiquidityProvisionCallData
 from typing import Optional, Set
 from typing_extensions import Self
 
-class BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData(BaseModel):
+class UniswapPositionsSolidityResponse(BaseModel):
     """
-    BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData
+    UniswapPositionsSolidityResponse
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
-    call_data: UniswapWithdrawLiquidityProvisionCallData
-    __properties: ClassVar[List[str]] = ["chain", "sender", "call_data"]
+    nonce: StrictInt
+    operator: StrictStr
+    token0: StrictStr
+    token1: StrictStr
+    fee: StrictInt
+    tick_lower: StrictInt
+    tick_upper: StrictInt
+    liquidity: StrictInt
+    fee_growth_inside0_last_x128: StrictInt
+    fee_growth_inside1_last_x128: StrictInt
+    tokens_owed0: StrictInt
+    tokens_owed1: StrictInt
+    __properties: ClassVar[List[str]] = ["nonce", "operator", "token0", "token1", "fee", "tick_lower", "tick_upper", "liquidity", "fee_growth_inside0_last_x128", "fee_growth_inside1_last_x128", "tokens_owed0", "tokens_owed1"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +58,7 @@ class BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData(BaseModel)
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData from a JSON string"""
+        """Create an instance of UniswapPositionsSolidityResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,14 +79,11 @@ class BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData(BaseModel)
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of call_data
-        if self.call_data:
-            _dict['call_data'] = self.call_data.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData from a dict"""
+        """Create an instance of UniswapPositionsSolidityResponse from a dict"""
         if obj is None:
             return None
 
@@ -87,9 +91,18 @@ class BaseTransactionRequestUniswapWithdrawLiquidityProvisionCallData(BaseModel)
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
-            "call_data": UniswapWithdrawLiquidityProvisionCallData.from_dict(obj["call_data"]) if obj.get("call_data") is not None else None
+            "nonce": obj.get("nonce"),
+            "operator": obj.get("operator"),
+            "token0": obj.get("token0"),
+            "token1": obj.get("token1"),
+            "fee": obj.get("fee"),
+            "tick_lower": obj.get("tick_lower"),
+            "tick_upper": obj.get("tick_upper"),
+            "liquidity": obj.get("liquidity"),
+            "fee_growth_inside0_last_x128": obj.get("fee_growth_inside0_last_x128"),
+            "fee_growth_inside1_last_x128": obj.get("fee_growth_inside1_last_x128"),
+            "tokens_owed0": obj.get("tokens_owed0"),
+            "tokens_owed1": obj.get("tokens_owed1")
         })
         return _obj
 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**positions** | [**Dict[str, UniswapPosition]**](UniswapPosition.md) | Liquidity provision positions belonging to a particular user. The key is a         tuple of the token0, token1, fee, tick_lower, and tick_upper of the position. | 
+**positions** | [**Dict[str, UniswapPositionsSolidityResponse]**](UniswapPositionsSolidityResponse.md) |  Liquidity provision positions belonging to a particular user keyed by the         token of owner index of the position.  | 
 
 ## Example
 

@@ -36,39 +36,37 @@ class TestUniswapLPPositionsInfoResponse(unittest.TestCase):
         if include_optional:
             return UniswapLPPositionsInfoResponse(
                 positions = {
-                    'key' : compass.api_client.models.uniswap_position.UniswapPosition(
+                    'key' : compass.api_client.models.uniswap_positions_solidity_response.UniswapPositionsSolidityResponse(
                         nonce = 56, 
                         operator = '', 
-                        token0 = '1INCH', 
-                        token1 = '1INCH', 
-                        fee = '0.01', 
+                        token0 = '', 
+                        token1 = '', 
+                        fee = 56, 
                         tick_lower = 56, 
                         tick_upper = 56, 
                         liquidity = 56, 
                         fee_growth_inside0_last_x128 = 56, 
                         fee_growth_inside1_last_x128 = 56, 
                         tokens_owed0 = 56, 
-                        tokens_owed1 = 56, 
-                        token_id = 56, )
+                        tokens_owed1 = 56, )
                     }
             )
         else:
             return UniswapLPPositionsInfoResponse(
                 positions = {
-                    'key' : compass.api_client.models.uniswap_position.UniswapPosition(
+                    'key' : compass.api_client.models.uniswap_positions_solidity_response.UniswapPositionsSolidityResponse(
                         nonce = 56, 
                         operator = '', 
-                        token0 = '1INCH', 
-                        token1 = '1INCH', 
-                        fee = '0.01', 
+                        token0 = '', 
+                        token1 = '', 
+                        fee = 56, 
                         tick_lower = 56, 
                         tick_upper = 56, 
                         liquidity = 56, 
                         fee_growth_inside0_last_x128 = 56, 
                         fee_growth_inside1_last_x128 = 56, 
                         tokens_owed0 = 56, 
-                        tokens_owed1 = 56, 
-                        token_id = 56, )
+                        tokens_owed1 = 56, )
                     },
         )
         """

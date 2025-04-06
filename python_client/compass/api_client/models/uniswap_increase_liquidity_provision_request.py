@@ -17,21 +17,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
+from compass.api_client.models.amount0_desired1 import Amount0Desired1
+from compass.api_client.models.amount0_min1 import Amount0Min1
+from compass.api_client.models.amount1_desired1 import Amount1Desired1
+from compass.api_client.models.amount1_min1 import Amount1Min1
 from compass.api_client.models.chain import Chain
-from compass.api_client.models.transfer_erc20_token_call_data import TransferERC20TokenCallData
 from typing import Optional, Set
 from typing_extensions import Self
 
-class BaseTransactionRequestTransferERC20TokenCallData(BaseModel):
+class UniswapIncreaseLiquidityProvisionRequest(BaseModel):
     """
-    BaseTransactionRequestTransferERC20TokenCallData
+    UniswapIncreaseLiquidityProvisionRequest
     """ # noqa: E501
     chain: Chain
     sender: StrictStr = Field(description="The address of the transaction sender")
-    call_data: TransferERC20TokenCallData
-    __properties: ClassVar[List[str]] = ["chain", "sender", "call_data"]
+    token_id: StrictInt = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
+    amount0_desired: Amount0Desired1
+    amount1_desired: Amount1Desired1
+    amount0_min: Amount0Min1
+    amount1_min: Amount1Min1
+    __properties: ClassVar[List[str]] = ["chain", "sender", "token_id", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +58,7 @@ class BaseTransactionRequestTransferERC20TokenCallData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BaseTransactionRequestTransferERC20TokenCallData from a JSON string"""
+        """Create an instance of UniswapIncreaseLiquidityProvisionRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,14 +79,23 @@ class BaseTransactionRequestTransferERC20TokenCallData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of call_data
-        if self.call_data:
-            _dict['call_data'] = self.call_data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of amount0_desired
+        if self.amount0_desired:
+            _dict['amount0_desired'] = self.amount0_desired.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of amount1_desired
+        if self.amount1_desired:
+            _dict['amount1_desired'] = self.amount1_desired.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of amount0_min
+        if self.amount0_min:
+            _dict['amount0_min'] = self.amount0_min.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of amount1_min
+        if self.amount1_min:
+            _dict['amount1_min'] = self.amount1_min.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BaseTransactionRequestTransferERC20TokenCallData from a dict"""
+        """Create an instance of UniswapIncreaseLiquidityProvisionRequest from a dict"""
         if obj is None:
             return None
 
@@ -89,7 +105,11 @@ class BaseTransactionRequestTransferERC20TokenCallData(BaseModel):
         _obj = cls.model_validate({
             "chain": obj.get("chain"),
             "sender": obj.get("sender"),
-            "call_data": TransferERC20TokenCallData.from_dict(obj["call_data"]) if obj.get("call_data") is not None else None
+            "token_id": obj.get("token_id"),
+            "amount0_desired": Amount0Desired1.from_dict(obj["amount0_desired"]) if obj.get("amount0_desired") is not None else None,
+            "amount1_desired": Amount1Desired1.from_dict(obj["amount1_desired"]) if obj.get("amount1_desired") is not None else None,
+            "amount0_min": Amount0Min1.from_dict(obj["amount0_min"]) if obj.get("amount0_min") is not None else None,
+            "amount1_min": Amount1Min1.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None
         })
         return _obj
 

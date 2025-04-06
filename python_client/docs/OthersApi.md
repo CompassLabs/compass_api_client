@@ -4,32 +4,33 @@ All URIs are relative to *https://api.compasslabs.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_allowance_v0_generic_allowance_get_post**](OthersApi.md#get_allowance_v0_generic_allowance_get_post) | **POST** /v0/generic/allowance/get | Get allowance - Protocol
-[**get_balance_v0_generic_balance_get_post**](OthersApi.md#get_balance_v0_generic_balance_get_post) | **POST** /v0/generic/balance/get | User token balance
-[**get_ens_details_v0_generic_ens_get_post**](OthersApi.md#get_ens_details_v0_generic_ens_get_post) | **POST** /v0/generic/ens/get | Resolve ENS
-[**get_portfolio_v0_generic_portfolio_get_post**](OthersApi.md#get_portfolio_v0_generic_portfolio_get_post) | **POST** /v0/generic/portfolio/get | List user portfolio
-[**get_price_v0_generic_price_usd_get_post**](OthersApi.md#get_price_v0_generic_price_usd_get_post) | **POST** /v0/generic/price/usd/get | Token price
-[**get_tokens_v0_generic_supported_tokens_get_post**](OthersApi.md#get_tokens_v0_generic_supported_tokens_get_post) | **POST** /v0/generic/supported_tokens/get | List supported tokens
-[**set_allowance_v0_generic_allowance_set_post**](OthersApi.md#set_allowance_v0_generic_allowance_set_post) | **POST** /v0/generic/allowance/set | Set Allowance - Protocol
-[**set_any_allowance_v0_generic_allowance_set_any_post**](OthersApi.md#set_any_allowance_v0_generic_allowance_set_any_post) | **POST** /v0/generic/allowance/set_any | Set Allowance - Token
-[**transfer_erc20_v0_generic_transfer_erc20_post**](OthersApi.md#transfer_erc20_v0_generic_transfer_erc20_post) | **POST** /v0/generic/transfer/erc20 | Transfer Token
-[**transfer_native_token_v0_generic_transfer_native_token_post**](OthersApi.md#transfer_native_token_v0_generic_transfer_native_token_post) | **POST** /v0/generic/transfer/native_token | Transfer ETH
-[**unwrap_weth_v0_generic_unwrap_weth_post**](OthersApi.md#unwrap_weth_v0_generic_unwrap_weth_post) | **POST** /v0/generic/unwrap_weth | Unwrap WETH
-[**visualize_portfolio_v0_generic_visualize_portfolio_get_post**](OthersApi.md#visualize_portfolio_v0_generic_visualize_portfolio_get_post) | **POST** /v0/generic/visualize_portfolio/get | Visualize user portfolio
-[**wrap_eth_v0_generic_wrap_eth_post**](OthersApi.md#wrap_eth_v0_generic_wrap_eth_post) | **POST** /v0/generic/wrap_eth | Wrap ETH
+[**generic_allowance**](OthersApi.md#generic_allowance) | **POST** /v0/generic/allowance/get | Get allowance - Protocol
+[**generic_allowance_set**](OthersApi.md#generic_allowance_set) | **POST** /v0/generic/allowance/set | Set Allowance - Protocol
+[**generic_allowance_set_any**](OthersApi.md#generic_allowance_set_any) | **POST** /v0/generic/allowance/set_any | Set Allowance - Token
+[**generic_balance**](OthersApi.md#generic_balance) | **POST** /v0/generic/balance/get | User token balance
+[**generic_ens**](OthersApi.md#generic_ens) | **POST** /v0/generic/ens/get | Resolve ENS
+[**generic_portfolio**](OthersApi.md#generic_portfolio) | **POST** /v0/generic/portfolio/get | List user portfolio
+[**generic_price_usd**](OthersApi.md#generic_price_usd) | **POST** /v0/generic/price/usd/get | Token price
+[**generic_supported_tokens**](OthersApi.md#generic_supported_tokens) | **POST** /v0/generic/supported_tokens/get | List supported tokens
+[**generic_transfer_erc20**](OthersApi.md#generic_transfer_erc20) | **POST** /v0/generic/transfer/erc20 | Transfer Token
+[**generic_transfer_native_token**](OthersApi.md#generic_transfer_native_token) | **POST** /v0/generic/transfer/native_token | Transfer ETH
+[**generic_unwrap_weth**](OthersApi.md#generic_unwrap_weth) | **POST** /v0/generic/unwrap_weth | Unwrap WETH
+[**generic_visualize_portfolio**](OthersApi.md#generic_visualize_portfolio) | **POST** /v0/generic/visualize_portfolio/get | Visualize user portfolio
+[**generic_wrap_eth**](OthersApi.md#generic_wrap_eth) | **POST** /v0/generic/wrap_eth | Wrap ETH
 
 
-# **get_allowance_v0_generic_allowance_get_post**
-> AllowanceInfoResponse get_allowance_v0_generic_allowance_get_post(get_erc20_allowance_request)
+# **generic_allowance**
+> AllowanceInfoResponse generic_allowance(get_erc20_allowance_request)
 
 Get allowance - Protocol
 
-In decentralized finance (DeFi) protocols such as Uniswap or AAVE,
-        users must set a token allowance to authorize the protocol to spend
-        a specified amount of their tokens on their behalf. This is a crucial
-        step before engaging in any transactions or operations within these
-        protocols, ensuring that the protocol has the necessary permissions
-        to manage the user's tokens securely and efficiently.
+In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set
+a token allowance to authorize the protocol to spend a specified amount of their
+tokens on their behalf.
+
+This is a crucial step before engaging in any transactions or operations within
+these protocols, ensuring that the protocol has the necessary permissions to manage
+the user's tokens securely and efficiently.
 
 ### Example
 
@@ -67,11 +68,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # Get allowance - Protocol
-        api_response = api_instance.get_allowance_v0_generic_allowance_get_post(get_erc20_allowance_request)
-        print("The response of OthersApi->get_allowance_v0_generic_allowance_get_post:\n")
+        api_response = api_instance.generic_allowance(get_erc20_allowance_request)
+        print("The response of OthersApi->generic_allowance:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->get_allowance_v0_generic_allowance_get_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_allowance: %s\n" % e)
 ```
 
 
@@ -105,8 +106,184 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_balance_v0_generic_balance_get_post**
-> BalanceInfoResponse get_balance_v0_generic_balance_get_post(get_erc20_balance_request)
+# **generic_allowance_set**
+> UnsignedTransaction generic_allowance_set(increase_allowance_request)
+
+Set Allowance - Protocol
+
+This endpoint allows users to modify the token allowance for a specific protocol.
+
+In decentralized finance (DeFi), setting an allowance is a necessary step to
+authorize a protocol to spend a specified amount of tokens on behalf of the user.
+This operation is crucial for ensuring that the protocol can manage the user's
+tokens securely and efficiently, enabling seamless transactions and operations
+within the DeFi ecosystem.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.increase_allowance_request import IncreaseAllowanceRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.OthersApi(api_client)
+    increase_allowance_request = compass.api_client.IncreaseAllowanceRequest() # IncreaseAllowanceRequest | 
+
+    try:
+        # Set Allowance - Protocol
+        api_response = api_instance.generic_allowance_set(increase_allowance_request)
+        print("The response of OthersApi->generic_allowance_set:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OthersApi->generic_allowance_set: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **increase_allowance_request** | [**IncreaseAllowanceRequest**](IncreaseAllowanceRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **generic_allowance_set_any**
+> UnsignedTransaction generic_allowance_set_any(increase_allowance_any_request)
+
+Set Allowance - Token
+
+This endpoint allows users to set an allowance for any arbitrary ERC20 token
+address.
+
+In decentralized finance (DeFi), setting an allowance is a critical operation that
+permits a protocol to spend a specified amount of tokens on behalf of the user. This
+functionality is essential for enabling secure and efficient token management,
+facilitating smooth transactions and operations within the DeFi ecosystem. By using
+this endpoint, users can specify the token address and the amount they wish to
+authorize, ensuring precise control over their token allowances.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import compass.api_client
+from compass.api_client.models.increase_allowance_any_request import IncreaseAllowanceAnyRequest
+from compass.api_client.models.unsigned_transaction import UnsignedTransaction
+from compass.api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.compasslabs.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = compass.api_client.Configuration(
+    host = "https://api.compasslabs.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with compass.api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = compass.api_client.OthersApi(api_client)
+    increase_allowance_any_request = compass.api_client.IncreaseAllowanceAnyRequest() # IncreaseAllowanceAnyRequest | 
+
+    try:
+        # Set Allowance - Token
+        api_response = api_instance.generic_allowance_set_any(increase_allowance_any_request)
+        print("The response of OthersApi->generic_allowance_set_any:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OthersApi->generic_allowance_set_any: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **increase_allowance_any_request** | [**IncreaseAllowanceAnyRequest**](IncreaseAllowanceAnyRequest.md)|  | 
+
+### Return type
+
+[**UnsignedTransaction**](UnsignedTransaction.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **generic_balance**
+> BalanceInfoResponse generic_balance(get_erc20_balance_request)
 
 User token balance
 
@@ -148,11 +325,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # User token balance
-        api_response = api_instance.get_balance_v0_generic_balance_get_post(get_erc20_balance_request)
-        print("The response of OthersApi->get_balance_v0_generic_balance_get_post:\n")
+        api_response = api_instance.generic_balance(get_erc20_balance_request)
+        print("The response of OthersApi->generic_balance:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->get_balance_v0_generic_balance_get_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_balance: %s\n" % e)
 ```
 
 
@@ -186,12 +363,15 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_ens_details_v0_generic_ens_get_post**
-> EnsNameInfoResponse get_ens_details_v0_generic_ens_get_post(get_ens_details_request)
+# **generic_ens**
+> EnsNameInfoResponse generic_ens(get_ens_details_request)
 
 Resolve ENS
 
-An ENS name is a string ending in `.eth`. E.g. `vitalik.eth`. This endpoint can be used to query the actual ethereum wallet address behind the ENS name.
+An ENS name is a string ending in `.eth`.
+
+E.g. `vitalik.eth`. This endpoint can be used to
+query the actual ethereum wallet address behind the ENS name.
 
 ### Example
 
@@ -229,11 +409,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # Resolve ENS
-        api_response = api_instance.get_ens_details_v0_generic_ens_get_post(get_ens_details_request)
-        print("The response of OthersApi->get_ens_details_v0_generic_ens_get_post:\n")
+        api_response = api_instance.generic_ens(get_ens_details_request)
+        print("The response of OthersApi->generic_ens:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->get_ens_details_v0_generic_ens_get_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_ens: %s\n" % e)
 ```
 
 
@@ -267,12 +447,15 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_portfolio_v0_generic_portfolio_get_post**
-> Portfolio get_portfolio_v0_generic_portfolio_get_post(portfolio_request)
+# **generic_portfolio**
+> Portfolio generic_portfolio(portfolio_request)
 
 List user portfolio
 
-Fetch the detailed portfolio of a specific wallet address on a given blockchain. This includes the total value of the portfolio in USD and a breakdown of token balances, including their respective values and quantities.
+Fetch the detailed portfolio of a specific wallet address on a given blockchain.
+
+This includes the total value of the portfolio in USD and a breakdown of token
+balances, including their respective values and quantities.
 
 ### Example
 
@@ -310,11 +493,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # List user portfolio
-        api_response = api_instance.get_portfolio_v0_generic_portfolio_get_post(portfolio_request)
-        print("The response of OthersApi->get_portfolio_v0_generic_portfolio_get_post:\n")
+        api_response = api_instance.generic_portfolio(portfolio_request)
+        print("The response of OthersApi->generic_portfolio:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->get_portfolio_v0_generic_portfolio_get_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_portfolio: %s\n" % e)
 ```
 
 
@@ -348,12 +531,17 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_price_v0_generic_price_usd_get_post**
-> PriceResponse get_price_v0_generic_price_usd_get_post(price_request)
+# **generic_price_usd**
+> PriceResponse generic_price_usd(price_request)
 
 Token price
 
-Retrieves the price of the specified token relative to USD using Chainlink's on-chain price feeds. Chainlink is a decentralized oracle that aggregates price data from off-chain sources. This ensures the price is tamper-resistant but the price might be stale with the update frequency of the oracle.
+Retrieves the price of the specified token relative to USD using Chainlink's on-
+chain price feeds.
+
+Chainlink is a decentralized oracle that aggregates price data from off-chain
+sources. This ensures the price is tamper-resistant but the price might be stale
+with the update frequency of the oracle.
 
 ### Example
 
@@ -391,11 +579,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # Token price
-        api_response = api_instance.get_price_v0_generic_price_usd_get_post(price_request)
-        print("The response of OthersApi->get_price_v0_generic_price_usd_get_post:\n")
+        api_response = api_instance.generic_price_usd(price_request)
+        print("The response of OthersApi->generic_price_usd:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->get_price_v0_generic_price_usd_get_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_price_usd: %s\n" % e)
 ```
 
 
@@ -429,8 +617,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_tokens_v0_generic_supported_tokens_get_post**
-> TokenInfo get_tokens_v0_generic_supported_tokens_get_post(tokens_request)
+# **generic_supported_tokens**
+> TokenInfo generic_supported_tokens(tokens_request)
 
 List supported tokens
 
@@ -472,11 +660,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # List supported tokens
-        api_response = api_instance.get_tokens_v0_generic_supported_tokens_get_post(tokens_request)
-        print("The response of OthersApi->get_tokens_v0_generic_supported_tokens_get_post:\n")
+        api_response = api_instance.generic_supported_tokens(tokens_request)
+        print("The response of OthersApi->generic_supported_tokens:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->get_tokens_v0_generic_supported_tokens_get_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_supported_tokens: %s\n" % e)
 ```
 
 
@@ -510,182 +698,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **set_allowance_v0_generic_allowance_set_post**
-> UnsignedTransaction set_allowance_v0_generic_allowance_set_post(increase_allowance_request)
-
-Set Allowance - Protocol
-
-This endpoint allows users to modify the token allowance for a specific
-    protocol. In decentralized finance (DeFi), setting an allowance is a
-    necessary step to authorize a protocol to spend a specified amount of
-    tokens on behalf of the user. This operation is crucial for ensuring
-    that the protocol can manage the user's tokens securely and efficiently,
-    enabling seamless transactions and operations within the DeFi ecosystem.
-
-### Example
-
-* Api Key Authentication (ApiKeyAuth):
-
-```python
-import compass.api_client
-from compass.api_client.models.increase_allowance_request import IncreaseAllowanceRequest
-from compass.api_client.models.unsigned_transaction import UnsignedTransaction
-from compass.api_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.compasslabs.ai
-# See configuration.py for a list of all supported configuration parameters.
-configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with compass.api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = compass.api_client.OthersApi(api_client)
-    increase_allowance_request = compass.api_client.IncreaseAllowanceRequest() # IncreaseAllowanceRequest | 
-
-    try:
-        # Set Allowance - Protocol
-        api_response = api_instance.set_allowance_v0_generic_allowance_set_post(increase_allowance_request)
-        print("The response of OthersApi->set_allowance_v0_generic_allowance_set_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling OthersApi->set_allowance_v0_generic_allowance_set_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **increase_allowance_request** | [**IncreaseAllowanceRequest**](IncreaseAllowanceRequest.md)|  | 
-
-### Return type
-
-[**UnsignedTransaction**](UnsignedTransaction.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **set_any_allowance_v0_generic_allowance_set_any_post**
-> UnsignedTransaction set_any_allowance_v0_generic_allowance_set_any_post(increase_allowance_any_request)
-
-Set Allowance - Token
-
-This endpoint allows users to set an allowance for any arbitrary ERC20
-    token address. In decentralized finance (DeFi), setting an allowance
-    is a critical operation that permits a protocol to spend a specified
-    amount of tokens on behalf of the user. This functionality is essential
-    for enabling secure and efficient token management, facilitating smooth
-    transactions and operations within the DeFi ecosystem. By using this
-    endpoint, users can specify the token address and the amount they wish
-    to authorize, ensuring precise control over their token allowances.
-
-### Example
-
-* Api Key Authentication (ApiKeyAuth):
-
-```python
-import compass.api_client
-from compass.api_client.models.increase_allowance_any_request import IncreaseAllowanceAnyRequest
-from compass.api_client.models.unsigned_transaction import UnsignedTransaction
-from compass.api_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.compasslabs.ai
-# See configuration.py for a list of all supported configuration parameters.
-configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with compass.api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = compass.api_client.OthersApi(api_client)
-    increase_allowance_any_request = compass.api_client.IncreaseAllowanceAnyRequest() # IncreaseAllowanceAnyRequest | 
-
-    try:
-        # Set Allowance - Token
-        api_response = api_instance.set_any_allowance_v0_generic_allowance_set_any_post(increase_allowance_any_request)
-        print("The response of OthersApi->set_any_allowance_v0_generic_allowance_set_any_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling OthersApi->set_any_allowance_v0_generic_allowance_set_any_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **increase_allowance_any_request** | [**IncreaseAllowanceAnyRequest**](IncreaseAllowanceAnyRequest.md)|  | 
-
-### Return type
-
-[**UnsignedTransaction**](UnsignedTransaction.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **transfer_erc20_v0_generic_transfer_erc20_post**
-> UnsignedTransaction transfer_erc20_v0_generic_transfer_erc20_post(transfer_erc20_request)
+# **generic_transfer_erc20**
+> UnsignedTransaction generic_transfer_erc20(transfer_erc20_request)
 
 Transfer Token
 
@@ -727,11 +741,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # Transfer Token
-        api_response = api_instance.transfer_erc20_v0_generic_transfer_erc20_post(transfer_erc20_request)
-        print("The response of OthersApi->transfer_erc20_v0_generic_transfer_erc20_post:\n")
+        api_response = api_instance.generic_transfer_erc20(transfer_erc20_request)
+        print("The response of OthersApi->generic_transfer_erc20:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->transfer_erc20_v0_generic_transfer_erc20_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_transfer_erc20: %s\n" % e)
 ```
 
 
@@ -765,8 +779,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **transfer_native_token_v0_generic_transfer_native_token_post**
-> UnsignedTransaction transfer_native_token_v0_generic_transfer_native_token_post(transfer_eth_request)
+# **generic_transfer_native_token**
+> UnsignedTransaction generic_transfer_native_token(transfer_eth_request)
 
 Transfer ETH
 
@@ -808,11 +822,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # Transfer ETH
-        api_response = api_instance.transfer_native_token_v0_generic_transfer_native_token_post(transfer_eth_request)
-        print("The response of OthersApi->transfer_native_token_v0_generic_transfer_native_token_post:\n")
+        api_response = api_instance.generic_transfer_native_token(transfer_eth_request)
+        print("The response of OthersApi->generic_transfer_native_token:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->transfer_native_token_v0_generic_transfer_native_token_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_transfer_native_token: %s\n" % e)
 ```
 
 
@@ -846,12 +860,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **unwrap_weth_v0_generic_unwrap_weth_post**
-> UnsignedTransaction unwrap_weth_v0_generic_unwrap_weth_post(unwrap_weth_request)
+# **generic_unwrap_weth**
+> UnsignedTransaction generic_unwrap_weth(unwrap_weth_request)
 
 Unwrap WETH
 
-Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that can be used for gas and other native purposes.
+Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that
+can be used for gas and other native purposes.
 
 ### Example
 
@@ -889,11 +904,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # Unwrap WETH
-        api_response = api_instance.unwrap_weth_v0_generic_unwrap_weth_post(unwrap_weth_request)
-        print("The response of OthersApi->unwrap_weth_v0_generic_unwrap_weth_post:\n")
+        api_response = api_instance.generic_unwrap_weth(unwrap_weth_request)
+        print("The response of OthersApi->generic_unwrap_weth:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->unwrap_weth_v0_generic_unwrap_weth_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_unwrap_weth: %s\n" % e)
 ```
 
 
@@ -927,12 +942,16 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **visualize_portfolio_v0_generic_visualize_portfolio_get_post**
-> Image visualize_portfolio_v0_generic_visualize_portfolio_get_post(visualize_portfolio_request)
+# **generic_visualize_portfolio**
+> Image generic_visualize_portfolio(visualize_portfolio_request)
 
 Visualize user portfolio
 
-Generate a visual representation of the token portfolio for a wallet address. The response is an SVG image of a pie chart depicting the relative distribution of tokens held, colored and labeled with token symbols, percentages and token values in USD.
+Generate a visual representation of the token portfolio for a wallet address.
+
+The response is an SVG image of a pie chart depicting the relative distribution of
+tokens held, colored and labeled with token symbols, percentages and token values in
+USD.
 
 ### Example
 
@@ -970,11 +989,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # Visualize user portfolio
-        api_response = api_instance.visualize_portfolio_v0_generic_visualize_portfolio_get_post(visualize_portfolio_request)
-        print("The response of OthersApi->visualize_portfolio_v0_generic_visualize_portfolio_get_post:\n")
+        api_response = api_instance.generic_visualize_portfolio(visualize_portfolio_request)
+        print("The response of OthersApi->generic_visualize_portfolio:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->visualize_portfolio_v0_generic_visualize_portfolio_get_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_visualize_portfolio: %s\n" % e)
 ```
 
 
@@ -1008,12 +1027,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **wrap_eth_v0_generic_wrap_eth_post**
-> UnsignedTransaction wrap_eth_v0_generic_wrap_eth_post(wrap_eth_request)
+# **generic_wrap_eth**
+> UnsignedTransaction generic_wrap_eth(wrap_eth_request)
 
 Wrap ETH
 
-Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for it to be traded on DeFi protocols.
+Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for
+it to be traded on DeFi protocols.
 
 ### Example
 
@@ -1051,11 +1071,11 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
     try:
         # Wrap ETH
-        api_response = api_instance.wrap_eth_v0_generic_wrap_eth_post(wrap_eth_request)
-        print("The response of OthersApi->wrap_eth_v0_generic_wrap_eth_post:\n")
+        api_response = api_instance.generic_wrap_eth(wrap_eth_request)
+        print("The response of OthersApi->generic_wrap_eth:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling OthersApi->wrap_eth_v0_generic_wrap_eth_post: %s\n" % e)
+        print("Exception when calling OthersApi->generic_wrap_eth: %s\n" % e)
 ```
 
 

@@ -46,838 +46,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post(
-        self,
-        aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UnsignedTransaction:
-        """Swap - into specified amount
-
-        This endpoint facilitates the trading of tokens by allowing users to specify the exact amount of the output token they wish to receive. Utilizing the Aerodrome Slipstream protocol, the system calculates the necessary amount of the input token required to achieve the desired output. This operation is particularly useful for users who have a specific target amount of the output token in mind and are willing to provide the corresponding input token amount. The transaction is executed with consideration of current market conditions, including liquidity and price impact, ensuring that the trade is completed efficiently and effectively.
-
-        :param aerodrome_slipstream_buy_exactly_request: (required)
-        :type aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post_serialize(
-            aerodrome_slipstream_buy_exactly_request=aerodrome_slipstream_buy_exactly_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post_with_http_info(
-        self,
-        aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UnsignedTransaction]:
-        """Swap - into specified amount
-
-        This endpoint facilitates the trading of tokens by allowing users to specify the exact amount of the output token they wish to receive. Utilizing the Aerodrome Slipstream protocol, the system calculates the necessary amount of the input token required to achieve the desired output. This operation is particularly useful for users who have a specific target amount of the output token in mind and are willing to provide the corresponding input token amount. The transaction is executed with consideration of current market conditions, including liquidity and price impact, ensuring that the trade is completed efficiently and effectively.
-
-        :param aerodrome_slipstream_buy_exactly_request: (required)
-        :type aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post_serialize(
-            aerodrome_slipstream_buy_exactly_request=aerodrome_slipstream_buy_exactly_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post_without_preload_content(
-        self,
-        aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Swap - into specified amount
-
-        This endpoint facilitates the trading of tokens by allowing users to specify the exact amount of the output token they wish to receive. Utilizing the Aerodrome Slipstream protocol, the system calculates the necessary amount of the input token required to achieve the desired output. This operation is particularly useful for users who have a specific target amount of the output token in mind and are willing to provide the corresponding input token amount. The transaction is executed with consideration of current market conditions, including liquidity and price impact, ensuring that the trade is completed efficiently and effectively.
-
-        :param aerodrome_slipstream_buy_exactly_request: (required)
-        :type aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post_serialize(
-            aerodrome_slipstream_buy_exactly_request=aerodrome_slipstream_buy_exactly_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _buy_exactly_v0_aerodrome_slipstream_swap_buy_exactly_post_serialize(
-        self,
-        aerodrome_slipstream_buy_exactly_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if aerodrome_slipstream_buy_exactly_request is not None:
-            _body_params = aerodrome_slipstream_buy_exactly_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/aerodrome_slipstream/swap/buy_exactly',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_pool_price_v0_aerodrome_slipstream_pool_price_get_post(
-        self,
-        aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AerodromeSlipstreamPoolPriceResponse:
-        """Pool price
-
-        This endpoint retrieves the current price of a pool, indicating how many token0 you can purchase for 1 token1. Note that this is an instantaneous price and may change during any trade. For a more accurate representation of the trade ratios between the two assets, consider using the quote endpoint.
-
-        :param aerodrome_slipstream_get_pool_price_request: (required)
-        :type aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_pool_price_v0_aerodrome_slipstream_pool_price_get_post_serialize(
-            aerodrome_slipstream_get_pool_price_request=aerodrome_slipstream_get_pool_price_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AerodromeSlipstreamPoolPriceResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_pool_price_v0_aerodrome_slipstream_pool_price_get_post_with_http_info(
-        self,
-        aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AerodromeSlipstreamPoolPriceResponse]:
-        """Pool price
-
-        This endpoint retrieves the current price of a pool, indicating how many token0 you can purchase for 1 token1. Note that this is an instantaneous price and may change during any trade. For a more accurate representation of the trade ratios between the two assets, consider using the quote endpoint.
-
-        :param aerodrome_slipstream_get_pool_price_request: (required)
-        :type aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_pool_price_v0_aerodrome_slipstream_pool_price_get_post_serialize(
-            aerodrome_slipstream_get_pool_price_request=aerodrome_slipstream_get_pool_price_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AerodromeSlipstreamPoolPriceResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_pool_price_v0_aerodrome_slipstream_pool_price_get_post_without_preload_content(
-        self,
-        aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Pool price
-
-        This endpoint retrieves the current price of a pool, indicating how many token0 you can purchase for 1 token1. Note that this is an instantaneous price and may change during any trade. For a more accurate representation of the trade ratios between the two assets, consider using the quote endpoint.
-
-        :param aerodrome_slipstream_get_pool_price_request: (required)
-        :type aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_pool_price_v0_aerodrome_slipstream_pool_price_get_post_serialize(
-            aerodrome_slipstream_get_pool_price_request=aerodrome_slipstream_get_pool_price_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AerodromeSlipstreamPoolPriceResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_pool_price_v0_aerodrome_slipstream_pool_price_get_post_serialize(
-        self,
-        aerodrome_slipstream_get_pool_price_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if aerodrome_slipstream_get_pool_price_request is not None:
-            _body_params = aerodrome_slipstream_get_pool_price_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/aerodrome_slipstream/pool_price/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post(
-        self,
-        aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AerodromeLPPositionsResponse:
-        """List LP positions
-
-        Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender. This endpoint allows users to query and obtain detailed information about their LP positions, including the number of active positions they hold. The response model, AerodromeLPPositionsInfo, provides a structured representation of the LP positions data, ensuring clarity and ease of use. This functionality is essential for users managing their liquidity provision activities, enabling them to make informed decisions based on their current positions.
-
-        :param aerodrome_slipstream_get_liquidity_provision_positions_request: (required)
-        :type aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post_serialize(
-            aerodrome_slipstream_get_liquidity_provision_positions_request=aerodrome_slipstream_get_liquidity_provision_positions_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AerodromeLPPositionsResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post_with_http_info(
-        self,
-        aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AerodromeLPPositionsResponse]:
-        """List LP positions
-
-        Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender. This endpoint allows users to query and obtain detailed information about their LP positions, including the number of active positions they hold. The response model, AerodromeLPPositionsInfo, provides a structured representation of the LP positions data, ensuring clarity and ease of use. This functionality is essential for users managing their liquidity provision activities, enabling them to make informed decisions based on their current positions.
-
-        :param aerodrome_slipstream_get_liquidity_provision_positions_request: (required)
-        :type aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post_serialize(
-            aerodrome_slipstream_get_liquidity_provision_positions_request=aerodrome_slipstream_get_liquidity_provision_positions_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AerodromeLPPositionsResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post_without_preload_content(
-        self,
-        aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """List LP positions
-
-        Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender. This endpoint allows users to query and obtain detailed information about their LP positions, including the number of active positions they hold. The response model, AerodromeLPPositionsInfo, provides a structured representation of the LP positions data, ensuring clarity and ease of use. This functionality is essential for users managing their liquidity provision activities, enabling them to make informed decisions based on their current positions.
-
-        :param aerodrome_slipstream_get_liquidity_provision_positions_request: (required)
-        :type aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post_serialize(
-            aerodrome_slipstream_get_liquidity_provision_positions_request=aerodrome_slipstream_get_liquidity_provision_positions_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AerodromeLPPositionsResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_positions_v0_aerodrome_slipstream_liquidity_provision_positions_get_post_serialize(
-        self,
-        aerodrome_slipstream_get_liquidity_provision_positions_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if aerodrome_slipstream_get_liquidity_provision_positions_request is not None:
-            _body_params = aerodrome_slipstream_get_liquidity_provision_positions_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/aerodrome_slipstream/liquidity_provision/positions/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def increase_v0_aerodrome_slipstream_liquidity_provision_increase_post(
+    def aerodrome_slipstream_liquidity_provision_increase(
         self,
         aerodrome_slipstream_increase_liquidity_provision_request: AerodromeSlipstreamIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -895,7 +64,7 @@ class AerodromeSlipstreamApi:
     ) -> UnsignedTransaction:
         """Increase an LP position
 
-        Increase the liquidity of an existing Liquidity Provider (LP) position. This endpoint allows users to add more tokens to their current LP position, enhancing their participation in liquidity provision. By increasing liquidity, users can potentially earn more rewards and improve their position in the pool. The process involves specifying additional token amounts and updating the pool details. The response will confirm the successful increase of the LP position, providing users with updated information about their enhanced position. This functionality is vital for users aiming to optimize their liquidity provision strategy, enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.
+        Increase the liquidity of an existing Liquidity Provider (LP) position.  This endpoint allows users to add more tokens to their current LP position, enhancing their participation in liquidity provision. By increasing liquidity, users can potentially earn more rewards and improve their position in the pool. The process involves specifying additional token amounts and updating the pool details. The response will confirm the successful increase of the LP position, providing users with updated information about their enhanced position. This functionality is vital for users aiming to optimize their liquidity provision strategy, enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.
 
         :param aerodrome_slipstream_increase_liquidity_provision_request: (required)
         :type aerodrome_slipstream_increase_liquidity_provision_request: AerodromeSlipstreamIncreaseLiquidityProvisionRequest
@@ -921,7 +90,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._increase_v0_aerodrome_slipstream_liquidity_provision_increase_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_increase_serialize(
             aerodrome_slipstream_increase_liquidity_provision_request=aerodrome_slipstream_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -945,7 +114,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def increase_v0_aerodrome_slipstream_liquidity_provision_increase_post_with_http_info(
+    def aerodrome_slipstream_liquidity_provision_increase_with_http_info(
         self,
         aerodrome_slipstream_increase_liquidity_provision_request: AerodromeSlipstreamIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -963,7 +132,7 @@ class AerodromeSlipstreamApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Increase an LP position
 
-        Increase the liquidity of an existing Liquidity Provider (LP) position. This endpoint allows users to add more tokens to their current LP position, enhancing their participation in liquidity provision. By increasing liquidity, users can potentially earn more rewards and improve their position in the pool. The process involves specifying additional token amounts and updating the pool details. The response will confirm the successful increase of the LP position, providing users with updated information about their enhanced position. This functionality is vital for users aiming to optimize their liquidity provision strategy, enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.
+        Increase the liquidity of an existing Liquidity Provider (LP) position.  This endpoint allows users to add more tokens to their current LP position, enhancing their participation in liquidity provision. By increasing liquidity, users can potentially earn more rewards and improve their position in the pool. The process involves specifying additional token amounts and updating the pool details. The response will confirm the successful increase of the LP position, providing users with updated information about their enhanced position. This functionality is vital for users aiming to optimize their liquidity provision strategy, enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.
 
         :param aerodrome_slipstream_increase_liquidity_provision_request: (required)
         :type aerodrome_slipstream_increase_liquidity_provision_request: AerodromeSlipstreamIncreaseLiquidityProvisionRequest
@@ -989,7 +158,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._increase_v0_aerodrome_slipstream_liquidity_provision_increase_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_increase_serialize(
             aerodrome_slipstream_increase_liquidity_provision_request=aerodrome_slipstream_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1013,7 +182,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def increase_v0_aerodrome_slipstream_liquidity_provision_increase_post_without_preload_content(
+    def aerodrome_slipstream_liquidity_provision_increase_without_preload_content(
         self,
         aerodrome_slipstream_increase_liquidity_provision_request: AerodromeSlipstreamIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -1031,7 +200,7 @@ class AerodromeSlipstreamApi:
     ) -> RESTResponseType:
         """Increase an LP position
 
-        Increase the liquidity of an existing Liquidity Provider (LP) position. This endpoint allows users to add more tokens to their current LP position, enhancing their participation in liquidity provision. By increasing liquidity, users can potentially earn more rewards and improve their position in the pool. The process involves specifying additional token amounts and updating the pool details. The response will confirm the successful increase of the LP position, providing users with updated information about their enhanced position. This functionality is vital for users aiming to optimize their liquidity provision strategy, enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.
+        Increase the liquidity of an existing Liquidity Provider (LP) position.  This endpoint allows users to add more tokens to their current LP position, enhancing their participation in liquidity provision. By increasing liquidity, users can potentially earn more rewards and improve their position in the pool. The process involves specifying additional token amounts and updating the pool details. The response will confirm the successful increase of the LP position, providing users with updated information about their enhanced position. This functionality is vital for users aiming to optimize their liquidity provision strategy, enabling them to adapt to market conditions and maximize their returns in decentralized finance (DeFi) markets.
 
         :param aerodrome_slipstream_increase_liquidity_provision_request: (required)
         :type aerodrome_slipstream_increase_liquidity_provision_request: AerodromeSlipstreamIncreaseLiquidityProvisionRequest
@@ -1057,7 +226,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._increase_v0_aerodrome_slipstream_liquidity_provision_increase_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_increase_serialize(
             aerodrome_slipstream_increase_liquidity_provision_request=aerodrome_slipstream_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1076,7 +245,7 @@ class AerodromeSlipstreamApi:
         return response_data.response
 
 
-    def _increase_v0_aerodrome_slipstream_liquidity_provision_increase_post_serialize(
+    def _aerodrome_slipstream_liquidity_provision_increase_serialize(
         self,
         aerodrome_slipstream_increase_liquidity_provision_request,
         _request_auth,
@@ -1154,7 +323,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def mint_v0_aerodrome_slipstream_liquidity_provision_mint_post(
+    def aerodrome_slipstream_liquidity_provision_mint(
         self,
         aerodrome_slipstream_mint_liquidity_provision_request: AerodromeSlipstreamMintLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -1172,7 +341,7 @@ class AerodromeSlipstreamApi:
     ) -> UnsignedTransaction:
         """Open a new LP position
 
-        Initiate a new Liquidity Provider (LP) position by minting tokens. This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision. The minting process involves creating a new position with specified parameters, such as token amounts and pool details. The response will confirm the successful creation of the LP position, providing users with the necessary information to manage their newly minted position. This functionality is crucial for users looking to expand their liquidity provision activities, offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.
+        Initiate a new Liquidity Provider (LP) position by minting tokens.  This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision. The minting process involves creating a new position with specified parameters, such as token amounts and pool details. The response will confirm the successful creation of the LP position, providing users with the necessary information to manage their newly minted position. This functionality is crucial for users looking to expand their liquidity provision activities, offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.
 
         :param aerodrome_slipstream_mint_liquidity_provision_request: (required)
         :type aerodrome_slipstream_mint_liquidity_provision_request: AerodromeSlipstreamMintLiquidityProvisionRequest
@@ -1198,7 +367,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._mint_v0_aerodrome_slipstream_liquidity_provision_mint_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_mint_serialize(
             aerodrome_slipstream_mint_liquidity_provision_request=aerodrome_slipstream_mint_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1222,7 +391,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def mint_v0_aerodrome_slipstream_liquidity_provision_mint_post_with_http_info(
+    def aerodrome_slipstream_liquidity_provision_mint_with_http_info(
         self,
         aerodrome_slipstream_mint_liquidity_provision_request: AerodromeSlipstreamMintLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -1240,7 +409,7 @@ class AerodromeSlipstreamApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Open a new LP position
 
-        Initiate a new Liquidity Provider (LP) position by minting tokens. This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision. The minting process involves creating a new position with specified parameters, such as token amounts and pool details. The response will confirm the successful creation of the LP position, providing users with the necessary information to manage their newly minted position. This functionality is crucial for users looking to expand their liquidity provision activities, offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.
+        Initiate a new Liquidity Provider (LP) position by minting tokens.  This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision. The minting process involves creating a new position with specified parameters, such as token amounts and pool details. The response will confirm the successful creation of the LP position, providing users with the necessary information to manage their newly minted position. This functionality is crucial for users looking to expand their liquidity provision activities, offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.
 
         :param aerodrome_slipstream_mint_liquidity_provision_request: (required)
         :type aerodrome_slipstream_mint_liquidity_provision_request: AerodromeSlipstreamMintLiquidityProvisionRequest
@@ -1266,7 +435,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._mint_v0_aerodrome_slipstream_liquidity_provision_mint_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_mint_serialize(
             aerodrome_slipstream_mint_liquidity_provision_request=aerodrome_slipstream_mint_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1290,7 +459,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def mint_v0_aerodrome_slipstream_liquidity_provision_mint_post_without_preload_content(
+    def aerodrome_slipstream_liquidity_provision_mint_without_preload_content(
         self,
         aerodrome_slipstream_mint_liquidity_provision_request: AerodromeSlipstreamMintLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -1308,7 +477,7 @@ class AerodromeSlipstreamApi:
     ) -> RESTResponseType:
         """Open a new LP position
 
-        Initiate a new Liquidity Provider (LP) position by minting tokens. This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision. The minting process involves creating a new position with specified parameters, such as token amounts and pool details. The response will confirm the successful creation of the LP position, providing users with the necessary information to manage their newly minted position. This functionality is crucial for users looking to expand their liquidity provision activities, offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.
+        Initiate a new Liquidity Provider (LP) position by minting tokens.  This endpoint allows users to open a new LP position, enabling them to participate in liquidity provision. The minting process involves creating a new position with specified parameters, such as token amounts and pool details. The response will confirm the successful creation of the LP position, providing users with the necessary information to manage their newly minted position. This functionality is crucial for users looking to expand their liquidity provision activities, offering them the opportunity to engage in decentralized finance (DeFi) markets effectively.
 
         :param aerodrome_slipstream_mint_liquidity_provision_request: (required)
         :type aerodrome_slipstream_mint_liquidity_provision_request: AerodromeSlipstreamMintLiquidityProvisionRequest
@@ -1334,7 +503,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._mint_v0_aerodrome_slipstream_liquidity_provision_mint_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_mint_serialize(
             aerodrome_slipstream_mint_liquidity_provision_request=aerodrome_slipstream_mint_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1353,7 +522,7 @@ class AerodromeSlipstreamApi:
         return response_data.response
 
 
-    def _mint_v0_aerodrome_slipstream_liquidity_provision_mint_post_serialize(
+    def _aerodrome_slipstream_liquidity_provision_mint_serialize(
         self,
         aerodrome_slipstream_mint_liquidity_provision_request,
         _request_auth,
@@ -1431,9 +600,9 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post(
+    def aerodrome_slipstream_liquidity_provision_positions(
         self,
-        aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest,
+        aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1446,13 +615,13 @@ class AerodromeSlipstreamApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UnsignedTransaction:
-        """Swap - from specified amount
+    ) -> AerodromeLPPositionsResponse:
+        """List LP positions
 
-        This endpoint allows users to trade a specific amount of one token into another token using the Aerodrome Slipstream protocol. The transaction is executed by specifying the exact amount of the input token to be sold, and the system calculates the amount of the output token that will be received. The operation ensures that the trade is conducted within the constraints of the current market conditions, taking into account the liquidity and price impact. This endpoint is suitable for users who want to sell a precise quantity of a token and are willing to accept the resulting amount of the other token.
+        Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.  This endpoint allows users to query and obtain detailed information about their LP positions, including the number of active positions they hold. The response model, AerodromeLPPositionsInfo, provides a structured representation of the LP positions data, ensuring clarity and ease of use. This functionality is essential for users managing their liquidity provision activities, enabling them to make informed decisions based on their current positions.
 
-        :param aerodrome_slipstream_sell_exactly_request: (required)
-        :type aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest
+        :param aerodrome_slipstream_get_liquidity_provision_positions_request: (required)
+        :type aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1475,8 +644,8 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post_serialize(
-            aerodrome_slipstream_sell_exactly_request=aerodrome_slipstream_sell_exactly_request,
+        _param = self._aerodrome_slipstream_liquidity_provision_positions_serialize(
+            aerodrome_slipstream_get_liquidity_provision_positions_request=aerodrome_slipstream_get_liquidity_provision_positions_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1484,7 +653,7 @@ class AerodromeSlipstreamApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "AerodromeLPPositionsResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1499,9 +668,9 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post_with_http_info(
+    def aerodrome_slipstream_liquidity_provision_positions_with_http_info(
         self,
-        aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest,
+        aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1514,13 +683,13 @@ class AerodromeSlipstreamApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UnsignedTransaction]:
-        """Swap - from specified amount
+    ) -> ApiResponse[AerodromeLPPositionsResponse]:
+        """List LP positions
 
-        This endpoint allows users to trade a specific amount of one token into another token using the Aerodrome Slipstream protocol. The transaction is executed by specifying the exact amount of the input token to be sold, and the system calculates the amount of the output token that will be received. The operation ensures that the trade is conducted within the constraints of the current market conditions, taking into account the liquidity and price impact. This endpoint is suitable for users who want to sell a precise quantity of a token and are willing to accept the resulting amount of the other token.
+        Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.  This endpoint allows users to query and obtain detailed information about their LP positions, including the number of active positions they hold. The response model, AerodromeLPPositionsInfo, provides a structured representation of the LP positions data, ensuring clarity and ease of use. This functionality is essential for users managing their liquidity provision activities, enabling them to make informed decisions based on their current positions.
 
-        :param aerodrome_slipstream_sell_exactly_request: (required)
-        :type aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest
+        :param aerodrome_slipstream_get_liquidity_provision_positions_request: (required)
+        :type aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1543,8 +712,8 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post_serialize(
-            aerodrome_slipstream_sell_exactly_request=aerodrome_slipstream_sell_exactly_request,
+        _param = self._aerodrome_slipstream_liquidity_provision_positions_serialize(
+            aerodrome_slipstream_get_liquidity_provision_positions_request=aerodrome_slipstream_get_liquidity_provision_positions_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1552,7 +721,7 @@ class AerodromeSlipstreamApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "AerodromeLPPositionsResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1567,9 +736,9 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post_without_preload_content(
+    def aerodrome_slipstream_liquidity_provision_positions_without_preload_content(
         self,
-        aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest,
+        aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1583,12 +752,12 @@ class AerodromeSlipstreamApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Swap - from specified amount
+        """List LP positions
 
-        This endpoint allows users to trade a specific amount of one token into another token using the Aerodrome Slipstream protocol. The transaction is executed by specifying the exact amount of the input token to be sold, and the system calculates the amount of the output token that will be received. The operation ensures that the trade is conducted within the constraints of the current market conditions, taking into account the liquidity and price impact. This endpoint is suitable for users who want to sell a precise quantity of a token and are willing to accept the resulting amount of the other token.
+        Retrieve the total number of Liquidity Provider (LP) positions associated with a specific sender.  This endpoint allows users to query and obtain detailed information about their LP positions, including the number of active positions they hold. The response model, AerodromeLPPositionsInfo, provides a structured representation of the LP positions data, ensuring clarity and ease of use. This functionality is essential for users managing their liquidity provision activities, enabling them to make informed decisions based on their current positions.
 
-        :param aerodrome_slipstream_sell_exactly_request: (required)
-        :type aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest
+        :param aerodrome_slipstream_get_liquidity_provision_positions_request: (required)
+        :type aerodrome_slipstream_get_liquidity_provision_positions_request: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1611,8 +780,8 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post_serialize(
-            aerodrome_slipstream_sell_exactly_request=aerodrome_slipstream_sell_exactly_request,
+        _param = self._aerodrome_slipstream_liquidity_provision_positions_serialize(
+            aerodrome_slipstream_get_liquidity_provision_positions_request=aerodrome_slipstream_get_liquidity_provision_positions_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1620,7 +789,7 @@ class AerodromeSlipstreamApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "AerodromeLPPositionsResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1630,9 +799,9 @@ class AerodromeSlipstreamApi:
         return response_data.response
 
 
-    def _sell_exactly_v0_aerodrome_slipstream_swap_sell_exactly_post_serialize(
+    def _aerodrome_slipstream_liquidity_provision_positions_serialize(
         self,
-        aerodrome_slipstream_sell_exactly_request,
+        aerodrome_slipstream_get_liquidity_provision_positions_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1658,8 +827,8 @@ class AerodromeSlipstreamApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if aerodrome_slipstream_sell_exactly_request is not None:
-            _body_params = aerodrome_slipstream_sell_exactly_request
+        if aerodrome_slipstream_get_liquidity_provision_positions_request is not None:
+            _body_params = aerodrome_slipstream_get_liquidity_provision_positions_request
 
 
         # set the HTTP header `Accept`
@@ -1691,7 +860,7 @@ class AerodromeSlipstreamApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/v0/aerodrome_slipstream/swap/sell_exactly',
+            resource_path='/v0/aerodrome_slipstream/liquidity_provision/positions/get',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1708,7 +877,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post(
+    def aerodrome_slipstream_liquidity_provision_withdraw(
         self,
         aerodrome_slipstream_withdraw_liquidity_provision_request: AerodromeSlipstreamWithdrawLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -1726,7 +895,7 @@ class AerodromeSlipstreamApi:
     ) -> UnsignedTransaction:
         """Withdraw an LP position
 
-        Withdraw an existing Liquidity Provider (LP) position. This endpoint allows users to remove their tokens from an LP position, effectively closing their participation in the liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the response will confirm the successful removal of liquidity, providing users with details about the withdrawn tokens and any remaining balances. This functionality is essential for users who wish to exit their liquidity provision activities, enabling them to reclaim their assets and potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and secure withdrawal process, facilitating users' strategic management of their decentralized finance (DeFi) portfolios.
+        Withdraw an existing Liquidity Provider (LP) position.  This endpoint allows users to remove their tokens from an LP position, effectively closing their participation in the liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the response will confirm the successful removal of liquidity, providing users with details about the withdrawn tokens and any remaining balances. This functionality is essential for users who wish to exit their liquidity provision activities, enabling them to reclaim their assets and potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and secure withdrawal process, facilitating users' strategic management of their decentralized finance (DeFi) portfolios.
 
         :param aerodrome_slipstream_withdraw_liquidity_provision_request: (required)
         :type aerodrome_slipstream_withdraw_liquidity_provision_request: AerodromeSlipstreamWithdrawLiquidityProvisionRequest
@@ -1752,7 +921,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_withdraw_serialize(
             aerodrome_slipstream_withdraw_liquidity_provision_request=aerodrome_slipstream_withdraw_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1776,7 +945,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post_with_http_info(
+    def aerodrome_slipstream_liquidity_provision_withdraw_with_http_info(
         self,
         aerodrome_slipstream_withdraw_liquidity_provision_request: AerodromeSlipstreamWithdrawLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -1794,7 +963,7 @@ class AerodromeSlipstreamApi:
     ) -> ApiResponse[UnsignedTransaction]:
         """Withdraw an LP position
 
-        Withdraw an existing Liquidity Provider (LP) position. This endpoint allows users to remove their tokens from an LP position, effectively closing their participation in the liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the response will confirm the successful removal of liquidity, providing users with details about the withdrawn tokens and any remaining balances. This functionality is essential for users who wish to exit their liquidity provision activities, enabling them to reclaim their assets and potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and secure withdrawal process, facilitating users' strategic management of their decentralized finance (DeFi) portfolios.
+        Withdraw an existing Liquidity Provider (LP) position.  This endpoint allows users to remove their tokens from an LP position, effectively closing their participation in the liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the response will confirm the successful removal of liquidity, providing users with details about the withdrawn tokens and any remaining balances. This functionality is essential for users who wish to exit their liquidity provision activities, enabling them to reclaim their assets and potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and secure withdrawal process, facilitating users' strategic management of their decentralized finance (DeFi) portfolios.
 
         :param aerodrome_slipstream_withdraw_liquidity_provision_request: (required)
         :type aerodrome_slipstream_withdraw_liquidity_provision_request: AerodromeSlipstreamWithdrawLiquidityProvisionRequest
@@ -1820,7 +989,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_withdraw_serialize(
             aerodrome_slipstream_withdraw_liquidity_provision_request=aerodrome_slipstream_withdraw_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1844,7 +1013,7 @@ class AerodromeSlipstreamApi:
 
 
     @validate_call
-    def withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post_without_preload_content(
+    def aerodrome_slipstream_liquidity_provision_withdraw_without_preload_content(
         self,
         aerodrome_slipstream_withdraw_liquidity_provision_request: AerodromeSlipstreamWithdrawLiquidityProvisionRequest,
         _request_timeout: Union[
@@ -1862,7 +1031,7 @@ class AerodromeSlipstreamApi:
     ) -> RESTResponseType:
         """Withdraw an LP position
 
-        Withdraw an existing Liquidity Provider (LP) position. This endpoint allows users to remove their tokens from an LP position, effectively closing their participation in the liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the response will confirm the successful removal of liquidity, providing users with details about the withdrawn tokens and any remaining balances. This functionality is essential for users who wish to exit their liquidity provision activities, enabling them to reclaim their assets and potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and secure withdrawal process, facilitating users' strategic management of their decentralized finance (DeFi) portfolios.
+        Withdraw an existing Liquidity Provider (LP) position.  This endpoint allows users to remove their tokens from an LP position, effectively closing their participation in the liquidity pool. The withdrawal process involves specifying the LP position to be closed, and the response will confirm the successful removal of liquidity, providing users with details about the withdrawn tokens and any remaining balances. This functionality is essential for users who wish to exit their liquidity provision activities, enabling them to reclaim their assets and potentially reallocate them to other investment opportunities. The endpoint ensures a smooth and secure withdrawal process, facilitating users' strategic management of their decentralized finance (DeFi) portfolios.
 
         :param aerodrome_slipstream_withdraw_liquidity_provision_request: (required)
         :type aerodrome_slipstream_withdraw_liquidity_provision_request: AerodromeSlipstreamWithdrawLiquidityProvisionRequest
@@ -1888,7 +1057,7 @@ class AerodromeSlipstreamApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post_serialize(
+        _param = self._aerodrome_slipstream_liquidity_provision_withdraw_serialize(
             aerodrome_slipstream_withdraw_liquidity_provision_request=aerodrome_slipstream_withdraw_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1907,7 +1076,7 @@ class AerodromeSlipstreamApi:
         return response_data.response
 
 
-    def _withdraw_v0_aerodrome_slipstream_liquidity_provision_withdraw_post_serialize(
+    def _aerodrome_slipstream_liquidity_provision_withdraw_serialize(
         self,
         aerodrome_slipstream_withdraw_liquidity_provision_request,
         _request_auth,
@@ -1969,6 +1138,837 @@ class AerodromeSlipstreamApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v0/aerodrome_slipstream/liquidity_provision/withdraw',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def aerodrome_slipstream_pool_price(
+        self,
+        aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AerodromeSlipstreamPoolPriceResponse:
+        """Pool price
+
+        This endpoint retrieves the current price of a pool, indicating how many token0 you can purchase for 1 token1.  Note that this is an instantaneous price and may change during any trade. For a more accurate representation of the trade ratios between the two assets, consider using the quote endpoint.
+
+        :param aerodrome_slipstream_get_pool_price_request: (required)
+        :type aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_pool_price_serialize(
+            aerodrome_slipstream_get_pool_price_request=aerodrome_slipstream_get_pool_price_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AerodromeSlipstreamPoolPriceResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def aerodrome_slipstream_pool_price_with_http_info(
+        self,
+        aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AerodromeSlipstreamPoolPriceResponse]:
+        """Pool price
+
+        This endpoint retrieves the current price of a pool, indicating how many token0 you can purchase for 1 token1.  Note that this is an instantaneous price and may change during any trade. For a more accurate representation of the trade ratios between the two assets, consider using the quote endpoint.
+
+        :param aerodrome_slipstream_get_pool_price_request: (required)
+        :type aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_pool_price_serialize(
+            aerodrome_slipstream_get_pool_price_request=aerodrome_slipstream_get_pool_price_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AerodromeSlipstreamPoolPriceResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def aerodrome_slipstream_pool_price_without_preload_content(
+        self,
+        aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Pool price
+
+        This endpoint retrieves the current price of a pool, indicating how many token0 you can purchase for 1 token1.  Note that this is an instantaneous price and may change during any trade. For a more accurate representation of the trade ratios between the two assets, consider using the quote endpoint.
+
+        :param aerodrome_slipstream_get_pool_price_request: (required)
+        :type aerodrome_slipstream_get_pool_price_request: AerodromeSlipstreamGetPoolPriceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_pool_price_serialize(
+            aerodrome_slipstream_get_pool_price_request=aerodrome_slipstream_get_pool_price_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AerodromeSlipstreamPoolPriceResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _aerodrome_slipstream_pool_price_serialize(
+        self,
+        aerodrome_slipstream_get_pool_price_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if aerodrome_slipstream_get_pool_price_request is not None:
+            _body_params = aerodrome_slipstream_get_pool_price_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/aerodrome_slipstream/pool_price/get',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def aerodrome_slipstream_swap_buy_exactly(
+        self,
+        aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UnsignedTransaction:
+        """Swap - into specified amount
+
+        This endpoint facilitates the trading of tokens by allowing users to specify the exact amount of the output token they wish to receive.  Utilizing the Aerodrome Slipstream protocol, the system calculates the necessary amount of the input token required to achieve the desired output. This operation is particularly useful for users who have a specific target amount of the output token in mind and are willing to provide the corresponding input token amount. The transaction is executed with consideration of current market conditions, including liquidity and price impact, ensuring that the trade is completed efficiently and effectively.
+
+        :param aerodrome_slipstream_buy_exactly_request: (required)
+        :type aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_swap_buy_exactly_serialize(
+            aerodrome_slipstream_buy_exactly_request=aerodrome_slipstream_buy_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def aerodrome_slipstream_swap_buy_exactly_with_http_info(
+        self,
+        aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UnsignedTransaction]:
+        """Swap - into specified amount
+
+        This endpoint facilitates the trading of tokens by allowing users to specify the exact amount of the output token they wish to receive.  Utilizing the Aerodrome Slipstream protocol, the system calculates the necessary amount of the input token required to achieve the desired output. This operation is particularly useful for users who have a specific target amount of the output token in mind and are willing to provide the corresponding input token amount. The transaction is executed with consideration of current market conditions, including liquidity and price impact, ensuring that the trade is completed efficiently and effectively.
+
+        :param aerodrome_slipstream_buy_exactly_request: (required)
+        :type aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_swap_buy_exactly_serialize(
+            aerodrome_slipstream_buy_exactly_request=aerodrome_slipstream_buy_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def aerodrome_slipstream_swap_buy_exactly_without_preload_content(
+        self,
+        aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Swap - into specified amount
+
+        This endpoint facilitates the trading of tokens by allowing users to specify the exact amount of the output token they wish to receive.  Utilizing the Aerodrome Slipstream protocol, the system calculates the necessary amount of the input token required to achieve the desired output. This operation is particularly useful for users who have a specific target amount of the output token in mind and are willing to provide the corresponding input token amount. The transaction is executed with consideration of current market conditions, including liquidity and price impact, ensuring that the trade is completed efficiently and effectively.
+
+        :param aerodrome_slipstream_buy_exactly_request: (required)
+        :type aerodrome_slipstream_buy_exactly_request: AerodromeSlipstreamBuyExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_swap_buy_exactly_serialize(
+            aerodrome_slipstream_buy_exactly_request=aerodrome_slipstream_buy_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _aerodrome_slipstream_swap_buy_exactly_serialize(
+        self,
+        aerodrome_slipstream_buy_exactly_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if aerodrome_slipstream_buy_exactly_request is not None:
+            _body_params = aerodrome_slipstream_buy_exactly_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/aerodrome_slipstream/swap/buy_exactly',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def aerodrome_slipstream_swap_sell_exactly(
+        self,
+        aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UnsignedTransaction:
+        """Swap - from specified amount
+
+        This endpoint allows users to trade a specific amount of one token into another token using the Aerodrome Slipstream protocol.  The transaction is executed by specifying the exact amount of the input token to be sold, and the system calculates the amount of the output token that will be received. The operation ensures that the trade is conducted within the constraints of the current market conditions, taking into account the liquidity and price impact. This endpoint is suitable for users who want to sell a precise quantity of a token and are willing to accept the resulting amount of the other token.
+
+        :param aerodrome_slipstream_sell_exactly_request: (required)
+        :type aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_swap_sell_exactly_serialize(
+            aerodrome_slipstream_sell_exactly_request=aerodrome_slipstream_sell_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def aerodrome_slipstream_swap_sell_exactly_with_http_info(
+        self,
+        aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UnsignedTransaction]:
+        """Swap - from specified amount
+
+        This endpoint allows users to trade a specific amount of one token into another token using the Aerodrome Slipstream protocol.  The transaction is executed by specifying the exact amount of the input token to be sold, and the system calculates the amount of the output token that will be received. The operation ensures that the trade is conducted within the constraints of the current market conditions, taking into account the liquidity and price impact. This endpoint is suitable for users who want to sell a precise quantity of a token and are willing to accept the resulting amount of the other token.
+
+        :param aerodrome_slipstream_sell_exactly_request: (required)
+        :type aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_swap_sell_exactly_serialize(
+            aerodrome_slipstream_sell_exactly_request=aerodrome_slipstream_sell_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def aerodrome_slipstream_swap_sell_exactly_without_preload_content(
+        self,
+        aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Swap - from specified amount
+
+        This endpoint allows users to trade a specific amount of one token into another token using the Aerodrome Slipstream protocol.  The transaction is executed by specifying the exact amount of the input token to be sold, and the system calculates the amount of the output token that will be received. The operation ensures that the trade is conducted within the constraints of the current market conditions, taking into account the liquidity and price impact. This endpoint is suitable for users who want to sell a precise quantity of a token and are willing to accept the resulting amount of the other token.
+
+        :param aerodrome_slipstream_sell_exactly_request: (required)
+        :type aerodrome_slipstream_sell_exactly_request: AerodromeSlipstreamSellExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aerodrome_slipstream_swap_sell_exactly_serialize(
+            aerodrome_slipstream_sell_exactly_request=aerodrome_slipstream_sell_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _aerodrome_slipstream_swap_sell_exactly_serialize(
+        self,
+        aerodrome_slipstream_sell_exactly_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if aerodrome_slipstream_sell_exactly_request is not None:
+            _body_params = aerodrome_slipstream_sell_exactly_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/aerodrome_slipstream/swap/sell_exactly',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

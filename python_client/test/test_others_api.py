@@ -26,92 +26,92 @@ class TestOthersApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_get_allowance_v0_generic_allowance_get_post(self) -> None:
-        """Test case for get_allowance_v0_generic_allowance_get_post
+    def test_generic_allowance(self) -> None:
+        """Test case for generic_allowance
 
         Get allowance - Protocol
         """
         pass
 
-    def test_get_balance_v0_generic_balance_get_post(self) -> None:
-        """Test case for get_balance_v0_generic_balance_get_post
-
-        User token balance
-        """
-        pass
-
-    def test_get_ens_details_v0_generic_ens_get_post(self) -> None:
-        """Test case for get_ens_details_v0_generic_ens_get_post
-
-        Resolve ENS
-        """
-        pass
-
-    def test_get_portfolio_v0_generic_portfolio_get_post(self) -> None:
-        """Test case for get_portfolio_v0_generic_portfolio_get_post
-
-        List user portfolio
-        """
-        pass
-
-    def test_get_price_v0_generic_price_usd_get_post(self) -> None:
-        """Test case for get_price_v0_generic_price_usd_get_post
-
-        Token price
-        """
-        pass
-
-    def test_get_tokens_v0_generic_supported_tokens_get_post(self) -> None:
-        """Test case for get_tokens_v0_generic_supported_tokens_get_post
-
-        List supported tokens
-        """
-        pass
-
-    def test_set_allowance_v0_generic_allowance_set_post(self) -> None:
-        """Test case for set_allowance_v0_generic_allowance_set_post
+    def test_generic_allowance_set(self) -> None:
+        """Test case for generic_allowance_set
 
         Set Allowance - Protocol
         """
         pass
 
-    def test_set_any_allowance_v0_generic_allowance_set_any_post(self) -> None:
-        """Test case for set_any_allowance_v0_generic_allowance_set_any_post
+    def test_generic_allowance_set_any(self) -> None:
+        """Test case for generic_allowance_set_any
 
         Set Allowance - Token
         """
         pass
 
-    def test_transfer_erc20_v0_generic_transfer_erc20_post(self) -> None:
-        """Test case for transfer_erc20_v0_generic_transfer_erc20_post
+    def test_generic_balance(self) -> None:
+        """Test case for generic_balance
+
+        User token balance
+        """
+        pass
+
+    def test_generic_ens(self) -> None:
+        """Test case for generic_ens
+
+        Resolve ENS
+        """
+        pass
+
+    def test_generic_portfolio(self) -> None:
+        """Test case for generic_portfolio
+
+        List user portfolio
+        """
+        pass
+
+    def test_generic_price_usd(self) -> None:
+        """Test case for generic_price_usd
+
+        Token price
+        """
+        pass
+
+    def test_generic_supported_tokens(self) -> None:
+        """Test case for generic_supported_tokens
+
+        List supported tokens
+        """
+        pass
+
+    def test_generic_transfer_erc20(self) -> None:
+        """Test case for generic_transfer_erc20
 
         Transfer Token
         """
         pass
 
-    def test_transfer_native_token_v0_generic_transfer_native_token_post(self) -> None:
-        """Test case for transfer_native_token_v0_generic_transfer_native_token_post
+    def test_generic_transfer_native_token(self) -> None:
+        """Test case for generic_transfer_native_token
 
         Transfer ETH
         """
         pass
 
-    def test_unwrap_weth_v0_generic_unwrap_weth_post(self) -> None:
-        """Test case for unwrap_weth_v0_generic_unwrap_weth_post
+    def test_generic_unwrap_weth(self) -> None:
+        """Test case for generic_unwrap_weth
 
         Unwrap WETH
         """
         pass
 
-    def test_visualize_portfolio_v0_generic_visualize_portfolio_get_post(self) -> None:
-        """Test case for visualize_portfolio_v0_generic_visualize_portfolio_get_post
+    def test_generic_visualize_portfolio(self) -> None:
+        """Test case for generic_visualize_portfolio
 
         Visualize user portfolio
         """
         pass
 
-    def test_wrap_eth_v0_generic_wrap_eth_post(self) -> None:
-        """Test case for wrap_eth_v0_generic_wrap_eth_post
+    def test_generic_wrap_eth(self) -> None:
+        """Test case for generic_wrap_eth
 
         Wrap ETH
         """

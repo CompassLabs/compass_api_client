@@ -26,57 +26,57 @@ class TestAaveV3Api(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_borrow_v0_aave_borrow_post(self) -> None:
-        """Test case for borrow_v0_aave_borrow_post
-
-        Borrow
-        """
-        pass
-
-    def test_get_asset_price_v0_aave_asset_price_get_post(self) -> None:
-        """Test case for get_asset_price_v0_aave_asset_price_get_post
+    def test_aave_asset_price(self) -> None:
+        """Test case for aave_asset_price
 
         Token prices
         """
         pass
 
-    def test_get_liquidity_change_v0_aave_liquidity_change_get_post(self) -> None:
-        """Test case for get_liquidity_change_v0_aave_liquidity_change_get_post
+    def test_aave_borrow(self) -> None:
+        """Test case for aave_borrow
+
+        Borrow
+        """
+        pass
+
+    def test_aave_liquidity_change(self) -> None:
+        """Test case for aave_liquidity_change
 
         Liquidity index
         """
         pass
 
-    def test_get_user_position_per_token_v0_aave_user_position_per_token_get_post(self) -> None:
-        """Test case for get_user_position_per_token_v0_aave_user_position_per_token_get_post
-
-        Positions - per token
-        """
-        pass
-
-    def test_get_user_position_summary_v0_aave_user_position_summary_get_post(self) -> None:
-        """Test case for get_user_position_summary_v0_aave_user_position_summary_get_post
-
-        Positions - total
-        """
-        pass
-
-    def test_repay_v0_aave_repay_post(self) -> None:
-        """Test case for repay_v0_aave_repay_post
+    def test_aave_repay(self) -> None:
+        """Test case for aave_repay
 
         Repay loans
         """
         pass
 
-    def test_supply_v0_aave_supply_post(self) -> None:
-        """Test case for supply_v0_aave_supply_post
+    def test_aave_supply(self) -> None:
+        """Test case for aave_supply
 
         Supply/Lend
         """
         pass
 
-    def test_withdraw_v0_aave_withdraw_post(self) -> None:
-        """Test case for withdraw_v0_aave_withdraw_post
+    def test_aave_user_position_per_token(self) -> None:
+        """Test case for aave_user_position_per_token
+
+        Positions - per token
+        """
+        pass
+
+    def test_aave_user_position_summary(self) -> None:
+        """Test case for aave_user_position_summary
+
+        Positions - total
+        """
+        pass
+
+    def test_aave_withdraw(self) -> None:
+        """Test case for aave_withdraw
 
         Unstake
         """

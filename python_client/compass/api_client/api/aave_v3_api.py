@@ -49,284 +49,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def borrow_v0_aave_borrow_post(
-        self,
-        aave_borrow_request: AaveBorrowRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UnsignedTransaction:
-        """Borrow
-
-        You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
-
-        :param aave_borrow_request: (required)
-        :type aave_borrow_request: AaveBorrowRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._borrow_v0_aave_borrow_post_serialize(
-            aave_borrow_request=aave_borrow_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def borrow_v0_aave_borrow_post_with_http_info(
-        self,
-        aave_borrow_request: AaveBorrowRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UnsignedTransaction]:
-        """Borrow
-
-        You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
-
-        :param aave_borrow_request: (required)
-        :type aave_borrow_request: AaveBorrowRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._borrow_v0_aave_borrow_post_serialize(
-            aave_borrow_request=aave_borrow_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def borrow_v0_aave_borrow_post_without_preload_content(
-        self,
-        aave_borrow_request: AaveBorrowRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Borrow
-
-        You will pay interest for your borrows. Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
-
-        :param aave_borrow_request: (required)
-        :type aave_borrow_request: AaveBorrowRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._borrow_v0_aave_borrow_post_serialize(
-            aave_borrow_request=aave_borrow_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _borrow_v0_aave_borrow_post_serialize(
-        self,
-        aave_borrow_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if aave_borrow_request is not None:
-            _body_params = aave_borrow_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/aave/borrow',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_asset_price_v0_aave_asset_price_get_post(
+    def aave_asset_price(
         self,
         aave_get_asset_price_request: AaveGetAssetPriceRequest,
         _request_timeout: Union[
@@ -344,7 +67,7 @@ class AaveV3Api:
     ) -> AaveAssetPriceResponse:
         """Token prices
 
-        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
+        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol.  It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up- to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
 
         :param aave_get_asset_price_request: (required)
         :type aave_get_asset_price_request: AaveGetAssetPriceRequest
@@ -370,7 +93,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_asset_price_v0_aave_asset_price_get_post_serialize(
+        _param = self._aave_asset_price_serialize(
             aave_get_asset_price_request=aave_get_asset_price_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -394,7 +117,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def get_asset_price_v0_aave_asset_price_get_post_with_http_info(
+    def aave_asset_price_with_http_info(
         self,
         aave_get_asset_price_request: AaveGetAssetPriceRequest,
         _request_timeout: Union[
@@ -412,7 +135,7 @@ class AaveV3Api:
     ) -> ApiResponse[AaveAssetPriceResponse]:
         """Token prices
 
-        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
+        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol.  It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up- to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
 
         :param aave_get_asset_price_request: (required)
         :type aave_get_asset_price_request: AaveGetAssetPriceRequest
@@ -438,7 +161,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_asset_price_v0_aave_asset_price_get_post_serialize(
+        _param = self._aave_asset_price_serialize(
             aave_get_asset_price_request=aave_get_asset_price_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -462,7 +185,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def get_asset_price_v0_aave_asset_price_get_post_without_preload_content(
+    def aave_asset_price_without_preload_content(
         self,
         aave_get_asset_price_request: AaveGetAssetPriceRequest,
         _request_timeout: Union[
@@ -480,7 +203,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Token prices
 
-        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol. It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
+        This endpoint retrieves the current price of a specified asset in USD as determined by the Aave protocol.  It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up- to-date information. The request requires the asset identifier and the blockchain network (chain) on which the asset resides. The response provides the asset price in a standardized format, converted from Wei to the base currency decimals defined by Aave.
 
         :param aave_get_asset_price_request: (required)
         :type aave_get_asset_price_request: AaveGetAssetPriceRequest
@@ -506,7 +229,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_asset_price_v0_aave_asset_price_get_post_serialize(
+        _param = self._aave_asset_price_serialize(
             aave_get_asset_price_request=aave_get_asset_price_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -525,7 +248,7 @@ class AaveV3Api:
         return response_data.response
 
 
-    def _get_asset_price_v0_aave_asset_price_get_post_serialize(
+    def _aave_asset_price_serialize(
         self,
         aave_get_asset_price_request,
         _request_auth,
@@ -603,7 +326,284 @@ class AaveV3Api:
 
 
     @validate_call
-    def get_liquidity_change_v0_aave_liquidity_change_get_post(
+    def aave_borrow(
+        self,
+        aave_borrow_request: AaveBorrowRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UnsignedTransaction:
+        """Borrow
+
+        You will pay interest for your borrows.  Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+
+        :param aave_borrow_request: (required)
+        :type aave_borrow_request: AaveBorrowRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_borrow_serialize(
+            aave_borrow_request=aave_borrow_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def aave_borrow_with_http_info(
+        self,
+        aave_borrow_request: AaveBorrowRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UnsignedTransaction]:
+        """Borrow
+
+        You will pay interest for your borrows.  Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+
+        :param aave_borrow_request: (required)
+        :type aave_borrow_request: AaveBorrowRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_borrow_serialize(
+            aave_borrow_request=aave_borrow_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def aave_borrow_without_preload_content(
+        self,
+        aave_borrow_request: AaveBorrowRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Borrow
+
+        You will pay interest for your borrows.  Price changes in the assets may lead to some or all of your collateral being liquidated, if the borrow position becomes unhealthy.
+
+        :param aave_borrow_request: (required)
+        :type aave_borrow_request: AaveBorrowRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_borrow_serialize(
+            aave_borrow_request=aave_borrow_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _aave_borrow_serialize(
+        self,
+        aave_borrow_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if aave_borrow_request is not None:
+            _body_params = aave_borrow_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/aave/borrow',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def aave_liquidity_change(
         self,
         aave_get_liquidity_change_request: AaveGetLiquidityChangeRequest,
         _request_timeout: Union[
@@ -621,7 +621,7 @@ class AaveV3Api:
     ) -> AaveLiquidityChangeResponse:
         """Liquidity index
 
-        This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
+        This endpoint retrieves the change in the reserve liquidity index between two provided blocks.  This is then converted to a percentage change. The liquidity index represents the change in debt and interest accrual over each block. Aave does not store individual user balances directly. Instead, it keeps a scaled balance and uses the liquidity index to compute real balances dynamically. If a user was to have deposited tokens at the start block, a positive liquidity index change will represent accrued interest and a profit. If tokens were borrowed at the start block, this debt will increase, compound on itself and represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
         :param aave_get_liquidity_change_request: (required)
         :type aave_get_liquidity_change_request: AaveGetLiquidityChangeRequest
@@ -647,7 +647,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_liquidity_change_v0_aave_liquidity_change_get_post_serialize(
+        _param = self._aave_liquidity_change_serialize(
             aave_get_liquidity_change_request=aave_get_liquidity_change_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -671,7 +671,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def get_liquidity_change_v0_aave_liquidity_change_get_post_with_http_info(
+    def aave_liquidity_change_with_http_info(
         self,
         aave_get_liquidity_change_request: AaveGetLiquidityChangeRequest,
         _request_timeout: Union[
@@ -689,7 +689,7 @@ class AaveV3Api:
     ) -> ApiResponse[AaveLiquidityChangeResponse]:
         """Liquidity index
 
-        This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
+        This endpoint retrieves the change in the reserve liquidity index between two provided blocks.  This is then converted to a percentage change. The liquidity index represents the change in debt and interest accrual over each block. Aave does not store individual user balances directly. Instead, it keeps a scaled balance and uses the liquidity index to compute real balances dynamically. If a user was to have deposited tokens at the start block, a positive liquidity index change will represent accrued interest and a profit. If tokens were borrowed at the start block, this debt will increase, compound on itself and represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
         :param aave_get_liquidity_change_request: (required)
         :type aave_get_liquidity_change_request: AaveGetLiquidityChangeRequest
@@ -715,7 +715,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_liquidity_change_v0_aave_liquidity_change_get_post_serialize(
+        _param = self._aave_liquidity_change_serialize(
             aave_get_liquidity_change_request=aave_get_liquidity_change_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -739,7 +739,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def get_liquidity_change_v0_aave_liquidity_change_get_post_without_preload_content(
+    def aave_liquidity_change_without_preload_content(
         self,
         aave_get_liquidity_change_request: AaveGetLiquidityChangeRequest,
         _request_timeout: Union[
@@ -757,7 +757,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Liquidity index
 
-        This endpoint retrieves the change in the reserve liquidity index between two provided         blocks. This is then converted to a percentage change. The liquidity index represents the         change in debt and interest accrual over each block. Aave does not store individual user         balances directly. Instead, it keeps a scaled balance and uses the liquidity index to         compute real balances dynamically. If a user was to have deposited tokens at the start         block, a positive liquidity index change will represent accrued interest and a profit. If         tokens were borrowed at the start block, this debt will increase, compound on itself and         represent large debt. The reverse in both cases is true if the liquidity index is negative.
+        This endpoint retrieves the change in the reserve liquidity index between two provided blocks.  This is then converted to a percentage change. The liquidity index represents the change in debt and interest accrual over each block. Aave does not store individual user balances directly. Instead, it keeps a scaled balance and uses the liquidity index to compute real balances dynamically. If a user was to have deposited tokens at the start block, a positive liquidity index change will represent accrued interest and a profit. If tokens were borrowed at the start block, this debt will increase, compound on itself and represent large debt. The reverse in both cases is true if the liquidity index is negative.
 
         :param aave_get_liquidity_change_request: (required)
         :type aave_get_liquidity_change_request: AaveGetLiquidityChangeRequest
@@ -783,7 +783,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_liquidity_change_v0_aave_liquidity_change_get_post_serialize(
+        _param = self._aave_liquidity_change_serialize(
             aave_get_liquidity_change_request=aave_get_liquidity_change_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -802,7 +802,7 @@ class AaveV3Api:
         return response_data.response
 
 
-    def _get_liquidity_change_v0_aave_liquidity_change_get_post_serialize(
+    def _aave_liquidity_change_serialize(
         self,
         aave_get_liquidity_change_request,
         _request_auth,
@@ -880,561 +880,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def get_user_position_per_token_v0_aave_user_position_per_token_get_post(
-        self,
-        aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AaveUserPositionPerTokenResponse:
-        """Positions - per token
-
-        This endpoint retrieves the user's position for a specific token on the AAVE         platform. It provides key financial metrics including the current aToken balance,         current stable debt, current variable debt, principal stable debt, principal variable         debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and         liquidity rate. These metrics are calculated by aggregating data across all open         positions held by the user for the specified token, offering a detailed view of their         financial standing within the AAVE ecosystem.
-
-        :param aave_get_user_position_per_token_request: (required)
-        :type aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_user_position_per_token_v0_aave_user_position_per_token_get_post_serialize(
-            aave_get_user_position_per_token_request=aave_get_user_position_per_token_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AaveUserPositionPerTokenResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_user_position_per_token_v0_aave_user_position_per_token_get_post_with_http_info(
-        self,
-        aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AaveUserPositionPerTokenResponse]:
-        """Positions - per token
-
-        This endpoint retrieves the user's position for a specific token on the AAVE         platform. It provides key financial metrics including the current aToken balance,         current stable debt, current variable debt, principal stable debt, principal variable         debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and         liquidity rate. These metrics are calculated by aggregating data across all open         positions held by the user for the specified token, offering a detailed view of their         financial standing within the AAVE ecosystem.
-
-        :param aave_get_user_position_per_token_request: (required)
-        :type aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_user_position_per_token_v0_aave_user_position_per_token_get_post_serialize(
-            aave_get_user_position_per_token_request=aave_get_user_position_per_token_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AaveUserPositionPerTokenResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_user_position_per_token_v0_aave_user_position_per_token_get_post_without_preload_content(
-        self,
-        aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Positions - per token
-
-        This endpoint retrieves the user's position for a specific token on the AAVE         platform. It provides key financial metrics including the current aToken balance,         current stable debt, current variable debt, principal stable debt, principal variable         debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and         liquidity rate. These metrics are calculated by aggregating data across all open         positions held by the user for the specified token, offering a detailed view of their         financial standing within the AAVE ecosystem.
-
-        :param aave_get_user_position_per_token_request: (required)
-        :type aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_user_position_per_token_v0_aave_user_position_per_token_get_post_serialize(
-            aave_get_user_position_per_token_request=aave_get_user_position_per_token_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AaveUserPositionPerTokenResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_user_position_per_token_v0_aave_user_position_per_token_get_post_serialize(
-        self,
-        aave_get_user_position_per_token_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if aave_get_user_position_per_token_request is not None:
-            _body_params = aave_get_user_position_per_token_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/aave/user_position_per_token/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_user_position_summary_v0_aave_user_position_summary_get_post(
-        self,
-        aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AaveUserPositionSummaryResponse:
-        """Positions - total
-
-        This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.         It provides key financial metrics including the total collateral deposited, total debt         accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,         and the health factor of the user's account. These metrics are calculated by aggregating         data across all open positions held by the user, offering a holistic view of their financial         standing within the AAVE ecosystem.
-
-        :param aave_get_user_position_summary_request: (required)
-        :type aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_user_position_summary_v0_aave_user_position_summary_get_post_serialize(
-            aave_get_user_position_summary_request=aave_get_user_position_summary_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AaveUserPositionSummaryResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_user_position_summary_v0_aave_user_position_summary_get_post_with_http_info(
-        self,
-        aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AaveUserPositionSummaryResponse]:
-        """Positions - total
-
-        This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.         It provides key financial metrics including the total collateral deposited, total debt         accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,         and the health factor of the user's account. These metrics are calculated by aggregating         data across all open positions held by the user, offering a holistic view of their financial         standing within the AAVE ecosystem.
-
-        :param aave_get_user_position_summary_request: (required)
-        :type aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_user_position_summary_v0_aave_user_position_summary_get_post_serialize(
-            aave_get_user_position_summary_request=aave_get_user_position_summary_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AaveUserPositionSummaryResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_user_position_summary_v0_aave_user_position_summary_get_post_without_preload_content(
-        self,
-        aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Positions - total
-
-        This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.         It provides key financial metrics including the total collateral deposited, total debt         accrued, available borrowing capacity, liquidation threshold, maximum loan-to-value ratio,         and the health factor of the user's account. These metrics are calculated by aggregating         data across all open positions held by the user, offering a holistic view of their financial         standing within the AAVE ecosystem.
-
-        :param aave_get_user_position_summary_request: (required)
-        :type aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_user_position_summary_v0_aave_user_position_summary_get_post_serialize(
-            aave_get_user_position_summary_request=aave_get_user_position_summary_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AaveUserPositionSummaryResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_user_position_summary_v0_aave_user_position_summary_get_post_serialize(
-        self,
-        aave_get_user_position_summary_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if aave_get_user_position_summary_request is not None:
-            _body_params = aave_get_user_position_summary_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/aave/user_position_summary/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def repay_v0_aave_repay_post(
+    def aave_repay(
         self,
         aave_repay_request: AaveRepayRequest,
         _request_timeout: Union[
@@ -1452,7 +898,7 @@ class AaveV3Api:
     ) -> UnsignedTransaction:
         """Repay loans
 
-        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform. By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
+        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform.  By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
 
         :param aave_repay_request: (required)
         :type aave_repay_request: AaveRepayRequest
@@ -1478,7 +924,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._repay_v0_aave_repay_post_serialize(
+        _param = self._aave_repay_serialize(
             aave_repay_request=aave_repay_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1502,7 +948,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def repay_v0_aave_repay_post_with_http_info(
+    def aave_repay_with_http_info(
         self,
         aave_repay_request: AaveRepayRequest,
         _request_timeout: Union[
@@ -1520,7 +966,7 @@ class AaveV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Repay loans
 
-        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform. By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
+        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform.  By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
 
         :param aave_repay_request: (required)
         :type aave_repay_request: AaveRepayRequest
@@ -1546,7 +992,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._repay_v0_aave_repay_post_serialize(
+        _param = self._aave_repay_serialize(
             aave_repay_request=aave_repay_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1570,7 +1016,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def repay_v0_aave_repay_post_without_preload_content(
+    def aave_repay_without_preload_content(
         self,
         aave_repay_request: AaveRepayRequest,
         _request_timeout: Union[
@@ -1588,7 +1034,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Repay loans
 
-        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform. By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
+        This endpoint allows users to repay a portion or the entirety of their borrowed tokens on the Aave platform.  By repaying borrowed amounts, users can improve their health factor, which is a measure of the safety of their loan position. A higher health factor reduces the risk of liquidation, ensuring a more secure borrowing experience. The endpoint requires specifying the chain and the details of the repayment transaction, including the amount and the asset to be repaid.
 
         :param aave_repay_request: (required)
         :type aave_repay_request: AaveRepayRequest
@@ -1614,7 +1060,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._repay_v0_aave_repay_post_serialize(
+        _param = self._aave_repay_serialize(
             aave_repay_request=aave_repay_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1633,7 +1079,7 @@ class AaveV3Api:
         return response_data.response
 
 
-    def _repay_v0_aave_repay_post_serialize(
+    def _aave_repay_serialize(
         self,
         aave_repay_request,
         _request_auth,
@@ -1711,7 +1157,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def supply_v0_aave_supply_post(
+    def aave_supply(
         self,
         aave_supply_request: AaveSupplyRequest,
         _request_timeout: Union[
@@ -1729,7 +1175,7 @@ class AaveV3Api:
     ) -> UnsignedTransaction:
         """Supply/Lend
 
-        By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
+        By supplying assets, users can earn interest on their deposits.  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.  Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 
         :param aave_supply_request: (required)
         :type aave_supply_request: AaveSupplyRequest
@@ -1755,7 +1201,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._supply_v0_aave_supply_post_serialize(
+        _param = self._aave_supply_serialize(
             aave_supply_request=aave_supply_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1779,7 +1225,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def supply_v0_aave_supply_post_with_http_info(
+    def aave_supply_with_http_info(
         self,
         aave_supply_request: AaveSupplyRequest,
         _request_timeout: Union[
@@ -1797,7 +1243,7 @@ class AaveV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Supply/Lend
 
-        By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
+        By supplying assets, users can earn interest on their deposits.  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.  Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 
         :param aave_supply_request: (required)
         :type aave_supply_request: AaveSupplyRequest
@@ -1823,7 +1269,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._supply_v0_aave_supply_post_serialize(
+        _param = self._aave_supply_serialize(
             aave_supply_request=aave_supply_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1847,7 +1293,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def supply_v0_aave_supply_post_without_preload_content(
+    def aave_supply_without_preload_content(
         self,
         aave_supply_request: AaveSupplyRequest,
         _request_timeout: Union[
@@ -1865,7 +1311,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Supply/Lend
 
-        By supplying assets, users can earn interest on their deposits  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.    Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
+        By supplying assets, users can earn interest on their deposits.  The supplied collateral can be used as a basis for borrowing other assets, allowing users to leverage their positions. In combination with a trading protocol, this can create leverage.  Overall, this endpoint is a critical component for users looking to maximize their asset utility within the AAVEv3 ecosystem, providing both earning potential and borrowing flexibility.
 
         :param aave_supply_request: (required)
         :type aave_supply_request: AaveSupplyRequest
@@ -1891,7 +1337,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._supply_v0_aave_supply_post_serialize(
+        _param = self._aave_supply_serialize(
             aave_supply_request=aave_supply_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1910,7 +1356,7 @@ class AaveV3Api:
         return response_data.response
 
 
-    def _supply_v0_aave_supply_post_serialize(
+    def _aave_supply_serialize(
         self,
         aave_supply_request,
         _request_auth,
@@ -1988,7 +1434,561 @@ class AaveV3Api:
 
 
     @validate_call
-    def withdraw_v0_aave_withdraw_post(
+    def aave_user_position_per_token(
+        self,
+        aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AaveUserPositionPerTokenResponse:
+        """Positions - per token
+
+        This endpoint retrieves the user's position for a specific token on the AAVE platform.  It provides key financial metrics including the current aToken balance, current stable debt, current variable debt, principal stable debt, principal variable debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and liquidity rate. These metrics are calculated by aggregating data across all open positions held by the user for the specified token, offering a detailed view of their financial standing within the AAVE ecosystem.
+
+        :param aave_get_user_position_per_token_request: (required)
+        :type aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_user_position_per_token_serialize(
+            aave_get_user_position_per_token_request=aave_get_user_position_per_token_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AaveUserPositionPerTokenResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def aave_user_position_per_token_with_http_info(
+        self,
+        aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AaveUserPositionPerTokenResponse]:
+        """Positions - per token
+
+        This endpoint retrieves the user's position for a specific token on the AAVE platform.  It provides key financial metrics including the current aToken balance, current stable debt, current variable debt, principal stable debt, principal variable debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and liquidity rate. These metrics are calculated by aggregating data across all open positions held by the user for the specified token, offering a detailed view of their financial standing within the AAVE ecosystem.
+
+        :param aave_get_user_position_per_token_request: (required)
+        :type aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_user_position_per_token_serialize(
+            aave_get_user_position_per_token_request=aave_get_user_position_per_token_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AaveUserPositionPerTokenResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def aave_user_position_per_token_without_preload_content(
+        self,
+        aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Positions - per token
+
+        This endpoint retrieves the user's position for a specific token on the AAVE platform.  It provides key financial metrics including the current aToken balance, current stable debt, current variable debt, principal stable debt, principal variable debt, stable borrow rate, stable borrow rate for new loans, variable borrow rate, and liquidity rate. These metrics are calculated by aggregating data across all open positions held by the user for the specified token, offering a detailed view of their financial standing within the AAVE ecosystem.
+
+        :param aave_get_user_position_per_token_request: (required)
+        :type aave_get_user_position_per_token_request: AaveGetUserPositionPerTokenRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_user_position_per_token_serialize(
+            aave_get_user_position_per_token_request=aave_get_user_position_per_token_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AaveUserPositionPerTokenResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _aave_user_position_per_token_serialize(
+        self,
+        aave_get_user_position_per_token_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if aave_get_user_position_per_token_request is not None:
+            _body_params = aave_get_user_position_per_token_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/aave/user_position_per_token/get',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def aave_user_position_summary(
+        self,
+        aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AaveUserPositionSummaryResponse:
+        """Positions - total
+
+        This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.  It provides key financial metrics including the total collateral deposited, total debt accrued, available borrowing capacity, liquidation threshold, maximum loan-to- value ratio, and the health factor of the user's account. These metrics are calculated by aggregating data across all open positions held by the user, offering a holistic view of their financial standing within the AAVE ecosystem.
+
+        :param aave_get_user_position_summary_request: (required)
+        :type aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_user_position_summary_serialize(
+            aave_get_user_position_summary_request=aave_get_user_position_summary_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AaveUserPositionSummaryResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def aave_user_position_summary_with_http_info(
+        self,
+        aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AaveUserPositionSummaryResponse]:
+        """Positions - total
+
+        This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.  It provides key financial metrics including the total collateral deposited, total debt accrued, available borrowing capacity, liquidation threshold, maximum loan-to- value ratio, and the health factor of the user's account. These metrics are calculated by aggregating data across all open positions held by the user, offering a holistic view of their financial standing within the AAVE ecosystem.
+
+        :param aave_get_user_position_summary_request: (required)
+        :type aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_user_position_summary_serialize(
+            aave_get_user_position_summary_request=aave_get_user_position_summary_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AaveUserPositionSummaryResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def aave_user_position_summary_without_preload_content(
+        self,
+        aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Positions - total
+
+        This endpoint retrieves a comprehensive summary of a user's position on the AAVE platform.  It provides key financial metrics including the total collateral deposited, total debt accrued, available borrowing capacity, liquidation threshold, maximum loan-to- value ratio, and the health factor of the user's account. These metrics are calculated by aggregating data across all open positions held by the user, offering a holistic view of their financial standing within the AAVE ecosystem.
+
+        :param aave_get_user_position_summary_request: (required)
+        :type aave_get_user_position_summary_request: AaveGetUserPositionSummaryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._aave_user_position_summary_serialize(
+            aave_get_user_position_summary_request=aave_get_user_position_summary_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AaveUserPositionSummaryResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _aave_user_position_summary_serialize(
+        self,
+        aave_get_user_position_summary_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if aave_get_user_position_summary_request is not None:
+            _body_params = aave_get_user_position_summary_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/aave/user_position_summary/get',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def aave_withdraw(
         self,
         aave_withdraw_request: AaveWithdrawRequest,
         _request_timeout: Union[
@@ -2006,7 +2006,7 @@ class AaveV3Api:
     ) -> UnsignedTransaction:
         """Unstake
 
-        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
+        This endpoint facilitates the withdrawal of collateral from the Aave protocol.  Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
 
         :param aave_withdraw_request: (required)
         :type aave_withdraw_request: AaveWithdrawRequest
@@ -2032,7 +2032,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_aave_withdraw_post_serialize(
+        _param = self._aave_withdraw_serialize(
             aave_withdraw_request=aave_withdraw_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2056,7 +2056,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def withdraw_v0_aave_withdraw_post_with_http_info(
+    def aave_withdraw_with_http_info(
         self,
         aave_withdraw_request: AaveWithdrawRequest,
         _request_timeout: Union[
@@ -2074,7 +2074,7 @@ class AaveV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Unstake
 
-        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
+        This endpoint facilitates the withdrawal of collateral from the Aave protocol.  Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
 
         :param aave_withdraw_request: (required)
         :type aave_withdraw_request: AaveWithdrawRequest
@@ -2100,7 +2100,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_aave_withdraw_post_serialize(
+        _param = self._aave_withdraw_serialize(
             aave_withdraw_request=aave_withdraw_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2124,7 +2124,7 @@ class AaveV3Api:
 
 
     @validate_call
-    def withdraw_v0_aave_withdraw_post_without_preload_content(
+    def aave_withdraw_without_preload_content(
         self,
         aave_withdraw_request: AaveWithdrawRequest,
         _request_timeout: Union[
@@ -2142,7 +2142,7 @@ class AaveV3Api:
     ) -> RESTResponseType:
         """Unstake
 
-        This endpoint facilitates the withdrawal of collateral from the Aave protocol. Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
+        This endpoint facilitates the withdrawal of collateral from the Aave protocol.  Users can withdraw a portion or all of their collateral, which may increase the risk of liquidation if there are outstanding borrows. The withdrawal process also includes the collection of any interest earned on the collateral. It is important for users to carefully consider their outstanding debts and the potential impact on their liquidation threshold before proceeding with a withdrawal. This endpoint is designed to provide a seamless and efficient way to manage your collateral within the Aave ecosystem.
 
         :param aave_withdraw_request: (required)
         :type aave_withdraw_request: AaveWithdrawRequest
@@ -2168,7 +2168,7 @@ class AaveV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_aave_withdraw_post_serialize(
+        _param = self._aave_withdraw_serialize(
             aave_withdraw_request=aave_withdraw_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2187,7 +2187,7 @@ class AaveV3Api:
         return response_data.response
 
 
-    def _withdraw_v0_aave_withdraw_post_serialize(
+    def _aave_withdraw_serialize(
         self,
         aave_withdraw_request,
         _request_auth,

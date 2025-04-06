@@ -14,10 +14,10 @@
 
 import unittest
 
-from compass.api_client.models.increase_allowance_any_request import IncreaseAllowanceAnyRequest
+from compass.api_client.models.uniswap_increase_liquidity_provision_request import UniswapIncreaseLiquidityProvisionRequest
 
-class TestIncreaseAllowanceAnyRequest(unittest.TestCase):
-    """IncreaseAllowanceAnyRequest unit test stubs"""
+class TestUniswapIncreaseLiquidityProvisionRequest(unittest.TestCase):
+    """UniswapIncreaseLiquidityProvisionRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,34 +25,38 @@ class TestIncreaseAllowanceAnyRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> IncreaseAllowanceAnyRequest:
-        """Test IncreaseAllowanceAnyRequest
+    def make_instance(self, include_optional) -> UniswapIncreaseLiquidityProvisionRequest:
+        """Test UniswapIncreaseLiquidityProvisionRequest
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `IncreaseAllowanceAnyRequest`
+        # uncomment below to create an instance of `UniswapIncreaseLiquidityProvisionRequest`
         """
-        model = IncreaseAllowanceAnyRequest()
+        model = UniswapIncreaseLiquidityProvisionRequest()
         if include_optional:
-            return IncreaseAllowanceAnyRequest(
+            return UniswapIncreaseLiquidityProvisionRequest(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                token = '1INCH',
-                contract_name = 'AaveV3Pool',
-                amount = None
+                token_id = 56,
+                amount0_desired = None,
+                amount1_desired = None,
+                amount0_min = None,
+                amount1_min = None
             )
         else:
-            return IncreaseAllowanceAnyRequest(
+            return UniswapIncreaseLiquidityProvisionRequest(
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                token = '1INCH',
-                contract_name = 'AaveV3Pool',
-                amount = None,
+                token_id = 56,
+                amount0_desired = None,
+                amount1_desired = None,
+                amount0_min = None,
+                amount1_min = None,
         )
         """
 
-    def testIncreaseAllowanceAnyRequest(self):
-        """Test IncreaseAllowanceAnyRequest"""
+    def testUniswapIncreaseLiquidityProvisionRequest(self):
+        """Test UniswapIncreaseLiquidityProvisionRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

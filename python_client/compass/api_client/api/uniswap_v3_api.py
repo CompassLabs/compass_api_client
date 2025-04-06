@@ -24,7 +24,7 @@ from compass.api_client.models.uniswap_get_buy_quote_request import UniswapGetBu
 from compass.api_client.models.uniswap_get_liquidity_provision_positions_request import UniswapGetLiquidityProvisionPositionsRequest
 from compass.api_client.models.uniswap_get_pool_price_request import UniswapGetPoolPriceRequest
 from compass.api_client.models.uniswap_get_sell_quote_request import UniswapGetSellQuoteRequest
-from compass.api_client.models.uniswap_increase_liquidity_provision import UniswapIncreaseLiquidityProvision
+from compass.api_client.models.uniswap_increase_liquidity_provision_request import UniswapIncreaseLiquidityProvisionRequest
 from compass.api_client.models.uniswap_lp_positions_info_response import UniswapLPPositionsInfoResponse
 from compass.api_client.models.uniswap_mint_liquidity_provision import UniswapMintLiquidityProvision
 from compass.api_client.models.uniswap_pool_price_response import UniswapPoolPriceResponse
@@ -52,1392 +52,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def buy_exactly_v0_uniswap_swap_buy_exactly_post(
-        self,
-        uniswap_buy_exactly_request: UniswapBuyExactlyRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UnsignedTransaction:
-        """Buy exact amount
-
-        This endpoint allows users to trade a variable amount of one token         to receive an exact amount of another token using the Uniswap protocol.         The transaction is executed on the specified blockchain network, and         the user must provide the necessary transaction details, including the         token to buy, the token to pay with, and the exact amount to receive.         If the token being paid with is WETH and needs to be wrapped, the         appropriate amount will be wrapped automatically.
-
-        :param uniswap_buy_exactly_request: (required)
-        :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._buy_exactly_v0_uniswap_swap_buy_exactly_post_serialize(
-            uniswap_buy_exactly_request=uniswap_buy_exactly_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def buy_exactly_v0_uniswap_swap_buy_exactly_post_with_http_info(
-        self,
-        uniswap_buy_exactly_request: UniswapBuyExactlyRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UnsignedTransaction]:
-        """Buy exact amount
-
-        This endpoint allows users to trade a variable amount of one token         to receive an exact amount of another token using the Uniswap protocol.         The transaction is executed on the specified blockchain network, and         the user must provide the necessary transaction details, including the         token to buy, the token to pay with, and the exact amount to receive.         If the token being paid with is WETH and needs to be wrapped, the         appropriate amount will be wrapped automatically.
-
-        :param uniswap_buy_exactly_request: (required)
-        :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._buy_exactly_v0_uniswap_swap_buy_exactly_post_serialize(
-            uniswap_buy_exactly_request=uniswap_buy_exactly_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def buy_exactly_v0_uniswap_swap_buy_exactly_post_without_preload_content(
-        self,
-        uniswap_buy_exactly_request: UniswapBuyExactlyRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Buy exact amount
-
-        This endpoint allows users to trade a variable amount of one token         to receive an exact amount of another token using the Uniswap protocol.         The transaction is executed on the specified blockchain network, and         the user must provide the necessary transaction details, including the         token to buy, the token to pay with, and the exact amount to receive.         If the token being paid with is WETH and needs to be wrapped, the         appropriate amount will be wrapped automatically.
-
-        :param uniswap_buy_exactly_request: (required)
-        :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._buy_exactly_v0_uniswap_swap_buy_exactly_post_serialize(
-            uniswap_buy_exactly_request=uniswap_buy_exactly_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _buy_exactly_v0_uniswap_swap_buy_exactly_post_serialize(
-        self,
-        uniswap_buy_exactly_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if uniswap_buy_exactly_request is not None:
-            _body_params = uniswap_buy_exactly_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/uniswap/swap/buy_exactly',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_buy_quote_v0_uniswap_quote_buy_exactly_get_post(
-        self,
-        uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UniswapBuyQuoteInfoResponse:
-        """Get quote - to specified amount
-
-        This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
-
-        :param uniswap_get_buy_quote_request: (required)
-        :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_buy_quote_v0_uniswap_quote_buy_exactly_get_post_serialize(
-            uniswap_get_buy_quote_request=uniswap_get_buy_quote_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapBuyQuoteInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_buy_quote_v0_uniswap_quote_buy_exactly_get_post_with_http_info(
-        self,
-        uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UniswapBuyQuoteInfoResponse]:
-        """Get quote - to specified amount
-
-        This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
-
-        :param uniswap_get_buy_quote_request: (required)
-        :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_buy_quote_v0_uniswap_quote_buy_exactly_get_post_serialize(
-            uniswap_get_buy_quote_request=uniswap_get_buy_quote_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapBuyQuoteInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_buy_quote_v0_uniswap_quote_buy_exactly_get_post_without_preload_content(
-        self,
-        uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get quote - to specified amount
-
-        This endpoint calculates the amount of input tokens required to purchase a specified amount         of output tokens from a Uniswap pool. It also provides the resulting price after the         transaction. The calculation takes into account the current pool state and the specified fee         tier.
-
-        :param uniswap_get_buy_quote_request: (required)
-        :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_buy_quote_v0_uniswap_quote_buy_exactly_get_post_serialize(
-            uniswap_get_buy_quote_request=uniswap_get_buy_quote_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapBuyQuoteInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_buy_quote_v0_uniswap_quote_buy_exactly_get_post_serialize(
-        self,
-        uniswap_get_buy_quote_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if uniswap_get_buy_quote_request is not None:
-            _body_params = uniswap_get_buy_quote_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/uniswap/quote/buy_exactly/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_pool_price_v0_uniswap_pool_price_get_post(
-        self,
-        uniswap_get_pool_price_request: UniswapGetPoolPriceRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UniswapPoolPriceResponse:
-        """Pool price
-
-        This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
-
-        :param uniswap_get_pool_price_request: (required)
-        :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_pool_price_v0_uniswap_pool_price_get_post_serialize(
-            uniswap_get_pool_price_request=uniswap_get_pool_price_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapPoolPriceResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_pool_price_v0_uniswap_pool_price_get_post_with_http_info(
-        self,
-        uniswap_get_pool_price_request: UniswapGetPoolPriceRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UniswapPoolPriceResponse]:
-        """Pool price
-
-        This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
-
-        :param uniswap_get_pool_price_request: (required)
-        :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_pool_price_v0_uniswap_pool_price_get_post_serialize(
-            uniswap_get_pool_price_request=uniswap_get_pool_price_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapPoolPriceResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_pool_price_v0_uniswap_pool_price_get_post_without_preload_content(
-        self,
-        uniswap_get_pool_price_request: UniswapGetPoolPriceRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Pool price
-
-        This endpoint calculates the price of a token in a Uniswap pool. The price is         calculated based on the current pool state and the specified fee tier.
-
-        :param uniswap_get_pool_price_request: (required)
-        :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_pool_price_v0_uniswap_pool_price_get_post_serialize(
-            uniswap_get_pool_price_request=uniswap_get_pool_price_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapPoolPriceResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_pool_price_v0_uniswap_pool_price_get_post_serialize(
-        self,
-        uniswap_get_pool_price_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if uniswap_get_pool_price_request is not None:
-            _body_params = uniswap_get_pool_price_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/uniswap/pool_price/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_positions_v0_uniswap_liquidity_provision_positions_get_post(
-        self,
-        uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UniswapLPPositionsInfoResponse:
-        """List LP
-
-        This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
-
-        :param uniswap_get_liquidity_provision_positions_request: (required)
-        :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_positions_v0_uniswap_liquidity_provision_positions_get_post_serialize(
-            uniswap_get_liquidity_provision_positions_request=uniswap_get_liquidity_provision_positions_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapLPPositionsInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_positions_v0_uniswap_liquidity_provision_positions_get_post_with_http_info(
-        self,
-        uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UniswapLPPositionsInfoResponse]:
-        """List LP
-
-        This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
-
-        :param uniswap_get_liquidity_provision_positions_request: (required)
-        :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_positions_v0_uniswap_liquidity_provision_positions_get_post_serialize(
-            uniswap_get_liquidity_provision_positions_request=uniswap_get_liquidity_provision_positions_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapLPPositionsInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_positions_v0_uniswap_liquidity_provision_positions_get_post_without_preload_content(
-        self,
-        uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """List LP
-
-        This endpoint retrieves the number of Liquidity Provider (LP) positions         associated with a specific sender address on the Uniswap platform.         Users can query this endpoint to obtain detailed information about their         LP positions, including the total number of positions and relevant metadata.         This information is crucial for users to manage and analyze their liquidity         provision activities effectively.
-
-        :param uniswap_get_liquidity_provision_positions_request: (required)
-        :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_positions_v0_uniswap_liquidity_provision_positions_get_post_serialize(
-            uniswap_get_liquidity_provision_positions_request=uniswap_get_liquidity_provision_positions_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapLPPositionsInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_positions_v0_uniswap_liquidity_provision_positions_get_post_serialize(
-        self,
-        uniswap_get_liquidity_provision_positions_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if uniswap_get_liquidity_provision_positions_request is not None:
-            _body_params = uniswap_get_liquidity_provision_positions_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/uniswap/liquidity_provision/positions/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_sell_quote_v0_uniswap_quote_sell_exactly_get_post(
-        self,
-        uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UniswapSellQuoteInfoResponse:
-        """Get quote - from specified amount
-
-        This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
-
-        :param uniswap_get_sell_quote_request: (required)
-        :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_sell_quote_v0_uniswap_quote_sell_exactly_get_post_serialize(
-            uniswap_get_sell_quote_request=uniswap_get_sell_quote_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapSellQuoteInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_sell_quote_v0_uniswap_quote_sell_exactly_get_post_with_http_info(
-        self,
-        uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UniswapSellQuoteInfoResponse]:
-        """Get quote - from specified amount
-
-        This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
-
-        :param uniswap_get_sell_quote_request: (required)
-        :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_sell_quote_v0_uniswap_quote_sell_exactly_get_post_serialize(
-            uniswap_get_sell_quote_request=uniswap_get_sell_quote_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapSellQuoteInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_sell_quote_v0_uniswap_quote_sell_exactly_get_post_without_preload_content(
-        self,
-        uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get quote - from specified amount
-
-        This endpoint calculates the amount of input tokens required to purchase a specified amount of     output tokens from a Uniswap pool. It also provides the resulting price after the transaction.     The calculation takes into account the current pool state and the specified fee tier.
-
-        :param uniswap_get_sell_quote_request: (required)
-        :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_sell_quote_v0_uniswap_quote_sell_exactly_get_post_serialize(
-            uniswap_get_sell_quote_request=uniswap_get_sell_quote_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UniswapSellQuoteInfoResponse",
-            '422': "HTTPValidationError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_sell_quote_v0_uniswap_quote_sell_exactly_get_post_serialize(
-        self,
-        uniswap_get_sell_quote_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if uniswap_get_sell_quote_request is not None:
-            _body_params = uniswap_get_sell_quote_request
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'ApiKeyAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v0/uniswap/quote/sell_exactly/get',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def in_range_v0_uniswap_liquidity_provision_in_range_get_post(
+    def uniswap_liquidity_provision_in_range(
         self,
         uniswap_check_in_range_request: UniswapCheckInRangeRequest,
         _request_timeout: Union[
@@ -1455,7 +70,7 @@ class UniswapV3Api:
     ) -> UniswapCheckInRangeResponse:
         """Check if LP is active.
 
-        this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
+        This endpoint allows users to check whether a specific liquidity provider () position is within the active tick range on the uniswap platform.  by providing the token id associated with the position, users can verify if the position is currently within the tick range where trading occurs. this information is essential for users to monitor the status of their lp positions and ensure that they are actively participating in the trading activities within the liquidity pool and earning trading fees.
 
         :param uniswap_check_in_range_request: (required)
         :type uniswap_check_in_range_request: UniswapCheckInRangeRequest
@@ -1481,7 +96,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._in_range_v0_uniswap_liquidity_provision_in_range_get_post_serialize(
+        _param = self._uniswap_liquidity_provision_in_range_serialize(
             uniswap_check_in_range_request=uniswap_check_in_range_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1505,7 +120,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def in_range_v0_uniswap_liquidity_provision_in_range_get_post_with_http_info(
+    def uniswap_liquidity_provision_in_range_with_http_info(
         self,
         uniswap_check_in_range_request: UniswapCheckInRangeRequest,
         _request_timeout: Union[
@@ -1523,7 +138,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UniswapCheckInRangeResponse]:
         """Check if LP is active.
 
-        this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
+        This endpoint allows users to check whether a specific liquidity provider () position is within the active tick range on the uniswap platform.  by providing the token id associated with the position, users can verify if the position is currently within the tick range where trading occurs. this information is essential for users to monitor the status of their lp positions and ensure that they are actively participating in the trading activities within the liquidity pool and earning trading fees.
 
         :param uniswap_check_in_range_request: (required)
         :type uniswap_check_in_range_request: UniswapCheckInRangeRequest
@@ -1549,7 +164,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._in_range_v0_uniswap_liquidity_provision_in_range_get_post_serialize(
+        _param = self._uniswap_liquidity_provision_in_range_serialize(
             uniswap_check_in_range_request=uniswap_check_in_range_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1573,7 +188,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def in_range_v0_uniswap_liquidity_provision_in_range_get_post_without_preload_content(
+    def uniswap_liquidity_provision_in_range_without_preload_content(
         self,
         uniswap_check_in_range_request: UniswapCheckInRangeRequest,
         _request_timeout: Union[
@@ -1591,7 +206,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Check if LP is active.
 
-        this endpoint allows users to check whether a specific liquidity provider (lp)         position is within the active tick range on the uniswap platform. by providing         the token id associated with the position, users can verify if the position is         currently within the tick range where trading occurs. this information is essential         for users to monitor the status of their lp positions and ensure that they are         actively participating in the trading activities within the liquidity pool and         earning trading fees.
+        This endpoint allows users to check whether a specific liquidity provider () position is within the active tick range on the uniswap platform.  by providing the token id associated with the position, users can verify if the position is currently within the tick range where trading occurs. this information is essential for users to monitor the status of their lp positions and ensure that they are actively participating in the trading activities within the liquidity pool and earning trading fees.
 
         :param uniswap_check_in_range_request: (required)
         :type uniswap_check_in_range_request: UniswapCheckInRangeRequest
@@ -1617,7 +232,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._in_range_v0_uniswap_liquidity_provision_in_range_get_post_serialize(
+        _param = self._uniswap_liquidity_provision_in_range_serialize(
             uniswap_check_in_range_request=uniswap_check_in_range_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1636,7 +251,7 @@ class UniswapV3Api:
         return response_data.response
 
 
-    def _in_range_v0_uniswap_liquidity_provision_in_range_get_post_serialize(
+    def _uniswap_liquidity_provision_in_range_serialize(
         self,
         uniswap_check_in_range_request,
         _request_auth,
@@ -1714,9 +329,9 @@ class UniswapV3Api:
 
 
     @validate_call
-    def increase_liquidity_v0_uniswap_liquidity_provision_increase_post(
+    def uniswap_liquidity_provision_increase(
         self,
-        uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision,
+        uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1732,10 +347,10 @@ class UniswapV3Api:
     ) -> UnsignedTransaction:
         """Increase an LP position
 
-        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
+        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on the Uniswap platform.  By providing the necessary parameters, users can add more liquidity to their current positions, thereby increasing their stake in the liquidity pool. This operation is beneficial for users who wish to enhance their potential earnings from trading fees within the pool. The endpoint requires details such as the token pair, additional amount to be added, and any other parameters necessary for the liquidity increase process.
 
-        :param uniswap_increase_liquidity_provision: (required)
-        :type uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision
+        :param uniswap_increase_liquidity_provision_request: (required)
+        :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1758,8 +373,8 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._increase_liquidity_v0_uniswap_liquidity_provision_increase_post_serialize(
-            uniswap_increase_liquidity_provision=uniswap_increase_liquidity_provision,
+        _param = self._uniswap_liquidity_provision_increase_serialize(
+            uniswap_increase_liquidity_provision_request=uniswap_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1782,9 +397,9 @@ class UniswapV3Api:
 
 
     @validate_call
-    def increase_liquidity_v0_uniswap_liquidity_provision_increase_post_with_http_info(
+    def uniswap_liquidity_provision_increase_with_http_info(
         self,
-        uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision,
+        uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1800,10 +415,10 @@ class UniswapV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Increase an LP position
 
-        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
+        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on the Uniswap platform.  By providing the necessary parameters, users can add more liquidity to their current positions, thereby increasing their stake in the liquidity pool. This operation is beneficial for users who wish to enhance their potential earnings from trading fees within the pool. The endpoint requires details such as the token pair, additional amount to be added, and any other parameters necessary for the liquidity increase process.
 
-        :param uniswap_increase_liquidity_provision: (required)
-        :type uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision
+        :param uniswap_increase_liquidity_provision_request: (required)
+        :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1826,8 +441,8 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._increase_liquidity_v0_uniswap_liquidity_provision_increase_post_serialize(
-            uniswap_increase_liquidity_provision=uniswap_increase_liquidity_provision,
+        _param = self._uniswap_liquidity_provision_increase_serialize(
+            uniswap_increase_liquidity_provision_request=uniswap_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1850,9 +465,9 @@ class UniswapV3Api:
 
 
     @validate_call
-    def increase_liquidity_v0_uniswap_liquidity_provision_increase_post_without_preload_content(
+    def uniswap_liquidity_provision_increase_without_preload_content(
         self,
-        uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision,
+        uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1868,10 +483,10 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Increase an LP position
 
-        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on         the Uniswap platform. By providing the necessary parameters, users can add more liquidity to         their current positions, thereby increasing their stake in the liquidity pool. This         operation is beneficial for users who wish to enhance their potential earnings from trading         fees within the pool. The endpoint requires details such as the token pair, additional         amount to be added, and any other parameters necessary for the liquidity increase process.
+        This endpoint allows users to increase their existing Liquidity Provider (LP) positions on the Uniswap platform.  By providing the necessary parameters, users can add more liquidity to their current positions, thereby increasing their stake in the liquidity pool. This operation is beneficial for users who wish to enhance their potential earnings from trading fees within the pool. The endpoint requires details such as the token pair, additional amount to be added, and any other parameters necessary for the liquidity increase process.
 
-        :param uniswap_increase_liquidity_provision: (required)
-        :type uniswap_increase_liquidity_provision: UniswapIncreaseLiquidityProvision
+        :param uniswap_increase_liquidity_provision_request: (required)
+        :type uniswap_increase_liquidity_provision_request: UniswapIncreaseLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1894,8 +509,8 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._increase_liquidity_v0_uniswap_liquidity_provision_increase_post_serialize(
-            uniswap_increase_liquidity_provision=uniswap_increase_liquidity_provision,
+        _param = self._uniswap_liquidity_provision_increase_serialize(
+            uniswap_increase_liquidity_provision_request=uniswap_increase_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1913,9 +528,9 @@ class UniswapV3Api:
         return response_data.response
 
 
-    def _increase_liquidity_v0_uniswap_liquidity_provision_increase_post_serialize(
+    def _uniswap_liquidity_provision_increase_serialize(
         self,
-        uniswap_increase_liquidity_provision,
+        uniswap_increase_liquidity_provision_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1941,8 +556,8 @@ class UniswapV3Api:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if uniswap_increase_liquidity_provision is not None:
-            _body_params = uniswap_increase_liquidity_provision
+        if uniswap_increase_liquidity_provision_request is not None:
+            _body_params = uniswap_increase_liquidity_provision_request
 
 
         # set the HTTP header `Accept`
@@ -1991,7 +606,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def mint_v0_uniswap_liquidity_provision_mint_post(
+    def uniswap_liquidity_provision_mint(
         self,
         uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision,
         _request_timeout: Union[
@@ -2009,7 +624,7 @@ class UniswapV3Api:
     ) -> UnsignedTransaction:
         """Open a new LP position
 
-        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap     platform. By providing the necessary parameters, users can initiate a minting process to create     a new LP token, which represents their stake in a specific liquidity pool. This operation is     essential for users looking to participate in liquidity provision, enabling them to earn fees     from trades that occur within the pool. The endpoint requires details such as the token pair,     amount, and any additional parameters needed for the minting process.
+        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
         :param uniswap_mint_liquidity_provision: (required)
         :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
@@ -2035,7 +650,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._mint_v0_uniswap_liquidity_provision_mint_post_serialize(
+        _param = self._uniswap_liquidity_provision_mint_serialize(
             uniswap_mint_liquidity_provision=uniswap_mint_liquidity_provision,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2059,7 +674,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def mint_v0_uniswap_liquidity_provision_mint_post_with_http_info(
+    def uniswap_liquidity_provision_mint_with_http_info(
         self,
         uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision,
         _request_timeout: Union[
@@ -2077,7 +692,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Open a new LP position
 
-        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap     platform. By providing the necessary parameters, users can initiate a minting process to create     a new LP token, which represents their stake in a specific liquidity pool. This operation is     essential for users looking to participate in liquidity provision, enabling them to earn fees     from trades that occur within the pool. The endpoint requires details such as the token pair,     amount, and any additional parameters needed for the minting process.
+        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
         :param uniswap_mint_liquidity_provision: (required)
         :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
@@ -2103,7 +718,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._mint_v0_uniswap_liquidity_provision_mint_post_serialize(
+        _param = self._uniswap_liquidity_provision_mint_serialize(
             uniswap_mint_liquidity_provision=uniswap_mint_liquidity_provision,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2127,7 +742,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def mint_v0_uniswap_liquidity_provision_mint_post_without_preload_content(
+    def uniswap_liquidity_provision_mint_without_preload_content(
         self,
         uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision,
         _request_timeout: Union[
@@ -2145,7 +760,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Open a new LP position
 
-        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap     platform. By providing the necessary parameters, users can initiate a minting process to create     a new LP token, which represents their stake in a specific liquidity pool. This operation is     essential for users looking to participate in liquidity provision, enabling them to earn fees     from trades that occur within the pool. The endpoint requires details such as the token pair,     amount, and any additional parameters needed for the minting process.
+        This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
         :param uniswap_mint_liquidity_provision: (required)
         :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
@@ -2171,7 +786,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._mint_v0_uniswap_liquidity_provision_mint_post_serialize(
+        _param = self._uniswap_liquidity_provision_mint_serialize(
             uniswap_mint_liquidity_provision=uniswap_mint_liquidity_provision,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2190,7 +805,7 @@ class UniswapV3Api:
         return response_data.response
 
 
-    def _mint_v0_uniswap_liquidity_provision_mint_post_serialize(
+    def _uniswap_liquidity_provision_mint_serialize(
         self,
         uniswap_mint_liquidity_provision,
         _request_auth,
@@ -2268,9 +883,9 @@ class UniswapV3Api:
 
 
     @validate_call
-    def sell_exactly_v0_uniswap_swap_sell_exactly_post(
+    def uniswap_liquidity_provision_positions(
         self,
-        uniswap_sell_exactly_request: UniswapSellExactlyRequest,
+        uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2283,13 +898,13 @@ class UniswapV3Api:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UnsignedTransaction:
-        """Sell exact amount
+    ) -> UniswapLPPositionsInfoResponse:
+        """List LP
 
-        This endpoint allows users to trade a specific amount of one token         into another token using the Uniswap protocol. The transaction is         executed on the specified blockchain network, and the user must         provide the necessary transaction details, including the token to         sell, the token to receive, and the amount to sell. If the token         being sold is WETH and needs to be wrapped, the appropriate amount         will be wrapped automatically.
+        This endpoint retrieves the number of Liquidity Provider (LP) positions associated with a specific sender address on the Uniswap platform.  Users can query this endpoint to obtain detailed information about their LP positions, including the total number of positions and relevant metadata. This information is crucial for users to manage and analyze their liquidity provision activities effectively.
 
-        :param uniswap_sell_exactly_request: (required)
-        :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
+        :param uniswap_get_liquidity_provision_positions_request: (required)
+        :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2312,8 +927,8 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._sell_exactly_v0_uniswap_swap_sell_exactly_post_serialize(
-            uniswap_sell_exactly_request=uniswap_sell_exactly_request,
+        _param = self._uniswap_liquidity_provision_positions_serialize(
+            uniswap_get_liquidity_provision_positions_request=uniswap_get_liquidity_provision_positions_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2321,7 +936,7 @@ class UniswapV3Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "UniswapLPPositionsInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -2336,9 +951,9 @@ class UniswapV3Api:
 
 
     @validate_call
-    def sell_exactly_v0_uniswap_swap_sell_exactly_post_with_http_info(
+    def uniswap_liquidity_provision_positions_with_http_info(
         self,
-        uniswap_sell_exactly_request: UniswapSellExactlyRequest,
+        uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2351,13 +966,13 @@ class UniswapV3Api:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UnsignedTransaction]:
-        """Sell exact amount
+    ) -> ApiResponse[UniswapLPPositionsInfoResponse]:
+        """List LP
 
-        This endpoint allows users to trade a specific amount of one token         into another token using the Uniswap protocol. The transaction is         executed on the specified blockchain network, and the user must         provide the necessary transaction details, including the token to         sell, the token to receive, and the amount to sell. If the token         being sold is WETH and needs to be wrapped, the appropriate amount         will be wrapped automatically.
+        This endpoint retrieves the number of Liquidity Provider (LP) positions associated with a specific sender address on the Uniswap platform.  Users can query this endpoint to obtain detailed information about their LP positions, including the total number of positions and relevant metadata. This information is crucial for users to manage and analyze their liquidity provision activities effectively.
 
-        :param uniswap_sell_exactly_request: (required)
-        :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
+        :param uniswap_get_liquidity_provision_positions_request: (required)
+        :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2380,8 +995,8 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._sell_exactly_v0_uniswap_swap_sell_exactly_post_serialize(
-            uniswap_sell_exactly_request=uniswap_sell_exactly_request,
+        _param = self._uniswap_liquidity_provision_positions_serialize(
+            uniswap_get_liquidity_provision_positions_request=uniswap_get_liquidity_provision_positions_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2389,7 +1004,7 @@ class UniswapV3Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "UniswapLPPositionsInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -2404,9 +1019,9 @@ class UniswapV3Api:
 
 
     @validate_call
-    def sell_exactly_v0_uniswap_swap_sell_exactly_post_without_preload_content(
+    def uniswap_liquidity_provision_positions_without_preload_content(
         self,
-        uniswap_sell_exactly_request: UniswapSellExactlyRequest,
+        uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2420,12 +1035,12 @@ class UniswapV3Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Sell exact amount
+        """List LP
 
-        This endpoint allows users to trade a specific amount of one token         into another token using the Uniswap protocol. The transaction is         executed on the specified blockchain network, and the user must         provide the necessary transaction details, including the token to         sell, the token to receive, and the amount to sell. If the token         being sold is WETH and needs to be wrapped, the appropriate amount         will be wrapped automatically.
+        This endpoint retrieves the number of Liquidity Provider (LP) positions associated with a specific sender address on the Uniswap platform.  Users can query this endpoint to obtain detailed information about their LP positions, including the total number of positions and relevant metadata. This information is crucial for users to manage and analyze their liquidity provision activities effectively.
 
-        :param uniswap_sell_exactly_request: (required)
-        :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
+        :param uniswap_get_liquidity_provision_positions_request: (required)
+        :type uniswap_get_liquidity_provision_positions_request: UniswapGetLiquidityProvisionPositionsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2448,8 +1063,8 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._sell_exactly_v0_uniswap_swap_sell_exactly_post_serialize(
-            uniswap_sell_exactly_request=uniswap_sell_exactly_request,
+        _param = self._uniswap_liquidity_provision_positions_serialize(
+            uniswap_get_liquidity_provision_positions_request=uniswap_get_liquidity_provision_positions_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2457,7 +1072,7 @@ class UniswapV3Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UnsignedTransaction",
+            '200': "UniswapLPPositionsInfoResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -2467,9 +1082,9 @@ class UniswapV3Api:
         return response_data.response
 
 
-    def _sell_exactly_v0_uniswap_swap_sell_exactly_post_serialize(
+    def _uniswap_liquidity_provision_positions_serialize(
         self,
-        uniswap_sell_exactly_request,
+        uniswap_get_liquidity_provision_positions_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2495,8 +1110,8 @@ class UniswapV3Api:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if uniswap_sell_exactly_request is not None:
-            _body_params = uniswap_sell_exactly_request
+        if uniswap_get_liquidity_provision_positions_request is not None:
+            _body_params = uniswap_get_liquidity_provision_positions_request
 
 
         # set the HTTP header `Accept`
@@ -2528,7 +1143,7 @@ class UniswapV3Api:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/v0/uniswap/swap/sell_exactly',
+            resource_path='/v0/uniswap/liquidity_provision/positions/get',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2545,7 +1160,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def withdraw_v0_uniswap_liquidity_provision_withdraw_post(
+    def uniswap_liquidity_provision_withdraw(
         self,
         uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision,
         _request_timeout: Union[
@@ -2563,7 +1178,7 @@ class UniswapV3Api:
     ) -> UnsignedTransaction:
         """Withdraw an LP position
 
-        This endpoint allows users to withdraw their Liquidity Provider (LP) positions     from the Uniswap platform. By specifying the necessary parameters, users can initiate the     withdrawal process to remove their stake from a specific liquidity pool. This operation is     crucial for users who wish to reclaim their assets or reallocate their liquidity to different     pools or investments. The endpoint requires details such as the token pair, the amount to be     withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure     they meet any protocol requirements or conditions before initiating a withdrawal to avoid     potential issues or penalties.
+        This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
         :param uniswap_withdraw_liquidity_provision: (required)
         :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision
@@ -2589,7 +1204,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_uniswap_liquidity_provision_withdraw_post_serialize(
+        _param = self._uniswap_liquidity_provision_withdraw_serialize(
             uniswap_withdraw_liquidity_provision=uniswap_withdraw_liquidity_provision,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2613,7 +1228,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def withdraw_v0_uniswap_liquidity_provision_withdraw_post_with_http_info(
+    def uniswap_liquidity_provision_withdraw_with_http_info(
         self,
         uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision,
         _request_timeout: Union[
@@ -2631,7 +1246,7 @@ class UniswapV3Api:
     ) -> ApiResponse[UnsignedTransaction]:
         """Withdraw an LP position
 
-        This endpoint allows users to withdraw their Liquidity Provider (LP) positions     from the Uniswap platform. By specifying the necessary parameters, users can initiate the     withdrawal process to remove their stake from a specific liquidity pool. This operation is     crucial for users who wish to reclaim their assets or reallocate their liquidity to different     pools or investments. The endpoint requires details such as the token pair, the amount to be     withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure     they meet any protocol requirements or conditions before initiating a withdrawal to avoid     potential issues or penalties.
+        This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
         :param uniswap_withdraw_liquidity_provision: (required)
         :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision
@@ -2657,7 +1272,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_uniswap_liquidity_provision_withdraw_post_serialize(
+        _param = self._uniswap_liquidity_provision_withdraw_serialize(
             uniswap_withdraw_liquidity_provision=uniswap_withdraw_liquidity_provision,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2681,7 +1296,7 @@ class UniswapV3Api:
 
 
     @validate_call
-    def withdraw_v0_uniswap_liquidity_provision_withdraw_post_without_preload_content(
+    def uniswap_liquidity_provision_withdraw_without_preload_content(
         self,
         uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision,
         _request_timeout: Union[
@@ -2699,7 +1314,7 @@ class UniswapV3Api:
     ) -> RESTResponseType:
         """Withdraw an LP position
 
-        This endpoint allows users to withdraw their Liquidity Provider (LP) positions     from the Uniswap platform. By specifying the necessary parameters, users can initiate the     withdrawal process to remove their stake from a specific liquidity pool. This operation is     crucial for users who wish to reclaim their assets or reallocate their liquidity to different     pools or investments. The endpoint requires details such as the token pair, the amount to be     withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure     they meet any protocol requirements or conditions before initiating a withdrawal to avoid     potential issues or penalties.
+        This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
         :param uniswap_withdraw_liquidity_provision: (required)
         :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision
@@ -2725,7 +1340,7 @@ class UniswapV3Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._withdraw_v0_uniswap_liquidity_provision_withdraw_post_serialize(
+        _param = self._uniswap_liquidity_provision_withdraw_serialize(
             uniswap_withdraw_liquidity_provision=uniswap_withdraw_liquidity_provision,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2744,7 +1359,7 @@ class UniswapV3Api:
         return response_data.response
 
 
-    def _withdraw_v0_uniswap_liquidity_provision_withdraw_post_serialize(
+    def _uniswap_liquidity_provision_withdraw_serialize(
         self,
         uniswap_withdraw_liquidity_provision,
         _request_auth,
@@ -2806,6 +1421,1391 @@ class UniswapV3Api:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v0/uniswap/liquidity_provision/withdraw',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def uniswap_pool_price(
+        self,
+        uniswap_get_pool_price_request: UniswapGetPoolPriceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UniswapPoolPriceResponse:
+        """Pool price
+
+        This endpoint calculates the price of a token in a Uniswap pool.  The price is calculated based on the current pool state and the specified fee tier.
+
+        :param uniswap_get_pool_price_request: (required)
+        :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_pool_price_serialize(
+            uniswap_get_pool_price_request=uniswap_get_pool_price_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapPoolPriceResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def uniswap_pool_price_with_http_info(
+        self,
+        uniswap_get_pool_price_request: UniswapGetPoolPriceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UniswapPoolPriceResponse]:
+        """Pool price
+
+        This endpoint calculates the price of a token in a Uniswap pool.  The price is calculated based on the current pool state and the specified fee tier.
+
+        :param uniswap_get_pool_price_request: (required)
+        :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_pool_price_serialize(
+            uniswap_get_pool_price_request=uniswap_get_pool_price_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapPoolPriceResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def uniswap_pool_price_without_preload_content(
+        self,
+        uniswap_get_pool_price_request: UniswapGetPoolPriceRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Pool price
+
+        This endpoint calculates the price of a token in a Uniswap pool.  The price is calculated based on the current pool state and the specified fee tier.
+
+        :param uniswap_get_pool_price_request: (required)
+        :type uniswap_get_pool_price_request: UniswapGetPoolPriceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_pool_price_serialize(
+            uniswap_get_pool_price_request=uniswap_get_pool_price_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapPoolPriceResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _uniswap_pool_price_serialize(
+        self,
+        uniswap_get_pool_price_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if uniswap_get_pool_price_request is not None:
+            _body_params = uniswap_get_pool_price_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/uniswap/pool_price/get',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def uniswap_quote_buy_exactly(
+        self,
+        uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UniswapBuyQuoteInfoResponse:
+        """Get quote - to specified amount
+
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
+
+        :param uniswap_get_buy_quote_request: (required)
+        :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_quote_buy_exactly_serialize(
+            uniswap_get_buy_quote_request=uniswap_get_buy_quote_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapBuyQuoteInfoResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def uniswap_quote_buy_exactly_with_http_info(
+        self,
+        uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UniswapBuyQuoteInfoResponse]:
+        """Get quote - to specified amount
+
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
+
+        :param uniswap_get_buy_quote_request: (required)
+        :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_quote_buy_exactly_serialize(
+            uniswap_get_buy_quote_request=uniswap_get_buy_quote_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapBuyQuoteInfoResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def uniswap_quote_buy_exactly_without_preload_content(
+        self,
+        uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get quote - to specified amount
+
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
+
+        :param uniswap_get_buy_quote_request: (required)
+        :type uniswap_get_buy_quote_request: UniswapGetBuyQuoteRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_quote_buy_exactly_serialize(
+            uniswap_get_buy_quote_request=uniswap_get_buy_quote_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapBuyQuoteInfoResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _uniswap_quote_buy_exactly_serialize(
+        self,
+        uniswap_get_buy_quote_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if uniswap_get_buy_quote_request is not None:
+            _body_params = uniswap_get_buy_quote_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/uniswap/quote/buy_exactly/get',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def uniswap_quote_sell_exactly(
+        self,
+        uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UniswapSellQuoteInfoResponse:
+        """Get quote - from specified amount
+
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
+
+        :param uniswap_get_sell_quote_request: (required)
+        :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_quote_sell_exactly_serialize(
+            uniswap_get_sell_quote_request=uniswap_get_sell_quote_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapSellQuoteInfoResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def uniswap_quote_sell_exactly_with_http_info(
+        self,
+        uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UniswapSellQuoteInfoResponse]:
+        """Get quote - from specified amount
+
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
+
+        :param uniswap_get_sell_quote_request: (required)
+        :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_quote_sell_exactly_serialize(
+            uniswap_get_sell_quote_request=uniswap_get_sell_quote_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapSellQuoteInfoResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def uniswap_quote_sell_exactly_without_preload_content(
+        self,
+        uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get quote - from specified amount
+
+        This endpoint calculates the amount of input tokens required to purchase a specified amount of output tokens from a Uniswap pool.  It also provides the resulting price after the transaction. The calculation takes into account the current pool state and the specified fee tier.
+
+        :param uniswap_get_sell_quote_request: (required)
+        :type uniswap_get_sell_quote_request: UniswapGetSellQuoteRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_quote_sell_exactly_serialize(
+            uniswap_get_sell_quote_request=uniswap_get_sell_quote_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UniswapSellQuoteInfoResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _uniswap_quote_sell_exactly_serialize(
+        self,
+        uniswap_get_sell_quote_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if uniswap_get_sell_quote_request is not None:
+            _body_params = uniswap_get_sell_quote_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/uniswap/quote/sell_exactly/get',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def uniswap_swap_buy_exactly(
+        self,
+        uniswap_buy_exactly_request: UniswapBuyExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UnsignedTransaction:
+        """Buy exact amount
+
+        This endpoint allows users to trade a variable amount of one token to receive an exact amount of another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to buy, the token to pay with, and the exact amount to receive. If the token being paid with is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
+
+        :param uniswap_buy_exactly_request: (required)
+        :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_swap_buy_exactly_serialize(
+            uniswap_buy_exactly_request=uniswap_buy_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def uniswap_swap_buy_exactly_with_http_info(
+        self,
+        uniswap_buy_exactly_request: UniswapBuyExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UnsignedTransaction]:
+        """Buy exact amount
+
+        This endpoint allows users to trade a variable amount of one token to receive an exact amount of another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to buy, the token to pay with, and the exact amount to receive. If the token being paid with is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
+
+        :param uniswap_buy_exactly_request: (required)
+        :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_swap_buy_exactly_serialize(
+            uniswap_buy_exactly_request=uniswap_buy_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def uniswap_swap_buy_exactly_without_preload_content(
+        self,
+        uniswap_buy_exactly_request: UniswapBuyExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Buy exact amount
+
+        This endpoint allows users to trade a variable amount of one token to receive an exact amount of another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to buy, the token to pay with, and the exact amount to receive. If the token being paid with is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
+
+        :param uniswap_buy_exactly_request: (required)
+        :type uniswap_buy_exactly_request: UniswapBuyExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_swap_buy_exactly_serialize(
+            uniswap_buy_exactly_request=uniswap_buy_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _uniswap_swap_buy_exactly_serialize(
+        self,
+        uniswap_buy_exactly_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if uniswap_buy_exactly_request is not None:
+            _body_params = uniswap_buy_exactly_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/uniswap/swap/buy_exactly',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def uniswap_swap_sell_exactly(
+        self,
+        uniswap_sell_exactly_request: UniswapSellExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UnsignedTransaction:
+        """Sell exact amount
+
+        This endpoint allows users to trade a specific amount of one token into another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to sell, the token to receive, and the amount to sell. If the token being sold is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
+
+        :param uniswap_sell_exactly_request: (required)
+        :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_swap_sell_exactly_serialize(
+            uniswap_sell_exactly_request=uniswap_sell_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def uniswap_swap_sell_exactly_with_http_info(
+        self,
+        uniswap_sell_exactly_request: UniswapSellExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UnsignedTransaction]:
+        """Sell exact amount
+
+        This endpoint allows users to trade a specific amount of one token into another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to sell, the token to receive, and the amount to sell. If the token being sold is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
+
+        :param uniswap_sell_exactly_request: (required)
+        :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_swap_sell_exactly_serialize(
+            uniswap_sell_exactly_request=uniswap_sell_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def uniswap_swap_sell_exactly_without_preload_content(
+        self,
+        uniswap_sell_exactly_request: UniswapSellExactlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Sell exact amount
+
+        This endpoint allows users to trade a specific amount of one token into another token using the Uniswap protocol.  The transaction is executed on the specified blockchain network, and the user must provide the necessary transaction details, including the token to sell, the token to receive, and the amount to sell. If the token being sold is WETH and needs to be wrapped, the appropriate amount will be wrapped automatically.
+
+        :param uniswap_sell_exactly_request: (required)
+        :type uniswap_sell_exactly_request: UniswapSellExactlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._uniswap_swap_sell_exactly_serialize(
+            uniswap_sell_exactly_request=uniswap_sell_exactly_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UnsignedTransaction",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _uniswap_swap_sell_exactly_serialize(
+        self,
+        uniswap_sell_exactly_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if uniswap_sell_exactly_request is not None:
+            _body_params = uniswap_sell_exactly_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v0/uniswap/swap/sell_exactly',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

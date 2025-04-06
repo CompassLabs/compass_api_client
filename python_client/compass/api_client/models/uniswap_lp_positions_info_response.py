@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.uniswap_position import UniswapPosition
+from compass.api_client.models.uniswap_positions_solidity_response import UniswapPositionsSolidityResponse
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class UniswapLPPositionsInfoResponse(BaseModel):
     """
     UniswapLPPositionsInfoResponse
     """ # noqa: E501
-    positions: Dict[str, UniswapPosition] = Field(description="Liquidity provision positions belonging to a particular user. The key is a         tuple of the token0, token1, fee, tick_lower, and tick_upper of the position.")
+    positions: Dict[str, UniswapPositionsSolidityResponse] = Field(description=" Liquidity provision positions belonging to a particular user keyed by the         token of owner index of the position. ")
     __properties: ClassVar[List[str]] = ["positions"]
 
     model_config = ConfigDict(
@@ -89,7 +89,7 @@ class UniswapLPPositionsInfoResponse(BaseModel):
 
         _obj = cls.model_validate({
             "positions": dict(
-                (_k, UniswapPosition.from_dict(_v))
+                (_k, UniswapPositionsSolidityResponse.from_dict(_v))
                 for _k, _v in obj["positions"].items()
             )
             if obj.get("positions") is not None
