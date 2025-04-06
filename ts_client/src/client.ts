@@ -843,9 +843,6 @@ const IncreaseAllowanceAnyRequest = z
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-        token_address: z
-            .string()
-            .describe('The address of the ERC20 token for which the allowance is increased.'),
         contract_name: ContractName.describe(`Select the protocol.
 
 E.g. for increasing ERC-20 allowance.`),
@@ -1117,21 +1114,13 @@ const UniswapGetLiquidityProvisionPositionsRequest = z
         user: z.string().describe('The address of the user to check the balance of'),
     })
     .passthrough();
-const UniswapPosition = z
+const UniswapPositionsSolidityResponse = z
     .object({
         nonce: z.number().int(),
         operator: z.string(),
-        token0: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token1: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
-
-Uniswap supports 4 different fee levels.`),
+        token0: z.string(),
+        token1: z.string(),
+        fee: z.number().int(),
         tick_lower: z.number().int(),
         tick_upper: z.number().int(),
         liquidity: z.number().int(),
@@ -1139,15 +1128,14 @@ Uniswap supports 4 different fee levels.`),
         fee_growth_inside1_last_x128: z.number().int(),
         tokens_owed0: z.number().int(),
         tokens_owed1: z.number().int(),
-        token_id: z.number().int(),
     })
     .passthrough();
 const UniswapLPPositionsInfoResponse = z
     .object({
         positions: z
-            .record(UniswapPosition)
-            .describe(`Liquidity provision positions belonging to a particular user. The key is a
-        tuple of the token0, token1, fee, tick_lower, and tick_upper of the position.`),
+            .record(UniswapPositionsSolidityResponse)
+            .describe(` Liquidity provision positions belonging to a particular user keyed by the
+        token of owner index of the position. `),
     })
     .passthrough();
 
@@ -1224,7 +1212,7 @@ export const schemas = {
     UniswapCheckInRangeRequest,
     UniswapCheckInRangeResponse,
     UniswapGetLiquidityProvisionPositionsRequest,
-    UniswapPosition,
+    UniswapPositionsSolidityResponse,
     UniswapLPPositionsInfoResponse,
 };
 
