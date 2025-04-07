@@ -1,7 +1,6 @@
 import { makeApi, Zodios, type ZodiosOptions } from '@zodios/core';
 import { z } from 'zod';
 
-const Chain = z.enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet']);
 const Token = z.enum([
     '1INCH',
     'AAVE',
@@ -48,10 +47,9 @@ const Token = z.enum([
     'EUR',
     'VIRTUAL',
 ]);
+const Chain = z.enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet']);
 const AaveSupplyRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -63,6 +61,8 @@ endpoints' documentation where per chain tokens are presented.`),
                 'The address on behalf of whom the supply is made. Defaults to the transaction sender.'
             )
             .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const UnsignedTransaction = z
@@ -95,8 +95,6 @@ const HTTPValidationError = z
 const InterestRateMode = z.union([z.literal(1), z.literal(2)]);
 const AaveBorrowRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -109,12 +107,12 @@ A stable (but typically higher rate), or a variable rate.`),
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
             .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AaveRepayRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -127,18 +125,20 @@ A stable (but typically higher rate), or a variable rate.`),
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
             .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AaveWithdrawRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         asset: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
         amount: z.union([z.number(), z.string()]).describe('The amount of the asset to withdraw'),
         recipient: z.string().describe('The address of the recipient of the withdrawn funds.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AaveGetAssetPriceRequest = z
@@ -249,8 +249,6 @@ const AaveUserPositionPerTokenResponse = z
     .passthrough();
 const AerodromeAddLiquidityRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_a: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -283,12 +281,12 @@ endpoints' documentation where per chain tokens are presented.`),
         deadline: z
             .union([z.number(), z.null()])
             .describe('The deadline for this transaction in seconds since epoch'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeAddLiquidityEthRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -317,6 +315,8 @@ endpoints' documentation where per chain tokens are presented.`),
         deadline: z
             .union([z.number(), z.null()])
             .describe('The deadline for this transaction in seconds since epoch'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeRemoveLiquidityRequest = z
@@ -387,8 +387,6 @@ endpoints' documentation where per chain tokens are presented.`),
     .passthrough();
 const AerodromeSwapTokensRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -412,12 +410,12 @@ endpoints' documentation where per chain tokens are presented.`),
             .union([z.string(), z.null()])
             .describe('The receiver of the funds from this trade, default to sender')
             .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeSwapEthForTokenRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_out: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -439,12 +437,12 @@ endpoints' documentation where per chain tokens are presented.`),
             .union([z.string(), z.null()])
             .describe('The receiver of the funds from this trade, default to sender')
             .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeSwapTokenForEthRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -466,12 +464,12 @@ endpoints' documentation where per chain tokens are presented.`),
             .union([z.string(), z.null()])
             .describe('The receiver of the funds from this trade, default to sender')
             .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeSlipstreamSellExactlyRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -489,12 +487,12 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe('The minimum amount of the token to swap to, defaults to 0')
             .optional()
             .default('0'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeSlipstreamBuyExactlyRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -510,12 +508,12 @@ endpoints' documentation where per chain tokens are presented.`),
         amount_in_maximum: z
             .union([z.number(), z.string()])
             .describe('The maximum amount of the token to swap from'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeSlipstreamMintLiquidityProvisionRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token0: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -549,12 +547,12 @@ endpoints' documentation where per chain tokens are presented.`),
             .union([z.string(), z.null()])
             .describe('The address that will receive the LP tokens')
             .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeSlipstreamIncreaseLiquidityProvisionRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_id: z
             .number()
             .int()
@@ -571,12 +569,12 @@ const AerodromeSlipstreamIncreaseLiquidityProvisionRequest = z
         amount1_min: z
             .union([z.number(), z.string()])
             .describe('The minimum amount of the second token to deposit'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeSlipstreamWithdrawLiquidityProvisionRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_id: z
             .number()
             .int()
@@ -584,6 +582,8 @@ const AerodromeSlipstreamWithdrawLiquidityProvisionRequest = z
         percentage_for_withdrawal: z
             .union([z.number(), z.string()])
             .describe('How much liquidity to take out in percentage.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const AerodromeSlipstreamGetLiquidityProvisionPositionsRequest = z
@@ -747,6 +747,7 @@ const ContractName = z.enum([
     'UniswapV3NFTPositionManager',
     'UniswapV3Quoter',
     'ChainlinkEACAggregatorProxy',
+    'Multicall',
 ]);
 const GetErc20AllowanceRequest = z
     .object({
@@ -787,42 +788,40 @@ const EnsNameInfoResponse = z
     .passthrough();
 const WrapEthRequest = z
     .object({
+        amount: z.union([z.number(), z.string()]).describe('The amount of ETH to wrap.'),
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        amount: z.union([z.number(), z.string()]).describe('The amount of ETH to wrap.'),
     })
     .passthrough();
 const UnwrapWethRequest = z
     .object({
+        amount: z.union([z.number(), z.string()]).describe('The amount of WETH to unwrap.'),
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
-        amount: z.union([z.number(), z.string()]).describe('The amount of WETH to unwrap.'),
     })
     .passthrough();
 const TransferERC20Request = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         amount: z.union([z.number(), z.string()]).describe('Amount of token to transfer'),
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
         to: z.string().describe('The recipient of the tokens.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const TransferEthRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         amount: z.union([z.number(), z.string()]).describe('Amount of ETH to transfer'),
         to: z.string().describe('The recipient of the ETH.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const IncreaseAllowanceRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -833,12 +832,12 @@ E.g. for increasing ERC-20 allowance.`),
         amount: z
             .union([z.number(), z.string()])
             .describe('The amount of tokens to increase the allowance by.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const IncreaseAllowanceAnyRequest = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -849,13 +848,50 @@ E.g. for increasing ERC-20 allowance.`),
         amount: z
             .union([z.number(), z.string()])
             .describe('The amount of tokens to increase the allowance by.'),
-    })
-    .passthrough();
-const FeeEnum = z.enum(['0.01', '0.05', '0.3', '1.0']);
-const UniswapBuyExactlyRequest = z
-    .object({
         chain: Chain.describe('The chain to use.'),
         sender: z.string().describe('The address of the transaction sender'),
+    })
+    .passthrough();
+const MulticallAuthorizationRequest = z
+    .object({
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The Ethereum address to use for authorization'),
+        address: z.string().describe('The Ethereum address to authorize for multicall'),
+    })
+    .passthrough();
+const MulticallAuthorizationResponse = z
+    .object({
+        nonce: z.number().int().describe('A unique nonce value for this authorization'),
+        address: z.string().describe('The Ethereum address authorized for multicall'),
+        chainId: z.number().int().describe('The chain ID for the blockchain network'),
+    })
+    .passthrough();
+const SignedAuthorization = z
+    .object({
+        nonce: z.number().int(),
+        address: z.string(),
+        chainId: z.number().int(),
+        r: z.union([z.number(), z.string()]),
+        s: z.union([z.number(), z.string()]),
+        yParity: z.number().int(),
+    })
+    .passthrough();
+const MulticallActionType = z.enum([
+    'UNISWAP_BUY_EXACTLY',
+    'UNISWAP_SELL_EXACTLY',
+    'UNISWAP_MINT_LIQUIDITY',
+    'UNISWAP_WITHDRAW_LIQUIDITY',
+    'UNISWAP_ADD_LIQUIDITY',
+    'AAVE_BORROW',
+    'AAVE_REPAY',
+    'AAVE_SUPPLY',
+    'AAVE_WITHDRAW',
+    'ALLOWANCE_INCREASE',
+    'TRANSFER_ERC20',
+]);
+const FeeEnum = z.enum(['0.01', '0.05', '0.3', '1.0']);
+const UniswapBuyExactlyParams = z
+    .object({
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -880,10 +916,8 @@ Uniswap supports 4 different fee levels.`),
             .default(false),
     })
     .passthrough();
-const UniswapSellExactlyRequest = z
+const UniswapSellExactlyParams = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -910,32 +944,8 @@ Uniswap supports 4 different fee levels.`),
             .default(false),
     })
     .passthrough();
-const UniswapIncreaseLiquidityProvisionRequest = z
+const UniswapMintLiquidityProvisionParams = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
-        token_id: z
-            .number()
-            .int()
-            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
-        amount0_desired: z
-            .union([z.number(), z.string()])
-            .describe('The desired amount of the first token to deposit'),
-        amount1_desired: z
-            .union([z.number(), z.string()])
-            .describe('The desired amount of the second token to deposit'),
-        amount0_min: z
-            .union([z.number(), z.string()])
-            .describe('The minimum amount of the first token to deposit'),
-        amount1_min: z
-            .union([z.number(), z.string()])
-            .describe('The minimum amount of the second token to deposit'),
-    })
-    .passthrough();
-const UniswapMintLiquidityProvision = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token0: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -977,10 +987,8 @@ Uniswap supports 4 different fee levels.`),
             .optional(),
     })
     .passthrough();
-const UniswapWithdrawLiquidityProvision = z
+const UniswapWithdrawLiquidityProvisionParams = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
         token_id: z
             .number()
             .int()
@@ -988,6 +996,282 @@ const UniswapWithdrawLiquidityProvision = z
         percentage_for_withdrawal: z
             .union([z.number(), z.string()])
             .describe('How much liquidity to take out in percentage.'),
+    })
+    .passthrough();
+const UniswapIncreaseLiquidityProvisionParams = z
+    .object({
+        token_id: z
+            .number()
+            .int()
+            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
+        amount0_desired: z
+            .union([z.number(), z.string()])
+            .describe('The desired amount of the first token to deposit'),
+        amount1_desired: z
+            .union([z.number(), z.string()])
+            .describe('The desired amount of the second token to deposit'),
+        amount0_min: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the first token to deposit'),
+        amount1_min: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the second token to deposit'),
+    })
+    .passthrough();
+const AaveBorrowParams = z
+    .object({
+        asset: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to borrow'),
+        interest_rate_mode: InterestRateMode.describe(`On AAVE there are 2 different interest modes.
+
+A stable (but typically higher rate), or a variable rate.`),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe('The address on behalf of whom the supply is made')
+            .optional(),
+    })
+    .passthrough();
+const AaveRepayParams = z
+    .object({
+        asset: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to repay'),
+        interest_rate_mode: InterestRateMode.describe(`On AAVE there are 2 different interest modes.
+
+A stable (but typically higher rate), or a variable rate.`),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe('The address on behalf of whom the supply is made')
+            .optional(),
+    })
+    .passthrough();
+const AaveSupplyParams = z
+    .object({
+        asset: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to supply'),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe(
+                'The address on behalf of whom the supply is made. Defaults to the transaction sender.'
+            )
+            .optional(),
+    })
+    .passthrough();
+const AaveWithdrawParams = z
+    .object({
+        asset: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        amount: z.union([z.number(), z.string()]).describe('The amount of the asset to withdraw'),
+        recipient: z.string().describe('The address of the recipient of the withdrawn funds.'),
+    })
+    .passthrough();
+const IncreaseAllowanceParams = z
+    .object({
+        token: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        contract_name: ContractName.describe(`Select the protocol.
+
+E.g. for increasing ERC-20 allowance.`),
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('The amount of tokens to increase the allowance by.'),
+    })
+    .passthrough();
+const MulticallAction = z
+    .object({
+        action_type: MulticallActionType,
+        body: z.union([
+            UniswapBuyExactlyParams,
+            UniswapSellExactlyParams,
+            UniswapMintLiquidityProvisionParams,
+            UniswapWithdrawLiquidityProvisionParams,
+            UniswapIncreaseLiquidityProvisionParams,
+            AaveBorrowParams,
+            AaveRepayParams,
+            AaveSupplyParams,
+            AaveWithdrawParams,
+            IncreaseAllowanceParams,
+        ]),
+    })
+    .passthrough();
+const MulticallExecuteRequest = z
+    .object({
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
+        signed_authorization: SignedAuthorization,
+        contract_address: z.string().describe('The address of the multicall contract'),
+        actions: z.array(MulticallAction).describe('List of possible actions for multicall'),
+    })
+    .passthrough();
+const UnsignedMulticallTransaction = z
+    .object({
+        chainId: z.number().int().describe('The chain id of the transaction'),
+        data: z.string().describe('The data of the transaction'),
+        from: z.string().describe('The sender of the transaction'),
+        gas: z.number().int().describe('The gas of the transaction'),
+        to: z.string().describe('The recipient of the transaction'),
+        value: z.number().int().describe('The value of the transaction'),
+        nonce: z.number().int().describe('The nonce of the address'),
+        maxFeePerGas: z.number().int().describe('The max fee per gas of the transaction'),
+        maxPriorityFeePerGas: z
+            .number()
+            .int()
+            .describe('The max priority fee per gas of the transaction'),
+        authorizationList: z
+            .array(SignedAuthorization)
+            .describe('EIP-7702 authorization')
+            .optional()
+            .default([]),
+    })
+    .passthrough();
+const UniswapBuyExactlyRequest = z
+    .object({
+        token_in: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
+
+Uniswap supports 4 different fee levels.`),
+        amount_out: z
+            .union([z.number(), z.string()])
+            .describe('The amount of the token to swap to'),
+        amount_in_maximum: z
+            .union([z.number(), z.string()])
+            .describe('The maximum amount of the token to swap from'),
+        wrap_eth: z
+            .boolean()
+            .describe('Whether to wrap ETH to WETH, only use when swapping WETH into something')
+            .optional()
+            .default(false),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
+    })
+    .passthrough();
+const UniswapSellExactlyRequest = z
+    .object({
+        token_in: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
+
+Uniswap supports 4 different fee levels.`),
+        amount_in: z
+            .union([z.number(), z.string()])
+            .describe('The amount of the token to swap from'),
+        amount_out_minimum: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the token to swap to, defaults to 0')
+            .optional()
+            .default('0'),
+        wrap_eth: z
+            .boolean()
+            .describe('Whether to wrap ETH to WETH, only use when swapping WETH into something')
+            .optional()
+            .default(false),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
+    })
+    .passthrough();
+const UniswapIncreaseLiquidityProvisionRequest = z
+    .object({
+        token_id: z
+            .number()
+            .int()
+            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
+        amount0_desired: z
+            .union([z.number(), z.string()])
+            .describe('The desired amount of the first token to deposit'),
+        amount1_desired: z
+            .union([z.number(), z.string()])
+            .describe('The desired amount of the second token to deposit'),
+        amount0_min: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the first token to deposit'),
+        amount1_min: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the second token to deposit'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
+    })
+    .passthrough();
+const UniswapMintLiquidityProvisionRequest = z
+    .object({
+        token0: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token1: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
+
+Uniswap supports 4 different fee levels.`),
+        tick_lower: z
+            .number()
+            .int()
+            .gte(-887272)
+            .lte(887272)
+            .describe('The lower tick of the range to mint the position in'),
+        tick_upper: z
+            .number()
+            .int()
+            .gte(-887272)
+            .lte(887272)
+            .describe('The upper tick of the range to mint the position in'),
+        amount0_desired: z
+            .union([z.number(), z.string()])
+            .describe('The desired amount of the first token to deposit'),
+        amount1_desired: z
+            .union([z.number(), z.string()])
+            .describe('The desired amount of the second token to deposit'),
+        amount0_min: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the first token to deposit'),
+        amount1_min: z
+            .union([z.number(), z.string()])
+            .describe('The minimum amount of the second token to deposit'),
+        recipient: z
+            .union([z.string(), z.null()])
+            .describe('The address that will receive the LP tokens')
+            .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
+    })
+    .passthrough();
+const UniswapWithdrawLiquidityProvisionRequest = z
+    .object({
+        token_id: z
+            .number()
+            .int()
+            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
+        percentage_for_withdrawal: z
+            .union([z.number(), z.string()])
+            .describe('How much liquidity to take out in percentage.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z.string().describe('The address of the transaction sender'),
     })
     .passthrough();
 const UniswapGetBuyQuoteRequest = z
@@ -1140,8 +1424,8 @@ const UniswapLPPositionsInfoResponse = z
     .passthrough();
 
 export const schemas = {
-    Chain,
     Token,
+    Chain,
     AaveSupplyRequest,
     UnsignedTransaction,
     ValidationError,
@@ -1197,12 +1481,29 @@ export const schemas = {
     TransferEthRequest,
     IncreaseAllowanceRequest,
     IncreaseAllowanceAnyRequest,
+    MulticallAuthorizationRequest,
+    MulticallAuthorizationResponse,
+    SignedAuthorization,
+    MulticallActionType,
     FeeEnum,
+    UniswapBuyExactlyParams,
+    UniswapSellExactlyParams,
+    UniswapMintLiquidityProvisionParams,
+    UniswapWithdrawLiquidityProvisionParams,
+    UniswapIncreaseLiquidityProvisionParams,
+    AaveBorrowParams,
+    AaveRepayParams,
+    AaveSupplyParams,
+    AaveWithdrawParams,
+    IncreaseAllowanceParams,
+    MulticallAction,
+    MulticallExecuteRequest,
+    UnsignedMulticallTransaction,
     UniswapBuyExactlyRequest,
     UniswapSellExactlyRequest,
     UniswapIncreaseLiquidityProvisionRequest,
-    UniswapMintLiquidityProvision,
-    UniswapWithdrawLiquidityProvision,
+    UniswapMintLiquidityProvisionRequest,
+    UniswapWithdrawLiquidityProvisionRequest,
     UniswapGetBuyQuoteRequest,
     UniswapBuyQuoteInfoResponse,
     UniswapGetSellQuoteRequest,
@@ -2156,6 +2457,58 @@ it to be traded on DeFi protocols.`,
     },
     {
         method: 'post',
+        path: '/v0/multicall/authorization',
+        description: `Get authorization data for EIP-7702 batching operations.
+
+This authorization is required to prevent replay attacks and ensure transaction
+ordering when batching multiple actions into a single transaction. The authorization
+includes a nonce and chain ID to guarantee transaction uniqueness and proper network
+targeting.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: MulticallAuthorizationRequest,
+            },
+        ],
+        response: MulticallAuthorizationResponse,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/multicall/execute',
+        description: `Execute a batch of transactions in a single multicall using EIP-7702.
+
+This endpoint allows bundling multiple contract calls into a single atomic
+transaction, reducing gas costs and ensuring all operations succeed or fail
+together. The transaction must be authorized using the /authorization endpoint to
+prevent replay attacks.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: MulticallExecuteRequest,
+            },
+        ],
+        response: UnsignedMulticallTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
         path: '/v0/uniswap/liquidity_provision/in_range/get',
         description: `This endpoint allows users to check whether a specific liquidity provider ()
 position is within the active tick range on the uniswap platform.
@@ -2236,7 +2589,7 @@ needed for the minting process.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapMintLiquidityProvision,
+                schema: UniswapMintLiquidityProvisionRequest,
             },
         ],
         response: UnsignedTransaction,
@@ -2293,7 +2646,7 @@ before initiating a withdrawal to avoid potential issues or penalties.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapWithdrawLiquidityProvision,
+                schema: UniswapWithdrawLiquidityProvisionRequest,
             },
         ],
         response: UnsignedTransaction,
