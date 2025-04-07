@@ -32,6 +32,8 @@ Select the protocol.  E.g. for increasing ERC-20 allowance.
 
 * `CHAINLINKEACAGGREGATORPROXY` (value: `'ChainlinkEACAggregatorProxy'`)
 
+* `MULTICALL` (value: `'Multicall'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

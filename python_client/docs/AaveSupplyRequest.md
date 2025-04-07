@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **asset** | [**Token**](Token.md) | The symbol of the underlying asset to supply as collateral. You can borrow against it.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **amount** | [**Amount2**](Amount2.md) |  | 
 **on_behalf_of** | **str** |  | [optional] 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

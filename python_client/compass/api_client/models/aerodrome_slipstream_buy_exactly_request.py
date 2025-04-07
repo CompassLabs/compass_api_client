@@ -29,16 +29,16 @@ from typing_extensions import Self
 
 class AerodromeSlipstreamBuyExactlyRequest(BaseModel):
     """
-    AerodromeSlipstreamBuyExactlyRequest
+    Request model for buying exactly an amount of tokens.
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token_in: Token = Field(description="The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     token_out: Token = Field(description="The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     tick_spacing: Annotated[int, Field(strict=True, ge=1)] = Field(description="The tick spacing of the pool")
     amount_out: AmountOut
     amount_in_maximum: AmountInMaximum
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token_in", "token_out", "tick_spacing", "amount_out", "amount_in_maximum"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["token_in", "token_out", "tick_spacing", "amount_out", "amount_in_maximum", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,13 +97,13 @@ class AerodromeSlipstreamBuyExactlyRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token_in": obj.get("token_in"),
             "token_out": obj.get("token_out"),
             "tick_spacing": obj.get("tick_spacing"),
             "amount_out": AmountOut.from_dict(obj["amount_out"]) if obj.get("amount_out") is not None else None,
-            "amount_in_maximum": AmountInMaximum.from_dict(obj["amount_in_maximum"]) if obj.get("amount_in_maximum") is not None else None
+            "amount_in_maximum": AmountInMaximum.from_dict(obj["amount_in_maximum"]) if obj.get("amount_in_maximum") is not None else None,
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

@@ -35,23 +35,23 @@ class TestUniswapIncreaseLiquidityProvisionRequest(unittest.TestCase):
         model = UniswapIncreaseLiquidityProvisionRequest()
         if include_optional:
             return UniswapIncreaseLiquidityProvisionRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                token_id = 56,
-                amount0_desired = None,
-                amount1_desired = None,
-                amount0_min = None,
-                amount1_min = None
-            )
-        else:
-            return UniswapIncreaseLiquidityProvisionRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_id = 56,
                 amount0_desired = None,
                 amount1_desired = None,
                 amount0_min = None,
                 amount1_min = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
+            )
+        else:
+            return UniswapIncreaseLiquidityProvisionRequest(
+                token_id = 56,
+                amount0_desired = None,
+                amount1_desired = None,
+                amount0_min = None,
+                amount1_min = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

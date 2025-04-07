@@ -35,24 +35,24 @@ class TestUniswapBuyExactlyRequest(unittest.TestCase):
         model = UniswapBuyExactlyRequest()
         if include_optional:
             return UniswapBuyExactlyRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 fee = '0.01',
                 amount_out = None,
                 amount_in_maximum = None,
-                wrap_eth = True
+                wrap_eth = True,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return UniswapBuyExactlyRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 fee = '0.01',
                 amount_out = None,
                 amount_in_maximum = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

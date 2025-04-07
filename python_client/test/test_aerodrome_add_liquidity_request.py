@@ -35,8 +35,6 @@ class TestAerodromeAddLiquidityRequest(unittest.TestCase):
         model = AerodromeAddLiquidityRequest()
         if include_optional:
             return AerodromeAddLiquidityRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_a = '1INCH',
                 token_b = '1INCH',
                 stable = True,
@@ -45,12 +43,12 @@ class TestAerodromeAddLiquidityRequest(unittest.TestCase):
                 amount_a_min = None,
                 amount_b_min = None,
                 to = '',
-                deadline = 0.0
+                deadline = 0.0,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AerodromeAddLiquidityRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_a = '1INCH',
                 token_b = '1INCH',
                 stable = True,
@@ -59,6 +57,8 @@ class TestAerodromeAddLiquidityRequest(unittest.TestCase):
                 amount_a_min = None,
                 amount_b_min = None,
                 deadline = 0.0,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

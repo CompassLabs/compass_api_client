@@ -1,12 +1,11 @@
 # AerodromeSlipstreamMintLiquidityProvisionRequest
 
+Request model for minting a new liquidity position.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **token0** | [**Token**](Token.md) | The symbol of the first token in the pair&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **token1** | [**Token**](Token.md) | The symbol of the second token in the pair&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **tick_spacing** | **int** | The tick spacing of the pool | 
@@ -17,6 +16,8 @@ Name | Type | Description | Notes
 **amount0_min** | [**Amount0Min**](Amount0Min.md) |  | 
 **amount1_min** | [**Amount1Min**](Amount1Min.md) |  | 
 **recipient** | **str** |  | [optional] 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

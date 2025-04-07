@@ -35,22 +35,22 @@ class TestAerodromeSwapTokenForEthRequest(unittest.TestCase):
         model = AerodromeSwapTokenForEthRequest()
         if include_optional:
             return AerodromeSwapTokenForEthRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_in = '1INCH',
                 amount_in = None,
                 amount_out_min = None,
                 stable = True,
-                to = ''
+                to = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AerodromeSwapTokenForEthRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_in = '1INCH',
                 amount_in = None,
                 amount_out_min = None,
                 stable = True,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

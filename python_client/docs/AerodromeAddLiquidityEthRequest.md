@@ -5,8 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **token** | [**Token**](Token.md) | The symbol of the token to provide liquidity for alongside WETH.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **stable** | **bool** | If true, try to provide liquidity on a stable pool with a bonding curve of K&#x3D;x^3y+y^3x. If false, try to provide liquidity on a volatile pool with a bonding curve of K&#x3D;xy | 
 **amount_token_desired** | [**AmountTokenDesired**](AmountTokenDesired.md) |  | 
@@ -15,6 +13,8 @@ Name | Type | Description | Notes
 **amount_eth_min** | [**AmountEthMin**](AmountEthMin.md) |  | 
 **to** | **str** |  | [optional] 
 **deadline** | **int** |  | 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

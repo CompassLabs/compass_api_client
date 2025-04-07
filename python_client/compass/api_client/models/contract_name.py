@@ -40,6 +40,7 @@ class ContractName(str, Enum):
     UNISWAPV3NFTPOSITIONMANAGER = 'UniswapV3NFTPositionManager'
     UNISWAPV3QUOTER = 'UniswapV3Quoter'
     CHAINLINKEACAGGREGATORPROXY = 'ChainlinkEACAggregatorProxy'
+    MULTICALL = 'Multicall'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

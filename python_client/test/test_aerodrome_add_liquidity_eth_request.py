@@ -35,8 +35,6 @@ class TestAerodromeAddLiquidityEthRequest(unittest.TestCase):
         model = AerodromeAddLiquidityEthRequest()
         if include_optional:
             return AerodromeAddLiquidityEthRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token = '1INCH',
                 stable = True,
                 amount_token_desired = None,
@@ -44,12 +42,12 @@ class TestAerodromeAddLiquidityEthRequest(unittest.TestCase):
                 amount_token_min = None,
                 amount_eth_min = None,
                 to = '',
-                deadline = 0.0
+                deadline = 0.0,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AerodromeAddLiquidityEthRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token = '1INCH',
                 stable = True,
                 amount_token_desired = None,
@@ -57,6 +55,8 @@ class TestAerodromeAddLiquidityEthRequest(unittest.TestCase):
                 amount_token_min = None,
                 amount_eth_min = None,
                 deadline = 0.0,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

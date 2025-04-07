@@ -6,10 +6,10 @@ Request model for transferring native ETH.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **amount** | [**Amount6**](Amount6.md) |  | 
 **to** | **str** | The recipient of the ETH. | 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

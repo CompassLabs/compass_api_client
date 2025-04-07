@@ -35,20 +35,20 @@ class TestAaveBorrowRequest(unittest.TestCase):
         model = AaveBorrowRequest()
         if include_optional:
             return AaveBorrowRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,
                 interest_rate_mode = 1,
-                on_behalf_of = ''
+                on_behalf_of = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AaveBorrowRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,
                 interest_rate_mode = 1,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

@@ -1482,6 +1482,90 @@
         }
       }
     },
+    "/v0/multicall/authorization": {
+      "post": {
+        "tags": [
+          "multicall"
+        ],
+        "summary": "Get EIP-7702 Authorization",
+        "description": "Get authorization data for EIP-7702 batching operations.\n\nThis authorization is required to prevent replay attacks and ensure transaction\nordering when batching multiple actions into a single transaction. The authorization\nincludes a nonce and chain ID to guarantee transaction uniqueness and proper network\ntargeting.",
+        "operationId": "multicall_authorization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MulticallAuthorizationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MulticallAuthorizationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/multicall/execute": {
+      "post": {
+        "tags": [
+          "multicall"
+        ],
+        "summary": "Execute Tx Batching",
+        "description": "Execute a batch of transactions in a single multicall using EIP-7702.\n\nThis endpoint allows bundling multiple contract calls into a single atomic\ntransaction, reducing gas costs and ensuring all operations succeed or fail\ntogether. The transaction must be authorized using the /authorization endpoint to\nprevent replay attacks.",
+        "operationId": "multicall_execute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MulticallExecuteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsignedMulticallTransaction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v0/uniswap/swap/buy_exactly": {
       "post": {
         "tags": [
@@ -1620,7 +1704,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UniswapMintLiquidityProvision"
+                "$ref": "#/components/schemas/UniswapMintLiquidityProvisionRequest"
               }
             }
           },
@@ -1662,7 +1746,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UniswapWithdrawLiquidityProvision"
+                "$ref": "#/components/schemas/UniswapWithdrawLiquidityProvisionRequest"
               }
             }
           },
@@ -1919,17 +2003,8 @@
         ],
         "title": "AaveAssetPriceResponse"
       },
-      "AaveBorrowRequest": {
+      "AaveBorrowParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "asset": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the underlying asset to borrow.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -1978,11 +2053,76 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "asset",
           "amount",
           "interest_rate_mode"
+        ],
+        "title": "AaveBorrowParams"
+      },
+      "AaveBorrowRequest": {
+        "properties": {
+          "asset": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the underlying asset to borrow.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount",
+            "description": "The amount of the asset to borrow",
+            "examples": [
+              150.5
+            ]
+          },
+          "interest_rate_mode": {
+            "$ref": "#/components/schemas/InterestRateMode",
+            "description": "The interest rate mode to borrow",
+            "examples": [
+              1
+            ],
+            "ge": 1,
+            "le": 2
+          },
+          "on_behalf_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "On Behalf Of",
+            "description": "The address on behalf of whom the supply is made",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "asset",
+          "amount",
+          "interest_rate_mode",
+          "chain",
+          "sender"
         ],
         "title": "AaveBorrowRequest",
         "example": {
@@ -2155,17 +2295,8 @@
         ],
         "title": "AaveLiquidityChangeResponse"
       },
-      "AaveRepayRequest": {
+      "AaveRepayParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "asset": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the underlying asset to repay.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -2214,11 +2345,76 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "asset",
           "amount",
           "interest_rate_mode"
+        ],
+        "title": "AaveRepayParams"
+      },
+      "AaveRepayRequest": {
+        "properties": {
+          "asset": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the underlying asset to repay.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount",
+            "description": "The amount of the asset to repay",
+            "examples": [
+              1.5
+            ]
+          },
+          "interest_rate_mode": {
+            "$ref": "#/components/schemas/InterestRateMode",
+            "description": "The interest rate mode to borrow",
+            "examples": [
+              1
+            ],
+            "ge": 1,
+            "le": 2
+          },
+          "on_behalf_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "On Behalf Of",
+            "description": "The address on behalf of whom the supply is made",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "asset",
+          "amount",
+          "interest_rate_mode",
+          "chain",
+          "sender"
         ],
         "title": "AaveRepayRequest",
         "example": {
@@ -2230,17 +2426,8 @@
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
-      "AaveSupplyRequest": {
+      "AaveSupplyParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "asset": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -2280,10 +2467,65 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "asset",
           "amount"
+        ],
+        "title": "AaveSupplyParams"
+      },
+      "AaveSupplyRequest": {
+        "properties": {
+          "asset": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount",
+            "description": "The amount of the asset to supply",
+            "examples": [
+              1.5
+            ]
+          },
+          "on_behalf_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "On Behalf Of",
+            "description": "The address on behalf of whom the supply is made. Defaults to the transaction sender.",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "asset",
+          "amount",
+          "chain",
+          "sender"
         ],
         "title": "AaveSupplyRequest",
         "example": {
@@ -2399,17 +2641,8 @@
         ],
         "title": "AaveUserPositionSummaryResponse"
       },
-      "AaveWithdrawRequest": {
+      "AaveWithdrawParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "asset": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the underlying asset to withdraw.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -2444,11 +2677,62 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "asset",
           "amount",
           "recipient"
+        ],
+        "title": "AaveWithdrawParams"
+      },
+      "AaveWithdrawRequest": {
+        "properties": {
+          "asset": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the underlying asset to withdraw.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount",
+            "description": "The amount of the asset to withdraw",
+            "examples": [
+              1.5
+            ]
+          },
+          "recipient": {
+            "type": "string",
+            "title": "Recipient",
+            "description": "The address of the recipient of the withdrawn funds.",
+            "examples": [
+              "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+            ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "asset",
+          "amount",
+          "recipient",
+          "chain",
+          "sender"
         ],
         "title": "AaveWithdrawRequest",
         "example": {
@@ -2461,15 +2745,6 @@
       },
       "AerodromeAddLiquidityEthRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to provide liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -2574,19 +2849,28 @@
             "examples": [
               1630000000
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token",
           "stable",
           "amount_token_desired",
           "amount_eth_desired",
           "amount_token_min",
           "amount_eth_min",
-          "deadline"
+          "deadline",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeAddLiquidityEthRequest",
         "example": {
@@ -2604,15 +2888,6 @@
       },
       "AerodromeAddLiquidityRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_a": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to provide liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -2724,12 +2999,19 @@
             "examples": [
               1630000000
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_a",
           "token_b",
           "stable",
@@ -2737,7 +3019,9 @@
           "amount_b_desired",
           "amount_a_min",
           "amount_b_min",
-          "deadline"
+          "deadline",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeAddLiquidityRequest",
         "example": {
@@ -3103,15 +3387,6 @@
       },
       "AerodromeSlipstreamBuyExactlyRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3181,19 +3456,29 @@
             "examples": [
               1.6
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_in",
           "token_out",
           "tick_spacing",
           "amount_out",
-          "amount_in_maximum"
+          "amount_in_maximum",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeSlipstreamBuyExactlyRequest",
+        "description": "Request model for buying exactly an amount of tokens.",
         "example": {
           "amount_in_maximum": 0.1,
           "amount_out": 0.000048,
@@ -3284,15 +3569,6 @@
       },
       "AerodromeSlipstreamIncreaseLiquidityProvisionRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_id": {
             "type": "integer",
             "title": "Token Id",
@@ -3361,32 +3637,7 @@
             "examples": [
               "1.6"
             ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "token_id",
-          "amount0_desired",
-          "amount1_desired",
-          "amount0_min",
-          "amount1_min"
-        ],
-        "title": "AerodromeSlipstreamIncreaseLiquidityProvisionRequest",
-        "example": {
-          "amount0_desired": 0.1,
-          "amount0_min": 0,
-          "amount1_desired": 0.1,
-          "amount1_min": 0,
-          "chain": "base:mainnet",
-          "percentage_for_withdrawal": 1,
-          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token_id": 10433247
-        }
-      },
-      "AerodromeSlipstreamMintLiquidityProvisionRequest": {
-        "properties": {
+          },
           "chain": {
             "$ref": "#/components/schemas/Chain"
           },
@@ -3395,7 +3646,31 @@
             "title": "Sender",
             "description": "The address of the transaction sender",
             "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
+          }
+        },
+        "type": "object",
+        "required": [
+          "token_id",
+          "amount0_desired",
+          "amount1_desired",
+          "amount0_min",
+          "amount1_min",
+          "chain",
+          "sender"
+        ],
+        "title": "AerodromeSlipstreamIncreaseLiquidityProvisionRequest",
+        "example": {
+          "amount0_desired": 0.1,
+          "amount0_min": 0,
+          "amount1_desired": 0.1,
+          "amount1_min": 0,
+          "chain": "base:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_id": 10433247
+        }
+      },
+      "AerodromeSlipstreamMintLiquidityProvisionRequest": {
+        "properties": {
           "token0": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3528,12 +3803,19 @@
             "examples": [
               "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token0",
           "token1",
           "tick_spacing",
@@ -3542,9 +3824,12 @@
           "amount0_desired",
           "amount1_desired",
           "amount0_min",
-          "amount1_min"
+          "amount1_min",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeSlipstreamMintLiquidityProvisionRequest",
+        "description": "Request model for minting a new liquidity position.",
         "example": {
           "amount0_desired": 0.1,
           "amount0_min": 0,
@@ -3592,15 +3877,6 @@
       },
       "AerodromeSlipstreamSellExactlyRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3671,18 +3947,28 @@
             "examples": [
               1.4
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_in",
           "token_out",
           "tick_spacing",
-          "amount_in"
+          "amount_in",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeSlipstreamSellExactlyRequest",
+        "description": "Request model for selling exactly an amount of tokens.",
         "example": {
           "amount_in": 1,
           "amount_out_minimum": 0,
@@ -3695,15 +3981,6 @@
       },
       "AerodromeSlipstreamWithdrawLiquidityProvisionRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_id": {
             "type": "integer",
             "title": "Token Id",
@@ -3728,17 +4005,25 @@
               "75",
               "100"
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_id",
-          "percentage_for_withdrawal"
+          "percentage_for_withdrawal",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeSlipstreamWithdrawLiquidityProvisionRequest",
-        "description": "Endpoint parameters for liquidity provision withdrawal on aerodrome slipstream.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/AerodromeSlipstream/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user.",
         "example": {
           "chain": "base:mainnet",
           "percentage_for_withdrawal": 1,
@@ -3748,15 +4033,6 @@
       },
       "AerodromeSwapEthForTokenRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_out": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3813,18 +4089,28 @@
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
             "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_out",
           "amount_in",
           "amount_out_min",
-          "stable"
+          "stable",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeSwapEthForTokenRequest",
+        "description": "Request model for swapping ETH for tokens.",
         "example": {
           "amount_in": 0.00047753,
           "amount_out_min": 0,
@@ -3837,15 +4123,6 @@
       },
       "AerodromeSwapTokenForEthRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3902,18 +4179,28 @@
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
             "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_in",
           "amount_in",
           "amount_out_min",
-          "stable"
+          "stable",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeSwapTokenForEthRequest",
+        "description": "Request model for swapping tokens for ETH.",
         "example": {
           "amount_in": 1,
           "amount_out_min": 0,
@@ -3926,15 +4213,6 @@
       },
       "AerodromeSwapTokensRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -3998,19 +4276,29 @@
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
             "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_in",
           "token_out",
           "amount_in",
           "amount_out_min",
-          "stable"
+          "stable",
+          "chain",
+          "sender"
         ],
         "title": "AerodromeSwapTokensRequest",
+        "description": "Request model for swapping tokens.",
         "example": {
           "amount_in": 1,
           "amount_out_min": 0,
@@ -4145,7 +4433,8 @@
           "UniswapV3Factory",
           "UniswapV3NFTPositionManager",
           "UniswapV3Quoter",
-          "ChainlinkEACAggregatorProxy"
+          "ChainlinkEACAggregatorProxy",
+          "Multicall"
         ],
         "title": "ContractName",
         "description": "Select the protocol.\n\nE.g. for increasing ERC-20 allowance."
@@ -4325,15 +4614,6 @@
       },
       "IncreaseAllowanceAnyRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token": {
             "$ref": "#/components/schemas/Token",
             "description": "The name of the token for which the allowance is increased.",
@@ -4363,21 +4643,7 @@
             "examples": [
               1.5
             ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "chain",
-          "sender",
-          "token",
-          "contract_name",
-          "amount"
-        ],
-        "title": "IncreaseAllowanceAnyRequest",
-        "description": "Request model for increasing allowance for any arbitrary ERC20 token address."
-      },
-      "IncreaseAllowanceRequest": {
-        "properties": {
+          },
           "chain": {
             "$ref": "#/components/schemas/Chain"
           },
@@ -4386,7 +4652,21 @@
             "title": "Sender",
             "description": "The address of the transaction sender",
             "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
+          }
+        },
+        "type": "object",
+        "required": [
+          "token",
+          "contract_name",
+          "amount",
+          "chain",
+          "sender"
+        ],
+        "title": "IncreaseAllowanceAnyRequest",
+        "description": "Request model for increasing allowance for any arbitrary ERC20 token address."
+      },
+      "IncreaseAllowanceParams": {
+        "properties": {
           "token": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token for which the allowance is increased.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -4420,11 +4700,62 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token",
           "contract_name",
           "amount"
+        ],
+        "title": "IncreaseAllowanceParams",
+        "description": "Parameters model for increasing token allowance for a contract."
+      },
+      "IncreaseAllowanceRequest": {
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token for which the allowance is increased.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "contract_name": {
+            "$ref": "#/components/schemas/ContractName",
+            "description": "The name of the contract to increase allowance for.",
+            "examples": [
+              "AaveV3Pool"
+            ]
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount",
+            "description": "The amount of tokens to increase the allowance by.",
+            "examples": [
+              1.5
+            ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token",
+          "contract_name",
+          "amount",
+          "chain",
+          "sender"
         ],
         "title": "IncreaseAllowanceRequest",
         "description": "Request model for increasing token allowance for a contract.",
@@ -4444,6 +4775,175 @@
         ],
         "title": "InterestRateMode",
         "description": "On AAVE there are 2 different interest modes.\n\nA stable (but typically higher rate), or a variable rate."
+      },
+      "MulticallAction": {
+        "properties": {
+          "action_type": {
+            "$ref": "#/components/schemas/MulticallActionType"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UniswapBuyExactlyParams"
+              },
+              {
+                "$ref": "#/components/schemas/UniswapSellExactlyParams"
+              },
+              {
+                "$ref": "#/components/schemas/UniswapMintLiquidityProvisionParams"
+              },
+              {
+                "$ref": "#/components/schemas/UniswapWithdrawLiquidityProvisionParams"
+              },
+              {
+                "$ref": "#/components/schemas/UniswapIncreaseLiquidityProvisionParams"
+              },
+              {
+                "$ref": "#/components/schemas/AaveBorrowParams"
+              },
+              {
+                "$ref": "#/components/schemas/AaveRepayParams"
+              },
+              {
+                "$ref": "#/components/schemas/AaveSupplyParams"
+              },
+              {
+                "$ref": "#/components/schemas/AaveWithdrawParams"
+              },
+              {
+                "$ref": "#/components/schemas/IncreaseAllowanceParams"
+              }
+            ],
+            "title": "Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action_type",
+          "body"
+        ],
+        "title": "MulticallAction"
+      },
+      "MulticallActionType": {
+        "type": "string",
+        "enum": [
+          "UNISWAP_BUY_EXACTLY",
+          "UNISWAP_SELL_EXACTLY",
+          "UNISWAP_MINT_LIQUIDITY",
+          "UNISWAP_WITHDRAW_LIQUIDITY",
+          "UNISWAP_ADD_LIQUIDITY",
+          "AAVE_BORROW",
+          "AAVE_REPAY",
+          "AAVE_SUPPLY",
+          "AAVE_WITHDRAW",
+          "ALLOWANCE_INCREASE",
+          "TRANSFER_ERC20"
+        ],
+        "title": "MulticallActionType"
+      },
+      "MulticallAuthorizationRequest": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain",
+            "description": "The blockchain network to use",
+            "examples": [
+              "ethereum:mainnet"
+            ]
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The Ethereum address to use for authorization",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "address": {
+            "type": "string",
+            "title": "Address",
+            "description": "The Ethereum address to authorize for multicall",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "sender",
+          "address"
+        ],
+        "title": "MulticallAuthorizationRequest",
+        "description": "Request model for getting a multicall authorization.\n\nThis model is used to authorize a sender address to perform multicall operations,\nallowing it to call multiple functions on multiple contracts in a single\ntransaction."
+      },
+      "MulticallAuthorizationResponse": {
+        "properties": {
+          "nonce": {
+            "type": "integer",
+            "title": "Nonce",
+            "description": "A unique nonce value for this authorization",
+            "examples": [
+              12345
+            ]
+          },
+          "address": {
+            "type": "string",
+            "title": "Address",
+            "description": "The Ethereum address authorized for multicall",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "chainId": {
+            "type": "integer",
+            "title": "Chainid",
+            "description": "The chain ID for the blockchain network",
+            "examples": [
+              1
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "nonce",
+          "address",
+          "chainId"
+        ],
+        "title": "MulticallAuthorizationResponse",
+        "description": "Response model for multicall authorization."
+      },
+      "MulticallExecuteRequest": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          },
+          "signed_authorization": {
+            "$ref": "#/components/schemas/SignedAuthorization"
+          },
+          "contract_address": {
+            "type": "string",
+            "title": "Contract Address",
+            "description": "The address of the multicall contract"
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/MulticallAction"
+            },
+            "type": "array",
+            "title": "Actions",
+            "description": "List of possible actions for multicall"
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "sender",
+          "signed_authorization",
+          "contract_address",
+          "actions"
+        ],
+        "title": "MulticallExecuteRequest",
+        "description": "Request model for executing a multicall."
       },
       "Portfolio": {
         "properties": {
@@ -4536,6 +5036,58 @@
           "token_price_in_usd"
         ],
         "title": "PriceResponse"
+      },
+      "SignedAuthorization": {
+        "properties": {
+          "nonce": {
+            "type": "integer",
+            "title": "Nonce"
+          },
+          "address": {
+            "type": "string",
+            "title": "Address"
+          },
+          "chainId": {
+            "type": "integer",
+            "title": "Chainid"
+          },
+          "r": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "R"
+          },
+          "s": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "S"
+          },
+          "yParity": {
+            "type": "integer",
+            "title": "Yparity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nonce",
+          "address",
+          "chainId",
+          "r",
+          "s",
+          "yParity"
+        ],
+        "title": "SignedAuthorization"
       },
       "Token": {
         "type": "string",
@@ -4683,15 +5235,6 @@
       },
       "TransferERC20Request": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "amount": {
             "anyOf": [
               {
@@ -4722,15 +5265,24 @@
             "examples": [
               "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc44"
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "amount",
           "token",
-          "to"
+          "to",
+          "chain",
+          "sender"
         ],
         "title": "TransferERC20Request",
         "description": "Request model for transferring ERC20 tokens.",
@@ -4744,15 +5296,6 @@
       },
       "TransferEthRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "amount": {
             "anyOf": [
               {
@@ -4776,14 +5319,23 @@
             "examples": [
               "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc44"
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "amount",
-          "to"
+          "to",
+          "chain",
+          "sender"
         ],
         "title": "TransferEthRequest",
         "description": "Request model for transferring native ETH.",
@@ -4794,17 +5346,8 @@
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
-      "UniswapBuyExactlyRequest": {
+      "UniswapBuyExactlyParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -4870,15 +5413,100 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_in",
           "token_out",
           "fee",
           "amount_out",
           "amount_in_maximum"
         ],
+        "title": "UniswapBuyExactlyParams"
+      },
+      "UniswapBuyExactlyRequest": {
+        "properties": {
+          "token_in": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "token_out": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "fee": {
+            "$ref": "#/components/schemas/FeeEnum",
+            "description": "The swap fee of the pool",
+            "examples": [
+              "0.3"
+            ]
+          },
+          "amount_out": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount Out",
+            "description": "The amount of the token to swap to",
+            "examples": [
+              1.5
+            ]
+          },
+          "amount_in_maximum": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount In Maximum",
+            "description": "The maximum amount of the token to swap from",
+            "examples": [
+              1.6
+            ]
+          },
+          "wrap_eth": {
+            "type": "boolean",
+            "title": "Wrap Eth",
+            "description": "Whether to wrap ETH to WETH, only use when swapping WETH into something",
+            "default": false,
+            "examples": [
+              true
+            ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token_in",
+          "token_out",
+          "fee",
+          "amount_out",
+          "amount_in_maximum",
+          "chain",
+          "sender"
+        ],
         "title": "UniswapBuyExactlyRequest",
+        "description": "Request model for buying exactly an amount of tokens.",
         "example": {
           "amount_in_maximum": 1.1,
           "amount_out": 1,
@@ -5133,17 +5761,8 @@
           "token_out": "USDT"
         }
       },
-      "UniswapIncreaseLiquidityProvisionRequest": {
+      "UniswapIncreaseLiquidityProvisionParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_id": {
             "type": "integer",
             "title": "Token Id",
@@ -5212,15 +5831,103 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_id",
           "amount0_desired",
           "amount1_desired",
           "amount0_min",
           "amount1_min"
         ],
+        "title": "UniswapIncreaseLiquidityProvisionParams"
+      },
+      "UniswapIncreaseLiquidityProvisionRequest": {
+        "properties": {
+          "token_id": {
+            "type": "integer",
+            "title": "Token Id",
+            "description": "Token ID of the NFT representing the liquidity provisioned position."
+          },
+          "amount0_desired": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount0 Desired",
+            "description": "The desired amount of the first token to deposit",
+            "examples": [
+              "1.5"
+            ]
+          },
+          "amount1_desired": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount1 Desired",
+            "description": "The desired amount of the second token to deposit",
+            "examples": [
+              "1.7"
+            ]
+          },
+          "amount0_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount0 Min",
+            "description": "The minimum amount of the first token to deposit",
+            "examples": [
+              "1.4"
+            ]
+          },
+          "amount1_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount1 Min",
+            "description": "The minimum amount of the second token to deposit",
+            "examples": [
+              "1.6"
+            ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token_id",
+          "amount0_desired",
+          "amount1_desired",
+          "amount0_min",
+          "amount1_min",
+          "chain",
+          "sender"
+        ],
         "title": "UniswapIncreaseLiquidityProvisionRequest",
+        "description": "Request model for increasing liquidity provision in Uniswap V3.",
         "example": {
           "amount0_desired": 0.1,
           "amount0_min": 0.05,
@@ -5248,17 +5955,8 @@
         ],
         "title": "UniswapLPPositionsInfoResponse"
       },
-      "UniswapMintLiquidityProvision": {
+      "UniswapMintLiquidityProvisionParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token0": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -5382,8 +6080,6 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token0",
           "token1",
           "fee",
@@ -5394,7 +6090,156 @@
           "amount0_min",
           "amount1_min"
         ],
-        "title": "UniswapMintLiquidityProvision",
+        "title": "UniswapMintLiquidityProvisionParams"
+      },
+      "UniswapMintLiquidityProvisionRequest": {
+        "properties": {
+          "token0": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "token1": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "fee": {
+            "$ref": "#/components/schemas/FeeEnum",
+            "description": "The swap fee of the pool",
+            "examples": [
+              "0.3"
+            ]
+          },
+          "tick_lower": {
+            "type": "integer",
+            "maximum": 887272.0,
+            "minimum": -887272.0,
+            "title": "Tick Lower",
+            "description": "The lower tick of the range to mint the position in",
+            "examples": [
+              -1000
+            ]
+          },
+          "tick_upper": {
+            "type": "integer",
+            "maximum": 887272.0,
+            "minimum": -887272.0,
+            "title": "Tick Upper",
+            "description": "The upper tick of the range to mint the position in",
+            "examples": [
+              1000
+            ]
+          },
+          "amount0_desired": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount0 Desired",
+            "description": "The desired amount of the first token to deposit",
+            "examples": [
+              "1.5"
+            ]
+          },
+          "amount1_desired": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount1 Desired",
+            "description": "The desired amount of the second token to deposit",
+            "examples": [
+              "1.7"
+            ]
+          },
+          "amount0_min": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount0 Min",
+            "description": "The minimum amount of the first token to deposit",
+            "examples": [
+              "1.4"
+            ]
+          },
+          "amount1_min": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount1 Min",
+            "description": "The minimum amount of the second token to deposit",
+            "examples": [
+              "1.6"
+            ]
+          },
+          "recipient": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient",
+            "description": "The address that will receive the LP tokens",
+            "examples": [
+              "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token0",
+          "token1",
+          "fee",
+          "tick_lower",
+          "tick_upper",
+          "amount0_desired",
+          "amount1_desired",
+          "amount0_min",
+          "amount1_min",
+          "chain",
+          "sender"
+        ],
+        "title": "UniswapMintLiquidityProvisionRequest",
+        "description": "Request model for minting a new liquidity position.",
         "example": {
           "amount0_desired": 0.1,
           "amount0_min": 0,
@@ -5508,17 +6353,8 @@
         ],
         "title": "UniswapPositionsSolidityResponse"
       },
-      "UniswapSellExactlyRequest": {
+      "UniswapSellExactlyParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_in": {
             "$ref": "#/components/schemas/Token",
             "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
@@ -5585,14 +6421,100 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_in",
           "token_out",
           "fee",
           "amount_in"
         ],
+        "title": "UniswapSellExactlyParams",
+        "description": "Parameters model for selling exactly an amount of tokens."
+      },
+      "UniswapSellExactlyRequest": {
+        "properties": {
+          "token_in": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "token_out": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "examples": [
+              "WETH"
+            ]
+          },
+          "fee": {
+            "$ref": "#/components/schemas/FeeEnum",
+            "description": "The swap fee of the pool",
+            "examples": [
+              "0.3"
+            ]
+          },
+          "amount_in": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount In",
+            "description": "The amount of the token to swap from",
+            "examples": [
+              1.5
+            ]
+          },
+          "amount_out_minimum": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Amount Out Minimum",
+            "description": "The minimum amount of the token to swap to, defaults to 0",
+            "default": "0",
+            "examples": [
+              1.4
+            ]
+          },
+          "wrap_eth": {
+            "type": "boolean",
+            "title": "Wrap Eth",
+            "description": "Whether to wrap ETH to WETH, only use when swapping WETH into something",
+            "default": false,
+            "examples": [
+              true
+            ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token_in",
+          "token_out",
+          "fee",
+          "amount_in",
+          "chain",
+          "sender"
+        ],
         "title": "UniswapSellExactlyRequest",
+        "description": "Request model for selling exactly an amount of tokens.",
         "example": {
           "amount_in": 1,
           "amount_out_minimum": 0.5,
@@ -5624,17 +6546,8 @@
         ],
         "title": "UniswapSellQuoteInfoResponse"
       },
-      "UniswapWithdrawLiquidityProvision": {
+      "UniswapWithdrawLiquidityProvisionParams": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "token_id": {
             "type": "integer",
             "title": "Token Id",
@@ -5663,19 +6576,134 @@
         },
         "type": "object",
         "required": [
-          "chain",
-          "sender",
           "token_id",
           "percentage_for_withdrawal"
         ],
-        "title": "UniswapWithdrawLiquidityProvision",
-        "description": "Endpoint parameters for liquidity provision withdrawal on uniswap v3.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user.",
+        "title": "UniswapWithdrawLiquidityProvisionParams",
+        "description": "Endpoint parameters for liquidity provision withdrawal on uniswap v3.\n\nThis action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27\nFirst, we call decrease liquidity then collect the tokens owed to the user."
+      },
+      "UniswapWithdrawLiquidityProvisionRequest": {
+        "properties": {
+          "token_id": {
+            "type": "integer",
+            "title": "Token Id",
+            "description": "Token ID of the NFT representing the liquidity provisioned position."
+          },
+          "percentage_for_withdrawal": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 100.0,
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Percentage For Withdrawal",
+            "description": "How much liquidity to take out in percentage.",
+            "examples": [
+              "25",
+              "50",
+              "75",
+              "100"
+            ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token_id",
+          "percentage_for_withdrawal",
+          "chain",
+          "sender"
+        ],
+        "title": "UniswapWithdrawLiquidityProvisionRequest",
         "example": {
           "chain": "arbitrum:mainnet",
           "percentage_for_withdrawal": 1,
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_id": 4318185
         }
+      },
+      "UnsignedMulticallTransaction": {
+        "properties": {
+          "chainId": {
+            "type": "integer",
+            "title": "Chainid",
+            "description": "The chain id of the transaction"
+          },
+          "data": {
+            "type": "string",
+            "title": "Data",
+            "description": "The data of the transaction"
+          },
+          "from": {
+            "type": "string",
+            "title": "From",
+            "description": "The sender of the transaction"
+          },
+          "gas": {
+            "type": "integer",
+            "title": "Gas",
+            "description": "The gas of the transaction"
+          },
+          "to": {
+            "type": "string",
+            "title": "To",
+            "description": "The recipient of the transaction"
+          },
+          "value": {
+            "type": "integer",
+            "title": "Value",
+            "description": "The value of the transaction"
+          },
+          "nonce": {
+            "type": "integer",
+            "title": "Nonce",
+            "description": "The nonce of the address"
+          },
+          "maxFeePerGas": {
+            "type": "integer",
+            "title": "Maxfeepergas",
+            "description": "The max fee per gas of the transaction"
+          },
+          "maxPriorityFeePerGas": {
+            "type": "integer",
+            "title": "Maxpriorityfeepergas",
+            "description": "The max priority fee per gas of the transaction"
+          },
+          "authorizationList": {
+            "items": {
+              "$ref": "#/components/schemas/SignedAuthorization"
+            },
+            "type": "array",
+            "title": "Authorizationlist",
+            "description": "EIP-7702 authorization",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "chainId",
+          "data",
+          "from",
+          "gas",
+          "to",
+          "value",
+          "nonce",
+          "maxFeePerGas",
+          "maxPriorityFeePerGas"
+        ],
+        "title": "UnsignedMulticallTransaction"
       },
       "UnsignedTransaction": {
         "properties": {
@@ -5741,15 +6769,6 @@
       },
       "UnwrapWethRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "amount": {
             "anyOf": [
               {
@@ -5765,13 +6784,22 @@
             "examples": [
               1.5
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
+          "amount",
           "chain",
-          "sender",
-          "amount"
+          "sender"
         ],
         "title": "UnwrapWethRequest",
         "description": "Request model for unwrapping WETH back to native ETH.",
@@ -5841,15 +6869,6 @@
       },
       "WrapEthRequest": {
         "properties": {
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          },
           "amount": {
             "anyOf": [
               {
@@ -5865,13 +6884,22 @@
             "examples": [
               1.5
             ]
+          },
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "sender": {
+            "type": "string",
+            "title": "Sender",
+            "description": "The address of the transaction sender",
+            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
         "required": [
+          "amount",
           "chain",
-          "sender",
-          "amount"
+          "sender"
         ],
         "title": "WrapEthRequest",
         "description": "Request model for wrapping ETH into WETH.",

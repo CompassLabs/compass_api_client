@@ -1,17 +1,18 @@
 # AerodromeSwapTokenForEthRequest
 
+Request model for swapping tokens for ETH.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **token_in** | [**Token**](Token.md) | The symbol of the token to swap from&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **amount_in** | [**AmountIn2**](AmountIn2.md) |  | 
 **amount_out_min** | [**AmountOutMin1**](AmountOutMin1.md) |  | 
 **stable** | **bool** | If true, try to trade on a stable pool with a bonding curve of K&#x3D;x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K&#x3D;xy | 
 **to** | **str** |  | [optional] 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

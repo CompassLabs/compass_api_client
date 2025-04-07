@@ -30,13 +30,13 @@ class AaveBorrowRequest(BaseModel):
     """
     AaveBorrowRequest
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     asset: Token = Field(description="The symbol of the underlying asset to borrow.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     amount: Amount
     interest_rate_mode: InterestRateMode = Field(description="The interest rate mode to borrow")
     on_behalf_of: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["chain", "sender", "asset", "amount", "interest_rate_mode", "on_behalf_of"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["asset", "amount", "interest_rate_mode", "on_behalf_of", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,12 +97,12 @@ class AaveBorrowRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "asset": obj.get("asset"),
             "amount": Amount.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "interest_rate_mode": obj.get("interest_rate_mode"),
-            "on_behalf_of": obj.get("on_behalf_of")
+            "on_behalf_of": obj.get("on_behalf_of"),
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

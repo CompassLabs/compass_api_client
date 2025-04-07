@@ -31,14 +31,14 @@ class AerodromeSlipstreamIncreaseLiquidityProvisionRequest(BaseModel):
     """
     AerodromeSlipstreamIncreaseLiquidityProvisionRequest
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token_id: StrictInt = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
     amount0_desired: Amount0Desired
     amount1_desired: Amount1Desired
     amount0_min: Amount0Min
     amount1_min: Amount1Min
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token_id", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["token_id", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,13 +103,13 @@ class AerodromeSlipstreamIncreaseLiquidityProvisionRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token_id": obj.get("token_id"),
             "amount0_desired": Amount0Desired.from_dict(obj["amount0_desired"]) if obj.get("amount0_desired") is not None else None,
             "amount1_desired": Amount1Desired.from_dict(obj["amount1_desired"]) if obj.get("amount1_desired") is not None else None,
             "amount0_min": Amount0Min.from_dict(obj["amount0_min"]) if obj.get("amount0_min") is not None else None,
-            "amount1_min": Amount1Min.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None
+            "amount1_min": Amount1Min.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None,
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

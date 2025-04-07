@@ -31,10 +31,8 @@ from typing_extensions import Self
 
 class AerodromeSlipstreamMintLiquidityProvisionRequest(BaseModel):
     """
-    AerodromeSlipstreamMintLiquidityProvisionRequest
+    Request model for minting a new liquidity position.
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token0: Token = Field(description="The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     token1: Token = Field(description="The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     tick_spacing: Annotated[int, Field(strict=True, ge=1)] = Field(description="The tick spacing of the pool")
@@ -45,7 +43,9 @@ class AerodromeSlipstreamMintLiquidityProvisionRequest(BaseModel):
     amount0_min: Amount0Min
     amount1_min: Amount1Min
     recipient: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token0", "token1", "tick_spacing", "tick_lower", "tick_upper", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min", "recipient"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["token0", "token1", "tick_spacing", "tick_lower", "tick_upper", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min", "recipient", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,8 +115,6 @@ class AerodromeSlipstreamMintLiquidityProvisionRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token0": obj.get("token0"),
             "token1": obj.get("token1"),
             "tick_spacing": obj.get("tick_spacing"),
@@ -126,7 +124,9 @@ class AerodromeSlipstreamMintLiquidityProvisionRequest(BaseModel):
             "amount1_desired": Amount1Desired.from_dict(obj["amount1_desired"]) if obj.get("amount1_desired") is not None else None,
             "amount0_min": Amount0Min.from_dict(obj["amount0_min"]) if obj.get("amount0_min") is not None else None,
             "amount1_min": Amount1Min.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None,
-            "recipient": obj.get("recipient")
+            "recipient": obj.get("recipient"),
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

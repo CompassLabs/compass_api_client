@@ -17,22 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
-from compass.api_client.models.chain import Chain
 from compass.api_client.models.percentage_for_withdrawal import PercentageForWithdrawal
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UniswapWithdrawLiquidityProvision(BaseModel):
+class UniswapWithdrawLiquidityProvisionParams(BaseModel):
     """
     Endpoint parameters for liquidity provision withdrawal on uniswap v3.  This action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27 First, we call decrease liquidity then collect the tokens owed to the user.
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token_id: StrictInt = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
     percentage_for_withdrawal: PercentageForWithdrawal
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token_id", "percentage_for_withdrawal"]
+    __properties: ClassVar[List[str]] = ["token_id", "percentage_for_withdrawal"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +49,7 @@ class UniswapWithdrawLiquidityProvision(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UniswapWithdrawLiquidityProvision from a JSON string"""
+        """Create an instance of UniswapWithdrawLiquidityProvisionParams from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +77,7 @@ class UniswapWithdrawLiquidityProvision(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UniswapWithdrawLiquidityProvision from a dict"""
+        """Create an instance of UniswapWithdrawLiquidityProvisionParams from a dict"""
         if obj is None:
             return None
 
@@ -88,8 +85,6 @@ class UniswapWithdrawLiquidityProvision(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token_id": obj.get("token_id"),
             "percentage_for_withdrawal": PercentageForWithdrawal.from_dict(obj["percentage_for_withdrawal"]) if obj.get("percentage_for_withdrawal") is not None else None
         })
