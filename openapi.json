@@ -1485,7 +1485,7 @@
     "/v0/multicall/authorization": {
       "post": {
         "tags": [
-          "multicall"
+          "Transaction Batching"
         ],
         "summary": "Get EIP-7702 Authorization",
         "description": "Get authorization data for EIP-7702 batching operations.\n\nThis authorization is required to prevent replay attacks and ensure transaction\nordering when batching multiple actions into a single transaction. The authorization\nincludes a nonce and chain ID to guarantee transaction uniqueness and proper network\ntargeting.",
@@ -1527,7 +1527,7 @@
     "/v0/multicall/execute": {
       "post": {
         "tags": [
-          "multicall"
+          "Transaction Batching"
         ],
         "summary": "Execute Tx Batching",
         "description": "Execute a batch of transactions in a single multicall using EIP-7702.\n\nThis endpoint allows bundling multiple contract calls into a single atomic\ntransaction, reducing gas costs and ensuring all operations succeed or fail\ntogether. The transaction must be authorized using the /authorization endpoint to\nprevent replay attacks.",
