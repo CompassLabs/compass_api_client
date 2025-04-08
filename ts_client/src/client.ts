@@ -60,9 +60,13 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe(
                 'The address on behalf of whom the supply is made. Defaults to the transaction sender.'
             )
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const UnsignedTransaction = z
@@ -106,9 +110,13 @@ A stable (but typically higher rate), or a variable rate.`),
         on_behalf_of: z
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AaveRepayRequest = z
@@ -124,9 +132,13 @@ A stable (but typically higher rate), or a variable rate.`),
         on_behalf_of: z
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AaveWithdrawRequest = z
@@ -138,7 +150,10 @@ endpoints' documentation where per chain tokens are presented.`),
         amount: z.union([z.number(), z.string()]).describe('The amount of the asset to withdraw'),
         recipient: z.string().describe('The address of the recipient of the withdrawn funds.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AaveGetAssetPriceRequest = z
@@ -277,12 +292,16 @@ endpoints' documentation where per chain tokens are presented.`),
         to: z
             .union([z.string(), z.null()])
             .describe('The receiver of the LP tokens from this trade, default to sender')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         deadline: z
             .union([z.number(), z.null()])
             .describe('The deadline for this transaction in seconds since epoch'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeAddLiquidityEthRequest = z
@@ -311,18 +330,25 @@ endpoints' documentation where per chain tokens are presented.`),
         to: z
             .union([z.string(), z.null()])
             .describe('The receiver of the LP tokens from this trade, default to sender')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         deadline: z
             .union([z.number(), z.null()])
             .describe('The deadline for this transaction in seconds since epoch'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeRemoveLiquidityRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         token_a: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -348,7 +374,8 @@ endpoints' documentation where per chain tokens are presented.`),
         to: z
             .union([z.string(), z.null()])
             .describe('The receiver of the tokens from this liquidity removal, default to sender')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         deadline: z
             .union([z.number(), z.null()])
             .describe('The deadline for this transaction in seconds since epoch'),
@@ -357,7 +384,10 @@ endpoints' documentation where per chain tokens are presented.`),
 const AerodromeRemoveLiquidityEthRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
@@ -379,7 +409,8 @@ endpoints' documentation where per chain tokens are presented.`),
         to: z
             .union([z.string(), z.null()])
             .describe('The receiver of the tokens from this liquidity removal, default to sender')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         deadline: z
             .union([z.number(), z.null()])
             .describe('The deadline for this transaction in seconds since epoch'),
@@ -409,9 +440,13 @@ endpoints' documentation where per chain tokens are presented.`),
         to: z
             .union([z.string(), z.null()])
             .describe('The receiver of the funds from this trade, default to sender')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeSwapEthForTokenRequest = z
@@ -436,9 +471,13 @@ endpoints' documentation where per chain tokens are presented.`),
         to: z
             .union([z.string(), z.null()])
             .describe('The receiver of the funds from this trade, default to sender')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeSwapTokenForEthRequest = z
@@ -463,9 +502,13 @@ endpoints' documentation where per chain tokens are presented.`),
         to: z
             .union([z.string(), z.null()])
             .describe('The receiver of the funds from this trade, default to sender')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeSlipstreamSellExactlyRequest = z
@@ -488,7 +531,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .optional()
             .default('0'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeSlipstreamBuyExactlyRequest = z
@@ -509,7 +555,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .union([z.number(), z.string()])
             .describe('The maximum amount of the token to swap from'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeSlipstreamMintLiquidityProvisionRequest = z
@@ -548,7 +597,10 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe('The address that will receive the LP tokens')
             .optional(),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeSlipstreamIncreaseLiquidityProvisionRequest = z
@@ -570,7 +622,10 @@ const AerodromeSlipstreamIncreaseLiquidityProvisionRequest = z
             .union([z.number(), z.string()])
             .describe('The minimum amount of the second token to deposit'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeSlipstreamWithdrawLiquidityProvisionRequest = z
@@ -583,13 +638,19 @@ const AerodromeSlipstreamWithdrawLiquidityProvisionRequest = z
             .union([z.number(), z.string()])
             .describe('How much liquidity to take out in percentage.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromeSlipstreamGetLiquidityProvisionPositionsRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The address of the user to check the balance of'),
+        user: z
+            .string()
+            .describe('The address of the user to check the balance of')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AerodromePosition = z
@@ -790,14 +851,20 @@ const WrapEthRequest = z
     .object({
         amount: z.union([z.number(), z.string()]).describe('The amount of ETH to wrap.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const UnwrapWethRequest = z
     .object({
         amount: z.union([z.number(), z.string()]).describe('The amount of WETH to unwrap.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const TransferERC20Request = z
@@ -809,7 +876,10 @@ This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
         to: z.string().describe('The recipient of the tokens.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const TransferEthRequest = z
@@ -817,7 +887,10 @@ const TransferEthRequest = z
         amount: z.union([z.number(), z.string()]).describe('Amount of ETH to transfer'),
         to: z.string().describe('The recipient of the ETH.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const IncreaseAllowanceRequest = z
@@ -833,7 +906,10 @@ E.g. for increasing ERC-20 allowance.`),
             .union([z.number(), z.string()])
             .describe('The amount of tokens to increase the allowance by.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const IncreaseAllowanceAnyRequest = z
@@ -849,20 +925,32 @@ E.g. for increasing ERC-20 allowance.`),
             .union([z.number(), z.string()])
             .describe('The amount of tokens to increase the allowance by.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const MulticallAuthorizationRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The Ethereum address to use for authorization'),
-        address: z.string().describe('The Ethereum address to authorize for multicall'),
+        sender: z
+            .string()
+            .describe('The Ethereum address to use for authorization')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+        address: z
+            .string()
+            .describe('The Ethereum address to authorize for multicall')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const MulticallAuthorizationResponse = z
     .object({
         nonce: z.number().int().describe('A unique nonce value for this authorization'),
-        address: z.string().describe('The Ethereum address authorized for multicall'),
+        address: z
+            .string()
+            .describe('The Ethereum address authorized for multicall')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         chainId: z.number().int().describe('The chain ID for the blockchain network'),
     })
     .passthrough();
@@ -1031,7 +1119,8 @@ A stable (but typically higher rate), or a variable rate.`),
         on_behalf_of: z
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AaveRepayParams = z
@@ -1047,7 +1136,8 @@ A stable (but typically higher rate), or a variable rate.`),
         on_behalf_of: z
             .union([z.string(), z.null()])
             .describe('The address on behalf of whom the supply is made')
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AaveSupplyParams = z
@@ -1062,7 +1152,8 @@ endpoints' documentation where per chain tokens are presented.`),
             .describe(
                 'The address on behalf of whom the supply is made. Defaults to the transaction sender.'
             )
-            .optional(),
+            .optional()
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AaveWithdrawParams = z
@@ -1109,7 +1200,10 @@ const MulticallAction = z
 const MulticallExecuteRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
         signed_authorization: SignedAuthorization,
         contract_address: z.string().describe('The address of the multicall contract'),
         actions: z.array(MulticallAction).describe('List of possible actions for multicall'),
@@ -1161,7 +1255,10 @@ Uniswap supports 4 different fee levels.`),
             .optional()
             .default(false),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const UniswapSellExactlyRequest = z
@@ -1191,7 +1288,10 @@ Uniswap supports 4 different fee levels.`),
             .optional()
             .default(false),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const UniswapIncreaseLiquidityProvisionRequest = z
@@ -1213,7 +1313,10 @@ const UniswapIncreaseLiquidityProvisionRequest = z
             .union([z.number(), z.string()])
             .describe('The minimum amount of the second token to deposit'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const UniswapMintLiquidityProvisionRequest = z
@@ -1258,7 +1361,10 @@ Uniswap supports 4 different fee levels.`),
             .describe('The address that will receive the LP tokens')
             .optional(),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const UniswapWithdrawLiquidityProvisionRequest = z
@@ -1271,7 +1377,10 @@ const UniswapWithdrawLiquidityProvisionRequest = z
             .union([z.number(), z.string()])
             .describe('How much liquidity to take out in percentage.'),
         chain: Chain.describe('The chain to use.'),
-        sender: z.string().describe('The address of the transaction sender'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const UniswapGetBuyQuoteRequest = z
@@ -1395,7 +1504,10 @@ const UniswapCheckInRangeResponse = z
 const UniswapGetLiquidityProvisionPositionsRequest = z
     .object({
         chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The address of the user to check the balance of'),
+        user: z
+            .string()
+            .describe('The address of the user to check the balance of')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const UniswapPositionsSolidityResponse = z
@@ -1534,7 +1646,10 @@ Aave.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveGetAssetPriceRequest,
+                schema: AaveGetAssetPriceRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    asset: 'USDC',
+                }),
             },
         ],
         response: z
@@ -1560,7 +1675,14 @@ liquidated, if the borrow position becomes unhealthy.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveBorrowRequest,
+                schema: AaveBorrowRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    asset: 'USDT',
+                    amount: 1,
+                    interest_rate_mode: 2,
+                    on_behalf_of: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1591,7 +1713,12 @@ true if the liquidity index is negative.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveGetLiquidityChangeRequest,
+                schema: AaveGetLiquidityChangeRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    start_block: 0,
+                    end_block: 319407231,
+                    asset: 'USDC',
+                }),
             },
         ],
         response: AaveLiquidityChangeResponse,
@@ -1619,7 +1746,14 @@ including the amount and the asset to be repaid.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveRepayRequest,
+                schema: AaveRepayRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    asset: 'USDT',
+                    amount: 1,
+                    interest_rate_mode: 2,
+                    on_behalf_of: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1648,7 +1782,12 @@ borrowing flexibility.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveSupplyRequest,
+                schema: AaveSupplyRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    asset: 'USDC',
+                    amount: 1,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1677,7 +1816,11 @@ their financial standing within the AAVE ecosystem.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveGetUserPositionPerTokenRequest,
+                schema: AaveGetUserPositionPerTokenRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    asset: 'USDC',
+                }),
             },
         ],
         response: AaveUserPositionPerTokenResponse,
@@ -1705,7 +1848,10 @@ a holistic view of their financial standing within the AAVE ecosystem.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveGetUserPositionSummaryRequest,
+                schema: AaveGetUserPositionSummaryRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: AaveUserPositionSummaryResponse,
@@ -1734,7 +1880,13 @@ the Aave ecosystem.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AaveWithdrawRequest,
+                schema: AaveWithdrawRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    asset: 'USDC',
+                    amount: 1,
+                    recipient: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1760,7 +1912,19 @@ address if no recipient is specified.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeAddLiquidityRequest,
+                schema: AerodromeAddLiquidityRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_a: 'USDC',
+                    token_b: 'USDT',
+                    stable: true,
+                    amount_a_desired: 1,
+                    amount_b_desired: 1,
+                    amount_a_min: 0,
+                    amount_b_min: 0,
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    deadline: 0,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1788,7 +1952,18 @@ be sent along with the transaction.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeAddLiquidityEthRequest,
+                schema: AerodromeAddLiquidityEthRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token: 'USDC',
+                    stable: true,
+                    amount_token_desired: 1,
+                    amount_eth_desired: 0.00048,
+                    amount_token_min: 0,
+                    amount_eth_min: 0,
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    deadline: 0,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1816,7 +1991,18 @@ contract, and the specified amount of liquidity will be withdrawn from the pool.
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeRemoveLiquidityRequest,
+                schema: AerodromeRemoveLiquidityRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_a: 'USDC',
+                    token_b: 'USDT',
+                    stable: true,
+                    liquidity: 0.1,
+                    amount_a_min: 0,
+                    amount_b_min: 0,
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    deadline: 0,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1844,7 +2030,17 @@ contract, and the specified amount of liquidity will be withdrawn from the pool.
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeRemoveLiquidityEthRequest,
+                schema: AerodromeRemoveLiquidityEthRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token: 'USDC',
+                    stable: true,
+                    liquidity: 0.1,
+                    amount_token_min: 0,
+                    amount_eth_min: 0,
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    deadline: 0,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1871,7 +2067,15 @@ rate.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSwapEthForTokenRequest,
+                schema: AerodromeSwapEthForTokenRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_out: 'USDC',
+                    amount_in: 0.00047753,
+                    amount_out_min: 0,
+                    stable: true,
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1896,7 +2100,15 @@ amount is met, ensuring you do not trade at a disadvantageous rate.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSwapTokenForEthRequest,
+                schema: AerodromeSwapTokenForEthRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_in: 'USDC',
+                    amount_in: 1,
+                    amount_out_min: 0,
+                    stable: true,
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1922,7 +2134,16 @@ executed only if the specified minimum output is met.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSwapTokensRequest,
+                schema: AerodromeSwapTokensRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_in: 'USDC',
+                    token_out: 'USDT',
+                    amount_in: 1,
+                    amount_out_min: 0,
+                    stable: true,
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1953,7 +2174,15 @@ to adapt to market conditions and maximize their returns in decentralized financ
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamIncreaseLiquidityProvisionRequest,
+                schema: AerodromeSlipstreamIncreaseLiquidityProvisionRequest.default({
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    chain: 'base:mainnet',
+                    token_id: 10433247,
+                    amount0_desired: 0.1,
+                    amount1_desired: 0.1,
+                    amount0_min: 0,
+                    amount1_min: 0,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -1982,7 +2211,20 @@ them the opportunity to engage in decentralized finance (DeFi) markets effective
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamMintLiquidityProvisionRequest,
+                schema: AerodromeSlipstreamMintLiquidityProvisionRequest.default({
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    chain: 'base:mainnet',
+                    token0: 'WETH',
+                    token1: 'USDT',
+                    tick_spacing: 100,
+                    tick_lower: -300000,
+                    tick_upper: 300000,
+                    amount0_desired: 0.1,
+                    amount1_desired: 0.000048,
+                    amount0_min: 0,
+                    amount1_min: 0,
+                    recipient: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2042,7 +2284,12 @@ strategic management of their decentralized finance (DeFi) portfolios.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamWithdrawLiquidityProvisionRequest,
+                schema: AerodromeSlipstreamWithdrawLiquidityProvisionRequest.default({
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    chain: 'base:mainnet',
+                    token_id: 10433247,
+                    percentage_for_withdrawal: 1,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2068,7 +2315,12 @@ the quote endpoint.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamGetPoolPriceRequest,
+                schema: AerodromeSlipstreamGetPoolPriceRequest.default({
+                    chain: 'base:mainnet',
+                    token_in: 'USDC',
+                    token_out: 'WETH',
+                    tick_spacing: 100,
+                }),
             },
         ],
         response: AerodromeSlipstreamPoolPriceResponse,
@@ -2098,7 +2350,15 @@ effectively.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamBuyExactlyRequest,
+                schema: AerodromeSlipstreamBuyExactlyRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_in: 'USDC',
+                    token_out: 'WETH',
+                    tick_spacing: 100,
+                    amount_out: 0.000048,
+                    amount_in_maximum: 0.1,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2127,7 +2387,15 @@ token and are willing to accept the resulting amount of the other token.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamSellExactlyRequest,
+                schema: AerodromeSlipstreamSellExactlyRequest.default({
+                    chain: 'base:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_in: 'USDC',
+                    token_out: 'WETH',
+                    tick_spacing: 100,
+                    amount_in: 1,
+                    amount_out_minimum: 0,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2154,7 +2422,12 @@ the user&#x27;s tokens securely and efficiently.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: GetErc20AllowanceRequest,
+                schema: GetErc20AllowanceRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token: 'USDC',
+                    contract_name: 'AaveV3Pool',
+                }),
             },
         ],
         response: AllowanceInfoResponse,
@@ -2181,7 +2454,13 @@ within the DeFi ecosystem.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: IncreaseAllowanceRequest,
+                schema: IncreaseAllowanceRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token: 'USDC',
+                    contract_name: 'AaveV3Pool',
+                    amount: 1,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2231,7 +2510,11 @@ authorize, ensuring precise control over their token allowances.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: GetErc20BalanceRequest,
+                schema: GetErc20BalanceRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token: 'USDC',
+                }),
             },
         ],
         response: BalanceInfoResponse,
@@ -2255,7 +2538,10 @@ query the actual ethereum wallet address behind the ENS name.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: GetEnsDetailsRequest,
+                schema: GetEnsDetailsRequest.default({
+                    chain: 'ethereum:mainnet',
+                    ens_name: 'vitalik.eth',
+                }),
             },
         ],
         response: EnsNameInfoResponse,
@@ -2279,7 +2565,10 @@ balances, including their respective values and quantities.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: PortfolioRequest,
+                schema: PortfolioRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: Portfolio,
@@ -2305,7 +2594,10 @@ with the update frequency of the oracle.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: PriceRequest,
+                schema: PriceRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    token: 'WBTC',
+                }),
             },
         ],
         response: z
@@ -2330,7 +2622,7 @@ with the update frequency of the oracle.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: TokensRequest,
+                schema: TokensRequest.default({ chain: 'arbitrum:mainnet' }),
             },
         ],
         response: TokenInfo,
@@ -2351,7 +2643,13 @@ with the update frequency of the oracle.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: TransferERC20Request,
+                schema: TransferERC20Request.default({
+                    chain: 'arbitrum:mainnet',
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    sender: '0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E',
+                    token: 'USDC',
+                    amount: 0.1,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2372,7 +2670,12 @@ with the update frequency of the oracle.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: TransferEthRequest,
+                schema: TransferEthRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    sender: '0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E',
+                    amount: 0.00048,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2394,7 +2697,11 @@ can be used for gas and other native purposes.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UnwrapWethRequest,
+                schema: UnwrapWethRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    amount: 0.0000048,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2419,7 +2726,10 @@ USD.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: VisualizePortfolioRequest,
+                schema: VisualizePortfolioRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: z
@@ -2443,7 +2753,11 @@ it to be traded on DeFi protocols.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: WrapEthRequest,
+                schema: WrapEthRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    amount: 0.0000048,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2523,7 +2837,10 @@ and earning trading fees.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapCheckInRangeRequest,
+                schema: UniswapCheckInRangeRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    token_id: 4318185,
+                }),
             },
         ],
         response: z
@@ -2560,7 +2877,15 @@ process.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapIncreaseLiquidityProvisionRequest,
+                schema: UniswapIncreaseLiquidityProvisionRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_id: 4318185,
+                    amount0_desired: 0.1,
+                    amount1_desired: 0.1,
+                    amount0_min: 0.05,
+                    amount1_min: 0.05,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2589,7 +2914,20 @@ needed for the minting process.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapMintLiquidityProvisionRequest,
+                schema: UniswapMintLiquidityProvisionRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token0: 'USDC',
+                    token1: 'DAI',
+                    fee: '0.01',
+                    tick_lower: -1000,
+                    tick_upper: 1000,
+                    amount0_desired: 0.1,
+                    amount1_desired: 0.1,
+                    amount0_min: 0,
+                    amount1_min: 0,
+                    recipient: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2616,7 +2954,10 @@ activities effectively.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapGetLiquidityProvisionPositionsRequest,
+                schema: UniswapGetLiquidityProvisionPositionsRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                }),
             },
         ],
         response: UniswapLPPositionsInfoResponse,
@@ -2646,7 +2987,12 @@ before initiating a withdrawal to avoid potential issues or penalties.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapWithdrawLiquidityProvisionRequest,
+                schema: UniswapWithdrawLiquidityProvisionRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_id: 4318185,
+                    percentage_for_withdrawal: 1,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2669,7 +3015,12 @@ The price is calculated based on the current pool state and the specified fee ti
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapGetPoolPriceRequest,
+                schema: UniswapGetPoolPriceRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    token_in: 'USDC',
+                    token_out: 'USDT',
+                    fee: '0.01',
+                }),
             },
         ],
         response: UniswapPoolPriceResponse,
@@ -2694,7 +3045,13 @@ into account the current pool state and the specified fee tier.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapGetBuyQuoteRequest,
+                schema: UniswapGetBuyQuoteRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    token_in: 'USDC',
+                    token_out: 'USDT',
+                    fee: '0.01',
+                    amount_out: 1,
+                }),
             },
         ],
         response: UniswapBuyQuoteInfoResponse,
@@ -2719,7 +3076,13 @@ into account the current pool state and the specified fee tier.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapGetSellQuoteRequest,
+                schema: UniswapGetSellQuoteRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    token_in: 'USDC',
+                    token_out: 'USDT',
+                    fee: '0.01',
+                    amount_in: 1,
+                }),
             },
         ],
         response: UniswapSellQuoteInfoResponse,
@@ -2746,7 +3109,16 @@ needs to be wrapped, the appropriate amount will be wrapped automatically.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapBuyExactlyRequest,
+                schema: UniswapBuyExactlyRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_in: 'USDC',
+                    token_out: 'USDT',
+                    fee: '0.01',
+                    amount_out: 1,
+                    amount_in_maximum: 1.1,
+                    wrap_eth: false,
+                }),
             },
         ],
         response: UnsignedTransaction,
@@ -2773,7 +3145,16 @@ wrapped, the appropriate amount will be wrapped automatically.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: UniswapSellExactlyRequest,
+                schema: UniswapSellExactlyRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token_in: 'USDC',
+                    token_out: 'USDT',
+                    fee: '0.01',
+                    amount_in: 1,
+                    amount_out_minimum: 0.5,
+                    wrap_eth: false,
+                }),
             },
         ],
         response: UnsignedTransaction,
