@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset** | [**Token**](Token.md) | The symbol of the underlying asset to withdraw.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**asset** | [**Token**](Token.md) | The symbol of the underlying asset to withdraw. Note the [supported tokens per chain](/#/#token-table). | 
 **amount** | [**Amount3**](Amount3.md) |  | 
 **recipient** | **str** | The address of the recipient of the withdrawn funds. | 
 

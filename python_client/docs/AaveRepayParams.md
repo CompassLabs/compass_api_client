@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset** | [**Token**](Token.md) | The symbol of the underlying asset to repay.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**asset** | [**Token**](Token.md) | The symbol of the underlying asset to repay. Note the [supported tokens per chain](/#/#token-table). | 
 **amount** | [**Amount1**](Amount1.md) |  | 
 **interest_rate_mode** | [**InterestRateMode**](InterestRateMode.md) | The interest rate mode to borrow | 
 **on_behalf_of** | **str** |  | [optional] 

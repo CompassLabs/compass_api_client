@@ -30,7 +30,7 @@ class IncreaseAllowanceRequest(BaseModel):
     """
     Request model for increasing token allowance for a contract.
     """ # noqa: E501
-    token: Token = Field(description="The symbol of the token for which the allowance is increased.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token: Token = Field(description="The symbol of the token for which the allowance is increased. Note the [supported tokens per chain](/#/#token-table).")
     contract_name: ContractName = Field(description="The name of the contract to increase allowance for.")
     amount: Amount4
     chain: Chain
@@ -95,7 +95,7 @@ class IncreaseAllowanceRequest(BaseModel):
             "contract_name": obj.get("contract_name"),
             "amount": Amount4.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

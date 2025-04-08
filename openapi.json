@@ -2007,7 +2007,7 @@
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to borrow.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the underlying asset to borrow. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2048,7 +2048,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2063,7 +2063,7 @@
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to borrow.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the underlying asset to borrow. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2104,7 +2104,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -2113,7 +2113,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2125,13 +2125,13 @@
           "sender"
         ],
         "title": "AaveBorrowRequest",
-        "example": {
-          "amount": 1,
-          "asset": "USDT",
+        "default": {
           "chain": "arbitrum:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "asset": "USDT",
+          "amount": 1,
           "interest_rate_mode": 2,
-          "on_behalf_of": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "on_behalf_of": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AaveGetAssetPriceRequest": {
@@ -2141,7 +2141,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the asset whose price you want.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the asset whose price you want. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2153,9 +2153,9 @@
           "asset"
         ],
         "title": "AaveGetAssetPriceRequest",
-        "example": {
-          "asset": "USDC",
-          "chain": "arbitrum:mainnet"
+        "default": {
+          "chain": "arbitrum:mainnet",
+          "asset": "USDC"
         }
       },
       "AaveGetLiquidityChangeRequest": {
@@ -2188,7 +2188,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the asset to fetch liquidity index change for.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the asset to fetch liquidity index change for. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2201,11 +2201,11 @@
           "asset"
         ],
         "title": "AaveGetLiquidityChangeRequest",
-        "example": {
-          "asset": "USDC",
+        "default": {
           "chain": "arbitrum:mainnet",
+          "start_block": 0,
           "end_block": 319407231,
-          "start_block": 0
+          "asset": "USDC"
         }
       },
       "AaveGetUserPositionPerTokenRequest": {
@@ -2223,7 +2223,7 @@
           },
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the asset to fetch the user's position on.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the asset to fetch the user's position on. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2236,10 +2236,10 @@
           "asset"
         ],
         "title": "AaveGetUserPositionPerTokenRequest",
-        "example": {
-          "asset": "USDC",
+        "default": {
           "chain": "arbitrum:mainnet",
-          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "asset": "USDC"
         }
       },
       "AaveGetUserPositionSummaryRequest": {
@@ -2262,7 +2262,7 @@
           "user"
         ],
         "title": "AaveGetUserPositionSummaryRequest",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
           "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
@@ -2299,7 +2299,7 @@
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to repay.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the underlying asset to repay. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2340,7 +2340,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2355,7 +2355,7 @@
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to repay.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the underlying asset to repay. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2396,7 +2396,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -2405,7 +2405,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2417,20 +2417,20 @@
           "sender"
         ],
         "title": "AaveRepayRequest",
-        "example": {
-          "amount": 1,
-          "asset": "USDT",
+        "default": {
           "chain": "arbitrum:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "asset": "USDT",
+          "amount": 1,
           "interest_rate_mode": 2,
-          "on_behalf_of": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "on_behalf_of": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AaveSupplyParams": {
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2462,7 +2462,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made. Defaults to the transaction sender.",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2476,7 +2476,7 @@
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the underlying asset to supply as collateral. You can borrow against it. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2508,7 +2508,7 @@
             ],
             "title": "On Behalf Of",
             "description": "The address on behalf of whom the supply is made. Defaults to the transaction sender.",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -2517,7 +2517,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2528,11 +2528,11 @@
           "sender"
         ],
         "title": "AaveSupplyRequest",
-        "example": {
-          "amount": 1,
-          "asset": "USDC",
+        "default": {
           "chain": "arbitrum:mainnet",
-          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "asset": "USDC",
+          "amount": 1
         }
       },
       "AaveUserPositionPerTokenResponse": {
@@ -2645,7 +2645,7 @@
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to withdraw.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the underlying asset to withdraw. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2687,7 +2687,7 @@
         "properties": {
           "asset": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the underlying asset to withdraw.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the underlying asset to withdraw. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -2723,7 +2723,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2735,19 +2735,19 @@
           "sender"
         ],
         "title": "AaveWithdrawRequest",
-        "example": {
-          "amount": 1,
-          "asset": "USDC",
+        "default": {
           "chain": "arbitrum:mainnet",
-          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "asset": "USDC",
+          "amount": 1,
+          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AerodromeAddLiquidityEthRequest": {
         "properties": {
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to provide liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to provide liquidity for alongside WETH. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
@@ -2832,7 +2832,7 @@
             ],
             "title": "To",
             "description": "The receiver of the LP tokens from this trade, default to sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "deadline": {
             "anyOf": [
@@ -2857,7 +2857,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -2873,31 +2873,31 @@
           "sender"
         ],
         "title": "AerodromeAddLiquidityEthRequest",
-        "example": {
-          "amount_eth_desired": 0.00048,
-          "amount_eth_min": 0,
-          "amount_token_desired": 1,
-          "amount_token_min": 0,
+        "default": {
           "chain": "base:mainnet",
-          "deadline": 0,
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC",
           "stable": true,
+          "amount_token_desired": 1,
+          "amount_eth_desired": 0.00048,
+          "amount_token_min": 0,
+          "amount_eth_min": 0,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token": "USDC"
+          "deadline": 0
         }
       },
       "AerodromeAddLiquidityRequest": {
         "properties": {
           "token_a": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to provide liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to provide liquidity for Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
           },
           "token_b": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to provide liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to provide liquidity for Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDT"
             ]
@@ -2982,7 +2982,7 @@
             ],
             "title": "To",
             "description": "The receiver of the LP tokens from this trade, default to sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "deadline": {
             "anyOf": [
@@ -3007,7 +3007,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3024,18 +3024,18 @@
           "sender"
         ],
         "title": "AerodromeAddLiquidityRequest",
-        "example": {
-          "amount_a_desired": 1,
-          "amount_a_min": 0,
-          "amount_b_desired": 1,
-          "amount_b_min": 0,
+        "default": {
           "chain": "base:mainnet",
-          "deadline": 0,
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "stable": true,
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_a": "USDC",
-          "token_b": "USDT"
+          "token_b": "USDT",
+          "stable": true,
+          "amount_a_desired": 1,
+          "amount_b_desired": 1,
+          "amount_a_min": 0,
+          "amount_b_min": 0,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "deadline": 0
         }
       },
       "AerodromeLPPositionsResponse": {
@@ -3135,11 +3135,11 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to remove liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to remove liquidity for alongside WETH. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
@@ -3208,7 +3208,7 @@
             ],
             "title": "To",
             "description": "The receiver of the tokens from this liquidity removal, default to sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "deadline": {
             "anyOf": [
@@ -3239,16 +3239,16 @@
           "deadline"
         ],
         "title": "AerodromeRemoveLiquidityEthRequest",
-        "example": {
-          "amount_eth_min": 0,
-          "amount_token_min": 0,
+        "default": {
           "chain": "base:mainnet",
-          "deadline": 0,
-          "liquidity": 0.1,
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC",
           "stable": true,
+          "liquidity": 0.1,
+          "amount_token_min": 0,
+          "amount_eth_min": 0,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token": "USDC"
+          "deadline": 0
         }
       },
       "AerodromeRemoveLiquidityRequest": {
@@ -3260,18 +3260,18 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "token_a": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to remove liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to remove liquidity for Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
           },
           "token_b": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to remove liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to remove liquidity for Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDT"
             ]
@@ -3340,7 +3340,7 @@
             ],
             "title": "To",
             "description": "The receiver of the tokens from this liquidity removal, default to sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "deadline": {
             "anyOf": [
@@ -3372,31 +3372,31 @@
           "deadline"
         ],
         "title": "AerodromeRemoveLiquidityRequest",
-        "example": {
+        "default": {
+          "chain": "base:mainnet",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_a": "USDC",
+          "token_b": "USDT",
+          "stable": true,
+          "liquidity": 0.1,
           "amount_a_min": 0,
           "amount_b_min": 0,
-          "chain": "base:mainnet",
-          "deadline": 0,
-          "liquidity": 0.1,
-          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "stable": true,
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token_a": "USDC",
-          "token_b": "USDT"
+          "deadline": 0
         }
       },
       "AerodromeSlipstreamBuyExactlyRequest": {
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -3464,7 +3464,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3479,14 +3479,14 @@
         ],
         "title": "AerodromeSlipstreamBuyExactlyRequest",
         "description": "Request model for buying exactly an amount of tokens.",
-        "example": {
-          "amount_in_maximum": 0.1,
-          "amount_out": 0.000048,
+        "default": {
           "chain": "base:mainnet",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "tick_spacing": 100,
           "token_in": "USDC",
-          "token_out": "WETH"
+          "token_out": "WETH",
+          "tick_spacing": 100,
+          "amount_out": 0.000048,
+          "amount_in_maximum": 0.1
         }
       },
       "AerodromeSlipstreamGetLiquidityProvisionPositionsRequest": {
@@ -3498,7 +3498,7 @@
             "type": "string",
             "title": "User",
             "description": "The address of the user to check the balance of",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3515,14 +3515,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of a token in the pool Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of a token in the pool Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -3560,11 +3560,11 @@
           "tick_spacing"
         ],
         "title": "AerodromeSlipstreamGetPoolPriceRequest",
-        "example": {
+        "default": {
           "chain": "base:mainnet",
-          "tick_spacing": 100,
           "token_in": "USDC",
-          "token_out": "WETH"
+          "token_out": "WETH",
+          "tick_spacing": 100
         }
       },
       "AerodromeSlipstreamIncreaseLiquidityProvisionRequest": {
@@ -3645,7 +3645,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3659,28 +3659,28 @@
           "sender"
         ],
         "title": "AerodromeSlipstreamIncreaseLiquidityProvisionRequest",
-        "example": {
-          "amount0_desired": 0.1,
-          "amount0_min": 0,
-          "amount1_desired": 0.1,
-          "amount1_min": 0,
-          "chain": "base:mainnet",
+        "default": {
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token_id": 10433247
+          "chain": "base:mainnet",
+          "token_id": 10433247,
+          "amount0_desired": 0.1,
+          "amount1_desired": 0.1,
+          "amount0_min": 0,
+          "amount1_min": 0
         }
       },
       "AerodromeSlipstreamMintLiquidityProvisionRequest": {
         "properties": {
           "token0": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the first token in the pair Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token1": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the second token in the pair Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
@@ -3811,7 +3811,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3830,19 +3830,19 @@
         ],
         "title": "AerodromeSlipstreamMintLiquidityProvisionRequest",
         "description": "Request model for minting a new liquidity position.",
-        "example": {
-          "amount0_desired": 0.1,
-          "amount0_min": 0,
-          "amount1_desired": 0.000048,
-          "amount1_min": 0,
-          "chain": "base:mainnet",
-          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+        "default": {
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "tick_lower": -300000,
-          "tick_spacing": 100,
-          "tick_upper": 300000,
+          "chain": "base:mainnet",
           "token0": "WETH",
-          "token1": "USDT"
+          "token1": "USDT",
+          "tick_spacing": 100,
+          "tick_lower": -300000,
+          "tick_upper": 300000,
+          "amount0_desired": 0.1,
+          "amount1_desired": 0.000048,
+          "amount0_min": 0,
+          "amount1_min": 0,
+          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AerodromeSlipstreamPoolPriceResponse": {
@@ -3879,14 +3879,14 @@
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -3955,7 +3955,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -3969,14 +3969,14 @@
         ],
         "title": "AerodromeSlipstreamSellExactlyRequest",
         "description": "Request model for selling exactly an amount of tokens.",
-        "example": {
-          "amount_in": 1,
-          "amount_out_minimum": 0,
+        "default": {
           "chain": "base:mainnet",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "tick_spacing": 100,
           "token_in": "USDC",
-          "token_out": "WETH"
+          "token_out": "WETH",
+          "tick_spacing": 100,
+          "amount_in": 1,
+          "amount_out_minimum": 0
         }
       },
       "AerodromeSlipstreamWithdrawLiquidityProvisionRequest": {
@@ -4013,7 +4013,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -4024,18 +4024,18 @@
           "sender"
         ],
         "title": "AerodromeSlipstreamWithdrawLiquidityProvisionRequest",
-        "example": {
-          "chain": "base:mainnet",
-          "percentage_for_withdrawal": 1,
+        "default": {
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token_id": 10433247
+          "chain": "base:mainnet",
+          "token_id": 10433247,
+          "percentage_for_withdrawal": 1
         }
       },
       "AerodromeSwapEthForTokenRequest": {
         "properties": {
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
@@ -4088,7 +4088,7 @@
             ],
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -4097,7 +4097,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -4111,21 +4111,21 @@
         ],
         "title": "AerodromeSwapEthForTokenRequest",
         "description": "Request model for swapping ETH for tokens.",
-        "example": {
-          "amount_in": 0.00047753,
-          "amount_out_min": 0,
+        "default": {
           "chain": "base:mainnet",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_out": "USDC",
+          "amount_in": 0.00047753,
+          "amount_out_min": 0,
           "stable": true,
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token_out": "USDC"
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AerodromeSwapTokenForEthRequest": {
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
@@ -4178,7 +4178,7 @@
             ],
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -4187,7 +4187,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -4201,28 +4201,28 @@
         ],
         "title": "AerodromeSwapTokenForEthRequest",
         "description": "Request model for swapping tokens for ETH.",
-        "example": {
-          "amount_in": 1,
-          "amount_out_min": 0,
+        "default": {
           "chain": "base:mainnet",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token_in": "USDC",
+          "amount_in": 1,
+          "amount_out_min": 0,
           "stable": true,
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token_in": "USDC"
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AerodromeSwapTokensRequest": {
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -4275,7 +4275,7 @@
             ],
             "title": "To",
             "description": "The receiver of the funds from this trade, default to sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "chain": {
             "$ref": "#/components/schemas/Chain"
@@ -4284,7 +4284,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -4299,15 +4299,15 @@
         ],
         "title": "AerodromeSwapTokensRequest",
         "description": "Request model for swapping tokens.",
-        "example": {
-          "amount_in": 1,
-          "amount_out_min": 0,
+        "default": {
           "chain": "base:mainnet",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "stable": true,
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_in": "USDC",
-          "token_out": "USDT"
+          "token_out": "USDT",
+          "amount_in": 1,
+          "amount_out_min": 0,
+          "stable": true,
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AllowanceInfoResponse": {
@@ -4330,7 +4330,7 @@
           },
           "token_symbol": {
             "$ref": "#/components/schemas/Token",
-            "description": "Symbol of the token<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "Symbol of the token Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -4383,7 +4383,7 @@
           },
           "token_symbol": {
             "$ref": "#/components/schemas/Token",
-            "description": "Symbol of the token<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "Symbol of the token Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -4498,7 +4498,7 @@
         ],
         "title": "GetEnsDetailsRequest",
         "description": "Request model for getting ENS details.",
-        "example": {
+        "default": {
           "chain": "ethereum:mainnet",
           "ens_name": "vitalik.eth"
         }
@@ -4518,7 +4518,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which the allowance is checked.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token for which the allowance is checked. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -4540,11 +4540,11 @@
         ],
         "title": "GetErc20AllowanceRequest",
         "description": "Request model for getting an ERC20 token allowance.",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
-          "contract_name": "AaveV3Pool",
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token": "USDC",
-          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "contract_name": "AaveV3Pool"
         }
       },
       "GetErc20BalanceRequest": {
@@ -4562,7 +4562,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which the balance is checked.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token for which the balance is checked. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -4576,10 +4576,10 @@
         ],
         "title": "GetErc20BalanceRequest",
         "description": "Request model for getting an ERC20 token balance.",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
-          "token": "USDC",
-          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token": "USDC"
         }
       },
       "HTTPValidationError": {
@@ -4651,7 +4651,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -4669,7 +4669,7 @@
         "properties": {
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which the allowance is increased.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token for which the allowance is increased. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -4711,7 +4711,7 @@
         "properties": {
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which the allowance is increased.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token for which the allowance is increased. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -4746,7 +4746,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -4759,12 +4759,12 @@
         ],
         "title": "IncreaseAllowanceRequest",
         "description": "Request model for increasing token allowance for a contract.",
-        "example": {
-          "amount": 1,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "contract_name": "AaveV3Pool",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token": "USDC"
+          "token": "USDC",
+          "contract_name": "AaveV3Pool",
+          "amount": 1
         }
       },
       "InterestRateMode": {
@@ -4854,13 +4854,13 @@
             "type": "string",
             "title": "Sender",
             "description": "The Ethereum address to use for authorization",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "address": {
             "type": "string",
             "title": "Address",
             "description": "The Ethereum address to authorize for multicall",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -4886,7 +4886,7 @@
             "type": "string",
             "title": "Address",
             "description": "The Ethereum address authorized for multicall",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "chainId": {
             "type": "integer",
@@ -4915,7 +4915,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           },
           "signed_authorization": {
             "$ref": "#/components/schemas/SignedAuthorization"
@@ -4991,7 +4991,7 @@
           "user"
         ],
         "title": "PortfolioRequest",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
           "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
@@ -5003,7 +5003,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token for which to get the price<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token for which to get the price Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -5015,7 +5015,7 @@
           "token"
         ],
         "title": "PriceRequest",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
           "token": "WBTC"
         }
@@ -5160,7 +5160,7 @@
           },
           "token_symbol": {
             "$ref": "#/components/schemas/Token",
-            "description": "Symbol of the token<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "Symbol of the token Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -5229,7 +5229,7 @@
           "chain"
         ],
         "title": "TokensRequest",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet"
         }
       },
@@ -5253,7 +5253,7 @@
           },
           "token": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to transfer.<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to transfer. Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -5273,7 +5273,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -5286,12 +5286,12 @@
         ],
         "title": "TransferERC20Request",
         "description": "Request model for transferring ERC20 tokens.",
-        "example": {
-          "amount": 0.1,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "sender": "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E",
           "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token": "USDC"
+          "sender": "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E",
+          "token": "USDC",
+          "amount": 0.1
         }
       },
       "TransferEthRequest": {
@@ -5327,7 +5327,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -5339,25 +5339,25 @@
         ],
         "title": "TransferEthRequest",
         "description": "Request model for transferring native ETH.",
-        "example": {
-          "amount": 0.00048,
+        "default": {
           "chain": "arbitrum:mainnet",
+          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "sender": "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E",
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "amount": 0.00048
         }
       },
       "UniswapBuyExactlyParams": {
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -5425,14 +5425,14 @@
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -5492,7 +5492,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -5507,14 +5507,14 @@
         ],
         "title": "UniswapBuyExactlyRequest",
         "description": "Request model for buying exactly an amount of tokens.",
-        "example": {
-          "amount_in_maximum": 1.1,
-          "amount_out": 1,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "fee": "0.01",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_in": "USDC",
           "token_out": "USDT",
+          "fee": "0.01",
+          "amount_out": 1,
+          "amount_in_maximum": 1.1,
           "wrap_eth": false
         }
       },
@@ -5557,7 +5557,7 @@
         ],
         "title": "UniswapCheckInRangeRequest",
         "description": "Endpoint parameters for checking if liquidity position is in active tick range on\nuniswap v3.",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
           "token_id": 4318185
         }
@@ -5583,14 +5583,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
@@ -5628,12 +5628,12 @@
           "amount_out"
         ],
         "title": "UniswapGetBuyQuoteRequest",
-        "example": {
-          "amount_out": 1,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "fee": "0.01",
           "token_in": "USDC",
-          "token_out": "USDT"
+          "token_out": "USDT",
+          "fee": "0.01",
+          "amount_out": 1
         }
       },
       "UniswapGetLiquidityProvisionPositionsRequest": {
@@ -5645,7 +5645,7 @@
             "type": "string",
             "title": "User",
             "description": "The address of the user to check the balance of",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -5654,7 +5654,7 @@
           "user"
         ],
         "title": "UniswapGetLiquidityProvisionPositionsRequest",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
           "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
@@ -5666,14 +5666,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of a token in the pool Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of a token in the pool Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -5694,11 +5694,11 @@
           "fee"
         ],
         "title": "UniswapGetPoolPriceRequest",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
-          "fee": "0.01",
           "token_in": "USDC",
-          "token_out": "USDT"
+          "token_out": "USDT",
+          "fee": "0.01"
         }
       },
       "UniswapGetSellQuoteRequest": {
@@ -5708,14 +5708,14 @@
           },
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "USDC"
             ]
@@ -5753,12 +5753,12 @@
           "amount_in"
         ],
         "title": "UniswapGetSellQuoteRequest",
-        "example": {
-          "amount_in": 1,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "fee": "0.01",
           "token_in": "USDC",
-          "token_out": "USDT"
+          "token_out": "USDT",
+          "fee": "0.01",
+          "amount_in": 1
         }
       },
       "UniswapIncreaseLiquidityProvisionParams": {
@@ -5913,7 +5913,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -5928,14 +5928,14 @@
         ],
         "title": "UniswapIncreaseLiquidityProvisionRequest",
         "description": "Request model for increasing liquidity provision in Uniswap V3.",
-        "example": {
-          "amount0_desired": 0.1,
-          "amount0_min": 0.05,
-          "amount1_desired": 0.1,
-          "amount1_min": 0.05,
+        "default": {
           "chain": "arbitrum:mainnet",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token_id": 4318185
+          "token_id": 4318185,
+          "amount0_desired": 0.1,
+          "amount1_desired": 0.1,
+          "amount0_min": 0.05,
+          "amount1_min": 0.05
         }
       },
       "UniswapLPPositionsInfoResponse": {
@@ -5959,14 +5959,14 @@
         "properties": {
           "token0": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the first token in the pair Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token1": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the second token in the pair Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -6096,14 +6096,14 @@
         "properties": {
           "token0": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the first token in the pair Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token1": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the second token in the pair Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -6221,7 +6221,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -6240,19 +6240,19 @@
         ],
         "title": "UniswapMintLiquidityProvisionRequest",
         "description": "Request model for minting a new liquidity position.",
-        "example": {
-          "amount0_desired": 0.1,
-          "amount0_min": 0,
-          "amount1_desired": 0.1,
-          "amount1_min": 0,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "fee": "0.01",
-          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "token0": "USDC",
+          "token1": "DAI",
+          "fee": "0.01",
           "tick_lower": -1000,
           "tick_upper": 1000,
-          "token0": "USDC",
-          "token1": "DAI"
+          "amount0_desired": 0.1,
+          "amount1_desired": 0.1,
+          "amount0_min": 0,
+          "amount1_min": 0,
+          "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "UniswapPoolPriceResponse": {
@@ -6357,14 +6357,14 @@
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -6433,14 +6433,14 @@
         "properties": {
           "token_in": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
           },
           "token_out": {
             "$ref": "#/components/schemas/Token",
-            "description": "The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>",
+            "description": "The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).",
             "examples": [
               "WETH"
             ]
@@ -6501,7 +6501,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -6515,14 +6515,14 @@
         ],
         "title": "UniswapSellExactlyRequest",
         "description": "Request model for selling exactly an amount of tokens.",
-        "example": {
-          "amount_in": 1,
-          "amount_out_minimum": 0.5,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "fee": "0.01",
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token_in": "USDC",
           "token_out": "USDT",
+          "fee": "0.01",
+          "amount_in": 1,
+          "amount_out_minimum": 0.5,
           "wrap_eth": false
         }
       },
@@ -6616,7 +6616,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -6627,11 +6627,11 @@
           "sender"
         ],
         "title": "UniswapWithdrawLiquidityProvisionRequest",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
-          "percentage_for_withdrawal": 1,
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "token_id": 4318185
+          "token_id": 4318185,
+          "percentage_for_withdrawal": 1
         }
       },
       "UnsignedMulticallTransaction": {
@@ -6792,7 +6792,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -6803,10 +6803,10 @@
         ],
         "title": "UnwrapWethRequest",
         "description": "Request model for unwrapping WETH back to native ETH.",
-        "example": {
-          "amount": 0.0000048,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "amount": 0.0000048
         }
       },
       "ValidationError": {
@@ -6862,7 +6862,7 @@
           "user"
         ],
         "title": "VisualizePortfolioRequest",
-        "example": {
+        "default": {
           "chain": "arbitrum:mainnet",
           "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
@@ -6892,7 +6892,7 @@
             "type": "string",
             "title": "Sender",
             "description": "The address of the transaction sender",
-            "example": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
           }
         },
         "type": "object",
@@ -6903,10 +6903,10 @@
         ],
         "title": "WrapEthRequest",
         "description": "Request model for wrapping ETH into WETH.",
-        "example": {
-          "amount": 0.0000048,
+        "default": {
           "chain": "arbitrum:mainnet",
-          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "amount": 0.0000048
         }
       }
     },

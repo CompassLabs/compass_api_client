@@ -30,7 +30,7 @@ class AerodromeSwapTokenForEthRequest(BaseModel):
     """
     Request model for swapping tokens for ETH.
     """ # noqa: E501
-    token_in: Token = Field(description="The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_in: Token = Field(description="The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).")
     amount_in: AmountIn2
     amount_out_min: AmountOutMin1
     stable: StrictBool = Field(description="If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy")
@@ -107,7 +107,7 @@ class AerodromeSwapTokenForEthRequest(BaseModel):
             "stable": obj.get("stable"),
             "to": obj.get("to"),
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

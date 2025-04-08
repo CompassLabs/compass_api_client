@@ -98,7 +98,7 @@ class MulticallExecuteRequest(BaseModel):
 
         _obj = cls.model_validate({
             "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
             "signed_authorization": SignedAuthorization.from_dict(obj["signed_authorization"]) if obj.get("signed_authorization") is not None else None,
             "contract_address": obj.get("contract_address"),
             "actions": [MulticallAction.from_dict(_item) for _item in obj["actions"]] if obj.get("actions") is not None else None

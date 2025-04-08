@@ -31,8 +31,8 @@ class UniswapGetBuyQuoteRequest(BaseModel):
     UniswapGetBuyQuoteRequest
     """ # noqa: E501
     chain: Chain
-    token_in: Token = Field(description="The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token_out: Token = Field(description="The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_in: Token = Field(description="The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).")
+    token_out: Token = Field(description="The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).")
     fee: FeeEnum = Field(description="The fee to pay for the swap")
     amount_out: AmountOut
     __properties: ClassVar[List[str]] = ["chain", "token_in", "token_out", "fee", "amount_out"]

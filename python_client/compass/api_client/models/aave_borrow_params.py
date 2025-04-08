@@ -29,7 +29,7 @@ class AaveBorrowParams(BaseModel):
     """
     AaveBorrowParams
     """ # noqa: E501
-    asset: Token = Field(description="The symbol of the underlying asset to borrow.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    asset: Token = Field(description="The symbol of the underlying asset to borrow. Note the [supported tokens per chain](/#/#token-table).")
     amount: Amount
     interest_rate_mode: InterestRateMode = Field(description="The interest rate mode to borrow")
     on_behalf_of: Optional[StrictStr] = None

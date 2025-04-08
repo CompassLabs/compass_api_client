@@ -29,7 +29,7 @@ class TokenBalance(BaseModel):
     """ # noqa: E501
     amount: StrictStr = Field(description="Amount of tokens a particular address holds")
     decimals: StrictInt = Field(description="Number of decimals of the token")
-    token_symbol: Token = Field(description="Symbol of the token<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_symbol: Token = Field(description="Symbol of the token Note the [supported tokens per chain](/#/#token-table).")
     token_address: StrictStr = Field(description="Address of the token")
     price: StrictStr = Field(description="Price of the token in USD")
     token_value_in_usd: StrictStr = Field(description="Value of the token balance in USD")

@@ -6,8 +6,8 @@ Request model for minting a new liquidity position.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token0** | [**Token**](Token.md) | The symbol of the first token in the pair&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
-**token1** | [**Token**](Token.md) | The symbol of the second token in the pair&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token0** | [**Token**](Token.md) | The symbol of the first token in the pair Note the [supported tokens per chain](/#/#token-table). | 
+**token1** | [**Token**](Token.md) | The symbol of the second token in the pair Note the [supported tokens per chain](/#/#token-table). | 
 **fee** | [**FeeEnum**](FeeEnum.md) | The swap fee of the pool | 
 **tick_lower** | **int** | The lower tick of the range to mint the position in | 
 **tick_upper** | **int** | The upper tick of the range to mint the position in | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **amount1_min** | [**Amount1Min**](Amount1Min.md) |  | 
 **recipient** | **str** |  | [optional] 
 **chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
+**sender** | **str** | The address of the transaction sender | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
 
 ## Example
 

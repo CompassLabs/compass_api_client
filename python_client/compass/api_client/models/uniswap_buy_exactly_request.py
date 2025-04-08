@@ -31,8 +31,8 @@ class UniswapBuyExactlyRequest(BaseModel):
     """
     Request model for buying exactly an amount of tokens.
     """ # noqa: E501
-    token_in: Token = Field(description="The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token_out: Token = Field(description="The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_in: Token = Field(description="The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).")
+    token_out: Token = Field(description="The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).")
     fee: FeeEnum = Field(description="The swap fee of the pool")
     amount_out: AmountOut
     amount_in_maximum: AmountInMaximum
@@ -105,7 +105,7 @@ class UniswapBuyExactlyRequest(BaseModel):
             "amount_in_maximum": AmountInMaximum.from_dict(obj["amount_in_maximum"]) if obj.get("amount_in_maximum") is not None else None,
             "wrap_eth": obj.get("wrap_eth") if obj.get("wrap_eth") is not None else False,
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

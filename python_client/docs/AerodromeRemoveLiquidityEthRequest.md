@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
-**token** | [**Token**](Token.md) | The symbol of the token to remove liquidity for alongside WETH.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**sender** | **str** | The address of the transaction sender | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
+**token** | [**Token**](Token.md) | The symbol of the token to remove liquidity for alongside WETH. Note the [supported tokens per chain](/#/#token-table). | 
 **stable** | **bool** | If true, try to remove liquidity from a stable pool with a bonding curve of K&#x3D;x^3y+y^3x. If false, try to remove liquidity from a volatile pool with a bonding curve of K&#x3D;xy | 
 **liquidity** | [**Liquidity**](Liquidity.md) |  | 
 **amount_token_min** | [**AmountTokenMin1**](AmountTokenMin1.md) |  | 

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) |  | 
-**user** | **str** | The address of the user to check the balance of | 
+**user** | **str** | The address of the user to check the balance of | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
 
 ## Example
 

@@ -29,7 +29,7 @@ class AaveWithdrawRequest(BaseModel):
     """
     AaveWithdrawRequest
     """ # noqa: E501
-    asset: Token = Field(description="The symbol of the underlying asset to withdraw.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    asset: Token = Field(description="The symbol of the underlying asset to withdraw. Note the [supported tokens per chain](/#/#token-table).")
     amount: Amount3
     recipient: StrictStr = Field(description="The address of the recipient of the withdrawn funds.")
     chain: Chain
@@ -94,7 +94,7 @@ class AaveWithdrawRequest(BaseModel):
             "amount": Amount3.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "recipient": obj.get("recipient"),
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

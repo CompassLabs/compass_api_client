@@ -31,7 +31,7 @@ class GetErc20AllowanceRequest(BaseModel):
     """ # noqa: E501
     chain: Chain
     user: StrictStr = Field(description="The user to get the ERC20 allowance of.")
-    token: Token = Field(description="The symbol of the token for which the allowance is checked.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token: Token = Field(description="The symbol of the token for which the allowance is checked. Note the [supported tokens per chain](/#/#token-table).")
     contract_name: ContractName = Field(description="The name of the contract to check allowance for.")
     __properties: ClassVar[List[str]] = ["chain", "user", "token", "contract_name"]
 

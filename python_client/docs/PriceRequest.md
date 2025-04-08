@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) |  | 
-**token** | [**Token**](Token.md) | The symbol of the token for which to get the price&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token** | [**Token**](Token.md) | The symbol of the token for which to get the price Note the [supported tokens per chain](/#/#token-table). | 
 
 ## Example
 

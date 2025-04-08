@@ -33,8 +33,8 @@ class AerodromeAddLiquidityRequest(BaseModel):
     """
     AerodromeAddLiquidityRequest
     """ # noqa: E501
-    token_a: Token = Field(description="The symbol of the token to provide liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token_b: Token = Field(description="The symbol of the token to provide liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_a: Token = Field(description="The symbol of the token to provide liquidity for Note the [supported tokens per chain](/#/#token-table).")
+    token_b: Token = Field(description="The symbol of the token to provide liquidity for Note the [supported tokens per chain](/#/#token-table).")
     stable: StrictBool = Field(description="If true, try to provide liquidity on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to provide liquidity on a volatile pool with a bonding curve of K=xy")
     amount_a_desired: AmountADesired
     amount_b_desired: AmountBDesired
@@ -129,7 +129,7 @@ class AerodromeAddLiquidityRequest(BaseModel):
             "to": obj.get("to"),
             "deadline": obj.get("deadline"),
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

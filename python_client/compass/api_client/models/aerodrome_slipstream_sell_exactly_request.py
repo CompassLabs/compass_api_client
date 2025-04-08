@@ -31,8 +31,8 @@ class AerodromeSlipstreamSellExactlyRequest(BaseModel):
     """
     Request model for selling exactly an amount of tokens.
     """ # noqa: E501
-    token_in: Token = Field(description="The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token_out: Token = Field(description="The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_in: Token = Field(description="The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).")
+    token_out: Token = Field(description="The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).")
     tick_spacing: Annotated[int, Field(strict=True, ge=1)] = Field(description="The tick spacing of the pool")
     amount_in: AmountIn
     amount_out_minimum: Optional[AmountOutMinimum] = None
@@ -103,7 +103,7 @@ class AerodromeSlipstreamSellExactlyRequest(BaseModel):
             "amount_in": AmountIn.from_dict(obj["amount_in"]) if obj.get("amount_in") is not None else None,
             "amount_out_minimum": AmountOutMinimum.from_dict(obj["amount_out_minimum"]) if obj.get("amount_out_minimum") is not None else None,
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

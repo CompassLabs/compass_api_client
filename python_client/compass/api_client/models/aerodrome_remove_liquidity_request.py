@@ -34,8 +34,8 @@ class AerodromeRemoveLiquidityRequest(BaseModel):
     """ # noqa: E501
     chain: Chain
     sender: StrictStr = Field(description="The address of the transaction sender")
-    token_a: Token = Field(description="The symbol of the token to remove liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token_b: Token = Field(description="The symbol of the token to remove liquidity for<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_a: Token = Field(description="The symbol of the token to remove liquidity for Note the [supported tokens per chain](/#/#token-table).")
+    token_b: Token = Field(description="The symbol of the token to remove liquidity for Note the [supported tokens per chain](/#/#token-table).")
     stable: StrictBool = Field(description="If true, try to remove liquidity from a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to remove liquidity from a volatile pool with a bonding curve of K=xy")
     liquidity: Liquidity
     amount_a_min: AmountAMin1
@@ -115,7 +115,7 @@ class AerodromeRemoveLiquidityRequest(BaseModel):
 
         _obj = cls.model_validate({
             "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
             "token_a": obj.get("token_a"),
             "token_b": obj.get("token_b"),
             "stable": obj.get("stable"),

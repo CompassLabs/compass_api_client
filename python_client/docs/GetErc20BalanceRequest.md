@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) |  | 
 **user** | **str** | The user to get the ERC20 balance of. | 
-**token** | [**Token**](Token.md) | The symbol of the token for which the balance is checked.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token** | [**Token**](Token.md) | The symbol of the token for which the balance is checked. Note the [supported tokens per chain](/#/#token-table). | 
 
 ## Example
 

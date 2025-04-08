@@ -29,7 +29,7 @@ class AaveGetAssetPriceRequest(BaseModel):
     AaveGetAssetPriceRequest
     """ # noqa: E501
     chain: Chain
-    asset: Token = Field(description="The symbol of the asset whose price you want.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    asset: Token = Field(description="The symbol of the asset whose price you want. Note the [supported tokens per chain](/#/#token-table).")
     __properties: ClassVar[List[str]] = ["chain", "asset"]
 
     model_config = ConfigDict(

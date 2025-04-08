@@ -83,7 +83,7 @@ class UniswapGetLiquidityProvisionPositionsRequest(BaseModel):
 
         _obj = cls.model_validate({
             "chain": obj.get("chain"),
-            "user": obj.get("user")
+            "user": obj.get("user") if obj.get("user") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

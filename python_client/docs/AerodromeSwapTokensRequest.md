@@ -6,14 +6,14 @@ Request model for swapping tokens.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token_in** | [**Token**](Token.md) | The symbol of the token to swap from&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
-**token_out** | [**Token**](Token.md) | The symbol of the token to swap to&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token_in** | [**Token**](Token.md) | The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table). | 
+**token_out** | [**Token**](Token.md) | The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table). | 
 **amount_in** | [**AmountIn2**](AmountIn2.md) |  | 
 **amount_out_min** | [**AmountOutMin2**](AmountOutMin2.md) |  | 
 **stable** | **bool** | If true, try to trade on a stable pool with a bonding curve of K&#x3D;x^3y+y^3x.         If false, try to trade on a volatile pool with a bonding curve of K&#x3D;xy | 
 **to** | **str** |  | [optional] 
 **chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
+**sender** | **str** | The address of the transaction sender | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
 
 ## Example
 

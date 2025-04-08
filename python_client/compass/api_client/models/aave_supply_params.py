@@ -28,7 +28,7 @@ class AaveSupplyParams(BaseModel):
     """
     AaveSupplyParams
     """ # noqa: E501
-    asset: Token = Field(description="The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    asset: Token = Field(description="The symbol of the underlying asset to supply as collateral. You can borrow against it. Note the [supported tokens per chain](/#/#token-table).")
     amount: Amount2
     on_behalf_of: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["asset", "amount", "on_behalf_of"]

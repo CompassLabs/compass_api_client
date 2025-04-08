@@ -91,7 +91,7 @@ class TransferEthRequest(BaseModel):
             "amount": Amount6.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "to": obj.get("to"),
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

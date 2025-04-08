@@ -30,8 +30,8 @@ class UniswapBuyExactlyParams(BaseModel):
     """
     UniswapBuyExactlyParams
     """ # noqa: E501
-    token_in: Token = Field(description="The symbol of the token to swap from<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token_out: Token = Field(description="The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_in: Token = Field(description="The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table).")
+    token_out: Token = Field(description="The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table).")
     fee: FeeEnum = Field(description="The swap fee of the pool")
     amount_out: AmountOut
     amount_in_maximum: AmountInMaximum

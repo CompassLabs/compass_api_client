@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **chain** | [**Chain**](Chain.md) |  | 
 **start_block** | **int** | The starting block. | 
 **end_block** | **int** |  | [optional] 
-**asset** | [**Token**](Token.md) | The symbol of the asset to fetch liquidity index change for.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**asset** | [**Token**](Token.md) | The symbol of the asset to fetch liquidity index change for. Note the [supported tokens per chain](/#/#token-table). | 
 
 ## Example
 

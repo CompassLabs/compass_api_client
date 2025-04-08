@@ -91,7 +91,7 @@ class AerodromeSlipstreamWithdrawLiquidityProvisionRequest(BaseModel):
             "token_id": obj.get("token_id"),
             "percentage_for_withdrawal": PercentageForWithdrawal.from_dict(obj["percentage_for_withdrawal"]) if obj.get("percentage_for_withdrawal") is not None else None,
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

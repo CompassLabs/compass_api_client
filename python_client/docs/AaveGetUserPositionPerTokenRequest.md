@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) |  | 
 **user** | **str** | The user to fetch the token-specific position of. | 
-**asset** | [**Token**](Token.md) | The symbol of the asset to fetch the user&#39;s position on.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**asset** | [**Token**](Token.md) | The symbol of the asset to fetch the user&#39;s position on. Note the [supported tokens per chain](/#/#token-table). | 
 
 ## Example
 

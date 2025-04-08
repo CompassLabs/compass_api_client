@@ -7,8 +7,8 @@ Request model for getting a multicall authorization.  This model is used to auth
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) | The blockchain network to use | 
-**sender** | **str** | The Ethereum address to use for authorization | 
-**address** | **str** | The Ethereum address to authorize for multicall | 
+**sender** | **str** | The Ethereum address to use for authorization | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
+**address** | **str** | The Ethereum address to authorize for multicall | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
 
 ## Example
 

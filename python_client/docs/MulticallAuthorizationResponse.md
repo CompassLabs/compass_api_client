@@ -7,7 +7,7 @@ Response model for multicall authorization.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **nonce** | **int** | A unique nonce value for this authorization | 
-**address** | **str** | The Ethereum address authorized for multicall | 
+**address** | **str** | The Ethereum address authorized for multicall | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
 **chain_id** | **int** | The chain ID for the blockchain network | 
 
 ## Example

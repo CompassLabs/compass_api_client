@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) |  | 
 **user** | **str** | The user to get the ERC20 allowance of. | 
-**token** | [**Token**](Token.md) | The symbol of the token for which the allowance is checked.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token** | [**Token**](Token.md) | The symbol of the token for which the allowance is checked. Note the [supported tokens per chain](/#/#token-table). | 
 **contract_name** | [**ContractName**](ContractName.md) | The name of the contract to check allowance for. | 
 
 ## Example

@@ -109,7 +109,7 @@ class AerodromeSlipstreamIncreaseLiquidityProvisionRequest(BaseModel):
             "amount0_min": Amount0Min.from_dict(obj["amount0_min"]) if obj.get("amount0_min") is not None else None,
             "amount1_min": Amount1Min.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None,
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

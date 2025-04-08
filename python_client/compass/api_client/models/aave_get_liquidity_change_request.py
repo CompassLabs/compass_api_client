@@ -31,7 +31,7 @@ class AaveGetLiquidityChangeRequest(BaseModel):
     chain: Chain
     start_block: StrictInt = Field(description="The starting block.")
     end_block: Optional[StrictInt] = None
-    asset: Token = Field(description="The symbol of the asset to fetch liquidity index change for.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    asset: Token = Field(description="The symbol of the asset to fetch liquidity index change for. Note the [supported tokens per chain](/#/#token-table).")
     __properties: ClassVar[List[str]] = ["chain", "start_block", "end_block", "asset"]
 
     model_config = ConfigDict(

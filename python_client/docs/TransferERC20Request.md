@@ -7,10 +7,10 @@ Request model for transferring ERC20 tokens.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | [**Amount5**](Amount5.md) |  | 
-**token** | [**Token**](Token.md) | The symbol of the token to transfer.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token** | [**Token**](Token.md) | The symbol of the token to transfer. Note the [supported tokens per chain](/#/#token-table). | 
 **to** | **str** | The recipient of the tokens. | 
 **chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
+**sender** | **str** | The address of the transaction sender | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
 
 ## Example
 

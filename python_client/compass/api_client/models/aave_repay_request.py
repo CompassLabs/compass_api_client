@@ -30,7 +30,7 @@ class AaveRepayRequest(BaseModel):
     """
     AaveRepayRequest
     """ # noqa: E501
-    asset: Token = Field(description="The symbol of the underlying asset to repay.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    asset: Token = Field(description="The symbol of the underlying asset to repay. Note the [supported tokens per chain](/#/#token-table).")
     amount: Amount1
     interest_rate_mode: InterestRateMode = Field(description="The interest rate mode to borrow")
     on_behalf_of: Optional[StrictStr] = None
@@ -102,7 +102,7 @@ class AaveRepayRequest(BaseModel):
             "interest_rate_mode": obj.get("interest_rate_mode"),
             "on_behalf_of": obj.get("on_behalf_of"),
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

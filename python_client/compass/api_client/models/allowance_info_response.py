@@ -29,7 +29,7 @@ class AllowanceInfoResponse(BaseModel):
     """ # noqa: E501
     amount: StrictStr = Field(description="Amount of tokens allowed to be spent by spender")
     decimals: StrictInt = Field(description="Number of decimals of the token")
-    token_symbol: Token = Field(description="Symbol of the token<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_symbol: Token = Field(description="Symbol of the token Note the [supported tokens per chain](/#/#token-table).")
     token_address: StrictStr = Field(description="Address of the token")
     contract_address: StrictStr = Field(description="Address of the contract")
     __properties: ClassVar[List[str]] = ["amount", "decimals", "token_symbol", "token_address", "contract_address"]

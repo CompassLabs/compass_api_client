@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chain** | [**Chain**](Chain.md) |  | 
-**token_in** | [**Token**](Token.md) | The symbol of a token in the pool&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
-**token_out** | [**Token**](Token.md) | The symbol of a token in the pool&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token_in** | [**Token**](Token.md) | The symbol of a token in the pool Note the [supported tokens per chain](/#/#token-table). | 
+**token_out** | [**Token**](Token.md) | The symbol of a token in the pool Note the [supported tokens per chain](/#/#token-table). | 
 **fee** | [**FeeEnum**](FeeEnum.md) | The fee of the pool | 
 
 ## Example

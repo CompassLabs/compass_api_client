@@ -30,7 +30,7 @@ class AaveGetUserPositionPerTokenRequest(BaseModel):
     """ # noqa: E501
     chain: Chain
     user: StrictStr = Field(description="The user to fetch the token-specific position of.")
-    asset: Token = Field(description="The symbol of the asset to fetch the user's position on.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    asset: Token = Field(description="The symbol of the asset to fetch the user's position on. Note the [supported tokens per chain](/#/#token-table).")
     __properties: ClassVar[List[str]] = ["chain", "user", "asset"]
 
     model_config = ConfigDict(

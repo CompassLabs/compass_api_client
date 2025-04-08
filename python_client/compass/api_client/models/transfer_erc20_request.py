@@ -30,7 +30,7 @@ class TransferERC20Request(BaseModel):
     Request model for transferring ERC20 tokens.
     """ # noqa: E501
     amount: Amount5
-    token: Token = Field(description="The symbol of the token to transfer.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token: Token = Field(description="The symbol of the token to transfer. Note the [supported tokens per chain](/#/#token-table).")
     to: StrictStr = Field(description="The recipient of the tokens.")
     chain: Chain
     sender: StrictStr = Field(description="The address of the transaction sender")
@@ -94,7 +94,7 @@ class TransferERC20Request(BaseModel):
             "token": obj.get("token"),
             "to": obj.get("to"),
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

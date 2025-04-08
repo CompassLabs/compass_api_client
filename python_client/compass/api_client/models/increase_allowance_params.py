@@ -29,7 +29,7 @@ class IncreaseAllowanceParams(BaseModel):
     """
     Parameters model for increasing token allowance for a contract.
     """ # noqa: E501
-    token: Token = Field(description="The symbol of the token for which the allowance is increased.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token: Token = Field(description="The symbol of the token for which the allowance is increased. Note the [supported tokens per chain](/#/#token-table).")
     contract_name: ContractName = Field(description="The name of the contract to increase allowance for.")
     amount: Amount4
     __properties: ClassVar[List[str]] = ["token", "contract_name", "amount"]

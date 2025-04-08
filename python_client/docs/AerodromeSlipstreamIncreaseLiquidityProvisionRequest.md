@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **amount0_min** | [**Amount0Min**](Amount0Min.md) |  | 
 **amount1_min** | [**Amount1Min**](Amount1Min.md) |  | 
 **chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
+**sender** | **str** | The address of the transaction sender | [default to '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B']
 
 ## Example
 

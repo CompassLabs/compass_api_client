@@ -33,8 +33,8 @@ class UniswapMintLiquidityProvisionParams(BaseModel):
     """
     UniswapMintLiquidityProvisionParams
     """ # noqa: E501
-    token0: Token = Field(description="The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token1: Token = Field(description="The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token0: Token = Field(description="The symbol of the first token in the pair Note the [supported tokens per chain](/#/#token-table).")
+    token1: Token = Field(description="The symbol of the second token in the pair Note the [supported tokens per chain](/#/#token-table).")
     fee: FeeEnum = Field(description="The swap fee of the pool")
     tick_lower: Annotated[int, Field(le=887272, strict=True, ge=-887272)] = Field(description="The lower tick of the range to mint the position in")
     tick_upper: Annotated[int, Field(le=887272, strict=True, ge=-887272)] = Field(description="The upper tick of the range to mint the position in")

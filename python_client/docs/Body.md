@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token_in** | [**Token**](Token.md) | The symbol of the token to swap from&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
-**token_out** | [**Token**](Token.md) | The symbol of the token to swap to&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token_in** | [**Token**](Token.md) | The symbol of the token to swap from Note the [supported tokens per chain](/#/#token-table). | 
+**token_out** | [**Token**](Token.md) | The symbol of the token to swap to Note the [supported tokens per chain](/#/#token-table). | 
 **fee** | [**FeeEnum**](FeeEnum.md) | The swap fee of the pool | 
 **amount_out** | [**AmountOut**](AmountOut.md) |  | 
 **amount_in_maximum** | [**AmountInMaximum**](AmountInMaximum.md) |  | 
 **wrap_eth** | **bool** | Whether to wrap ETH to WETH, only use when swapping WETH into something | [optional] [default to False]
 **amount_in** | [**AmountIn**](AmountIn.md) |  | 
 **amount_out_minimum** | [**AmountOutMinimum**](AmountOutMinimum.md) |  | [optional] 
-**token0** | [**Token**](Token.md) | The symbol of the first token in the pair&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
-**token1** | [**Token**](Token.md) | The symbol of the second token in the pair&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token0** | [**Token**](Token.md) | The symbol of the first token in the pair Note the [supported tokens per chain](/#/#token-table). | 
+**token1** | [**Token**](Token.md) | The symbol of the second token in the pair Note the [supported tokens per chain](/#/#token-table). | 
 **tick_lower** | **int** | The lower tick of the range to mint the position in | 
 **tick_upper** | **int** | The upper tick of the range to mint the position in | 
 **amount0_desired** | [**Amount0Desired1**](Amount0Desired1.md) |  | 
@@ -24,11 +24,11 @@ Name | Type | Description | Notes
 **recipient** | **str** | The address of the recipient of the withdrawn funds. | 
 **token_id** | **int** | Token ID of the NFT representing the liquidity provisioned position. | 
 **percentage_for_withdrawal** | [**PercentageForWithdrawal**](PercentageForWithdrawal.md) |  | 
-**asset** | [**Token**](Token.md) | The symbol of the underlying asset to withdraw.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**asset** | [**Token**](Token.md) | The symbol of the underlying asset to withdraw. Note the [supported tokens per chain](/#/#token-table). | 
 **amount** | [**Amount4**](Amount4.md) |  | 
 **interest_rate_mode** | [**InterestRateMode**](InterestRateMode.md) | The interest rate mode to borrow | 
 **on_behalf_of** | **str** |  | [optional] 
-**token** | [**Token**](Token.md) | The symbol of the token for which the allowance is increased.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token** | [**Token**](Token.md) | The symbol of the token for which the allowance is increased. Note the [supported tokens per chain](/#/#token-table). | 
 **contract_name** | [**ContractName**](ContractName.md) | The name of the contract to increase allowance for. | 
 
 ## Example

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **str** | Amount of tokens a particular address holds | 
 **decimals** | **int** | Number of decimals of the token | 
-**token_symbol** | [**Token**](Token.md) | Symbol of the token&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
+**token_symbol** | [**Token**](Token.md) | Symbol of the token Note the [supported tokens per chain](/#/#token-table). | 
 **token_address** | **str** | Address of the token | 
 
 ## Example

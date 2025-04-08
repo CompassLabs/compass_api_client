@@ -30,8 +30,8 @@ class UniswapGetPoolPriceRequest(BaseModel):
     UniswapGetPoolPriceRequest
     """ # noqa: E501
     chain: Chain
-    token_in: Token = Field(description="The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token_out: Token = Field(description="The symbol of a token in the pool<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token_in: Token = Field(description="The symbol of a token in the pool Note the [supported tokens per chain](/#/#token-table).")
+    token_out: Token = Field(description="The symbol of a token in the pool Note the [supported tokens per chain](/#/#token-table).")
     fee: FeeEnum = Field(description="The fee of the pool")
     __properties: ClassVar[List[str]] = ["chain", "token_in", "token_out", "fee"]
 

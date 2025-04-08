@@ -83,7 +83,7 @@ class MulticallAuthorizationResponse(BaseModel):
 
         _obj = cls.model_validate({
             "nonce": obj.get("nonce"),
-            "address": obj.get("address"),
+            "address": obj.get("address") if obj.get("address") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
             "chainId": obj.get("chainId")
         })
         return _obj

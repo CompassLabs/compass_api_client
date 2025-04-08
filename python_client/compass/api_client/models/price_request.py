@@ -29,7 +29,7 @@ class PriceRequest(BaseModel):
     PriceRequest
     """ # noqa: E501
     chain: Chain
-    token: Token = Field(description="The symbol of the token for which to get the price<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token: Token = Field(description="The symbol of the token for which to get the price Note the [supported tokens per chain](/#/#token-table).")
     __properties: ClassVar[List[str]] = ["chain", "token"]
 
     model_config = ConfigDict(

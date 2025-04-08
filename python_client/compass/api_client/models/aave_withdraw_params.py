@@ -28,7 +28,7 @@ class AaveWithdrawParams(BaseModel):
     """
     AaveWithdrawParams
     """ # noqa: E501
-    asset: Token = Field(description="The symbol of the underlying asset to withdraw.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    asset: Token = Field(description="The symbol of the underlying asset to withdraw. Note the [supported tokens per chain](/#/#token-table).")
     amount: Amount3
     recipient: StrictStr = Field(description="The address of the recipient of the withdrawn funds.")
     __properties: ClassVar[List[str]] = ["asset", "amount", "recipient"]

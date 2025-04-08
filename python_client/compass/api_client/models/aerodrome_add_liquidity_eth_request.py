@@ -33,7 +33,7 @@ class AerodromeAddLiquidityEthRequest(BaseModel):
     """
     AerodromeAddLiquidityEthRequest
     """ # noqa: E501
-    token: Token = Field(description="The symbol of the token to provide liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token: Token = Field(description="The symbol of the token to provide liquidity for alongside WETH. Note the [supported tokens per chain](/#/#token-table).")
     stable: StrictBool = Field(description="If true, try to provide liquidity on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to provide liquidity on a volatile pool with a bonding curve of K=xy")
     amount_token_desired: AmountTokenDesired
     amount_eth_desired: AmountEthDesired
@@ -127,7 +127,7 @@ class AerodromeAddLiquidityEthRequest(BaseModel):
             "to": obj.get("to"),
             "deadline": obj.get("deadline"),
             "chain": obj.get("chain"),
-            "sender": obj.get("sender")
+            "sender": obj.get("sender") if obj.get("sender") is not None else '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
         })
         return _obj
 

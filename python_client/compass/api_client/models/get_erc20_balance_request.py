@@ -30,7 +30,7 @@ class GetErc20BalanceRequest(BaseModel):
     """ # noqa: E501
     chain: Chain
     user: StrictStr = Field(description="The user to get the ERC20 balance of.")
-    token: Token = Field(description="The symbol of the token for which the balance is checked.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
+    token: Token = Field(description="The symbol of the token for which the balance is checked. Note the [supported tokens per chain](/#/#token-table).")
     __properties: ClassVar[List[str]] = ["chain", "user", "token"]
 
     model_config = ConfigDict(
