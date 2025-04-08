@@ -40,8 +40,6 @@ class PostRequestTool(BaseTool):
         if self.api_key is not None:
             headers["x-api-key"] = self.api_key
 
-        print(self.url)
-        print(self.args_schema(**kwargs).model_dump(mode="json"))
         response = requests.post(
             self.url,
             json=self.args_schema(**kwargs).model_dump(mode="json"),
