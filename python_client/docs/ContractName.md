@@ -20,7 +20,11 @@ Select the protocol.  E.g. for increasing ERC-20 allowance.
 
 * `AERODROMEBASICPOOL` (value: `'AerodromeBasicPool'`)
 
+* `AERODROMESLIPSTREAMPOOL` (value: `'AerodromeSlipstreamPool'`)
+
 * `AERODROMESLIPSTREAMNONFUNGIBLEPOSITIONMANAGER` (value: `'AerodromeSlipstreamNonfungiblePositionManager'`)
+
+* `UNISWAPV3POOL` (value: `'UniswapV3Pool'`)
 
 * `UNISWAPV3ROUTER` (value: `'UniswapV3Router'`)
 
