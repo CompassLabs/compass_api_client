@@ -33,8 +33,6 @@ class AerodromeAddLiquidityEthRequest(BaseModel):
     """
     AerodromeAddLiquidityEthRequest
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token: Token = Field(description="The symbol of the token to provide liquidity for alongside WETH.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     stable: StrictBool = Field(description="If true, try to provide liquidity on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to provide liquidity on a volatile pool with a bonding curve of K=xy")
     amount_token_desired: AmountTokenDesired
@@ -43,7 +41,9 @@ class AerodromeAddLiquidityEthRequest(BaseModel):
     amount_eth_min: AmountEthMin
     to: Optional[StrictStr] = None
     deadline: Optional[Annotated[int, Field(strict=True, ge=0)]]
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token", "stable", "amount_token_desired", "amount_eth_desired", "amount_token_min", "amount_eth_min", "to", "deadline"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["token", "stable", "amount_token_desired", "amount_eth_desired", "amount_token_min", "amount_eth_min", "to", "deadline", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,8 +118,6 @@ class AerodromeAddLiquidityEthRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token": obj.get("token"),
             "stable": obj.get("stable"),
             "amount_token_desired": AmountTokenDesired.from_dict(obj["amount_token_desired"]) if obj.get("amount_token_desired") is not None else None,
@@ -127,7 +125,9 @@ class AerodromeAddLiquidityEthRequest(BaseModel):
             "amount_token_min": AmountTokenMin.from_dict(obj["amount_token_min"]) if obj.get("amount_token_min") is not None else None,
             "amount_eth_min": AmountEthMin.from_dict(obj["amount_eth_min"]) if obj.get("amount_eth_min") is not None else None,
             "to": obj.get("to"),
-            "deadline": obj.get("deadline")
+            "deadline": obj.get("deadline"),
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

@@ -6,9 +6,9 @@ Request model for wrapping ETH into WETH.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**amount** | [**Amount8**](Amount8.md) |  | 
 **chain** | [**Chain**](Chain.md) |  | 
 **sender** | **str** | The address of the transaction sender | 
-**amount** | [**Amount8**](Amount8.md) |  | 
 
 ## Example
 

@@ -35,17 +35,17 @@ class TestAerodromeSlipstreamWithdrawLiquidityProvisionRequest(unittest.TestCase
         model = AerodromeSlipstreamWithdrawLiquidityProvisionRequest()
         if include_optional:
             return AerodromeSlipstreamWithdrawLiquidityProvisionRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_id = 56,
-                percentage_for_withdrawal = None
+                percentage_for_withdrawal = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AerodromeSlipstreamWithdrawLiquidityProvisionRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_id = 56,
                 percentage_for_withdrawal = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

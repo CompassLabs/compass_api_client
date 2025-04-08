@@ -26,11 +26,11 @@ from compass.api_client.models.uniswap_get_pool_price_request import UniswapGetP
 from compass.api_client.models.uniswap_get_sell_quote_request import UniswapGetSellQuoteRequest
 from compass.api_client.models.uniswap_increase_liquidity_provision_request import UniswapIncreaseLiquidityProvisionRequest
 from compass.api_client.models.uniswap_lp_positions_info_response import UniswapLPPositionsInfoResponse
-from compass.api_client.models.uniswap_mint_liquidity_provision import UniswapMintLiquidityProvision
+from compass.api_client.models.uniswap_mint_liquidity_provision_request import UniswapMintLiquidityProvisionRequest
 from compass.api_client.models.uniswap_pool_price_response import UniswapPoolPriceResponse
 from compass.api_client.models.uniswap_sell_exactly_request import UniswapSellExactlyRequest
 from compass.api_client.models.uniswap_sell_quote_info_response import UniswapSellQuoteInfoResponse
-from compass.api_client.models.uniswap_withdraw_liquidity_provision import UniswapWithdrawLiquidityProvision
+from compass.api_client.models.uniswap_withdraw_liquidity_provision_request import UniswapWithdrawLiquidityProvisionRequest
 from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 
 from compass.api_client.api_client import ApiClient, RequestSerialized
@@ -608,7 +608,7 @@ class UniswapV3Api:
     @validate_call
     def uniswap_liquidity_provision_mint(
         self,
-        uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision,
+        uniswap_mint_liquidity_provision_request: UniswapMintLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -626,8 +626,8 @@ class UniswapV3Api:
 
         This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
-        :param uniswap_mint_liquidity_provision: (required)
-        :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
+        :param uniswap_mint_liquidity_provision_request: (required)
+        :type uniswap_mint_liquidity_provision_request: UniswapMintLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -651,7 +651,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._uniswap_liquidity_provision_mint_serialize(
-            uniswap_mint_liquidity_provision=uniswap_mint_liquidity_provision,
+            uniswap_mint_liquidity_provision_request=uniswap_mint_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -676,7 +676,7 @@ class UniswapV3Api:
     @validate_call
     def uniswap_liquidity_provision_mint_with_http_info(
         self,
-        uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision,
+        uniswap_mint_liquidity_provision_request: UniswapMintLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -694,8 +694,8 @@ class UniswapV3Api:
 
         This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
-        :param uniswap_mint_liquidity_provision: (required)
-        :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
+        :param uniswap_mint_liquidity_provision_request: (required)
+        :type uniswap_mint_liquidity_provision_request: UniswapMintLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -719,7 +719,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._uniswap_liquidity_provision_mint_serialize(
-            uniswap_mint_liquidity_provision=uniswap_mint_liquidity_provision,
+            uniswap_mint_liquidity_provision_request=uniswap_mint_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -744,7 +744,7 @@ class UniswapV3Api:
     @validate_call
     def uniswap_liquidity_provision_mint_without_preload_content(
         self,
-        uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision,
+        uniswap_mint_liquidity_provision_request: UniswapMintLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -762,8 +762,8 @@ class UniswapV3Api:
 
         This endpoint allows users to open a new Liquidity Provider (LP) position on the Uniswap platform.  By providing the necessary parameters, users can initiate a minting process to create a new LP token, which represents their stake in a specific liquidity pool. This operation is essential for users looking to participate in liquidity provision, enabling them to earn fees from trades that occur within the pool. The endpoint requires details such as the token pair, amount, and any additional parameters needed for the minting process.
 
-        :param uniswap_mint_liquidity_provision: (required)
-        :type uniswap_mint_liquidity_provision: UniswapMintLiquidityProvision
+        :param uniswap_mint_liquidity_provision_request: (required)
+        :type uniswap_mint_liquidity_provision_request: UniswapMintLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -787,7 +787,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._uniswap_liquidity_provision_mint_serialize(
-            uniswap_mint_liquidity_provision=uniswap_mint_liquidity_provision,
+            uniswap_mint_liquidity_provision_request=uniswap_mint_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -807,7 +807,7 @@ class UniswapV3Api:
 
     def _uniswap_liquidity_provision_mint_serialize(
         self,
-        uniswap_mint_liquidity_provision,
+        uniswap_mint_liquidity_provision_request,
         _request_auth,
         _content_type,
         _headers,
@@ -833,8 +833,8 @@ class UniswapV3Api:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if uniswap_mint_liquidity_provision is not None:
-            _body_params = uniswap_mint_liquidity_provision
+        if uniswap_mint_liquidity_provision_request is not None:
+            _body_params = uniswap_mint_liquidity_provision_request
 
 
         # set the HTTP header `Accept`
@@ -1162,7 +1162,7 @@ class UniswapV3Api:
     @validate_call
     def uniswap_liquidity_provision_withdraw(
         self,
-        uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision,
+        uniswap_withdraw_liquidity_provision_request: UniswapWithdrawLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1180,8 +1180,8 @@ class UniswapV3Api:
 
         This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
-        :param uniswap_withdraw_liquidity_provision: (required)
-        :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision
+        :param uniswap_withdraw_liquidity_provision_request: (required)
+        :type uniswap_withdraw_liquidity_provision_request: UniswapWithdrawLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1205,7 +1205,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._uniswap_liquidity_provision_withdraw_serialize(
-            uniswap_withdraw_liquidity_provision=uniswap_withdraw_liquidity_provision,
+            uniswap_withdraw_liquidity_provision_request=uniswap_withdraw_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1230,7 +1230,7 @@ class UniswapV3Api:
     @validate_call
     def uniswap_liquidity_provision_withdraw_with_http_info(
         self,
-        uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision,
+        uniswap_withdraw_liquidity_provision_request: UniswapWithdrawLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1248,8 +1248,8 @@ class UniswapV3Api:
 
         This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
-        :param uniswap_withdraw_liquidity_provision: (required)
-        :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision
+        :param uniswap_withdraw_liquidity_provision_request: (required)
+        :type uniswap_withdraw_liquidity_provision_request: UniswapWithdrawLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1273,7 +1273,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._uniswap_liquidity_provision_withdraw_serialize(
-            uniswap_withdraw_liquidity_provision=uniswap_withdraw_liquidity_provision,
+            uniswap_withdraw_liquidity_provision_request=uniswap_withdraw_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1298,7 +1298,7 @@ class UniswapV3Api:
     @validate_call
     def uniswap_liquidity_provision_withdraw_without_preload_content(
         self,
-        uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision,
+        uniswap_withdraw_liquidity_provision_request: UniswapWithdrawLiquidityProvisionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1316,8 +1316,8 @@ class UniswapV3Api:
 
         This endpoint allows users to withdraw their Liquidity Provider (LP) positions from the Uniswap platform.  By specifying the necessary parameters, users can initiate the withdrawal process to remove their stake from a specific liquidity pool. This operation is crucial for users who wish to reclaim their assets or reallocate their liquidity to different pools or investments. The endpoint requires details such as the token pair, the amount to be withdrawn, and any additional parameters needed for the withdrawal process. Users should ensure they meet any protocol requirements or conditions before initiating a withdrawal to avoid potential issues or penalties.
 
-        :param uniswap_withdraw_liquidity_provision: (required)
-        :type uniswap_withdraw_liquidity_provision: UniswapWithdrawLiquidityProvision
+        :param uniswap_withdraw_liquidity_provision_request: (required)
+        :type uniswap_withdraw_liquidity_provision_request: UniswapWithdrawLiquidityProvisionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1341,7 +1341,7 @@ class UniswapV3Api:
         """ # noqa: E501
 
         _param = self._uniswap_liquidity_provision_withdraw_serialize(
-            uniswap_withdraw_liquidity_provision=uniswap_withdraw_liquidity_provision,
+            uniswap_withdraw_liquidity_provision_request=uniswap_withdraw_liquidity_provision_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1361,7 +1361,7 @@ class UniswapV3Api:
 
     def _uniswap_liquidity_provision_withdraw_serialize(
         self,
-        uniswap_withdraw_liquidity_provision,
+        uniswap_withdraw_liquidity_provision_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1387,8 +1387,8 @@ class UniswapV3Api:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if uniswap_withdraw_liquidity_provision is not None:
-            _body_params = uniswap_withdraw_liquidity_provision
+        if uniswap_withdraw_liquidity_provision_request is not None:
+            _body_params = uniswap_withdraw_liquidity_provision_request
 
 
         # set the HTTP header `Accept`

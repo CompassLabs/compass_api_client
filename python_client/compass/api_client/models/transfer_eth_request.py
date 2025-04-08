@@ -28,11 +28,11 @@ class TransferEthRequest(BaseModel):
     """
     Request model for transferring native ETH.
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     amount: Amount6
     to: StrictStr = Field(description="The recipient of the ETH.")
-    __properties: ClassVar[List[str]] = ["chain", "sender", "amount", "to"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["amount", "to", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,10 +88,10 @@ class TransferEthRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "amount": Amount6.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
-            "to": obj.get("to")
+            "to": obj.get("to"),
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

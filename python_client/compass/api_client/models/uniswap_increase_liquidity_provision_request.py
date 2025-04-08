@@ -29,16 +29,16 @@ from typing_extensions import Self
 
 class UniswapIncreaseLiquidityProvisionRequest(BaseModel):
     """
-    UniswapIncreaseLiquidityProvisionRequest
+    Request model for increasing liquidity provision in Uniswap V3.
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token_id: StrictInt = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
     amount0_desired: Amount0Desired1
     amount1_desired: Amount1Desired1
     amount0_min: Amount0Min1
     amount1_min: Amount1Min1
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token_id", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["token_id", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,13 +103,13 @@ class UniswapIncreaseLiquidityProvisionRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token_id": obj.get("token_id"),
             "amount0_desired": Amount0Desired1.from_dict(obj["amount0_desired"]) if obj.get("amount0_desired") is not None else None,
             "amount1_desired": Amount1Desired1.from_dict(obj["amount1_desired"]) if obj.get("amount1_desired") is not None else None,
             "amount0_min": Amount0Min1.from_dict(obj["amount0_min"]) if obj.get("amount0_min") is not None else None,
-            "amount1_min": Amount1Min1.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None
+            "amount1_min": Amount1Min1.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None,
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

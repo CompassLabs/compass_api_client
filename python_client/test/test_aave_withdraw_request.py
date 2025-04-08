@@ -35,19 +35,19 @@ class TestAaveWithdrawRequest(unittest.TestCase):
         model = AaveWithdrawRequest()
         if include_optional:
             return AaveWithdrawRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                asset = '1INCH',
-                amount = None,
-                recipient = ''
-            )
-        else:
-            return AaveWithdrawRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,
                 recipient = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
+            )
+        else:
+            return AaveWithdrawRequest(
+                asset = '1INCH',
+                amount = None,
+                recipient = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

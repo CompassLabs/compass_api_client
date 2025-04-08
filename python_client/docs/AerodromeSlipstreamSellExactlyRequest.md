@@ -1,17 +1,18 @@
 # AerodromeSlipstreamSellExactlyRequest
 
+Request model for selling exactly an amount of tokens.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **token_in** | [**Token**](Token.md) | The symbol of the token to swap from&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **token_out** | [**Token**](Token.md) | The symbol of the token to swap to&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **tick_spacing** | **int** | The tick spacing of the pool | 
 **amount_in** | [**AmountIn**](AmountIn.md) |  | 
 **amount_out_minimum** | [**AmountOutMinimum**](AmountOutMinimum.md) |  | [optional] 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

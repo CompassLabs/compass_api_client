@@ -35,15 +35,15 @@ class TestUnwrapWethRequest(unittest.TestCase):
         model = UnwrapWethRequest()
         if include_optional:
             return UnwrapWethRequest(
+                amount = None,
                 chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                amount = None
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return UnwrapWethRequest(
+                amount = None,
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                amount = None,
         )
         """
 

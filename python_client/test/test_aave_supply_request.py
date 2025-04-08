@@ -35,18 +35,18 @@ class TestAaveSupplyRequest(unittest.TestCase):
         model = AaveSupplyRequest()
         if include_optional:
             return AaveSupplyRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,
-                on_behalf_of = ''
+                on_behalf_of = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AaveSupplyRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 asset = '1INCH',
                 amount = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

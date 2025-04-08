@@ -35,19 +35,19 @@ class TestTransferERC20Request(unittest.TestCase):
         model = TransferERC20Request()
         if include_optional:
             return TransferERC20Request(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                amount = None,
-                token = '1INCH',
-                to = ''
-            )
-        else:
-            return TransferERC20Request(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 amount = None,
                 token = '1INCH',
                 to = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
+            )
+        else:
+            return TransferERC20Request(
+                amount = None,
+                token = '1INCH',
+                to = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

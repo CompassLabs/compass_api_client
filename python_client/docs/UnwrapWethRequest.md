@@ -6,9 +6,9 @@ Request model for unwrapping WETH back to native ETH.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**amount** | [**Amount7**](Amount7.md) |  | 
 **chain** | [**Chain**](Chain.md) |  | 
 **sender** | **str** | The address of the transaction sender | 
-**amount** | [**Amount7**](Amount7.md) |  | 
 
 ## Example
 

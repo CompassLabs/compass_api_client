@@ -5,8 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **token_a** | [**Token**](Token.md) | The symbol of the token to provide liquidity for&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **token_b** | [**Token**](Token.md) | The symbol of the token to provide liquidity for&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **stable** | **bool** | If true, try to provide liquidity on a stable pool with a bonding curve of K&#x3D;x^3y+y^3x. If false, try to provide liquidity on a volatile pool with a bonding curve of K&#x3D;xy | 
@@ -16,6 +14,8 @@ Name | Type | Description | Notes
 **amount_b_min** | [**AmountBMin**](AmountBMin.md) |  | 
 **to** | **str** |  | [optional] 
 **deadline** | **int** |  | 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

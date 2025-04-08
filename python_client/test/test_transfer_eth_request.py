@@ -35,17 +35,17 @@ class TestTransferEthRequest(unittest.TestCase):
         model = TransferEthRequest()
         if include_optional:
             return TransferEthRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 amount = None,
-                to = ''
+                to = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return TransferEthRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 amount = None,
                 to = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

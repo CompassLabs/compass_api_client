@@ -1,17 +1,18 @@
 # UniswapIncreaseLiquidityProvisionRequest
 
+Request model for increasing liquidity provision in Uniswap V3.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **token_id** | **int** | Token ID of the NFT representing the liquidity provisioned position. | 
 **amount0_desired** | [**Amount0Desired1**](Amount0Desired1.md) |  | 
 **amount1_desired** | [**Amount1Desired1**](Amount1Desired1.md) |  | 
 **amount0_min** | [**Amount0Min1**](Amount0Min1.md) |  | 
 **amount1_min** | [**Amount1Min1**](Amount1Min1.md) |  | 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

@@ -28,16 +28,16 @@ from typing_extensions import Self
 
 class AerodromeSwapEthForTokenRequest(BaseModel):
     """
-    AerodromeSwapEthForTokenRequest
+    Request model for swapping ETH for tokens.
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token_out: Token = Field(description="The symbol of the token to swap to<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     amount_in: AmountIn1
     amount_out_min: AmountOutMin
     stable: StrictBool = Field(description="If true, try to trade on a stable pool with a bonding curve of K=x^3y+y^3x. If false, try to trade on a volatile pool with a bonding curve of K=xy")
     to: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token_out", "amount_in", "amount_out_min", "stable", "to"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["token_out", "amount_in", "amount_out_min", "stable", "to", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,13 +101,13 @@ class AerodromeSwapEthForTokenRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token_out": obj.get("token_out"),
             "amount_in": AmountIn1.from_dict(obj["amount_in"]) if obj.get("amount_in") is not None else None,
             "amount_out_min": AmountOutMin.from_dict(obj["amount_out_min"]) if obj.get("amount_out_min") is not None else None,
             "stable": obj.get("stable"),
-            "to": obj.get("to")
+            "to": obj.get("to"),
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

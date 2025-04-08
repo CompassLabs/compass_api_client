@@ -30,12 +30,12 @@ class IncreaseAllowanceAnyRequest(BaseModel):
     """
     Request model for increasing allowance for any arbitrary ERC20 token address.
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token: Token = Field(description="The name of the token for which the allowance is increased.")
     contract_name: ContractName = Field(description="The name of the contract to increase allowance for.")
     amount: Amount4
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token", "contract_name", "amount"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["token", "contract_name", "amount", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,11 +91,11 @@ class IncreaseAllowanceAnyRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token": obj.get("token"),
             "contract_name": obj.get("contract_name"),
-            "amount": Amount4.from_dict(obj["amount"]) if obj.get("amount") is not None else None
+            "amount": Amount4.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

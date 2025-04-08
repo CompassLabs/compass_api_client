@@ -6,11 +6,11 @@ Request model for increasing token allowance for a contract.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **token** | [**Token**](Token.md) | The symbol of the token for which the allowance is increased.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **contract_name** | [**ContractName**](ContractName.md) | The name of the contract to increase allowance for. | 
 **amount** | [**Amount4**](Amount4.md) |  | 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

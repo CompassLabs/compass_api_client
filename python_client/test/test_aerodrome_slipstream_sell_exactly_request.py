@@ -35,22 +35,22 @@ class TestAerodromeSlipstreamSellExactlyRequest(unittest.TestCase):
         model = AerodromeSlipstreamSellExactlyRequest()
         if include_optional:
             return AerodromeSlipstreamSellExactlyRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 tick_spacing = 1.0,
                 amount_in = None,
-                amount_out_minimum = None
+                amount_out_minimum = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AerodromeSlipstreamSellExactlyRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token_in = '1INCH',
                 token_out = '1INCH',
                 tick_spacing = 1.0,
                 amount_in = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

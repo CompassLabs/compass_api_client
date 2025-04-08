@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **uniswap_liquidity_provision_mint**
-> UnsignedTransaction uniswap_liquidity_provision_mint(uniswap_mint_liquidity_provision)
+> UnsignedTransaction uniswap_liquidity_provision_mint(uniswap_mint_liquidity_provision_request)
 
 Open a new LP position
 
@@ -214,7 +214,7 @@ needed for the minting process.
 
 ```python
 import compass.api_client
-from compass.api_client.models.uniswap_mint_liquidity_provision import UniswapMintLiquidityProvision
+from compass.api_client.models.uniswap_mint_liquidity_provision_request import UniswapMintLiquidityProvisionRequest
 from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
@@ -240,11 +240,11 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.UniswapV3Api(api_client)
-    uniswap_mint_liquidity_provision = compass.api_client.UniswapMintLiquidityProvision() # UniswapMintLiquidityProvision | 
+    uniswap_mint_liquidity_provision_request = compass.api_client.UniswapMintLiquidityProvisionRequest() # UniswapMintLiquidityProvisionRequest | 
 
     try:
         # Open a new LP position
-        api_response = api_instance.uniswap_liquidity_provision_mint(uniswap_mint_liquidity_provision)
+        api_response = api_instance.uniswap_liquidity_provision_mint(uniswap_mint_liquidity_provision_request)
         print("The response of UniswapV3Api->uniswap_liquidity_provision_mint:\n")
         pprint(api_response)
     except Exception as e:
@@ -258,7 +258,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uniswap_mint_liquidity_provision** | [**UniswapMintLiquidityProvision**](UniswapMintLiquidityProvision.md)|  | 
+ **uniswap_mint_liquidity_provision_request** | [**UniswapMintLiquidityProvisionRequest**](UniswapMintLiquidityProvisionRequest.md)|  | 
 
 ### Return type
 
@@ -370,7 +370,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **uniswap_liquidity_provision_withdraw**
-> UnsignedTransaction uniswap_liquidity_provision_withdraw(uniswap_withdraw_liquidity_provision)
+> UnsignedTransaction uniswap_liquidity_provision_withdraw(uniswap_withdraw_liquidity_provision_request)
 
 Withdraw an LP position
 
@@ -391,7 +391,7 @@ before initiating a withdrawal to avoid potential issues or penalties.
 
 ```python
 import compass.api_client
-from compass.api_client.models.uniswap_withdraw_liquidity_provision import UniswapWithdrawLiquidityProvision
+from compass.api_client.models.uniswap_withdraw_liquidity_provision_request import UniswapWithdrawLiquidityProvisionRequest
 from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.rest import ApiException
 from pprint import pprint
@@ -417,11 +417,11 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with compass.api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = compass.api_client.UniswapV3Api(api_client)
-    uniswap_withdraw_liquidity_provision = compass.api_client.UniswapWithdrawLiquidityProvision() # UniswapWithdrawLiquidityProvision | 
+    uniswap_withdraw_liquidity_provision_request = compass.api_client.UniswapWithdrawLiquidityProvisionRequest() # UniswapWithdrawLiquidityProvisionRequest | 
 
     try:
         # Withdraw an LP position
-        api_response = api_instance.uniswap_liquidity_provision_withdraw(uniswap_withdraw_liquidity_provision)
+        api_response = api_instance.uniswap_liquidity_provision_withdraw(uniswap_withdraw_liquidity_provision_request)
         print("The response of UniswapV3Api->uniswap_liquidity_provision_withdraw:\n")
         pprint(api_response)
     except Exception as e:
@@ -435,7 +435,7 @@ with compass.api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uniswap_withdraw_liquidity_provision** | [**UniswapWithdrawLiquidityProvision**](UniswapWithdrawLiquidityProvision.md)|  | 
+ **uniswap_withdraw_liquidity_provision_request** | [**UniswapWithdrawLiquidityProvisionRequest**](UniswapWithdrawLiquidityProvisionRequest.md)|  | 
 
 ### Return type
 

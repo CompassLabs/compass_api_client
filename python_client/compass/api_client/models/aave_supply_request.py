@@ -29,12 +29,12 @@ class AaveSupplyRequest(BaseModel):
     """
     AaveSupplyRequest
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     asset: Token = Field(description="The symbol of the underlying asset to supply as collateral. You can borrow against it.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     amount: Amount2
     on_behalf_of: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["chain", "sender", "asset", "amount", "on_behalf_of"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["asset", "amount", "on_behalf_of", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,11 +95,11 @@ class AaveSupplyRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "asset": obj.get("asset"),
             "amount": Amount2.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
-            "on_behalf_of": obj.get("on_behalf_of")
+            "on_behalf_of": obj.get("on_behalf_of"),
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

@@ -35,8 +35,6 @@ class TestAerodromeSlipstreamMintLiquidityProvisionRequest(unittest.TestCase):
         model = AerodromeSlipstreamMintLiquidityProvisionRequest()
         if include_optional:
             return AerodromeSlipstreamMintLiquidityProvisionRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token0 = '1INCH',
                 token1 = '1INCH',
                 tick_spacing = 1.0,
@@ -46,12 +44,12 @@ class TestAerodromeSlipstreamMintLiquidityProvisionRequest(unittest.TestCase):
                 amount1_desired = None,
                 amount0_min = None,
                 amount1_min = None,
-                recipient = ''
+                recipient = '',
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
             )
         else:
             return AerodromeSlipstreamMintLiquidityProvisionRequest(
-                chain = 'base:mainnet',
-                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 token0 = '1INCH',
                 token1 = '1INCH',
                 tick_spacing = 1.0,
@@ -61,6 +59,8 @@ class TestAerodromeSlipstreamMintLiquidityProvisionRequest(unittest.TestCase):
                 amount1_desired = None,
                 amount0_min = None,
                 amount1_min = None,
+                chain = 'base:mainnet',
+                sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )
         """
 

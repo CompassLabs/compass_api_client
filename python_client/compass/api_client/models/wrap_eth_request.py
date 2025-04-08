@@ -28,10 +28,10 @@ class WrapEthRequest(BaseModel):
     """
     Request model for wrapping ETH into WETH.
     """ # noqa: E501
+    amount: Amount8
     chain: Chain
     sender: StrictStr = Field(description="The address of the transaction sender")
-    amount: Amount8
-    __properties: ClassVar[List[str]] = ["chain", "sender", "amount"]
+    __properties: ClassVar[List[str]] = ["amount", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,9 +87,9 @@ class WrapEthRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "amount": Amount8.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
-            "amount": Amount8.from_dict(obj["amount"]) if obj.get("amount") is not None else None
+            "sender": obj.get("sender")
         })
         return _obj
 

@@ -29,12 +29,12 @@ class TransferERC20Request(BaseModel):
     """
     Request model for transferring ERC20 tokens.
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     amount: Amount5
     token: Token = Field(description="The symbol of the token to transfer.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     to: StrictStr = Field(description="The recipient of the tokens.")
-    __properties: ClassVar[List[str]] = ["chain", "sender", "amount", "token", "to"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["amount", "token", "to", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,11 +90,11 @@ class TransferERC20Request(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "amount": Amount5.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "token": obj.get("token"),
-            "to": obj.get("to")
+            "to": obj.get("to"),
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

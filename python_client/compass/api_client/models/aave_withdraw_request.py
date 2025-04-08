@@ -29,12 +29,12 @@ class AaveWithdrawRequest(BaseModel):
     """
     AaveWithdrawRequest
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     asset: Token = Field(description="The symbol of the underlying asset to withdraw.<br> Note the [supported tokens per chain](/#/#token-table).<br>")
     amount: Amount3
     recipient: StrictStr = Field(description="The address of the recipient of the withdrawn funds.")
-    __properties: ClassVar[List[str]] = ["chain", "sender", "asset", "amount", "recipient"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["asset", "amount", "recipient", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,11 +90,11 @@ class AaveWithdrawRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "asset": obj.get("asset"),
             "amount": Amount3.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
-            "recipient": obj.get("recipient")
+            "recipient": obj.get("recipient"),
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 

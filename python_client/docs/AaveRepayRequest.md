@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chain** | [**Chain**](Chain.md) |  | 
-**sender** | **str** | The address of the transaction sender | 
 **asset** | [**Token**](Token.md) | The symbol of the underlying asset to repay.&lt;br&gt; Note the [supported tokens per chain](/#/#token-table).&lt;br&gt; | 
 **amount** | [**Amount1**](Amount1.md) |  | 
 **interest_rate_mode** | [**InterestRateMode**](InterestRateMode.md) | The interest rate mode to borrow | 
 **on_behalf_of** | **str** |  | [optional] 
+**chain** | [**Chain**](Chain.md) |  | 
+**sender** | **str** | The address of the transaction sender | 
 
 ## Example
 

@@ -17,36 +17,25 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from compass.api_client.models.amount0_desired import Amount0Desired
-from compass.api_client.models.amount0_min import Amount0Min
-from compass.api_client.models.amount1_desired import Amount1Desired
-from compass.api_client.models.amount1_min import Amount1Min
-from compass.api_client.models.chain import Chain
-from compass.api_client.models.fee_enum import FeeEnum
-from compass.api_client.models.token import Token
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing import Any, ClassVar, Dict, List
+from compass.api_client.models.amount0_desired1 import Amount0Desired1
+from compass.api_client.models.amount0_min1 import Amount0Min1
+from compass.api_client.models.amount1_desired1 import Amount1Desired1
+from compass.api_client.models.amount1_min1 import Amount1Min1
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UniswapMintLiquidityProvision(BaseModel):
+class UniswapIncreaseLiquidityProvisionParams(BaseModel):
     """
-    UniswapMintLiquidityProvision
+    UniswapIncreaseLiquidityProvisionParams
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
-    token0: Token = Field(description="The symbol of the first token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    token1: Token = Field(description="The symbol of the second token in the pair<br> Note the [supported tokens per chain](/#/#token-table).<br>")
-    fee: FeeEnum = Field(description="The swap fee of the pool")
-    tick_lower: Annotated[int, Field(le=887272, strict=True, ge=-887272)] = Field(description="The lower tick of the range to mint the position in")
-    tick_upper: Annotated[int, Field(le=887272, strict=True, ge=-887272)] = Field(description="The upper tick of the range to mint the position in")
-    amount0_desired: Amount0Desired
-    amount1_desired: Amount1Desired
-    amount0_min: Amount0Min
-    amount1_min: Amount1Min
-    recipient: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token0", "token1", "fee", "tick_lower", "tick_upper", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min", "recipient"]
+    token_id: StrictInt = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
+    amount0_desired: Amount0Desired1
+    amount1_desired: Amount1Desired1
+    amount0_min: Amount0Min1
+    amount1_min: Amount1Min1
+    __properties: ClassVar[List[str]] = ["token_id", "amount0_desired", "amount1_desired", "amount0_min", "amount1_min"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,7 +55,7 @@ class UniswapMintLiquidityProvision(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UniswapMintLiquidityProvision from a JSON string"""
+        """Create an instance of UniswapIncreaseLiquidityProvisionParams from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -99,16 +88,11 @@ class UniswapMintLiquidityProvision(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of amount1_min
         if self.amount1_min:
             _dict['amount1_min'] = self.amount1_min.to_dict()
-        # set to None if recipient (nullable) is None
-        # and model_fields_set contains the field
-        if self.recipient is None and "recipient" in self.model_fields_set:
-            _dict['recipient'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UniswapMintLiquidityProvision from a dict"""
+        """Create an instance of UniswapIncreaseLiquidityProvisionParams from a dict"""
         if obj is None:
             return None
 
@@ -116,18 +100,11 @@ class UniswapMintLiquidityProvision(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
-            "token0": obj.get("token0"),
-            "token1": obj.get("token1"),
-            "fee": obj.get("fee"),
-            "tick_lower": obj.get("tick_lower"),
-            "tick_upper": obj.get("tick_upper"),
-            "amount0_desired": Amount0Desired.from_dict(obj["amount0_desired"]) if obj.get("amount0_desired") is not None else None,
-            "amount1_desired": Amount1Desired.from_dict(obj["amount1_desired"]) if obj.get("amount1_desired") is not None else None,
-            "amount0_min": Amount0Min.from_dict(obj["amount0_min"]) if obj.get("amount0_min") is not None else None,
-            "amount1_min": Amount1Min.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None,
-            "recipient": obj.get("recipient")
+            "token_id": obj.get("token_id"),
+            "amount0_desired": Amount0Desired1.from_dict(obj["amount0_desired"]) if obj.get("amount0_desired") is not None else None,
+            "amount1_desired": Amount1Desired1.from_dict(obj["amount1_desired"]) if obj.get("amount1_desired") is not None else None,
+            "amount0_min": Amount0Min1.from_dict(obj["amount0_min"]) if obj.get("amount0_min") is not None else None,
+            "amount1_min": Amount1Min1.from_dict(obj["amount1_min"]) if obj.get("amount1_min") is not None else None
         })
         return _obj
 

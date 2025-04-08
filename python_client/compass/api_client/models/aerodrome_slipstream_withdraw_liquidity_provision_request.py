@@ -26,13 +26,13 @@ from typing_extensions import Self
 
 class AerodromeSlipstreamWithdrawLiquidityProvisionRequest(BaseModel):
     """
-    Endpoint parameters for liquidity provision withdrawal on aerodrome slipstream.  This action is performed in a multicall on the NonfungiblePosition Manager: https://github.com/AerodromeSlipstream/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/base/Multicall.sol#L11-L27 First, we call decrease liquidity then collect the tokens owed to the user.
+    AerodromeSlipstreamWithdrawLiquidityProvisionRequest
     """ # noqa: E501
-    chain: Chain
-    sender: StrictStr = Field(description="The address of the transaction sender")
     token_id: StrictInt = Field(description="Token ID of the NFT representing the liquidity provisioned position.")
     percentage_for_withdrawal: PercentageForWithdrawal
-    __properties: ClassVar[List[str]] = ["chain", "sender", "token_id", "percentage_for_withdrawal"]
+    chain: Chain
+    sender: StrictStr = Field(description="The address of the transaction sender")
+    __properties: ClassVar[List[str]] = ["token_id", "percentage_for_withdrawal", "chain", "sender"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,10 +88,10 @@ class AerodromeSlipstreamWithdrawLiquidityProvisionRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "chain": obj.get("chain"),
-            "sender": obj.get("sender"),
             "token_id": obj.get("token_id"),
-            "percentage_for_withdrawal": PercentageForWithdrawal.from_dict(obj["percentage_for_withdrawal"]) if obj.get("percentage_for_withdrawal") is not None else None
+            "percentage_for_withdrawal": PercentageForWithdrawal.from_dict(obj["percentage_for_withdrawal"]) if obj.get("percentage_for_withdrawal") is not None else None,
+            "chain": obj.get("chain"),
+            "sender": obj.get("sender")
         })
         return _obj
 
