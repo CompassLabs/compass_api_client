@@ -2032,10 +2032,8 @@
             "$ref": "#/components/schemas/InterestRateMode",
             "description": "The interest rate mode to borrow",
             "examples": [
-              1
-            ],
-            "ge": 1,
-            "le": 2
+              "stable"
+            ]
           },
           "on_behalf_of": {
             "anyOf": [
@@ -2088,10 +2086,8 @@
             "$ref": "#/components/schemas/InterestRateMode",
             "description": "The interest rate mode to borrow",
             "examples": [
-              1
-            ],
-            "ge": 1,
-            "le": 2
+              "stable"
+            ]
           },
           "on_behalf_of": {
             "anyOf": [
@@ -2130,7 +2126,7 @@
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "asset": "USDT",
           "amount": 1,
-          "interest_rate_mode": 2,
+          "interest_rate_mode": "variable",
           "on_behalf_of": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
@@ -2324,10 +2320,8 @@
             "$ref": "#/components/schemas/InterestRateMode",
             "description": "The interest rate mode to borrow",
             "examples": [
-              1
-            ],
-            "ge": 1,
-            "le": 2
+              "stable"
+            ]
           },
           "on_behalf_of": {
             "anyOf": [
@@ -2380,10 +2374,8 @@
             "$ref": "#/components/schemas/InterestRateMode",
             "description": "The interest rate mode to borrow",
             "examples": [
-              1
-            ],
-            "ge": 1,
-            "le": 2
+              "stable"
+            ]
           },
           "on_behalf_of": {
             "anyOf": [
@@ -2422,7 +2414,7 @@
           "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "asset": "USDT",
           "amount": 1,
-          "interest_rate_mode": 2,
+          "interest_rate_mode": "variable",
           "on_behalf_of": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
@@ -4770,10 +4762,10 @@
         }
       },
       "InterestRateMode": {
-        "type": "integer",
+        "type": "string",
         "enum": [
-          1,
-          2
+          "stable",
+          "variable"
         ],
         "title": "InterestRateMode",
         "description": "On AAVE there are 2 different interest modes.\n\nA stable (but typically higher rate), or a variable rate."
@@ -5290,8 +5282,8 @@
         "description": "Request model for transferring ERC20 tokens.",
         "default": {
           "chain": "arbitrum:mainnet",
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "sender": "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E",
+          "to": "0xEe0748088fe5D752B877656d717B279DaE630Ce2",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
           "token": "USDC",
           "amount": 0.1
         }
@@ -5343,9 +5335,9 @@
         "description": "Request model for transferring native ETH.",
         "default": {
           "chain": "arbitrum:mainnet",
-          "to": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
-          "sender": "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E",
-          "amount": 0.00048
+          "to": "0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E",
+          "sender": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "amount": 0.000048
         }
       },
       "UniswapBuyExactlyParams": {

@@ -37,7 +37,7 @@ class TestAaveBorrowRequest(unittest.TestCase):
             return AaveBorrowRequest(
                 asset = '1INCH',
                 amount = None,
-                interest_rate_mode = 1,
+                interest_rate_mode = 'stable',
                 on_behalf_of = '',
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'
@@ -46,7 +46,7 @@ class TestAaveBorrowRequest(unittest.TestCase):
             return AaveBorrowRequest(
                 asset = '1INCH',
                 amount = None,
-                interest_rate_mode = 1,
+                interest_rate_mode = 'stable',
                 chain = 'base:mainnet',
                 sender = '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
         )

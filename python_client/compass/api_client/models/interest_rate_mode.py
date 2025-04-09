@@ -18,7 +18,7 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class InterestRateMode(int, Enum):
+class InterestRateMode(str, Enum):
     """
     On AAVE there are 2 different interest modes.  A stable (but typically higher rate), or a variable rate.
     """
@@ -26,8 +26,8 @@ class InterestRateMode(int, Enum):
     """
     allowed enum values
     """
-    NUMBER_1 = 1
-    NUMBER_2 = 2
+    STABLE = 'stable'
+    VARIABLE = 'variable'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

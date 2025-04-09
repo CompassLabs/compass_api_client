@@ -37,14 +37,14 @@ class TestAaveRepayParams(unittest.TestCase):
             return AaveRepayParams(
                 asset = '1INCH',
                 amount = None,
-                interest_rate_mode = 1,
+                interest_rate_mode = 'stable',
                 on_behalf_of = ''
             )
         else:
             return AaveRepayParams(
                 asset = '1INCH',
                 amount = None,
-                interest_rate_mode = 1,
+                interest_rate_mode = 'stable',
         )
         """
 
