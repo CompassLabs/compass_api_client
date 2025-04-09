@@ -96,7 +96,7 @@ const HTTPValidationError = z
     .object({ detail: z.array(ValidationError) })
     .partial()
     .passthrough();
-const InterestRateMode = z.union([z.literal(1), z.literal(2)]);
+const InterestRateMode = z.enum(['stable', 'variable']);
 const AaveBorrowRequest = z
     .object({
         asset: Token.describe(`A class representing the token.
@@ -802,7 +802,9 @@ const ContractName = z.enum([
     'AerodromeBasicRouter',
     'AerodromeSlipstreamRouter',
     'AerodromeBasicPool',
+    'AerodromeSlipstreamPool',
     'AerodromeSlipstreamNonfungiblePositionManager',
+    'UniswapV3Pool',
     'UniswapV3Router',
     'UniswapV3Factory',
     'UniswapV3NFTPositionManager',
@@ -1680,7 +1682,7 @@ liquidated, if the borrow position becomes unhealthy.`,
                     sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                     asset: 'USDT',
                     amount: 1,
-                    interest_rate_mode: 2,
+                    interest_rate_mode: 'variable',
                     on_behalf_of: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 }),
             },
@@ -1751,7 +1753,7 @@ including the amount and the asset to be repaid.`,
                     sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                     asset: 'USDT',
                     amount: 1,
-                    interest_rate_mode: 2,
+                    interest_rate_mode: 'variable',
                     on_behalf_of: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 }),
             },
@@ -2645,8 +2647,8 @@ with the update frequency of the oracle.`,
                 type: 'Body',
                 schema: TransferERC20Request.default({
                     chain: 'arbitrum:mainnet',
-                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    sender: '0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E',
+                    to: '0xEe0748088fe5D752B877656d717B279DaE630Ce2',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                     token: 'USDC',
                     amount: 0.1,
                 }),
@@ -2672,9 +2674,9 @@ with the update frequency of the oracle.`,
                 type: 'Body',
                 schema: TransferEthRequest.default({
                     chain: 'arbitrum:mainnet',
-                    to: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    sender: '0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E',
-                    amount: 0.00048,
+                    to: '0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    amount: 0.000048,
                 }),
             },
         ],

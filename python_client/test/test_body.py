@@ -56,7 +56,7 @@ class TestBody(unittest.TestCase):
                 percentage_for_withdrawal = None,
                 asset = '1INCH',
                 amount = None,
-                interest_rate_mode = 1,
+                interest_rate_mode = 'stable',
                 on_behalf_of = '',
                 token = '1INCH',
                 contract_name = 'AaveV3Pool'
@@ -82,7 +82,7 @@ class TestBody(unittest.TestCase):
                 percentage_for_withdrawal = None,
                 asset = '1INCH',
                 amount = None,
-                interest_rate_mode = 1,
+                interest_rate_mode = 'stable',
                 token = '1INCH',
                 contract_name = 'AaveV3Pool',
         )
