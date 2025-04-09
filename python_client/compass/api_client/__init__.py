@@ -14,14 +14,13 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.164"
+__version__ = "1.0.165"
 
 # import apis into sdk package
 from compass.api_client.api.aave_v3_api import AaveV3Api
 from compass.api_client.api.aerodrome_basic_api import AerodromeBasicApi
 from compass.api_client.api.aerodrome_slipstream_api import AerodromeSlipstreamApi
 from compass.api_client.api.others_api import OthersApi
-from compass.api_client.api.transaction_batching_api import TransactionBatchingApi
 from compass.api_client.api.uniswap_v3_api import UniswapV3Api
 
 # import ApiClient
@@ -37,20 +36,16 @@ from compass.api_client.exceptions import ApiException
 
 # import models into sdk package
 from compass.api_client.models.aave_asset_price_response import AaveAssetPriceResponse
-from compass.api_client.models.aave_borrow_params import AaveBorrowParams
 from compass.api_client.models.aave_borrow_request import AaveBorrowRequest
 from compass.api_client.models.aave_get_asset_price_request import AaveGetAssetPriceRequest
 from compass.api_client.models.aave_get_liquidity_change_request import AaveGetLiquidityChangeRequest
 from compass.api_client.models.aave_get_user_position_per_token_request import AaveGetUserPositionPerTokenRequest
 from compass.api_client.models.aave_get_user_position_summary_request import AaveGetUserPositionSummaryRequest
 from compass.api_client.models.aave_liquidity_change_response import AaveLiquidityChangeResponse
-from compass.api_client.models.aave_repay_params import AaveRepayParams
 from compass.api_client.models.aave_repay_request import AaveRepayRequest
-from compass.api_client.models.aave_supply_params import AaveSupplyParams
 from compass.api_client.models.aave_supply_request import AaveSupplyRequest
 from compass.api_client.models.aave_user_position_per_token_response import AaveUserPositionPerTokenResponse
 from compass.api_client.models.aave_user_position_summary_response import AaveUserPositionSummaryResponse
-from compass.api_client.models.aave_withdraw_params import AaveWithdrawParams
 from compass.api_client.models.aave_withdraw_request import AaveWithdrawRequest
 from compass.api_client.models.aerodrome_add_liquidity_eth_request import AerodromeAddLiquidityEthRequest
 from compass.api_client.models.aerodrome_add_liquidity_request import AerodromeAddLiquidityRequest
@@ -109,7 +104,6 @@ from compass.api_client.models.amount_token_desired import AmountTokenDesired
 from compass.api_client.models.amount_token_min import AmountTokenMin
 from compass.api_client.models.amount_token_min1 import AmountTokenMin1
 from compass.api_client.models.balance_info_response import BalanceInfoResponse
-from compass.api_client.models.body import Body
 from compass.api_client.models.chain import Chain
 from compass.api_client.models.contract_name import ContractName
 from compass.api_client.models.ens_name_info_response import EnsNameInfoResponse
@@ -120,30 +114,20 @@ from compass.api_client.models.get_erc20_balance_request import GetErc20BalanceR
 from compass.api_client.models.http_validation_error import HTTPValidationError
 from compass.api_client.models.image import Image
 from compass.api_client.models.increase_allowance_any_request import IncreaseAllowanceAnyRequest
-from compass.api_client.models.increase_allowance_params import IncreaseAllowanceParams
 from compass.api_client.models.increase_allowance_request import IncreaseAllowanceRequest
 from compass.api_client.models.interest_rate_mode import InterestRateMode
 from compass.api_client.models.liquidity import Liquidity
-from compass.api_client.models.multicall_action import MulticallAction
-from compass.api_client.models.multicall_action_type import MulticallActionType
-from compass.api_client.models.multicall_authorization_request import MulticallAuthorizationRequest
-from compass.api_client.models.multicall_authorization_response import MulticallAuthorizationResponse
-from compass.api_client.models.multicall_execute_request import MulticallExecuteRequest
 from compass.api_client.models.percentage_for_withdrawal import PercentageForWithdrawal
 from compass.api_client.models.portfolio import Portfolio
 from compass.api_client.models.portfolio_request import PortfolioRequest
 from compass.api_client.models.price_request import PriceRequest
 from compass.api_client.models.price_response import PriceResponse
-from compass.api_client.models.r import R
-from compass.api_client.models.s import S
-from compass.api_client.models.signed_authorization import SignedAuthorization
 from compass.api_client.models.token import Token
 from compass.api_client.models.token_balance import TokenBalance
 from compass.api_client.models.token_info import TokenInfo
 from compass.api_client.models.tokens_request import TokensRequest
 from compass.api_client.models.transfer_erc20_request import TransferERC20Request
 from compass.api_client.models.transfer_eth_request import TransferEthRequest
-from compass.api_client.models.uniswap_buy_exactly_params import UniswapBuyExactlyParams
 from compass.api_client.models.uniswap_buy_exactly_request import UniswapBuyExactlyRequest
 from compass.api_client.models.uniswap_buy_quote_info_response import UniswapBuyQuoteInfoResponse
 from compass.api_client.models.uniswap_check_in_range_request import UniswapCheckInRangeRequest
@@ -152,19 +136,14 @@ from compass.api_client.models.uniswap_get_buy_quote_request import UniswapGetBu
 from compass.api_client.models.uniswap_get_liquidity_provision_positions_request import UniswapGetLiquidityProvisionPositionsRequest
 from compass.api_client.models.uniswap_get_pool_price_request import UniswapGetPoolPriceRequest
 from compass.api_client.models.uniswap_get_sell_quote_request import UniswapGetSellQuoteRequest
-from compass.api_client.models.uniswap_increase_liquidity_provision_params import UniswapIncreaseLiquidityProvisionParams
 from compass.api_client.models.uniswap_increase_liquidity_provision_request import UniswapIncreaseLiquidityProvisionRequest
 from compass.api_client.models.uniswap_lp_positions_info_response import UniswapLPPositionsInfoResponse
-from compass.api_client.models.uniswap_mint_liquidity_provision_params import UniswapMintLiquidityProvisionParams
 from compass.api_client.models.uniswap_mint_liquidity_provision_request import UniswapMintLiquidityProvisionRequest
 from compass.api_client.models.uniswap_pool_price_response import UniswapPoolPriceResponse
 from compass.api_client.models.uniswap_positions_solidity_response import UniswapPositionsSolidityResponse
-from compass.api_client.models.uniswap_sell_exactly_params import UniswapSellExactlyParams
 from compass.api_client.models.uniswap_sell_exactly_request import UniswapSellExactlyRequest
 from compass.api_client.models.uniswap_sell_quote_info_response import UniswapSellQuoteInfoResponse
-from compass.api_client.models.uniswap_withdraw_liquidity_provision_params import UniswapWithdrawLiquidityProvisionParams
 from compass.api_client.models.uniswap_withdraw_liquidity_provision_request import UniswapWithdrawLiquidityProvisionRequest
-from compass.api_client.models.unsigned_multicall_transaction import UnsignedMulticallTransaction
 from compass.api_client.models.unsigned_transaction import UnsignedTransaction
 from compass.api_client.models.unwrap_weth_request import UnwrapWethRequest
 from compass.api_client.models.validation_error import ValidationError
