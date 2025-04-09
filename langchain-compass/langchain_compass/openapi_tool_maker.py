@@ -1,4 +1,6 @@
+import importlib
 import json
+import sys
 from typing import Any, Callable, List, Optional, Type
 
 import requests
@@ -11,8 +13,9 @@ from pydantic import BaseModel
 from pydantic._internal._model_construction import ModelMetaclass
 from requests import get
 
-from langchain_compass.params_converter import generate_pydantic_model
 from langchain_compass.model_generator import models_from_openapi
+from langchain_compass.params_converter import generate_pydantic_model
+
 
 class EmptySchema(BaseModel):
     pass
@@ -105,24 +108,24 @@ def make_tools(
 
     import tempfile
     from pathlib import Path
-    tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".py")
-    path = Path(tmp_file.name)
 
-    _ = models_from_openapi(response.text, path)
+    tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".py")
+    tmp_file_path = Path(tmp_file.name)
+
+    models_from_openapi(response.text, tmp_file_path)
     # from pydantic import Field
     # exec('from pydantic import Field')
     # exec(path.open().read())
 
-
-
     ###
-    import importlib
-    import sys
+
     module_name = "temp_schemas"
-    spec = importlib.util.spec_from_file_location(module_name, path.as_posix())
+    spec = importlib.util.spec_from_file_location(module_name, tmp_file_path.as_posix())
+    if not spec:
+        raise Exception("Unable to generate openapi model spec.")
     schemas = importlib.util.module_from_spec(spec)
     sys.modules[module_name] = schemas
-    spec.loader.exec_module(schemas)
+    spec.loader.exec_module(schemas)  # type: ignore
     ###
 
     def get_response_schema_name(endpoint: dict) -> str:
@@ -193,7 +196,7 @@ def make_tools(
             tools.append(post_tool)
 
         if "get" in openapi_data["paths"][path]:
-            assert 5==6
+            assert 5 == 6
             endpoint = openapi_data["paths"][path]["get"]
 
             response_schema_name = get_response_schema_name(endpoint)
@@ -223,9 +226,7 @@ def make_tools(
 
 
 if __name__ == "__main__":
-    tools=make_tools(
+    tools = make_tools(
         api_key=None,
         func_check_direct_return=lambda x: True,
     )
-    for tool in tools:
-        print(tool)

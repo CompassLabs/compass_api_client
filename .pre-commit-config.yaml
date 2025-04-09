@@ -1,0 +1,42 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff langchain-compass
+        name: ruff
+        description: "Run 'ruff' for extremely fast Python linting on langchain-compass"
+        entry: bash -c 'cd langchain-compass; ruff check --fix'
+        language: python
+        types_or: [python, pyi, jupyter]
+        pass_filenames: false
+
+      - id: ruff-format langchain-compass
+        name: ruff-format
+        description: "Run 'ruff format' for extremely fast Python formatting"
+        entry: bash -c 'cd langchain-compass; ruff format'
+        language: python
+        types_or: [python, pyi, jupyter]
+        pass_filenames: false
+
+#      - id: docformatter_format langchain-compass
+#        name: docformatter_format
+#        entry: bash -c 'pwd; cd langchain-compass; poetry shell; docformatter -ir --wrap-summaries=88 --wrap-descriptions=88 .'
+#        language: system
+#        files: ^langchain-compass/
+#        pass_filenames: false
+#        args: [ langchain-compass ]
+#        types:
+#          - file
+#          - python
+
+      # static type checking
+      # should insert more libraries here, but remember to do it inside the quotation marks!
+      - id: mypy_typecheck langchain-compass
+        name: mypy_typecheck
+        entry: bash -c 'cd langchain-compass; poetry run mypy --follow-untyped-imports .'
+        files: ^langchain-compass/
+        pass_filenames: false
+        args: [ langchain-compass ]
+        language: system
+        types:
+          - file
+          - python
