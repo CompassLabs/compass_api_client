@@ -1440,48 +1440,6 @@
         }
       }
     },
-    "/v0/generic/allowance/set_any": {
-      "post": {
-        "tags": [
-          "Others"
-        ],
-        "summary": "Set Allowance - Token",
-        "description": "This endpoint allows users to set an allowance for any arbitrary ERC20 token\naddress.\n\nIn decentralized finance (DeFi), setting an allowance is a critical operation that\npermits a protocol to spend a specified amount of tokens on behalf of the user. This\nfunctionality is essential for enabling secure and efficient token management,\nfacilitating smooth transactions and operations within the DeFi ecosystem. By using\nthis endpoint, users can specify the token address and the amount they wish to\nauthorize, ensuring precise control over their token allowances.",
-        "operationId": "generic_allowance_set_any",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IncreaseAllowanceAnyRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnsignedTransaction"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v0/uniswap/swap/buy_exactly": {
       "post": {
         "tags": [
@@ -3218,7 +3176,11 @@
           "chain",
           "user"
         ],
-        "title": "AerodromeSlipstreamGetLiquidityProvisionPositionsRequest"
+        "title": "AerodromeSlipstreamGetLiquidityProvisionPositionsRequest",
+        "default": {
+          "user": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B",
+          "chain": "ethereum:mainnet"
+        }
       },
       "AerodromeSlipstreamGetPoolPriceRequest": {
         "properties": {
@@ -4325,59 +4287,6 @@
           "image"
         ],
         "title": "Image"
-      },
-      "IncreaseAllowanceAnyRequest": {
-        "properties": {
-          "token": {
-            "$ref": "#/components/schemas/Token",
-            "description": "The name of the token for which the allowance is increased.",
-            "examples": [
-              "Custom Token"
-            ]
-          },
-          "contract_name": {
-            "$ref": "#/components/schemas/ContractName",
-            "description": "The name of the contract to increase allowance for.",
-            "examples": [
-              "AerodromeBasicRouter"
-            ]
-          },
-          "amount": {
-            "anyOf": [
-              {
-                "type": "number",
-                "exclusiveMinimum": 0.0
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Amount",
-            "description": "The amount of tokens to increase the allowance by.",
-            "examples": [
-              1.5
-            ]
-          },
-          "chain": {
-            "$ref": "#/components/schemas/Chain"
-          },
-          "sender": {
-            "type": "string",
-            "title": "Sender",
-            "description": "The address of the transaction sender",
-            "default": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
-          }
-        },
-        "type": "object",
-        "required": [
-          "token",
-          "contract_name",
-          "amount",
-          "chain",
-          "sender"
-        ],
-        "title": "IncreaseAllowanceAnyRequest",
-        "description": "Request model for increasing allowance for any arbitrary ERC20 token address."
       },
       "IncreaseAllowanceRequest": {
         "properties": {
