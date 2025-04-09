@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.165"
+__version__ = "1.0.166"
 
 # import apis into sdk package
 from compass.api_client.api.aave_v3_api import AaveV3Api
