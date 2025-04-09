@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "langchain-compass"
-version = "0.1.7"
+version = "0.1.8"
 description = "Providing the Compass API to langchain agents."
 authors = []
 readme = "README.md"
@@ -26,6 +26,7 @@ dotenv = "^0.9.9"
 langchain-openai = ">=0.2.4,<0.3"
 langgraph = ">=0.2.39,<0.3"
 compass-api-client = "*"
+datamodel-code-generator = "^0.28.5"
 
 [tool.poetry.dev-dependencies]
 compass-api-client = { path = "../python_client", develop = true}
