@@ -1,4 +1,5 @@
 from typing import Any
+import warnings
 
 # # Read the OpenAPI JSON file
 # with open('../openapi.json', 'r', encoding='utf-8') as f:
@@ -17,14 +18,16 @@ def models_from_openapi(openapi_content: str, path: Any) -> None:
     # path = Path(tmp_file.name)
 
     # Generate Python code (as a string)
-    generate(
-        input_=openapi_content,
-        output=path,
-        use_default_kwarg=True,
-        apply_default_values_for_required_fields=True,
-        additional_imports=["numpy"],
-        output_model_type=DataModelType.PydanticV2BaseModel,
-        input_file_type=InputFileType.OpenAPI,
-        openapi_scopes=[OpenAPIScope.Schemas],
-        target_python_version=PythonVersion.PY_311,  # Change to your Python version
-    )
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        generate(
+            input_=openapi_content,
+            output=path,
+            use_default_kwarg=True,
+            apply_default_values_for_required_fields=True,
+            additional_imports=["numpy"],
+            output_model_type=DataModelType.PydanticV2BaseModel,
+            input_file_type=InputFileType.OpenAPI,
+            openapi_scopes=[OpenAPIScope.Schemas],
+            target_python_version=PythonVersion.PY_311,  # Change to your Python version
+        )
