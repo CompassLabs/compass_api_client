@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.166"
+__version__ = "1.0.168"
 
 # import apis into sdk package
 from compass.api_client.api.aave_v3_api import AaveV3Api
@@ -113,7 +113,6 @@ from compass.api_client.models.get_erc20_allowance_request import GetErc20Allowa
 from compass.api_client.models.get_erc20_balance_request import GetErc20BalanceRequest
 from compass.api_client.models.http_validation_error import HTTPValidationError
 from compass.api_client.models.image import Image
-from compass.api_client.models.increase_allowance_any_request import IncreaseAllowanceAnyRequest
 from compass.api_client.models.increase_allowance_request import IncreaseAllowanceRequest
 from compass.api_client.models.interest_rate_mode import InterestRateMode
 from compass.api_client.models.liquidity import Liquidity

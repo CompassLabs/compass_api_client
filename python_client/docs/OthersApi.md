@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**generic_allowance**](OthersApi.md#generic_allowance) | **POST** /v0/generic/allowance/get | Get allowance - Protocol
 [**generic_allowance_set**](OthersApi.md#generic_allowance_set) | **POST** /v0/generic/allowance/set | Set Allowance - Protocol
-[**generic_allowance_set_any**](OthersApi.md#generic_allowance_set_any) | **POST** /v0/generic/allowance/set_any | Set Allowance - Token
 [**generic_balance**](OthersApi.md#generic_balance) | **POST** /v0/generic/balance/get | User token balance
 [**generic_ens**](OthersApi.md#generic_ens) | **POST** /v0/generic/ens/get | Resolve ENS
 [**generic_portfolio**](OthersApi.md#generic_portfolio) | **POST** /v0/generic/portfolio/get | List user portfolio
@@ -170,95 +169,6 @@ with compass.api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **increase_allowance_request** | [**IncreaseAllowanceRequest**](IncreaseAllowanceRequest.md)|  | 
-
-### Return type
-
-[**UnsignedTransaction**](UnsignedTransaction.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **generic_allowance_set_any**
-> UnsignedTransaction generic_allowance_set_any(increase_allowance_any_request)
-
-Set Allowance - Token
-
-This endpoint allows users to set an allowance for any arbitrary ERC20 token
-address.
-
-In decentralized finance (DeFi), setting an allowance is a critical operation that
-permits a protocol to spend a specified amount of tokens on behalf of the user. This
-functionality is essential for enabling secure and efficient token management,
-facilitating smooth transactions and operations within the DeFi ecosystem. By using
-this endpoint, users can specify the token address and the amount they wish to
-authorize, ensuring precise control over their token allowances.
-
-### Example
-
-* Api Key Authentication (ApiKeyAuth):
-
-```python
-import compass.api_client
-from compass.api_client.models.increase_allowance_any_request import IncreaseAllowanceAnyRequest
-from compass.api_client.models.unsigned_transaction import UnsignedTransaction
-from compass.api_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.compasslabs.ai
-# See configuration.py for a list of all supported configuration parameters.
-configuration = compass.api_client.Configuration(
-    host = "https://api.compasslabs.ai"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with compass.api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = compass.api_client.OthersApi(api_client)
-    increase_allowance_any_request = compass.api_client.IncreaseAllowanceAnyRequest() # IncreaseAllowanceAnyRequest | 
-
-    try:
-        # Set Allowance - Token
-        api_response = api_instance.generic_allowance_set_any(increase_allowance_any_request)
-        print("The response of OthersApi->generic_allowance_set_any:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling OthersApi->generic_allowance_set_any: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **increase_allowance_any_request** | [**IncreaseAllowanceAnyRequest**](IncreaseAllowanceAnyRequest.md)|  | 
 
 ### Return type
 

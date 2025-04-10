@@ -40,13 +40,6 @@ class TestOthersApi(unittest.TestCase):
         """
         pass
 
-    def test_generic_allowance_set_any(self) -> None:
-        """Test case for generic_allowance_set_any
-
-        Set Allowance - Token
-        """
-        pass
-
     def test_generic_balance(self) -> None:
         """Test case for generic_balance
 
