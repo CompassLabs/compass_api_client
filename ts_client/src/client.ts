@@ -914,25 +914,6 @@ E.g. for increasing ERC-20 allowance.`),
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
-const IncreaseAllowanceAnyRequest = z
-    .object({
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        contract_name: ContractName.describe(`Select the protocol.
-
-E.g. for increasing ERC-20 allowance.`),
-        amount: z
-            .union([z.number(), z.string()])
-            .describe('The amount of tokens to increase the allowance by.'),
-        chain: Chain.describe('The chain to use.'),
-        sender: z
-            .string()
-            .describe('The address of the transaction sender')
-            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
-    })
-    .passthrough();
 const FeeEnum = z.enum(['0.01', '0.05', '0.3', '1.0']);
 const UniswapBuyExactlyRequest = z
     .object({
@@ -1296,7 +1277,6 @@ export const schemas = {
     TransferERC20Request,
     TransferEthRequest,
     IncreaseAllowanceRequest,
-    IncreaseAllowanceAnyRequest,
     FeeEnum,
     UniswapBuyExactlyRequest,
     UniswapSellExactlyRequest,
@@ -1940,7 +1920,10 @@ decisions based on their current positions.`,
             {
                 name: 'body',
                 type: 'Body',
-                schema: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
+                schema: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest.default({
+                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    chain: 'ethereum:mainnet',
+                }),
             },
         ],
         response: AerodromeLPPositionsResponse,
@@ -2148,35 +2131,6 @@ within the DeFi ecosystem.`,
                     contract_name: 'AaveV3Pool',
                     amount: 1,
                 }),
-            },
-        ],
-        response: UnsignedTransaction,
-        errors: [
-            {
-                status: 422,
-                description: `Validation Error`,
-                schema: HTTPValidationError,
-            },
-        ],
-    },
-    {
-        method: 'post',
-        path: '/v0/generic/allowance/set_any',
-        description: `This endpoint allows users to set an allowance for any arbitrary ERC20 token
-address.
-
-In decentralized finance (DeFi), setting an allowance is a critical operation that
-permits a protocol to spend a specified amount of tokens on behalf of the user. This
-functionality is essential for enabling secure and efficient token management,
-facilitating smooth transactions and operations within the DeFi ecosystem. By using
-this endpoint, users can specify the token address and the amount they wish to
-authorize, ensuring precise control over their token allowances.`,
-        requestFormat: 'json',
-        parameters: [
-            {
-                name: 'body',
-                type: 'Body',
-                schema: IncreaseAllowanceAnyRequest,
             },
         ],
         response: UnsignedTransaction,
