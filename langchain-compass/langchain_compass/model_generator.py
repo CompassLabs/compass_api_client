@@ -20,6 +20,8 @@ def models_from_openapi(openapi_content: str, path: Any) -> None:
     generate(
         input_=openapi_content,
         output=path,
+        use_default_kwarg=True,
+        apply_default_values_for_required_fields=True,
         additional_imports=["numpy"],
         output_model_type=DataModelType.PydanticV2BaseModel,
         input_file_type=InputFileType.OpenAPI,

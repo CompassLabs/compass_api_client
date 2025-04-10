@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "langchain-compass"
-version = "0.1.8"
+version = "0.2.0"
 description = "Providing the Compass API to langchain agents."
 authors = []
 readme = "README.md"
@@ -19,7 +19,7 @@ disallow_untyped_defs = "True"
 "Release Notes" = "https://github.com/langchain-ai/langchain/releases?q=tag%3A%22compass%3D%3D0%22&expanded=true"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
+python = ">=3.9,<3.13"
 langchain-core = "^0.3.15"
 types-requests = "^2.32.0.20250328"
 dotenv = "^0.9.9"

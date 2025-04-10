@@ -29,7 +29,7 @@ class PostRequestTool(BaseTool):
     return_direct: bool = False
     verbose: bool = True
     response_type: Any = None
-    example_args: Optional[dict] = None
+    example_args: dict = {}
     api_key: Optional[str] = None
 
     def _run(
@@ -168,11 +168,9 @@ def make_tools(
             # response_type = test.get(response_schema_name)
             response_type = getattr(schemas, response_schema_name)
 
-            example_args = (
-                openapi_data["components"]["schemas"][schema_name]["example"]
-                if "example" in openapi_data["components"]["schemas"][schema_name]
-                else None
-            )
+            if 'default' not in openapi_data["components"]["schemas"][schema_name]:
+                raise ValueError("Unable to build tools. Pls message contact@compasslabs.ai to resolve this.")
+            example_args = openapi_data["components"]["schemas"][schema_name]["default"]
 
             return_direct: bool = (
                 False
