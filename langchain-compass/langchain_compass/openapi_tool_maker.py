@@ -168,8 +168,11 @@ def make_tools(
             # response_type = test.get(response_schema_name)
             response_type = getattr(schemas, response_schema_name)
 
-            if 'default' not in openapi_data["components"]["schemas"][schema_name]:
-                raise ValueError("Unable to build tools. Pls message contact@compasslabs.ai to resolve this.")
+            if "default" not in openapi_data["components"]["schemas"][schema_name]:
+                raise ValueError(
+                    "Unable to build tools."
+                    "Pls message contact@compasslabs.ai to resolve this."
+                )
             example_args = openapi_data["components"]["schemas"][schema_name]["default"]
 
             return_direct: bool = (
