@@ -14,11 +14,10 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.169"
+__version__ = "1.0.173"
 
 # import apis into sdk package
 from compass.api_client.api.aave_v3_api import AaveV3Api
-from compass.api_client.api.aerodrome_basic_api import AerodromeBasicApi
 from compass.api_client.api.aerodrome_slipstream_api import AerodromeSlipstreamApi
 from compass.api_client.api.others_api import OthersApi
 from compass.api_client.api.uniswap_v3_api import UniswapV3Api
@@ -47,12 +46,8 @@ from compass.api_client.models.aave_supply_request import AaveSupplyRequest
 from compass.api_client.models.aave_user_position_per_token_response import AaveUserPositionPerTokenResponse
 from compass.api_client.models.aave_user_position_summary_response import AaveUserPositionSummaryResponse
 from compass.api_client.models.aave_withdraw_request import AaveWithdrawRequest
-from compass.api_client.models.aerodrome_add_liquidity_eth_request import AerodromeAddLiquidityEthRequest
-from compass.api_client.models.aerodrome_add_liquidity_request import AerodromeAddLiquidityRequest
 from compass.api_client.models.aerodrome_lp_positions_response import AerodromeLPPositionsResponse
 from compass.api_client.models.aerodrome_position import AerodromePosition
-from compass.api_client.models.aerodrome_remove_liquidity_eth_request import AerodromeRemoveLiquidityEthRequest
-from compass.api_client.models.aerodrome_remove_liquidity_request import AerodromeRemoveLiquidityRequest
 from compass.api_client.models.aerodrome_slipstream_buy_exactly_request import AerodromeSlipstreamBuyExactlyRequest
 from compass.api_client.models.aerodrome_slipstream_get_liquidity_provision_positions_request import AerodromeSlipstreamGetLiquidityProvisionPositionsRequest
 from compass.api_client.models.aerodrome_slipstream_get_pool_price_request import AerodromeSlipstreamGetPoolPriceRequest
@@ -61,9 +56,6 @@ from compass.api_client.models.aerodrome_slipstream_mint_liquidity_provision_req
 from compass.api_client.models.aerodrome_slipstream_pool_price_response import AerodromeSlipstreamPoolPriceResponse
 from compass.api_client.models.aerodrome_slipstream_sell_exactly_request import AerodromeSlipstreamSellExactlyRequest
 from compass.api_client.models.aerodrome_slipstream_withdraw_liquidity_provision_request import AerodromeSlipstreamWithdrawLiquidityProvisionRequest
-from compass.api_client.models.aerodrome_swap_eth_for_token_request import AerodromeSwapEthForTokenRequest
-from compass.api_client.models.aerodrome_swap_token_for_eth_request import AerodromeSwapTokenForEthRequest
-from compass.api_client.models.aerodrome_swap_tokens_request import AerodromeSwapTokensRequest
 from compass.api_client.models.allowance_info_response import AllowanceInfoResponse
 from compass.api_client.models.amount import Amount
 from compass.api_client.models.amount0_desired import Amount0Desired
@@ -82,27 +74,10 @@ from compass.api_client.models.amount5 import Amount5
 from compass.api_client.models.amount6 import Amount6
 from compass.api_client.models.amount7 import Amount7
 from compass.api_client.models.amount8 import Amount8
-from compass.api_client.models.amount_a_desired import AmountADesired
-from compass.api_client.models.amount_a_min import AmountAMin
-from compass.api_client.models.amount_a_min1 import AmountAMin1
-from compass.api_client.models.amount_b_desired import AmountBDesired
-from compass.api_client.models.amount_b_min import AmountBMin
-from compass.api_client.models.amount_b_min1 import AmountBMin1
-from compass.api_client.models.amount_eth_desired import AmountEthDesired
-from compass.api_client.models.amount_eth_min import AmountEthMin
-from compass.api_client.models.amount_eth_min1 import AmountEthMin1
 from compass.api_client.models.amount_in import AmountIn
-from compass.api_client.models.amount_in1 import AmountIn1
-from compass.api_client.models.amount_in2 import AmountIn2
 from compass.api_client.models.amount_in_maximum import AmountInMaximum
 from compass.api_client.models.amount_out import AmountOut
-from compass.api_client.models.amount_out_min import AmountOutMin
-from compass.api_client.models.amount_out_min1 import AmountOutMin1
-from compass.api_client.models.amount_out_min2 import AmountOutMin2
 from compass.api_client.models.amount_out_minimum import AmountOutMinimum
-from compass.api_client.models.amount_token_desired import AmountTokenDesired
-from compass.api_client.models.amount_token_min import AmountTokenMin
-from compass.api_client.models.amount_token_min1 import AmountTokenMin1
 from compass.api_client.models.balance_info_response import BalanceInfoResponse
 from compass.api_client.models.chain import Chain
 from compass.api_client.models.contract_name import ContractName
@@ -115,7 +90,6 @@ from compass.api_client.models.http_validation_error import HTTPValidationError
 from compass.api_client.models.image import Image
 from compass.api_client.models.increase_allowance_request import IncreaseAllowanceRequest
 from compass.api_client.models.interest_rate_mode import InterestRateMode
-from compass.api_client.models.liquidity import Liquidity
 from compass.api_client.models.percentage_for_withdrawal import PercentageForWithdrawal
 from compass.api_client.models.portfolio import Portfolio
 from compass.api_client.models.portfolio_request import PortfolioRequest
