@@ -8,13 +8,14 @@ tools = LangchainCompassToolkit(compass_api_key=None).get_tools()
 
 
 for tool in tools:
-    class_name = f"Test{tool.name.capitalize()}Tool"
+    class_name = f"Test_{tool.name.capitalize()}Tool"
 
     def make_class(tool: Any) -> type[ToolsIntegrationTests]:
-        class _ToolTest(ToolsIntegrationTests):
+        class TestTool(ToolsIntegrationTests):
             @property
             def tool_constructor(self) -> Any:
-                return tool.__class__
+                # self.tool_invoke_params_example = {"a": 2}
+                return tool
 
             @property
             def tool_constructor_params(self) -> dict:
@@ -22,9 +23,9 @@ for tool in tools:
 
             @property
             def tool_invoke_params_example(self) -> dict:
-                return tool.example_args or {}
+                return tool.example_args
 
-        return _ToolTest
+        return TestTool
 
     # Dynamically add it to the module so pytest can discover it
     globals()[class_name] = make_class(tool)

@@ -18,11 +18,11 @@ for tool in tools:
 
             @property
             def tool_constructor_params(self) -> dict:
-                return {}
+                return {"a": 3}
 
             @property
             def tool_invoke_params_example(self) -> dict:
-                return tool.example_args or {}
+                return {"a": 4}  # tool.example_args or {}
 
         return _ToolTest
 
