@@ -4675,7 +4675,7 @@
         "type": "apiKey",
         "in": "header",
         "name": "x-api-key",
-        "description": "Your Compass API key. Get your key [here](/auth/get_api_token)."
+        "description": "Your Compass API key. Get your key [here](https://api.compasslabs.ai/auth/get_api_token)."
       }
     }
   },
