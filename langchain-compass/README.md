@@ -23,16 +23,63 @@ OPENAI_API_KEY=your_openai_api_key_here
 ## List Tools in Toolkit:
 
 ```python
-```
-
-And you should configure credentials by setting the following environment variables:
-
-Import this toolkit by
-```python
 from langchain_compass.toolkits import LangchainCompassToolkit
+tools = LangchainCompassToolkit(compass_api_key=None).get_tools()
+[t.name for t in tools]
 ```
 
-Compass requires an API key for some features. You can set the key as an environment variable
+Expected output:
 ```bash
-OPENAI_API_KEY="<Your-Compass-API-KEY>"
+# output
+aave_supply_
+aave_borrow_
+aave_repay_
+aave_withdraw_
+aave_asset_price_get_
+...
 ```
+
+# Using with an agent
+
+```python
+from langchain_openai import ChatOpenAI
+from langgraph.prebuilt import create_react_agent
+from langchain_compass.toolkits import LangchainCompassToolkit
+from dotenv import load_dotenv
+from langgraph.checkpoint.memory import MemorySaver
+load_dotenv()
+
+
+# Initialize LLM - replace 'gpt-4o' with a model of your choice
+llm = ChatOpenAI(model='gpt-4o')
+
+# Get the DeFi tools from LangchainCompassToolkit
+tools = LangchainCompassToolkit(compass_api_key=None).get_tools()
+
+# Setup memory for your agent
+memory = MemorySaver()
+
+# Create a ReAct agent with the specified LLM, tools, and memory
+agent = create_react_agent(
+    llm,
+    tools=tools,
+    checkpointer=memory,
+    prompt="You are a helpful agent that can interact onchain using tools that you've been told how to use. If you are uncertain that you have sufficient information to call your tools then please ask the user for more information until you have sufficient information to call your tool."
+)
+
+# Example user query
+from langchain_core.messages import HumanMessage
+user_input = 'what is the balance of vitalic.eth.'
+
+# Optional config data, such as thread IDs or session context
+config = {"configurable": {"thread_id": "abc123"}}
+
+# Invoke the agent with the user query
+output = agent.invoke(input={"messages": [HumanMessage(content=user_input)]}, config=config)
+
+# Display the agent's final response
+print(output["messages"][-1].content)
+```
+
+Expected output:
+
