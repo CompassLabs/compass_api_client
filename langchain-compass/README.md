@@ -1,11 +1,28 @@
 # langchain-compass
 
-This package contains the LangChain integration with LangchainCompass
+The Compass-LangChain toolkit contains tools which enable an LLM agent to perform onchain operations on major DeFi protocols.
+
+
+# Setup
 
 ## Installation
 
 ```bash
 pip install -U langchain-compass
+```
+
+## Environment Setup
+
+```
+# .env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+# Usage:
+
+## List Tools in Toolkit:
+
+```python
 ```
 
 And you should configure credentials by setting the following environment variables:
