@@ -119,6 +119,7 @@ while True:
     console.print(Markdown(answer))
 ```
 
+## Next Steps
 
 
 To see a full implementation of a LangChain agent using these tools, please check out our [GitHub repo here](https://github.com/CompassLabs/compass_ai/).
