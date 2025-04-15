@@ -24,6 +24,7 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ```python
 from langchain_compass.toolkits import LangchainCompassToolkit
+
 toolkit = LangchainCompassToolkit(compass_api_key=None)
 tools = toolkit.get_tools()
 for tool in tools:
