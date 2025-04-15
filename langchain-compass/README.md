@@ -39,7 +39,7 @@ aave_asset_price_get_
 ...
 ```
 
-# Using with an agent
+## Using with an agent
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -103,7 +103,7 @@ The balance of the wallet associated with **vitalik.eth** is approximately **$48
 These values are subject to market fluctuations.
 ```
 
-# Run the agent interactively based on user input.
+## Run the agent interactively based on user input.
 
 To run the agent interactively please add this snippet to the bottom of the code in the previous section.
 
