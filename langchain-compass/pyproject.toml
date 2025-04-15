@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "langchain-compass"
-version = "0.2.3"
+version = "0.2.4"
 description = "Providing the Compass API to langchain agents."
 authors = []
 readme = "README.md"
