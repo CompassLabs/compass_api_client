@@ -102,3 +102,19 @@ The balance of the wallet associated with **vitalik.eth** is approximately **$48
 
 These values are subject to market fluctuations.
 ```
+
+# Run the agent interactively based on user input.
+
+To run the agent interactively please add this snippet to the bottom of the code in the previous section.
+
+```python
+from rich.console import Console
+from rich.markdown import Markdown
+console = Console()
+print("Starting chat mode... Type 'exit' to end.")
+while True:
+    user_input = input("\nPrompt: ")
+    output = agent.invoke(input = {"messages": [HumanMessage(content=user_input)]}, config=config)
+    answer = output["messages"][-1].content
+    console.print(Markdown(answer))
+```
