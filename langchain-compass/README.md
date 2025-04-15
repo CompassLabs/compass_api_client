@@ -82,4 +82,23 @@ print(output["messages"][-1].content)
 ```
 
 Expected output:
+```bash
+$ python ./main.py 
+The balance of the wallet associated with **vitalik.eth** is approximately **$486,222.54**. Here's a breakdown of the token balances:
 
+- **1INCH**: 6.037 ($1.03)
+- **AAVE**: 0.010 ($1.43)
+- **BAL**: 0.932 ($1.04)
+- **crvUSD**: 0.775 ($0.78)
+- **DAI**: 317,203.872 ($317,242.95)
+- **ENS**: 1,144.036 ($16,710.33)
+- **LINK**: 1.778 ($22.52)
+- **rsETH**: 0.00003 ($0.05)
+- **UNI**: 0.000017 ($0.00009)
+- **USDC**: 123,223.707 ($123,215.08)
+- **USDT**: 170.148 ($170.12)
+- **WBTC**: 0.00107 ($91.93)
+- **WETH**: 16.395 ($28,765.28)
+
+These values are subject to market fluctuations.
+```
