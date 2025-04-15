@@ -86,7 +86,7 @@ print(output["messages"][-1].content)
 
 Expected output:
 ```bash
-$ python ./main.py 
+$ python main.py 
 The balance of the wallet associated with **vitalik.eth** is approximately **$486,222.54**. Here's a breakdown of the token balances:
 
 - **1INCH**: 6.037 ($1.03)
