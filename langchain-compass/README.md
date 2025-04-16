@@ -2,7 +2,7 @@
 
 The Compass-LangChain toolkit contains tools which enable an LLM agent to perform onchain operations on major DeFi protocols.
 
-![YouTube Introduction](https://youtu.be/wotfGbu46wY)
+[YouTube Introduction](https://youtu.be/wotfGbu46wY)
 
 
 # Setup
