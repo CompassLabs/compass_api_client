@@ -1565,6 +1565,48 @@
           }
         }
       }
+    },
+    "/v0/token/address/get": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "summary": "Token Address",
+        "description": "Get the address for a token.",
+        "operationId": "token_address",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2117,6 +2159,50 @@
           "asset": "USDC",
           "amount": 1,
           "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
+      },
+      "AddressRequest": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The token symbol to get the adress for. Note the [supported tokens per chain](/#/#token-table).",
+            "examples": [
+              "WETH"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "token"
+        ],
+        "title": "AddressRequest",
+        "default": {
+          "chain": "arbitrum:mainnet",
+          "token": "WETH"
+        }
+      },
+      "AddressResponse": {
+        "properties": {
+          "address": {
+            "type": "string",
+            "title": "Address",
+            "description": "Address of the token provided",
+            "examples": [
+              "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "address"
+        ],
+        "title": "AddressResponse",
+        "default": {
+          "address": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AerodromeLPPositionsResponse": {
