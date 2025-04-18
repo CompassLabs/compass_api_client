@@ -14,14 +14,14 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.187"
+__version__ = "1.0.188"
 
 # import apis into sdk package
 from compass.api_client.api.aave_v3_api import AaveV3Api
 from compass.api_client.api.aerodrome_slipstream_api import AerodromeSlipstreamApi
-from compass.api_client.api.others_api import OthersApi
 from compass.api_client.api.token_api import TokenApi
 from compass.api_client.api.uniswap_v3_api import UniswapV3Api
+from compass.api_client.api.universal_api import UniversalApi
 
 # import ApiClient
 from compass.api_client.api_response import ApiResponse
