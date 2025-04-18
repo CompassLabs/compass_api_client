@@ -970,6 +970,18 @@ const UniswapLPPositionsInfoResponse = z
         token of owner index of the position. `),
     })
     .passthrough();
+const AddressRequest = z
+    .object({
+        chain: Chain.describe('The chain to use.'),
+        token: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+    })
+    .passthrough();
+const AddressResponse = z
+    .object({ address: z.string().describe('Address of the token provided') })
+    .passthrough();
 
 export const schemas = {
     Token,
@@ -1038,6 +1050,8 @@ export const schemas = {
     UniswapGetLiquidityProvisionPositionsRequest,
     UniswapPositionsSolidityResponse,
     UniswapLPPositionsInfoResponse,
+    AddressRequest,
+    AddressResponse,
 };
 
 const endpoints = makeApi([
@@ -1889,6 +1903,33 @@ it to be traded on DeFi protocols.`,
             },
         ],
         response: UnsignedTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/token/address/get',
+        description: `Get the address for a token.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: AddressRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    token: 'WETH',
+                }),
+            },
+        ],
+        response: z
+            .object({ address: z.string().describe('Address of the token provided') })
+            .passthrough()
+            .default({ address: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B' }),
         errors: [
             {
                 status: 422,
