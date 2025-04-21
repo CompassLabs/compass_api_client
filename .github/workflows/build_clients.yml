@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       fetch_openapi:
-        description: 'Whether to fetch openapi'
+        description: "Whether to fetch openapi"
         required: true
-        default: 'false'
+        default: "false"
   repository_dispatch:
     types: [Integration-with-Automation]
 
@@ -147,18 +147,22 @@ jobs:
           npm run build
           npm publish --access public
 
-
       ##############################################################################################
 
       - name: Build langchain-compass package
         run: |
           cd ./langchain-compass
+          # increment the version by 1 prior to push
+          poetry version patch
+          NEXT_VERSION=$(poetry version --short)
+          echo "NEXT_VERSION: $NEXT_VERSION"
+
           poetry build
           pwd
           ls -la ./
           ls -la dist/
       - name: Publish to PyPi
-#        continue-on-error: true
+        #        continue-on-error: true
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           attestations: false

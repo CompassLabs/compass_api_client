@@ -26,6 +26,8 @@ from compass.api_client.models.aave_supply_request import AaveSupplyRequest
 from compass.api_client.models.aave_user_position_per_token_response import AaveUserPositionPerTokenResponse
 from compass.api_client.models.aave_user_position_summary_response import AaveUserPositionSummaryResponse
 from compass.api_client.models.aave_withdraw_request import AaveWithdrawRequest
+from compass.api_client.models.address_request import AddressRequest
+from compass.api_client.models.address_response import AddressResponse
 from compass.api_client.models.aerodrome_lp_positions_response import AerodromeLPPositionsResponse
 from compass.api_client.models.aerodrome_position import AerodromePosition
 from compass.api_client.models.aerodrome_slipstream_buy_exactly_request import AerodromeSlipstreamBuyExactlyRequest

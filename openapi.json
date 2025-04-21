@@ -645,7 +645,7 @@
     "/v0/generic/portfolio/get": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "List user portfolio",
         "description": "Fetch the detailed portfolio of a specific wallet address on a given blockchain.\n\nThis includes the total value of the portfolio in USD and a breakdown of token\nbalances, including their respective values and quantities.",
@@ -687,7 +687,7 @@
     "/v0/generic/visualize_portfolio/get": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Visualize user portfolio",
         "description": "Generate a visual representation of the token portfolio for a wallet address.\n\nThe response is an SVG image of a pie chart depicting the relative distribution of\ntokens held, colored and labeled with token symbols, percentages and token values in\nUSD.",
@@ -729,7 +729,7 @@
     "/v0/generic/price/usd/get": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Token price",
         "description": "Retrieves the price of the specified token relative to USD using Chainlink's on-\nchain price feeds.\n\nChainlink is a decentralized oracle that aggregates price data from off-chain\nsources. This ensures the price is tamper-resistant but the price might be stale\nwith the update frequency of the oracle.",
@@ -771,7 +771,7 @@
     "/v0/generic/supported_tokens/get": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "List supported tokens",
         "description": "Get the list of supported tokens on a chain by the Compass API.",
@@ -813,7 +813,7 @@
     "/v0/generic/balance/get": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "User token balance",
         "description": "Returns the balance of a specific ERC20 token for a given user address.",
@@ -855,7 +855,7 @@
     "/v0/generic/allowance/get": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Get allowance - Protocol",
         "description": "In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set\na token allowance to authorize the protocol to spend a specified amount of their\ntokens on their behalf.\n\nThis is a crucial step before engaging in any transactions or operations within\nthese protocols, ensuring that the protocol has the necessary permissions to manage\nthe user's tokens securely and efficiently.",
@@ -897,7 +897,7 @@
     "/v0/generic/ens/get": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Resolve ENS",
         "description": "An ENS name is a string ending in `.eth`.\n\nE.g. `vitalik.eth`. This endpoint can be used to\nquery the actual ethereum wallet address behind the ENS name.",
@@ -939,7 +939,7 @@
     "/v0/generic/wrap_eth": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Wrap ETH",
         "description": "Wrapping ETH creates an ERC-20 compliant form of ETH that is typically needed for\nit to be traded on DeFi protocols.",
@@ -981,7 +981,7 @@
     "/v0/generic/unwrap_weth": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Unwrap WETH",
         "description": "Unwrapping WETH converts the ERC-20 compliant form of ETH back to native ETH that\ncan be used for gas and other native purposes.",
@@ -1023,7 +1023,7 @@
     "/v0/generic/transfer/erc20": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Transfer Token",
         "description": "Sends ERC20 tokens from the sender's address to the specified recipient.",
@@ -1065,7 +1065,7 @@
     "/v0/generic/transfer/native_token": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Transfer ETH",
         "description": "Sends native ETH from the sender's address to the specified recipient.",
@@ -1107,7 +1107,7 @@
     "/v0/generic/allowance/set": {
       "post": {
         "tags": [
-          "Others"
+          "Universal"
         ],
         "summary": "Set Allowance - Protocol",
         "description": "This endpoint allows users to modify the token allowance for a specific protocol.\n\nIn decentralized finance (DeFi), setting an allowance is a necessary step to\nauthorize a protocol to spend a specified amount of tokens on behalf of the user.\nThis operation is crucial for ensuring that the protocol can manage the user's\ntokens securely and efficiently, enabling seamless transactions and operations\nwithin the DeFi ecosystem.",
@@ -1549,6 +1549,48 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UniswapLPPositionsInfoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/token/address/get": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "summary": "Token Address",
+        "description": "Get the address for a token.",
+        "operationId": "token_address",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressResponse"
                 }
               }
             }
@@ -2117,6 +2159,50 @@
           "asset": "USDC",
           "amount": 1,
           "recipient": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
+        }
+      },
+      "AddressRequest": {
+        "properties": {
+          "chain": {
+            "$ref": "#/components/schemas/Chain"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "description": "The token symbol to get the adress for. Note the [supported tokens per chain](/#/#token-table).",
+            "examples": [
+              "WETH"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "chain",
+          "token"
+        ],
+        "title": "AddressRequest",
+        "default": {
+          "chain": "arbitrum:mainnet",
+          "token": "WETH"
+        }
+      },
+      "AddressResponse": {
+        "properties": {
+          "address": {
+            "type": "string",
+            "title": "Address",
+            "description": "Address of the token provided",
+            "examples": [
+              "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "address"
+        ],
+        "title": "AddressResponse",
+        "default": {
+          "address": "0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B"
         }
       },
       "AerodromeLPPositionsResponse": {
@@ -4675,7 +4761,7 @@
         "type": "apiKey",
         "in": "header",
         "name": "x-api-key",
-        "description": "Your Compass API key. Get your key [here](/auth/get_api_token)."
+        "description": "Your Compass API key. Get your key [here](https://api.compasslabs.ai/auth/get_api_token)."
       }
     }
   },
