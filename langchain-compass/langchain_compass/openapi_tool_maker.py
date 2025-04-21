@@ -14,7 +14,7 @@ from requests import get
 
 from langchain_compass.model_generator import models_from_openapi
 
-# from langchain_compass.params_converter import generate_pydantic_model
+from langchain_compass.params_converter import generate_pydantic_model
 
 
 class EmptySchema(BaseModel):
@@ -70,7 +70,6 @@ class GetRequestTool(BaseTool):
     def _run(
         self, run_manager: CallbackManagerForToolRun | None = None, **kwargs: Any
     ) -> dict:  # type: ignore
-        raise ValueError("Not implemented")
         headers = {"accept": "application/json", "Content-Type": "application/json"}
         if self.api_key is not None:
             headers["x-api-key"] = self.api_key
@@ -194,32 +193,35 @@ def make_tools(
             tools.append(post_tool)
 
         if "get" in openapi_data["paths"][path]:
-            raise ValueError("Not yet fully implemented.")
-            # endpoint = openapi_data["paths"][path]["get"]
+            # raise ValueError("Not yet fully implemented.")
+            endpoint = openapi_data["paths"][path]["get"]
+            description: str = (
+                endpoint["description"]
+                if "description" in endpoint
+                else endpoint["summary"]
+            )
+            response_schema_name = get_response_schema_name(endpoint)
+            response_type = getattr(schemas, response_schema_name)
+
+            if "parameters" in endpoint:
+                Params = generate_pydantic_model(
+                    model_name="Params", parameters=endpoint["parameters"]
+                )
+            else:
+                Params = None
             #
-            # response_schema_name = get_response_schema_name(endpoint)
-            # response_type = getattr(api_client.compass.api_client,
-            # response_schema_name)
-            #
-            # if "parameters" in endpoint:
-            #     Params = generate_pydantic_model(
-            #         model_name="Params", parameters=endpoint["parameters"]
-            #     )
-            # else:
-            #     Params = None
-            #
-            # get_tool = GetRequestTool(
-            #     name=tool_name,
-            #     description=endpoint["description"],
-            #     url=url,
-            #     return_direct=False,
-            #     args_schema=Params,
-            #     response_type=response_type,
-            #     api_key="123",
-            # )
-            #
-            # get_tool.__name__ = tool_name  # type: ignore
-            # tools.append(get_tool)
+            get_tool = GetRequestTool(
+                name=tool_name,
+                description=description,
+                url=url,
+                return_direct=False,
+                args_schema=Params,
+                response_type=response_type,
+                api_key="123",
+            )
+
+            get_tool.__name__ = tool_name  # type: ignore
+            tools.append(get_tool)
 
     return tools  # [:3]  # type: ignore
 
