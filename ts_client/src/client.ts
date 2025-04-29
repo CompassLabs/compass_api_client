@@ -1,6 +1,84 @@
 import { makeApi, Zodios, type ZodiosOptions } from '@zodios/core';
 import { z } from 'zod';
 
+const AaveTokenPriceResponse = z
+    .object({ price: z.string().describe('The price of the asset in USD.') })
+    .passthrough();
+const ValidationError = z
+    .object({
+        loc: z.array(z.union([z.string(), z.number()])),
+        msg: z.string(),
+        type: z.string(),
+    })
+    .passthrough();
+const HTTPValidationError = z
+    .object({ detail: z.array(ValidationError) })
+    .partial()
+    .passthrough();
+const AaveLiquidityChangeResponse = z
+    .object({
+        liquidity_change: z
+            .string()
+            .describe(
+                'The change in the liquidity index between the two times, expressed as a percentage.'
+            ),
+        start_time: z.string().datetime({ offset: true }).describe('Dateime of starting block'),
+        end_time: z.string().datetime({ offset: true }).describe('Dateime of ending block'),
+    })
+    .passthrough();
+const AaveUserPositionSummaryResponse = z
+    .object({
+        maximum_loan_to_value_ratio: z.string().describe('The loan to value ratio of a user.'),
+        health_factor: z
+            .string()
+            .describe(`The health factor of a user. If this is above 1 it is safe; below 1 and the
+        user is in risk of liquidation. This number might be very high (which would mean the user is
+        safe!)`),
+        total_collateral: z.string().describe('The total collateral (in USD) of a user.'),
+        total_debt: z.string().describe('The total debt (in USD) of a user.'),
+        available_borrows: z.string().describe('The available borrows (in USD) of a user.'),
+        liquidation_threshold: z
+            .string()
+            .describe(`The liquidation threshold of a user. A user might exceed this due to changing
+        asset values.`),
+    })
+    .passthrough();
+const AaveUserPositionPerTokenResponse = z
+    .object({
+        token_balance: z
+            .string()
+            .describe(
+                'The balance of AAVE aTokens (interest-bearing representations of your deposits).'
+            ),
+        stable_debt: z
+            .string()
+            .describe("The amount of the user's debt with a fixed interest rate."),
+        variable_debt: z
+            .string()
+            .describe("The amount of the user's debt with a variable interest rate."),
+        principal_stable_debt: z
+            .string()
+            .describe(`The amount of the user's debt that was part of the initial principal of all
+        loans with a stable interest rate.`),
+        principal_variable_debt: z
+            .string()
+            .describe(`The amount of the user's debt that was part of the initial principal of all
+        loans with a variable interest rate. This is the value stored by AAVE, which may be slightly
+        inaccurate, but reflects what AAVE believes you initially paid.`),
+        stable_borrow_rate: z
+            .string()
+            .describe(`The current average annualised interest rate for all your stable loans in
+        this pool.`),
+        stable_borrow_rate_for_new_loans: z
+            .string()
+            .describe('The annualised interest rate you would pay on a new stable loan.'),
+        variable_borrow_rate: z
+            .string()
+            .describe(`The current annualised interest rate for variable rate loans in this pool.
+        (This applies to both current and new loans.)`),
+        liquidity_rate: z.string().describe('The annualised interest rate for deposited supplies.'),
+    })
+    .passthrough();
 const Token = z.enum([
     '1INCH',
     'AAVE',
@@ -50,7 +128,7 @@ const Token = z.enum([
 const Chain = z.enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet']);
 const AaveSupplyRequest = z
     .object({
-        asset: Token.describe(`A class representing the token.
+        token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
@@ -65,7 +143,7 @@ endpoints' documentation where per chain tokens are presented.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -85,21 +163,10 @@ const UnsignedTransaction = z
             .describe('The max priority fee per gas of the transaction'),
     })
     .passthrough();
-const ValidationError = z
-    .object({
-        loc: z.array(z.union([z.string(), z.number()])),
-        msg: z.string(),
-        type: z.string(),
-    })
-    .passthrough();
-const HTTPValidationError = z
-    .object({ detail: z.array(ValidationError) })
-    .partial()
-    .passthrough();
 const InterestRateMode = z.enum(['stable', 'variable']);
 const AaveBorrowRequest = z
     .object({
-        asset: Token.describe(`A class representing the token.
+        token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
@@ -115,13 +182,13 @@ A stable (but typically higher rate), or a variable rate.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AaveRepayRequest = z
     .object({
-        asset: Token.describe(`A class representing the token.
+        token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
@@ -137,13 +204,13 @@ A stable (but typically higher rate), or a variable rate.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
 const AaveWithdrawRequest = z
     .object({
-        asset: Token.describe(`A class representing the token.
+        token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
@@ -152,114 +219,61 @@ endpoints' documentation where per chain tokens are presented.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
-const AaveGetAssetPriceRequest = z
+const AerodromePosition = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        asset: Token.describe(`A class representing the token.
+        nonce: z.number().int(),
+        operator: z.string(),
+        token0: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-    })
-    .passthrough();
-const AaveAssetPriceResponse = z
-    .object({ price: z.string().describe('The price of the asset in USD.') })
-    .passthrough();
-const AaveGetLiquidityChangeRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        start_block: z.number().int().describe('The starting block.'),
-        end_block: z
-            .union([z.number(), z.null()])
-            .describe('The ending block. If nothing provided defaults to latest')
-            .optional(),
-        asset: Token.describe(`A class representing the token.
+        token1: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
+        tick_spacing: z.number().int(),
+        tick_lower: z.number().int(),
+        tick_upper: z.number().int(),
+        liquidity: z.number().int(),
+        fee_growth_inside0_last_x128: z.number().int(),
+        fee_growth_inside1_last_x128: z.number().int(),
+        tokens_owed0: z.number().int(),
+        tokens_owed1: z.number().int(),
+        token_id: z.number().int(),
     })
     .passthrough();
-const AaveLiquidityChangeResponse = z
+const AerodromeLPPositionsResponse = z
     .object({
-        liquidity_change: z
-            .string()
-            .describe(
-                'The change in the liqudiity index between the two times, expressed as a percentage.'
-            ),
-        start_time: z.string().datetime({ offset: true }).describe('Dateime of starting block'),
-        end_time: z.string().datetime({ offset: true }).describe('Dateime of ending block'),
+        positions: z
+            .record(AerodromePosition)
+            .describe(`Liquidity provision positions belonging to a particular user. The key is a
+tuple of the token0, token1, tick_spacing, tick_lower, and tick_upper of the position.`),
     })
     .passthrough();
-const AaveGetUserPositionSummaryRequest = z
+const AerodromeSlipstreamPoolPriceResponse = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The user to get the position summary of. Values are in USD.'),
-    })
-    .passthrough();
-const AaveUserPositionSummaryResponse = z
-    .object({
-        maximum_loan_to_value_ratio: z.string().describe('The loan to value ratio of a user.'),
-        health_factor: z
-            .string()
-            .describe(`The health factor of a user. If this is above 1 it is safe; below 1 and the
-        user is in risk of liquidation. This number might be very high (which would mean the user is
-        safe!)`),
-        total_collateral: z.string().describe('The total collateral (in USD) of a user.'),
-        total_debt: z.string().describe('The total debt (in USD) of a user.'),
-        available_borrows: z.string().describe('The available borrows (in USD) of a user.'),
-        liquidation_threshold: z
-            .string()
-            .describe(`The liquidation threshold of a user. A user might exceed this due to changing
-        asset values.`),
-    })
-    .passthrough();
-const AaveGetUserPositionPerTokenRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The user to fetch the token-specific position of.'),
-        asset: Token.describe(`A class representing the token.
+        token_in: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
-    })
-    .passthrough();
-const AaveUserPositionPerTokenResponse = z
-    .object({
-        token_balance: z
+        token_out: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        price: z
             .string()
-            .describe(
-                'The balance of AAVE aTokens (interest-bearing representations of your deposits).'
-            ),
-        stable_debt: z
-            .string()
-            .describe("The amount of the user's debt with a fixed interest rate."),
-        variable_debt: z
-            .string()
-            .describe("The amount of the user's debt with a variable interest rate."),
-        principal_stable_debt: z
-            .string()
-            .describe(`The amount of the user's debt that was part of the initial principal of all
-        loans with a stable interest rate.`),
-        principal_variable_debt: z
-            .string()
-            .describe(`The amount of the user's debt that was part of the initial principal of all
-        loans with a variable interest rate. This is the value stored by AAVE, which may be slightly
-        inaccurate, but reflects what AAVE believes you initially paid.`),
-        stable_borrow_rate: z
-            .string()
-            .describe(`The current average annualised interest rate for all your stable loans in
-        this pool.`),
-        stable_borrow_rate_for_new_loans: z
-            .string()
-            .describe('The annualised interest rate you would pay on a new stable loan.'),
-        variable_borrow_rate: z
-            .string()
-            .describe(`The current annualised interest rate for variable rate loans in this pool.
-        (This applies to both current and new loans.)`),
-        liquidity_rate: z.string().describe('The annualised interest rate for deposited supplies.'),
+            .describe(`The price of the pool. This is expressed as an instantaneous amount of how
+many token0 you need to buy 1 token1. In any swap this will not change during the trade; use
+the quote endpoint to get a better idea of how much you will pay!`),
+        tick: z
+            .number()
+            .int()
+            .describe(`The current tick in the pool. This is a number that represents the price of
+the pool according to the aerodrome_slipstream v3 concentrated liquidity concept.`),
     })
     .passthrough();
 const AerodromeSlipstreamSellExactlyRequest = z
@@ -284,7 +298,7 @@ endpoints' documentation where per chain tokens are presented.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -308,7 +322,7 @@ endpoints' documentation where per chain tokens are presented.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -350,7 +364,7 @@ endpoints' documentation where per chain tokens are presented.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -375,7 +389,7 @@ const AerodromeSlipstreamIncreaseLiquidityProvisionRequest = z
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -391,65 +405,359 @@ const AerodromeSlipstreamWithdrawLiquidityProvisionRequest = z
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
-const AerodromeSlipstreamGetLiquidityProvisionPositionsRequest = z
+const deposit_token = z
+    .union([z.string(), z.null()])
+    .optional()
+    .default('0xdAC17F958D2ee523a2206206994597C13D831ec7');
+const ChainInfo = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z
+        id: z.number().int(),
+        network: z.union([z.string(), z.null()]).optional(),
+    })
+    .passthrough();
+const compass__api_backend__models__morpho__read__response__get_vaults__Asset = z
+    .object({
+        symbol: z.string(),
+        address: z.string(),
+        decimals: z.number().int(),
+        chain: ChainInfo,
+    })
+    .passthrough();
+const VaultState = z
+    .object({
+        id: z.string(),
+        apy: z.number(),
+        netApy: z.number(),
+        totalAssets: z.number().int(),
+        totalAssetsUsd: z.number(),
+        fee: z.number(),
+        timelock: z.number().int(),
+    })
+    .passthrough();
+const MorphoVault = z
+    .object({
+        address: z.string(),
+        symbol: z.string(),
+        name: z.string(),
+        creationBlockNumber: z.number().int(),
+        creationTimestamp: z.number().int(),
+        creatorAddress: z.string(),
+        whitelisted: z.boolean(),
+        asset: compass__api_backend__models__morpho__read__response__get_vaults__Asset,
+        chain: ChainInfo,
+        state: VaultState,
+    })
+    .passthrough();
+const MorphoGetVaultsResponse = z
+    .object({
+        vaults: z.array(MorphoVault).describe(' A list of vaults matching the query.'),
+    })
+    .passthrough();
+const MorphoCheckVaultPositionResponse = z
+    .object({
+        shares: z.string().describe('The number of vault shares the user holds.'),
+        token_amount: z.string().describe('The amount of tokens the user has deposited.'),
+    })
+    .passthrough();
+const collateral_token = z
+    .union([z.string(), z.null()])
+    .optional()
+    .default('0x3b3fB9C57858EF816833dC91565EFcd85D96f634');
+const loan_token = z
+    .union([z.string(), z.null()])
+    .optional()
+    .default('0x6B175474E89094C44Da98b954EedeAC495271d0F');
+const MarketState = z
+    .object({
+        borrowApy: z.number(),
+        borrowAssets: z.number().int(),
+        borrowAssetsUsd: z.number(),
+        supplyApy: z.number(),
+        supplyAssets: z.number().int(),
+        supplyAssetsUsd: z.number(),
+        fee: z.number(),
+        utilization: z.number(),
+    })
+    .passthrough();
+const WeeklyApys = z
+    .object({
+        supplyApy: z.number(),
+        netSupplyApy: z.number(),
+        borrowApy: z.number(),
+        netBorrowApy: z.number(),
+    })
+    .passthrough();
+const compass__api_backend__models__morpho__read__response__get_markets__Asset = z
+    .object({
+        address: z.string(),
+        symbol: z.string(),
+        name: z.string(),
+        decimals: z.number().int(),
+    })
+    .passthrough();
+const MorphoMarket = z
+    .object({
+        uniqueKey: z.string(),
+        lltv: z.number().int(),
+        oracleAddress: z.string(),
+        irmAddress: z.string(),
+        state: MarketState,
+        weeklyApys: WeeklyApys,
+        collateralAsset: z.union([
+            compass__api_backend__models__morpho__read__response__get_markets__Asset,
+            z.null(),
+        ]),
+        loanAsset: compass__api_backend__models__morpho__read__response__get_markets__Asset,
+    })
+    .passthrough();
+const MorphoGetMarketsResponse = z
+    .object({
+        markets: z.array(MorphoMarket).describe(' A list of markets matching the query.'),
+    })
+    .passthrough();
+const MorphoCheckMarketPositionResponse = z
+    .object({
+        borrow_shares: z.number().int(),
+        borrow_amount: z.string().describe('The amount of the loan token borrowed.'),
+        collateral_amount: z.string().describe('The amount of the collateral token supplied.'),
+        current_loan_to_value: z
             .string()
-            .describe('The address of the user to check the balance of')
+            .describe(
+                "The Loan-To-Value ratio measures the proportion of debt relative to collateral value. If this ratio exceeds the 'liquidation_loan_to_value_threshold', the position is liquidatable."
+            ),
+        liquidation_loan_to_value_threshold: z
+            .string()
+            .describe(
+                'Maximum borrowing percentage before liquidation risk. E.g: LLTV of 80% means for a collateral value equivalent of $100, the maximum one can borrow in value is $80. If above like $80.0001, the position is liquidatable.'
+            ),
+    })
+    .passthrough();
+const MorphoSetVaultAllowanceRequest = z
+    .object({
+        vault_address: z
+            .string()
+            .describe('The vault address you are increasing the allowance for.'),
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('The amount of tokens to increase the allowance by.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
-const AerodromePosition = z
+const MorphoDepositRequest = z
     .object({
-        nonce: z.number().int(),
-        operator: z.string(),
-        token0: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token1: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        tick_spacing: z.number().int(),
-        tick_lower: z.number().int(),
-        tick_upper: z.number().int(),
-        liquidity: z.number().int(),
-        fee_growth_inside0_last_x128: z.number().int(),
-        fee_growth_inside1_last_x128: z.number().int(),
-        tokens_owed0: z.number().int(),
-        tokens_owed1: z.number().int(),
-        token_id: z.number().int(),
-    })
-    .passthrough();
-const AerodromeLPPositionsResponse = z
-    .object({
-        positions: z
-            .record(AerodromePosition)
-            .describe(`Liquidity provision positions belonging to a particular user. The key is a
-tuple of the token0, token1, tick_spacing, tick_lower, and tick_upper of the position.`),
-    })
-    .passthrough();
-const AerodromeSlipstreamGetPoolPriceRequest = z
-    .object({
+        vault_address: z.string().describe('The vault address you are depositing to.'),
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('The amount of tokens to deposit into the vault.'),
+        receiver: z
+            .union([z.string(), z.null()])
+            .describe(
+                "The address which will receive the shares from the vault representing their proportional ownership of the vault's assets. Defaults to the sender."
+            )
+            .optional(),
         chain: Chain.describe('The chain to use.'),
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        tick_spacing: z.number().int().gte(1).describe('The tick spacing of the pool'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
-const AerodromeSlipstreamPoolPriceResponse = z
+const MorphoWithdrawRequest = z
+    .object({
+        vault_address: z.string().describe('The vault address you are withdrawing from.'),
+        amount: z
+            .union([z.number(), z.string(), z.string()])
+            .describe(
+                "The amount of tokens to withdraw from the vault. If set to 'ALL', your total deposited token amount will be withdrawn."
+            ),
+        receiver: z
+            .union([z.string(), z.null()])
+            .describe(
+                'The address which will receive the tokens withdrawn. Defaults to the sender.'
+            )
+            .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
+    .passthrough();
+const MorphoSupplyCollateralRequest = z
+    .object({
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('Amount of the token to supply to the market as collateral.'),
+        unique_market_key: z
+            .string()
+            .regex(/^0x.*/)
+            .describe(
+                "The key that uniquely identifies the market. This can be found using the 'Get Markets' endpoint."
+            ),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe(
+                'The address on behalf of whom the supplied collateral is made. Defaults to sender.'
+            )
+            .optional(),
+        callback_data: z
+            .union([z.instanceof(File), z.null()])
+            .describe(
+                'An optional field for callback byte data that will be triggered upon successful supplying of collateral.'
+            )
+            .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
+    .passthrough();
+const MorphoWithdrawCollateralRequest = z
+    .object({
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('Amount of the token to supply to the market as collateral.'),
+        unique_market_key: z
+            .string()
+            .regex(/^0x.*/)
+            .describe(
+                "The key that uniquely identifies the market. This can be found using the 'Get Markets' endpoint."
+            ),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe('The address on behalf of whom the withdraw is made. Defaults to sender.')
+            .optional(),
+        receiver: z
+            .union([z.string(), z.null()])
+            .describe(
+                'The address where the withdrawn collateral will be received. Defaults to sender.'
+            )
+            .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
+    .passthrough();
+const MorphoBorrowRequest = z
+    .object({
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('Amount of the token to borrow from the market.'),
+        unique_market_key: z
+            .string()
+            .regex(/^0x.*/)
+            .describe(
+                "The key that uniquely identifies the market. This can be found using the 'Get Markets' endpoint."
+            ),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe('The address where the collateral is borrowed against. Defaults to sender.')
+            .optional(),
+        receiver: z
+            .union([z.string(), z.null()])
+            .describe(
+                'The address of the receiver of the tokens borrowed. Defaults to the transaction sender.'
+            )
+            .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
+    .passthrough();
+const MorphoRepayRequest = z
+    .object({
+        amount: z
+            .union([z.number(), z.string(), z.string()])
+            .describe(
+                "Amount of the token to repay to the market. If set to 'ALL', all debt plus interest will be paid back if the user has a sufficient token balance in their wallet."
+            ),
+        unique_market_key: z
+            .string()
+            .regex(/^0x.*/)
+            .describe(
+                "The key that uniquely identifies the market. This can be found using the 'Get Markets' endpoint."
+            ),
+        on_behalf_of: z
+            .union([z.string(), z.null()])
+            .describe('The address on behalf of whom the repayment is made. Defaults to sender.')
+            .optional(),
+        callback_data: z
+            .union([z.instanceof(File), z.null()])
+            .describe(
+                'An optional field for callback byte data that will be triggered upon successful repaying of debt.'
+            )
+            .optional(),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
+    .passthrough();
+const TokenAddressResponse = z
+    .object({ address: z.string().describe('Address of the token provided') })
+    .passthrough();
+const TokenPriceResponse = z
+    .object({ price: z.string().describe('Price of the token in USD') })
+    .passthrough();
+const token = z.union([Token, z.string()]).default('USDC');
+const TokenBalanceResponse = z
+    .object({
+        amount: z.string().describe('Amount of tokens a particular address holds'),
+        decimals: z.number().int().describe('Number of decimals of the token'),
+        token_symbol: z.union([Token, z.string()]).describe('Symbol of the token.'),
+        token_address: z.string().describe('Address of the token'),
+    })
+    .passthrough();
+const TokenTransferRequest = z
+    .object({
+        amount: z.union([z.number(), z.string()]).describe('Amount of token to transfer'),
+        token: z.union([Token, z.string()]).describe('The symbol of the token to transfer..'),
+        to: z.string().describe('The recipient of the tokens.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
+    .passthrough();
+const amount_out = z.union([z.number(), z.string()]).default(1);
+const UniswapBuyQuoteInfoResponse = z
+    .object({
+        amount_in: z
+            .string()
+            .describe('The amount of token_in you would need to give to the pool.'),
+        price_after: z
+            .string()
+            .describe(
+                'The price of the pool after this trade would happen. (How much token0 you need to buy 1 token1.)'
+            ),
+    })
+    .passthrough();
+const UniswapSellQuoteInfoResponse = z
+    .object({
+        amount_out: z.string().describe('The amount of token_out you would receive from the pool.'),
+        price_after: z
+            .string()
+            .describe(
+                'The price of the pool after this trade would happen. (How much token0 you need to buy 1 token1.)'
+            ),
+    })
+    .passthrough();
+const UniswapPoolPriceResponse = z
     .object({
         token_in: Token.describe(`A class representing the token.
 
@@ -461,208 +769,48 @@ This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
         price: z
             .string()
-            .describe(`The price of the pool. This is expressed as an instantaneous amount of how
-many token0 you need to buy 1 token1. In any swap this will not change during the trade; use
-the quote endpoint to get a better idea of how much you will pay!`),
+            .describe(
+                'The price of the pool. This is expressed as an instantanteous amount of how many token0 you need to buy 1 token1. In any swap this will not change during the trade; use the quote endpoint to get a better idea of how much you will pay!'
+            ),
         tick: z
             .number()
             .int()
-            .describe(`The current tick in the pool. This is a number that represents the price of
-the pool according to the aerodrome_slipstream v3 concentrated liquidity concept.`),
+            .describe(
+                'The current tick in the pool. This is a number that represents the price of the pool according to the uniswap v3 concentrated liquidity concept.'
+            ),
     })
     .passthrough();
-const PortfolioRequest = z
+const UniswapCheckInRangeResponse = z
     .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The address of the user.'),
+        in_range: z
+            .boolean()
+            .describe(
+                'Whether the position is in active tick range or not. If not in range, the position is not earning trading fees.'
+            ),
     })
     .passthrough();
-const TokenBalance = z
+const UniswapPositionsSolidityResponse = z
     .object({
-        amount: z.string().describe('Amount of tokens a particular address holds'),
-        decimals: z.number().int().describe('Number of decimals of the token'),
-        token_symbol: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_address: z.string().describe('Address of the token'),
-        price: z.string().describe('Price of the token in USD'),
-        token_value_in_usd: z.string().describe('Value of the token balance in USD'),
+        nonce: z.number().int(),
+        operator: z.string(),
+        token0: z.string(),
+        token1: z.string(),
+        fee: z.number().int(),
+        tick_lower: z.number().int(),
+        tick_upper: z.number().int(),
+        liquidity: z.number().int(),
+        fee_growth_inside0_last_x128: z.number().int(),
+        fee_growth_inside1_last_x128: z.number().int(),
+        tokens_owed0: z.number().int(),
+        tokens_owed1: z.number().int(),
     })
     .passthrough();
-const Portfolio = z
+const UniswapLPPositionsInfoResponse = z
     .object({
-        total_value_in_usd: z.string().describe('Total value of the portfolio in USD'),
-        token_balances: z.array(TokenBalance).describe('List of token balances in the portfolio'),
-    })
-    .passthrough();
-const VisualizePortfolioRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The address of the user.'),
-    })
-    .passthrough();
-const Image = z.object({ image: z.string().describe('Base64 encoded SVG image') }).passthrough();
-const PriceRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-    })
-    .passthrough();
-const PriceResponse = z
-    .object({
-        token_price_in_usd: z.string().describe('Price of the token in USD'),
-    })
-    .passthrough();
-const TokensRequest = z.object({ chain: Chain.describe('The chain to use.') }).passthrough();
-const TokenInfo = z
-    .object({
-        tokens: z.array(Token).describe('List of supported tokens for a given chain'),
-    })
-    .passthrough();
-const GetErc20BalanceRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The user to get the ERC20 balance of.'),
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-    })
-    .passthrough();
-const BalanceInfoResponse = z
-    .object({
-        amount: z.string().describe('Amount of tokens a particular address holds'),
-        decimals: z.number().int().describe('Number of decimals of the token'),
-        token_symbol: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_address: z.string().describe('Address of the token'),
-    })
-    .passthrough();
-const ContractName = z.enum([
-    'AaveV3Pool',
-    'AaveV3Oracle',
-    'AaveV3ProtocolDataProvider',
-    'AerodromeBasicFactory',
-    'AerodromeSlipstreamFactory',
-    'AerodromeBasicRouter',
-    'AerodromeSlipstreamRouter',
-    'AerodromeBasicPool',
-    'AerodromeSlipstreamPool',
-    'AerodromeSlipstreamNonfungiblePositionManager',
-    'UniswapV3Pool',
-    'UniswapV3Router',
-    'UniswapV3Factory',
-    'UniswapV3NFTPositionManager',
-    'UniswapV3Quoter',
-    'ChainlinkEACAggregatorProxy',
-    'Multicall',
-]);
-const GetErc20AllowanceRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z.string().describe('The user to get the ERC20 allowance of.'),
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        contract_name: ContractName.describe(`Select the protocol.
-
-E.g. for increasing ERC-20 allowance.`),
-    })
-    .passthrough();
-const AllowanceInfoResponse = z
-    .object({
-        amount: z.string().describe('Amount of tokens allowed to be spent by spender'),
-        decimals: z.number().int().describe('Number of decimals of the token'),
-        token_symbol: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_address: z.string().describe('Address of the token'),
-        contract_address: z.string().describe('Address of the contract'),
-    })
-    .passthrough();
-const GetEnsDetailsRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        ens_name: z.string().describe('The ENS address of the user.'),
-    })
-    .passthrough();
-const EnsNameInfoResponse = z
-    .object({
-        wallet_address: z.string().describe('The wallet address of the user'),
-        registrant: z.string().describe('The registrant of the ENS'),
-    })
-    .passthrough();
-const WrapEthRequest = z
-    .object({
-        amount: z.union([z.number(), z.string()]).describe('The amount of ETH to wrap.'),
-        chain: Chain.describe('The chain to use.'),
-        sender: z
-            .string()
-            .describe('The address of the transaction sender')
-            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
-    })
-    .passthrough();
-const UnwrapWethRequest = z
-    .object({
-        amount: z.union([z.number(), z.string()]).describe('The amount of WETH to unwrap.'),
-        chain: Chain.describe('The chain to use.'),
-        sender: z
-            .string()
-            .describe('The address of the transaction sender')
-            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
-    })
-    .passthrough();
-const TransferERC20Request = z
-    .object({
-        amount: z.union([z.number(), z.string()]).describe('Amount of token to transfer'),
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        to: z.string().describe('The recipient of the tokens.'),
-        chain: Chain.describe('The chain to use.'),
-        sender: z
-            .string()
-            .describe('The address of the transaction sender')
-            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
-    })
-    .passthrough();
-const TransferEthRequest = z
-    .object({
-        amount: z.union([z.number(), z.string()]).describe('Amount of ETH to transfer'),
-        to: z.string().describe('The recipient of the ETH.'),
-        chain: Chain.describe('The chain to use.'),
-        sender: z
-            .string()
-            .describe('The address of the transaction sender')
-            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
-    })
-    .passthrough();
-const IncreaseAllowanceRequest = z
-    .object({
-        token: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        contract_name: ContractName.describe(`Select the protocol.
-
-E.g. for increasing ERC-20 allowance.`),
-        amount: z
-            .union([z.number(), z.string()])
-            .describe('The amount of tokens to increase the allowance by.'),
-        chain: Chain.describe('The chain to use.'),
-        sender: z
-            .string()
-            .describe('The address of the transaction sender')
-            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+        positions: z
+            .record(UniswapPositionsSolidityResponse)
+            .describe(` Liquidity provision positions belonging to a particular user keyed by the
+        token of owner index of the position. `),
     })
     .passthrough();
 const FeeEnum = z.enum(['0.01', '0.05', '0.3', '1.0']);
@@ -693,7 +841,7 @@ Uniswap supports 4 different fee levels.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -726,7 +874,7 @@ Uniswap supports 4 different fee levels.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -751,7 +899,7 @@ const UniswapIncreaseLiquidityProvisionRequest = z
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -799,7 +947,7 @@ Uniswap supports 4 different fee levels.`),
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
@@ -815,279 +963,222 @@ const UniswapWithdrawLiquidityProvisionRequest = z
         chain: Chain.describe('The chain to use.'),
         sender: z
             .string()
-            .describe('The address of the transaction sender')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
-const UniswapGetBuyQuoteRequest = z
+const TokenBalance = z
     .object({
+        amount: z.string().describe('Amount of tokens a particular address holds'),
+        decimals: z.number().int().describe('Number of decimals of the token'),
+        token_symbol: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_address: z.string().describe('Address of the token'),
+        price: z.string().describe('Price of the token in USD'),
+        token_value_in_usd: z.string().describe('Value of the token balance in USD'),
+    })
+    .passthrough();
+const Portfolio = z
+    .object({
+        total_value_in_usd: z.string().describe('Total value of the portfolio in USD'),
+        token_balances: z.array(TokenBalance).describe('List of token balances in the portfolio'),
+    })
+    .passthrough();
+const Image = z.object({ image: z.string().describe('Base64 encoded SVG image') }).passthrough();
+const PriceResponse = z
+    .object({
+        token_price_in_usd: z.string().describe('Price of the token in USD'),
+    })
+    .passthrough();
+const TokenInfo = z
+    .object({
+        tokens: z.array(Token).describe('List of supported tokens for a given chain'),
+    })
+    .passthrough();
+const BalanceInfoResponse = z
+    .object({
+        amount: z.string().describe('Amount of tokens a particular address holds'),
+        decimals: z.number().int().describe('Number of decimals of the token'),
+        token_symbol: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_address: z.string().describe('Address of the token'),
+    })
+    .passthrough();
+const AllowanceInfoResponse = z
+    .object({
+        amount: z.string().describe('Amount of tokens allowed to be spent by spender'),
+        decimals: z.number().int().describe('Number of decimals of the token'),
+        token_symbol: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        token_address: z.string().describe('Address of the token'),
+        contract_address: z.string().describe('Address of the contract'),
+    })
+    .passthrough();
+const EnsNameInfoResponse = z
+    .object({
+        wallet_address: z.string().describe('The wallet address of the user'),
+        registrant: z.string().describe('The registrant of the ENS'),
+    })
+    .passthrough();
+const WrapEthRequest = z
+    .object({
+        amount: z.union([z.number(), z.string()]).describe('The amount of ETH to wrap.'),
         chain: Chain.describe('The chain to use.'),
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
-
-Uniswap supports 4 different fee levels.`),
-        amount_out: z
-            .union([z.number(), z.string()])
-            .describe('The amount of the token to swap to'),
-    })
-    .passthrough();
-const UniswapBuyQuoteInfoResponse = z
-    .object({
-        amount_in: z
+        sender: z
             .string()
-            .describe('The amount of token_in you would need to give to the pool.'),
-        price_after: z
-            .string()
-            .describe(
-                'The price of the pool after this trade would happen. (How much token0 you need to buy 1 token1.)'
-            ),
-    })
-    .passthrough();
-const UniswapGetSellQuoteRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
-
-Uniswap supports 4 different fee levels.`),
-        amount_in: z
-            .union([z.number(), z.string()])
-            .describe('The amount of the token to swap from'),
-    })
-    .passthrough();
-const UniswapSellQuoteInfoResponse = z
-    .object({
-        amount_out: z.string().describe('The amount of token_out you would receive from the pool.'),
-        price_after: z
-            .string()
-            .describe(
-                'The price of the pool after this trade would happen. (How much token0 you need to buy 1 token1.)'
-            ),
-    })
-    .passthrough();
-const UniswapGetPoolPriceRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        fee: FeeEnum.describe(`The transaction fee of a Uniswap pool in bips.
-
-Uniswap supports 4 different fee levels.`),
-    })
-    .passthrough();
-const UniswapPoolPriceResponse = z
-    .object({
-        token_in: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        token_out: Token.describe(`A class representing the token.
-
-This class is used to represent the token in the system. Notice individual
-endpoints' documentation where per chain tokens are presented.`),
-        price: z
-            .string()
-            .describe(
-                'The price of the pool. This is expressed as an instantanteous amount of how many token0 you need to buy 1 token1. In any swap this will not change during the trade; use the quote endpoint to get a better idea of how much you will pay!'
-            ),
-        tick: z
-            .number()
-            .int()
-            .describe(
-                'The current tick in the pool. This is a number that represents the price of the pool according to the uniswap v3 concentrated liquidity concept.'
-            ),
-    })
-    .passthrough();
-const UniswapCheckInRangeRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        token_id: z
-            .number()
-            .int()
-            .gte(0)
-            .describe('Token ID of the NFT representing the liquidity provisioned position.'),
-    })
-    .passthrough();
-const UniswapCheckInRangeResponse = z
-    .object({
-        in_range: z
-            .boolean()
-            .describe(
-                'Whether the position is in active tick range or not. If not in range, the position is not earning trading fees.'
-            ),
-    })
-    .passthrough();
-const UniswapGetLiquidityProvisionPositionsRequest = z
-    .object({
-        chain: Chain.describe('The chain to use.'),
-        user: z
-            .string()
-            .describe('The address of the user to check the balance of')
+            .describe('The address of the transaction sender.')
             .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
-const UniswapPositionsSolidityResponse = z
+const UnwrapWethRequest = z
     .object({
-        nonce: z.number().int(),
-        operator: z.string(),
-        token0: z.string(),
-        token1: z.string(),
-        fee: z.number().int(),
-        tick_lower: z.number().int(),
-        tick_upper: z.number().int(),
-        liquidity: z.number().int(),
-        fee_growth_inside0_last_x128: z.number().int(),
-        fee_growth_inside1_last_x128: z.number().int(),
-        tokens_owed0: z.number().int(),
-        tokens_owed1: z.number().int(),
-    })
-    .passthrough();
-const UniswapLPPositionsInfoResponse = z
-    .object({
-        positions: z
-            .record(UniswapPositionsSolidityResponse)
-            .describe(` Liquidity provision positions belonging to a particular user keyed by the
-        token of owner index of the position. `),
-    })
-    .passthrough();
-const AddressRequest = z
-    .object({
+        amount: z.union([z.number(), z.string()]).describe('The amount of WETH to unwrap.'),
         chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
+    .passthrough();
+const TransferERC20Request = z
+    .object({
+        amount: z.union([z.number(), z.string()]).describe('Amount of token to transfer'),
         token: Token.describe(`A class representing the token.
 
 This class is used to represent the token in the system. Notice individual
 endpoints' documentation where per chain tokens are presented.`),
+        to: z.string().describe('The recipient of the tokens.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
     })
     .passthrough();
-const AddressResponse = z
-    .object({ address: z.string().describe('Address of the token provided') })
+const TransferEthRequest = z
+    .object({
+        amount: z.union([z.number(), z.string()]).describe('Amount of ETH to transfer'),
+        to: z.string().describe('The recipient of the ETH.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
+    .passthrough();
+const IncreaseAllowanceRequest = z
+    .object({
+        token: Token.describe(`A class representing the token.
+
+This class is used to represent the token in the system. Notice individual
+endpoints' documentation where per chain tokens are presented.`),
+        contract_name: z
+            .enum([
+                'AaveV3Pool',
+                'AerodromeBasicRouter',
+                'AerodromeSlipstreamRouter',
+                'AerodromeSlipstreamNonfungiblePositionManager',
+                'UniswapV3Router',
+                'UniswapV3NFTPositionManager',
+                'Morpho',
+            ])
+            .describe('The name of the contract to increase allowance for.'),
+        amount: z
+            .union([z.number(), z.string()])
+            .describe('The amount of tokens to increase the allowance by.'),
+        chain: Chain.describe('The chain to use.'),
+        sender: z
+            .string()
+            .describe('The address of the transaction sender.')
+            .default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+    })
     .passthrough();
 
 export const schemas = {
+    AaveTokenPriceResponse,
+    ValidationError,
+    HTTPValidationError,
+    AaveLiquidityChangeResponse,
+    AaveUserPositionSummaryResponse,
+    AaveUserPositionPerTokenResponse,
     Token,
     Chain,
     AaveSupplyRequest,
     UnsignedTransaction,
-    ValidationError,
-    HTTPValidationError,
     InterestRateMode,
     AaveBorrowRequest,
     AaveRepayRequest,
     AaveWithdrawRequest,
-    AaveGetAssetPriceRequest,
-    AaveAssetPriceResponse,
-    AaveGetLiquidityChangeRequest,
-    AaveLiquidityChangeResponse,
-    AaveGetUserPositionSummaryRequest,
-    AaveUserPositionSummaryResponse,
-    AaveGetUserPositionPerTokenRequest,
-    AaveUserPositionPerTokenResponse,
+    AerodromePosition,
+    AerodromeLPPositionsResponse,
+    AerodromeSlipstreamPoolPriceResponse,
     AerodromeSlipstreamSellExactlyRequest,
     AerodromeSlipstreamBuyExactlyRequest,
     AerodromeSlipstreamMintLiquidityProvisionRequest,
     AerodromeSlipstreamIncreaseLiquidityProvisionRequest,
     AerodromeSlipstreamWithdrawLiquidityProvisionRequest,
-    AerodromeSlipstreamGetLiquidityProvisionPositionsRequest,
-    AerodromePosition,
-    AerodromeLPPositionsResponse,
-    AerodromeSlipstreamGetPoolPriceRequest,
-    AerodromeSlipstreamPoolPriceResponse,
-    PortfolioRequest,
-    TokenBalance,
-    Portfolio,
-    VisualizePortfolioRequest,
-    Image,
-    PriceRequest,
-    PriceResponse,
-    TokensRequest,
-    TokenInfo,
-    GetErc20BalanceRequest,
-    BalanceInfoResponse,
-    ContractName,
-    GetErc20AllowanceRequest,
-    AllowanceInfoResponse,
-    GetEnsDetailsRequest,
-    EnsNameInfoResponse,
-    WrapEthRequest,
-    UnwrapWethRequest,
-    TransferERC20Request,
-    TransferEthRequest,
-    IncreaseAllowanceRequest,
+    deposit_token,
+    ChainInfo,
+    compass__api_backend__models__morpho__read__response__get_vaults__Asset,
+    VaultState,
+    MorphoVault,
+    MorphoGetVaultsResponse,
+    MorphoCheckVaultPositionResponse,
+    collateral_token,
+    loan_token,
+    MarketState,
+    WeeklyApys,
+    compass__api_backend__models__morpho__read__response__get_markets__Asset,
+    MorphoMarket,
+    MorphoGetMarketsResponse,
+    MorphoCheckMarketPositionResponse,
+    MorphoSetVaultAllowanceRequest,
+    MorphoDepositRequest,
+    MorphoWithdrawRequest,
+    MorphoSupplyCollateralRequest,
+    MorphoWithdrawCollateralRequest,
+    MorphoBorrowRequest,
+    MorphoRepayRequest,
+    TokenAddressResponse,
+    TokenPriceResponse,
+    token,
+    TokenBalanceResponse,
+    TokenTransferRequest,
+    amount_out,
+    UniswapBuyQuoteInfoResponse,
+    UniswapSellQuoteInfoResponse,
+    UniswapPoolPriceResponse,
+    UniswapCheckInRangeResponse,
+    UniswapPositionsSolidityResponse,
+    UniswapLPPositionsInfoResponse,
     FeeEnum,
     UniswapBuyExactlyRequest,
     UniswapSellExactlyRequest,
     UniswapIncreaseLiquidityProvisionRequest,
     UniswapMintLiquidityProvisionRequest,
     UniswapWithdrawLiquidityProvisionRequest,
-    UniswapGetBuyQuoteRequest,
-    UniswapBuyQuoteInfoResponse,
-    UniswapGetSellQuoteRequest,
-    UniswapSellQuoteInfoResponse,
-    UniswapGetPoolPriceRequest,
-    UniswapPoolPriceResponse,
-    UniswapCheckInRangeRequest,
-    UniswapCheckInRangeResponse,
-    UniswapGetLiquidityProvisionPositionsRequest,
-    UniswapPositionsSolidityResponse,
-    UniswapLPPositionsInfoResponse,
-    AddressRequest,
-    AddressResponse,
+    TokenBalance,
+    Portfolio,
+    Image,
+    PriceResponse,
+    TokenInfo,
+    BalanceInfoResponse,
+    AllowanceInfoResponse,
+    EnsNameInfoResponse,
+    WrapEthRequest,
+    UnwrapWethRequest,
+    TransferERC20Request,
+    TransferEthRequest,
+    IncreaseAllowanceRequest,
 };
 
 const endpoints = makeApi([
-    {
-        method: 'post',
-        path: '/v0/aave/asset_price/get',
-        description: `This endpoint retrieves the current price of a specified asset in USD as
-determined by the Aave protocol.
-
-It utilizes the Aave V3 Oracle to fetch the asset price, ensuring accurate and up-
-to-date information. The request requires the asset identifier and the blockchain
-network (chain) on which the asset resides. The response provides the asset price in
-a standardized format, converted from Wei to the base currency decimals defined by
-Aave.`,
-        requestFormat: 'json',
-        parameters: [
-            {
-                name: 'body',
-                type: 'Body',
-                schema: AaveGetAssetPriceRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    asset: 'USDC',
-                }),
-            },
-        ],
-        response: z
-            .object({ price: z.string().describe('The price of the asset in USD.') })
-            .passthrough(),
-        errors: [
-            {
-                status: 422,
-                description: `Validation Error`,
-                schema: HTTPValidationError,
-            },
-        ],
-    },
     {
         method: 'post',
         path: '/v0/aave/borrow',
@@ -1103,7 +1194,7 @@ liquidated, if the borrow position becomes unhealthy.`,
                 schema: AaveBorrowRequest.default({
                     chain: 'arbitrum:mainnet',
                     sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    asset: 'USDT',
+                    token: 'USDT',
                     amount: 1,
                     interest_rate_mode: 'variable',
                     on_behalf_of: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
@@ -1120,7 +1211,7 @@ liquidated, if the borrow position becomes unhealthy.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/aave/liquidity/change/get',
         description: `This endpoint retrieves the change in the reserve liquidity index between two
 provided blocks.
@@ -1136,14 +1227,75 @@ true if the liquidity index is negative.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: AaveGetLiquidityChangeRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    start_block: 0,
-                    end_block: 319407231,
-                    asset: 'USDC',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDC'),
+            },
+            {
+                name: 'start_block',
+                type: 'Query',
+                schema: z.number().int().gte(0).default(0),
+            },
+            {
+                name: 'end_block',
+                type: 'Query',
+                schema: z.number().int().gte(0).default(319407231),
             },
         ],
         response: AaveLiquidityChangeResponse,
@@ -1174,7 +1326,7 @@ including the amount and the asset to be repaid.`,
                 schema: AaveRepayRequest.default({
                     chain: 'arbitrum:mainnet',
                     sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    asset: 'USDT',
+                    token: 'USDT',
                     amount: 1,
                     interest_rate_mode: 'variable',
                     on_behalf_of: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
@@ -1210,7 +1362,7 @@ borrowing flexibility.`,
                 schema: AaveSupplyRequest.default({
                     chain: 'arbitrum:mainnet',
                     sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    asset: 'USDC',
+                    token: 'USDC',
                     amount: 1,
                 }),
             },
@@ -1225,7 +1377,93 @@ borrowing flexibility.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
+        path: '/v0/aave/token_price/get',
+        description: `This endpoint retrieves the current price of a specified token in USD as
+determined by the Aave protocol.
+
+It utilizes the Aave V3 Oracle to fetch the token price, ensuring accurate and up-
+to-date information. The request requires the token identifier and the blockchain
+network (chain) on which the token resides. The response provides the token price in
+a standardized format, converted from Wei to the base currency decimals defined by
+Aave.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDC'),
+            },
+        ],
+        response: z
+            .object({ price: z.string().describe('The price of the asset in USD.') })
+            .passthrough(),
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
         path: '/v0/aave/user_position_per_token/get',
         description: `This endpoint retrieves the user&#x27;s position for a specific token on the AAVE
 platform.
@@ -1239,13 +1477,70 @@ their financial standing within the AAVE ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: AaveGetUserPositionPerTokenRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    asset: 'USDC',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().optional().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDC'),
             },
         ],
         response: AaveUserPositionPerTokenResponse,
@@ -1258,7 +1553,7 @@ their financial standing within the AAVE ecosystem.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/aave/user_position_summary/get',
         description: `This endpoint retrieves a comprehensive summary of a user&#x27;s position on the AAVE
 platform.
@@ -1271,12 +1566,17 @@ a holistic view of their financial standing within the AAVE ecosystem.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: AaveGetUserPositionSummaryRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().optional().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
             },
         ],
         response: AaveUserPositionSummaryResponse,
@@ -1308,7 +1608,7 @@ the Aave ecosystem.`,
                 schema: AaveWithdrawRequest.default({
                     chain: 'arbitrum:mainnet',
                     sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    asset: 'USDC',
+                    token: 'USDC',
                     amount: 1,
                     recipient: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
                 }),
@@ -1405,7 +1705,7 @@ them the opportunity to engage in decentralized finance (DeFi) markets effective
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/aerodrome_slipstream/liquidity_provision/positions/get',
         description: `Retrieve the total number of Liquidity Provider (LP) positions associated with a
 specific sender.
@@ -1419,12 +1719,17 @@ decisions based on their current positions.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: AerodromeSlipstreamGetLiquidityProvisionPositionsRequest.default({
-                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    chain: 'base:mainnet',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('base:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().optional().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
             },
         ],
         response: AerodromeLPPositionsResponse,
@@ -1473,7 +1778,7 @@ strategic management of their decentralized finance (DeFi) portfolios.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/aerodrome_slipstream/pool_price/get',
         description: `This endpoint retrieves the current price of a pool, indicating how many token0
 you can purchase for 1 token1.
@@ -1484,14 +1789,123 @@ the quote endpoint.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: AerodromeSlipstreamGetPoolPriceRequest.default({
-                    chain: 'base:mainnet',
-                    token_in: 'USDC',
-                    token_out: 'WETH',
-                    tick_spacing: 100,
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('base:mainnet'),
+            },
+            {
+                name: 'token_in',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDC'),
+            },
+            {
+                name: 'token_out',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('WETH'),
+            },
+            {
+                name: 'tick_spacing',
+                type: 'Query',
+                schema: z.number().int().gte(1).optional().default(100),
             },
         ],
         response: AerodromeSlipstreamPoolPriceResponse,
@@ -1579,7 +1993,7 @@ token and are willing to accept the resulting amount of the other token.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/generic/allowance/get',
         description: `In decentralized finance (DeFi) protocols such as Uniswap or AAVE, users must set
 a token allowance to authorize the protocol to spend a specified amount of their
@@ -1591,14 +2005,85 @@ the user&#x27;s tokens securely and efficiently.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: GetErc20AllowanceRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    token: 'USDC',
-                    contract_name: 'AaveV3Pool',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().optional().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDC'),
+            },
+            {
+                name: 'contract_name',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        'AaveV3Pool',
+                        'AerodromeBasicRouter',
+                        'AerodromeSlipstreamRouter',
+                        'AerodromeSlipstreamNonfungiblePositionManager',
+                        'UniswapV3Router',
+                        'UniswapV3NFTPositionManager',
+                        'Morpho',
+                    ])
+                    .default('AaveV3Pool'),
             },
         ],
         response: AllowanceInfoResponse,
@@ -1644,19 +2129,76 @@ within the DeFi ecosystem.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/generic/balance/get',
         description: `Returns the balance of a specific ERC20 token for a given user address.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: GetErc20BalanceRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                    token: 'USDC',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().optional().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDC'),
             },
         ],
         response: BalanceInfoResponse,
@@ -1669,7 +2211,7 @@ within the DeFi ecosystem.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/generic/ens/get',
         description: `An ENS name is a string ending in &#x60;.eth&#x60;.
 
@@ -1678,12 +2220,17 @@ query the actual ethereum wallet address behind the ENS name.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: GetEnsDetailsRequest.default({
-                    chain: 'ethereum:mainnet',
-                    ens_name: 'vitalik.eth',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('ethereum:mainnet'),
+            },
+            {
+                name: 'ens_name',
+                type: 'Query',
+                schema: z.string().optional().default('vitalik.eth'),
             },
         ],
         response: EnsNameInfoResponse,
@@ -1696,7 +2243,7 @@ query the actual ethereum wallet address behind the ENS name.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/generic/portfolio/get',
         description: `Fetch the detailed portfolio of a specific wallet address on a given blockchain.
 
@@ -1705,12 +2252,17 @@ balances, including their respective values and quantities.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: PortfolioRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().optional().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
             },
         ],
         response: Portfolio,
@@ -1723,7 +2275,7 @@ balances, including their respective values and quantities.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/generic/price/usd/get',
         description: `Retrieves the price of the specified token relative to USD using Chainlink&#x27;s on-
 chain price feeds.
@@ -1734,12 +2286,65 @@ with the update frequency of the oracle.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: PriceRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    token: 'WBTC',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('WBTC'),
             },
         ],
         response: z
@@ -1756,15 +2361,18 @@ with the update frequency of the oracle.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/generic/supported_tokens/get',
         description: `Get the list of supported tokens on a chain by the Compass API.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: TokensRequest.default({ chain: 'arbitrum:mainnet' }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
             },
         ],
         response: TokenInfo,
@@ -1856,7 +2464,7 @@ can be used for gas and other native purposes.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/generic/visualize_portfolio/get',
         description: `Generate a visual representation of the token portfolio for a wallet address.
 
@@ -1866,12 +2474,17 @@ USD.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: VisualizePortfolioRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().optional().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
             },
         ],
         response: z
@@ -1913,23 +2526,26 @@ it to be traded on DeFi protocols.`,
     },
     {
         method: 'post',
-        path: '/v0/token/address/get',
-        description: `Get the address for a token.`,
+        path: '/v0/morpho/allowance',
+        description: `Set an allowance for a Morpho vault. You must set this for at least the amount you wish to deposit - before depositing.
+
+Each vault has only one associated token that can be deposited.
+
+Use the &#x27;Get Vaults&#x27; endpoint to query a list of vaults you can deposit into.`,
         requestFormat: 'json',
         parameters: [
             {
                 name: 'body',
                 type: 'Body',
-                schema: AddressRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    token: 'WETH',
+                schema: MorphoSetVaultAllowanceRequest.default({
+                    chain: 'ethereum:mainnet',
+                    sender: '0xa829B388A3DF7f581cE957a95edbe419dd146d1B',
+                    vault_address: '0xbEef047a543E45807105E51A8BBEFCc5950fcfBa',
+                    amount: 0,
                 }),
             },
         ],
-        response: z
-            .object({ address: z.string().describe('Address of the token provided') })
-            .passthrough()
-            .default({ address: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B' }),
+        response: UnsignedTransaction,
         errors: [
             {
                 status: 422,
@@ -1940,6 +2556,572 @@ it to be traded on DeFi protocols.`,
     },
     {
         method: 'post',
+        path: '/v0/morpho/borrow',
+        description: `Borrow tokens from a Morpho Market against supplied collateral.
+
+The position could be liquidated when a borrower&#x27;s Loan-To-Value (LTV) exceeds the
+Liquidation Loan-To-Value (LLTV) threshold of the market.
+
+A Morpho Market is a primitive lending pool that pairs one collateral asset with one
+loan asset. Each market is isolated (meaning risks are contained within each
+individual market), immutable (cannot be changed after deployment), and will persist
+as long as the blockchain it is deployed on is live.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: MorphoBorrowRequest.default({
+                    chain: 'ethereum:mainnet',
+                    sender: '0xa829B388A3DF7f581cE957a95edbe419dd146d1B',
+                    amount: 0.1,
+                    unique_market_key:
+                        '0xe7399fdebc318d76dfec7356caafcf8cd4b91287e139a3ec423f09aeeb656fc4',
+                }),
+            },
+        ],
+        response: UnsignedTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/morpho/deposit',
+        description: `Deposit tokens into a Morpho Vault to earn passive yield from interest paid by
+borrowers.
+
+Each vault accepts one unique token that can be deposited.
+
+A Morpho Vault has one loan asset and can allocate deposits to multiple Morpho
+markets. Users can deposit into a vault to start earning passive yield from interest
+paid by borrowers. Vaults feature automated risk management, actively curating risk
+exposure for all deposited assets so users don&#x27;t need to make these decisions
+themselves. Users maintain full control over their assets, can monitor the vault&#x27;s
+state at any time, and withdraw their liquidity at their discretion.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: MorphoDepositRequest.default({
+                    chain: 'ethereum:mainnet',
+                    sender: '0xa829B388A3DF7f581cE957a95edbe419dd146d1B',
+                    vault_address: '0xbEef047a543E45807105E51A8BBEFCc5950fcfBa',
+                    amount: 0.5,
+                }),
+            },
+        ],
+        response: UnsignedTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
+        path: '/v0/morpho/market_position',
+        description: `Check how many shares you&#x27;ve borrowed and the equivalent token amount of a given
+market.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('ethereum:mainnet'),
+            },
+            {
+                name: 'user_address',
+                type: 'Query',
+                schema: z.string().default('0xa829B388A3DF7f581cE957a95edbe419dd146d1B'),
+            },
+            {
+                name: 'unique_market_key',
+                type: 'Query',
+                schema: z
+                    .string()
+                    .regex(/^0x.*/)
+                    .default('0xe7399fdebc318d76dfec7356caafcf8cd4b91287e139a3ec423f09aeeb656fc4'),
+            },
+        ],
+        response: MorphoCheckMarketPositionResponse,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
+        path: '/v0/morpho/markets',
+        description: `Query a list of markets you can borrow from.
+
+Each market has one unique token that can be borrowed against one unique token that
+can be used as collateral.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('ethereum:mainnet'),
+            },
+            {
+                name: 'collateral_token',
+                type: 'Query',
+                schema: collateral_token,
+            },
+            {
+                name: 'loan_token',
+                type: 'Query',
+                schema: loan_token,
+            },
+        ],
+        response: MorphoGetMarketsResponse,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/morpho/repay',
+        description: `Repay borrowed tokens to a market in order to reduce or eliminate debt.
+
+A Morpho Market is a primitive lending pool that pairs one collateral asset with one
+loan asset. Each market is isolated (meaning risks are contained within each
+individual market), immutable (cannot be changed after deployment), and will persist
+as long as the blockchain it is deployed on is live.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: MorphoRepayRequest.default({
+                    chain: 'ethereum:mainnet',
+                    sender: '0xa829B388A3DF7f581cE957a95edbe419dd146d1B',
+                    amount: 0.1,
+                    unique_market_key:
+                        '0xe7399fdebc318d76dfec7356caafcf8cd4b91287e139a3ec423f09aeeb656fc4',
+                }),
+            },
+        ],
+        response: UnsignedTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/morpho/supply_collateral',
+        description: `Supply collateral to a Morpho Market in order to borrow against it.
+
+A Morpho Market is a primitive lending pool that pairs one collateral asset with one
+loan asset. Each market is isolated (meaning risks are contained within each
+individual market), immutable (cannot be changed after deployment), and will persist
+as long as the blockchain it is deployed on is live.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: MorphoSupplyCollateralRequest.default({
+                    chain: 'ethereum:mainnet',
+                    sender: '0xa829B388A3DF7f581cE957a95edbe419dd146d1B',
+                    amount: 0.1,
+                    unique_market_key:
+                        '0xe7399fdebc318d76dfec7356caafcf8cd4b91287e139a3ec423f09aeeb656fc4',
+                }),
+            },
+        ],
+        response: UnsignedTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
+        path: '/v0/morpho/vault_position',
+        description: `Check how many shares you own and the equivalent token amount of a given
+vault.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('ethereum:mainnet'),
+            },
+            {
+                name: 'user_address',
+                type: 'Query',
+                schema: z.string().default('0xa829B388A3DF7f581cE957a95edbe419dd146d1B'),
+            },
+            {
+                name: 'vault_address',
+                type: 'Query',
+                schema: z.string().default('0xbEef047a543E45807105E51A8BBEFCc5950fcfBa'),
+            },
+        ],
+        response: MorphoCheckVaultPositionResponse,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
+        path: '/v0/morpho/vaults',
+        description: `Query a list of vaults you can deposit into.
+
+Each vault has one unique token that can be deposited. In exchange for depositing
+tokens into a vault you receive shares. You earn yield on these shares by their
+exchange value increasing over time.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('ethereum:mainnet'),
+            },
+            {
+                name: 'deposit_token',
+                type: 'Query',
+                schema: deposit_token,
+            },
+        ],
+        response: MorphoGetVaultsResponse,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/morpho/withdraw',
+        description: `Withdraw deposited tokens from a Morpho Vault.
+
+The passive yield earned on token deposits is represented by the increased value of
+the shares received upon depositing tokens.
+
+A Morpho Vault has one loan asset and can allocate deposits to multiple Morpho
+markets. Users can deposit into a vault to start earning passive yield from interest
+paid by borrowers. Vaults feature automated risk management, actively curating risk
+exposure for all deposited assets so users don&#x27;t need to make these decisions
+themselves. Users maintain full control over their assets, can monitor the vault&#x27;s
+state at any time, and withdraw their liquidity at their discretion.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: MorphoWithdrawRequest.default({
+                    chain: 'ethereum:mainnet',
+                    sender: '0xa829B388A3DF7f581cE957a95edbe419dd146d1B',
+                    vault_address: '0xbEef047a543E45807105E51A8BBEFCc5950fcfBa',
+                    amount: 0.5,
+                }),
+            },
+        ],
+        response: UnsignedTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/morpho/withdraw_collateral',
+        description: `Withdraw collateral that has been supplied to a Morpho Market.
+
+A Morpho Market is a primitive lending pool that pairs one collateral asset with one
+loan asset. Each market is isolated (meaning risks are contained within each
+individual market), immutable (cannot be changed after deployment), and will persist
+as long as the blockchain it is deployed on is live.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: MorphoWithdrawCollateralRequest.default({
+                    chain: 'ethereum:mainnet',
+                    sender: '0xa829B388A3DF7f581cE957a95edbe419dd146d1B',
+                    amount: 0.1,
+                    unique_market_key:
+                        '0xe7399fdebc318d76dfec7356caafcf8cd4b91287e139a3ec423f09aeeb656fc4',
+                }),
+            },
+        ],
+        response: UnsignedTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
+        path: '/v0/token/address/get',
+        description: `This endpoint retrieves the address for a token supported by us.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('WETH'),
+            },
+        ],
+        response: z
+            .object({ address: z.string().describe('Address of the token provided') })
+            .passthrough(),
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
+        path: '/v0/token/balance/get',
+        description: `Returns the balance of a specific ERC20 token for a given user address.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: token,
+            },
+        ],
+        response: TokenBalanceResponse,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
+        path: '/v0/token/price/get',
+        description: `Retrieves the price of a token in USD using Chainlink&#x27;s on-chain price feeds.
+
+Chainlink is a decentralized oracle that aggregates price data from off-chain
+sources. This ensures the price is tamper-resistant but the price might be stale
+with the update frequency of the oracle.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .default('WBTC'),
+            },
+        ],
+        response: z
+            .object({ price: z.string().describe('Price of the token in USD') })
+            .passthrough(),
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'post',
+        path: '/v0/token/transfer',
+        description: `Sends native ETH or ERC20 tokens from the sender&#x27;s address to another address.`,
+        requestFormat: 'json',
+        parameters: [
+            {
+                name: 'body',
+                type: 'Body',
+                schema: TokenTransferRequest.default({
+                    chain: 'arbitrum:mainnet',
+                    to: '0x7Fd9DBad4d8B8F97BEdAC3662A0129a5774AdA8E',
+                    sender: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
+                    token: 'ETH',
+                    amount: 0.000048,
+                }),
+            },
+        ],
+        response: UnsignedTransaction,
+        errors: [
+            {
+                status: 422,
+                description: `Validation Error`,
+                schema: HTTPValidationError,
+            },
+        ],
+    },
+    {
+        method: 'get',
         path: '/v0/uniswap/liquidity_provision/in_range/get',
         description: `This endpoint allows users to check whether a specific liquidity provider ()
 position is within the active tick range on the uniswap platform.
@@ -1952,12 +3134,17 @@ and earning trading fees.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: UniswapCheckInRangeRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    token_id: 4318185,
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token_id',
+                type: 'Query',
+                schema: z.number().int().gte(0).default(4318185),
             },
         ],
         response: z
@@ -2057,7 +3244,7 @@ needed for the minting process.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/uniswap/liquidity_provision/positions/get',
         description: `This endpoint retrieves the number of Liquidity Provider (LP) positions
 associated with a specific sender address on the Uniswap platform.
@@ -2069,12 +3256,17 @@ activities effectively.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: UniswapGetLiquidityProvisionPositionsRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    user: '0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'user',
+                type: 'Query',
+                schema: z.string().optional().default('0x29F20a192328eF1aD35e1564aBFf4Be9C5ce5f7B'),
             },
         ],
         response: UniswapLPPositionsInfoResponse,
@@ -2122,7 +3314,7 @@ before initiating a withdrawal to avoid potential issues or penalties.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/uniswap/pool_price/get',
         description: `This endpoint calculates the price of a token in a Uniswap pool.
 
@@ -2130,14 +3322,121 @@ The price is calculated based on the current pool state and the specified fee ti
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: UniswapGetPoolPriceRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    token_in: 'USDC',
-                    token_out: 'USDT',
-                    fee: '0.01',
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token_in',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .default('USDC'),
+            },
+            {
+                name: 'token_out',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .default('USDT'),
+            },
+            {
+                name: 'fee',
+                type: 'Query',
+                schema: z.enum(['0.01', '0.05', '0.3', '1.0']).default('0.01'),
             },
         ],
         response: UniswapPoolPriceResponse,
@@ -2150,7 +3449,7 @@ The price is calculated based on the current pool state and the specified fee ti
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/uniswap/quote/buy_exactly/get',
         description: `This endpoint calculates the amount of input tokens required to purchase a
 specified amount of output tokens from a Uniswap pool.
@@ -2160,15 +3459,128 @@ into account the current pool state and the specified fee tier.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: UniswapGetBuyQuoteRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    token_in: 'USDC',
-                    token_out: 'USDT',
-                    fee: '0.01',
-                    amount_out: 1,
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token_in',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDC'),
+            },
+            {
+                name: 'token_out',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDT'),
+            },
+            {
+                name: 'fee',
+                type: 'Query',
+                schema: z.enum(['0.01', '0.05', '0.3', '1.0']).default('0.01'),
+            },
+            {
+                name: 'amount_out',
+                type: 'Query',
+                schema: amount_out,
             },
         ],
         response: UniswapBuyQuoteInfoResponse,
@@ -2181,7 +3593,7 @@ into account the current pool state and the specified fee tier.`,
         ],
     },
     {
-        method: 'post',
+        method: 'get',
         path: '/v0/uniswap/quote/sell_exactly/get',
         description: `This endpoint calculates the amount of input tokens required to purchase a
 specified amount of output tokens from a Uniswap pool.
@@ -2191,15 +3603,128 @@ into account the current pool state and the specified fee tier.`,
         requestFormat: 'json',
         parameters: [
             {
-                name: 'body',
-                type: 'Body',
-                schema: UniswapGetSellQuoteRequest.default({
-                    chain: 'arbitrum:mainnet',
-                    token_in: 'USDC',
-                    token_out: 'USDT',
-                    fee: '0.01',
-                    amount_in: 1,
-                }),
+                name: 'chain',
+                type: 'Query',
+                schema: z
+                    .enum(['base:mainnet', 'ethereum:mainnet', 'arbitrum:mainnet'])
+                    .optional()
+                    .default('arbitrum:mainnet'),
+            },
+            {
+                name: 'token_in',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDC'),
+            },
+            {
+                name: 'token_out',
+                type: 'Query',
+                schema: z
+                    .enum([
+                        '1INCH',
+                        'AAVE',
+                        'BAL',
+                        'cbBTC',
+                        'cbETH',
+                        'CRV',
+                        'crvUSD',
+                        'DAI',
+                        'ENS',
+                        'ETHx',
+                        'FRAX',
+                        'FXS',
+                        'GHO',
+                        'KNC',
+                        'LDO',
+                        'LINK',
+                        'LUSD',
+                        'MKR',
+                        'osETH',
+                        'PYUSD',
+                        'rETH',
+                        'RPL',
+                        'rsETH',
+                        'sDAI',
+                        'SNX',
+                        'STG',
+                        'sUSDe',
+                        'tBTC',
+                        'UNI',
+                        'USDC',
+                        'USDe',
+                        'USDS',
+                        'USDT',
+                        'WBTC',
+                        'weETH',
+                        'WETH',
+                        'wstETH',
+                        'ARB',
+                        'EURS',
+                        'MAI',
+                        'USDCe',
+                        'AERO',
+                        'EUR',
+                        'VIRTUAL',
+                    ])
+                    .optional()
+                    .default('USDT'),
+            },
+            {
+                name: 'fee',
+                type: 'Query',
+                schema: z.enum(['0.01', '0.05', '0.3', '1.0']).default('0.01'),
+            },
+            {
+                name: 'amount_in',
+                type: 'Query',
+                schema: amount_out,
             },
         ],
         response: UniswapSellQuoteInfoResponse,
