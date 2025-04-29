@@ -139,7 +139,6 @@ def make_tools(
         url: str = (
             openapi_data["servers"][0]["url"].rstrip("/") + "/" + path.lstrip("/")
         )
-        tool_name = path.replace("/v0/", "").replace("/", "_") + "_"  # TODO
 
         if "post" in openapi_data["paths"][path]:
             endpoint = openapi_data["paths"][path]["post"]
@@ -178,7 +177,7 @@ def make_tools(
             )
 
             post_tool = PostRequestTool(
-                name=tool_name,
+                name=endpoint['operationId'],
                 description=description,
                 url=url,
                 args_schema=args_schema,
@@ -189,7 +188,7 @@ def make_tools(
                 api_key="123",
             )
 
-            post_tool.__name__ = tool_name  # type: ignore
+            post_tool.__name__ = endpoint['operationId']  # type: ignore
             tools.append(post_tool)
 
         if "get" in openapi_data["paths"][path]:
@@ -211,7 +210,7 @@ def make_tools(
                 Params = None
             #
             get_tool = GetRequestTool(
-                name=tool_name,
+                name=endpoint['operationId'],
                 description=description,
                 url=url,
                 return_direct=False,
@@ -220,7 +219,7 @@ def make_tools(
                 api_key="123",
             )
 
-            get_tool.__name__ = tool_name  # type: ignore
+            get_tool.__name__ = endpoint['operationId']  # type: ignore
             tools.append(get_tool)
 
     return tools  # [:3]  # type: ignore
